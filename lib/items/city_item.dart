@@ -12,7 +12,7 @@ class CityItem extends StatelessWidget {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (_) {
-          return CityScreen();
+          return CityScreen(name, incidence);
         },
       ),
     );
