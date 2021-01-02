@@ -13,7 +13,8 @@ class CitysScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(5),
         children: DUMMY_CITYS
-            .map((cityData) => CityItem(cityData.name, cityData.incidence))
+            .map((cityData) =>
+                CityItem(cityData.name, cityData.incidence, cityData.district))
             .toList(),
       ),
       floatingActionButton: FloatingActionButton(
