@@ -7,5 +7,8 @@ class City {
   final String incidence;
 
   const City(
-      {@required this.id, @required this.district, this.name, this.incidence});
+      {@required this.id,
+      @required this.district,
+      this.name,
+      this.incidence = '-'});
 }

@@ -11,6 +11,7 @@ class CitysScreen extends StatelessWidget {
         title: Text('🚦 Corona-Ampel 🚦'),
       ),
       body: ListView(
+        padding: const EdgeInsets.all(5),
         children: DUMMY_CITYS
             .map((cityData) => CityItem(cityData.name, cityData.incidence))
             .toList(),

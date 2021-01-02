@@ -1,5 +1,5 @@
-import 'package:coronaampel/screens/citys.dart';
 import 'package:flutter/material.dart';
+import 'package:coronaampel/screens/citys_screen.dart';
 
 void main() {
   runApp(MyApp());
