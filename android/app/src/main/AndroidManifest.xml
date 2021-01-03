@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.coronaampel">
+    package="com.ingomc.coronaampel">
    <application
-        android:label="coronaampel"
+        android:label="Corona-Ampel"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

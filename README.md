@@ -1,4 +1,4 @@
-# coronaampel
+# Corona-Ampel
 
 A new Flutter project.
 

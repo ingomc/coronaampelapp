@@ -8,9 +8,12 @@ class CitysScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('🚦 Corona-Ampel 🚦'),
+        title: Center(
+          child: Text('🚦 Corona-Ampel 🚦'),
+        ),
       ),
       body: ListView(
+        physics: BouncingScrollPhysics(),
         padding: const EdgeInsets.all(8),
         children: DUMMY_CITYS
             .map((cityData) =>

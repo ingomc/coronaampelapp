@@ -1,6 +1,6 @@
 {
-    "name": "coronaampel",
-    "short_name": "coronaampel",
+    "name": "Corona-Ampel - Covid19 Inzidenz",
+    "short_name": "Corona-Ampel",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

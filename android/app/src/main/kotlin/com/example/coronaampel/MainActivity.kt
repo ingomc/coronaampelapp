@@ -1,4 +1,4 @@
-package com.example.coronaampel
+package com.ingomc.coronaampel
 
 import io.flutter.embedding.android.FlutterActivity
 
