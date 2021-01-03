@@ -9,19 +9,27 @@ class CityItem extends StatelessWidget {
 
   CityItem(this.name, this.incidence, this.district);
 
-  final Color txtColor = Colors.black54;
+  Color txtColor = Colors.amber;
+  Color bgColor = Colors.black;
 
   getBgColor() {
     if (incidence >= 35 && incidence < 50) {
-      return Colors.orange[300];
+      txtColor = Colors.black54;
+      bgColor = Colors.orange[300];
+      return false;
     }
     if (incidence >= 50 && incidence < 200) {
-      return Colors.redAccent[700];
+      txtColor = Colors.black54;
+      bgColor = Colors.redAccent[700];
+      return false;
     }
     if (incidence >= 200) {
-      return Colors.red[900];
+      txtColor = Colors.redAccent[700];
+      bgColor = Color.fromRGBO(60, 0, 0, 1);
+      return false;
     }
-    return Colors.green;
+    txtColor = Colors.black54;
+    bgColor = Colors.green;
   }
 
   void selectCity(BuildContext context) {
@@ -36,6 +44,7 @@ class CityItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    getBgColor();
     return InkWell(
       onTap: () => selectCity(context),
       borderRadius: BorderRadius.circular(10),
@@ -94,7 +103,7 @@ class CityItem extends StatelessWidget {
           ],
         ),
         decoration: BoxDecoration(
-          color: getBgColor(),
+          color: bgColor,
           borderRadius: BorderRadius.circular(10),
         ),
       ),
