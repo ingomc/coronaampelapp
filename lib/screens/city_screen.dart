@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CityScreen extends StatelessWidget {
   final String name;
-  final String incidence;
+  final double incidence;
 
   CityScreen(this.name, this.incidence);
 
@@ -13,7 +13,7 @@ class CityScreen extends StatelessWidget {
         title: Text(name),
       ),
       body: Center(
-        child: Text('inzidenz: ' + incidence),
+        child: Text('inzidenz: ' + incidence.toString()),
       ),
     );
   }
