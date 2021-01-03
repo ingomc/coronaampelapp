@@ -6,9 +6,10 @@ class City {
   final String name;
   final double incidence;
 
-  const City(
-      {@required this.id,
-      @required this.district,
-      this.name,
-      this.incidence = 0});
+  const City({
+    @required this.id,
+    @required this.district,
+    @required this.name,
+    this.incidence = 0,
+  });
 }
