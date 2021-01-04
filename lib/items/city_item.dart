@@ -56,13 +56,13 @@ class CityItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(4),
         child: InkWell(
           onTap: () => selectCity(context),
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(4),
           child: Row(
             children: <Widget>[
               Expanded(
                 child: Container(
                   margin: EdgeInsets.all(6),
-                  padding: const EdgeInsets.all(15),
+                  padding: const EdgeInsets.all(8),
                   child: Column(
                     children: [
                       Row(
@@ -73,8 +73,15 @@ class CityItem extends StatelessWidget {
                             style: TextStyle(color: txtColor),
                           ),
                           Text(
-                            '7 Tage Inzidenz / 100.000',
+                            'Neue Fälle: XX',
                             style: TextStyle(color: txtColor),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(
+                            height: 4,
                           ),
                         ],
                       ),

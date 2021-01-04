@@ -15,7 +15,7 @@ class CityScreen extends StatelessWidget {
       ),
       body: Center(
         child: Text(
-          'inzidenz: ' + incidence.toString(),
+          'Inzidenz: ' + incidence.toString(),
           style: TextStyle(fontSize: 40),
         ),
       ),
