@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:coronaampel/screens/citys_screen.dart';
+import './screens/tabs_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         accentColor: Colors.blueGrey,
       ),
       debugShowCheckedModeBanner: false,
-      home: CitysScreen(),
+      home: TabsScreen(),
     );
   }
 }
