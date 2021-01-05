@@ -41,7 +41,7 @@ class _TabsScreenState extends State<TabsScreen> {
       body: _pages[_selectedPageIndex]['page'],
       extendBody: true,
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Theme.of(context).primaryColor,
         unselectedItemColor: Colors.blueGrey[300],
         selectedItemColor: Colors.white,
         currentIndex: _selectedPageIndex,

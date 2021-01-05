@@ -13,15 +13,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themecontroller = Get.put(ThemeController());
-    return GetMaterialApp(
-      title: 'Corona-Ampel',
-      theme: ThemeData(
-        // brightness: themecontroller.theme,
-        brightness: Brightness.dark,
-        accentColor: Colors.blueGrey,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: TabsScreen(),
+    return SimpleBuilder(
+      builder: (_) {
+        return GetMaterialApp(
+          theme: themecontroller.theme,
+          title: 'Corona-Ampel',
+          debugShowCheckedModeBanner: false,
+          home: TabsScreen(),
+        );
+      },
     );
   }
 }
