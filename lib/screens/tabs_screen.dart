@@ -5,6 +5,8 @@ import './citys_screen.dart';
 import 'settings_screen.dart';
 
 class TabsScreen extends StatelessWidget {
+  static const path = '/';
+
   final List<Map<String, Object>> _pages = [
     {
       'page': CitysScreen(),

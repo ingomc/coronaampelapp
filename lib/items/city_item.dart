@@ -1,5 +1,6 @@
 import 'package:coronaampel/screens/city_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../screens/city_screen.dart';
 
 class CityItem extends StatelessWidget {
@@ -36,13 +37,9 @@ class CityItem extends StatelessWidget {
     bgColor = Colors.green;
   }
 
-  void selectCity(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (_) {
-          return CityScreen(name, district, incidence);
-        },
-      ),
+  void goToCity() {
+    Get.to(
+      CityScreen(),
     );
   }
 
@@ -55,7 +52,7 @@ class CityItem extends StatelessWidget {
         color: bgColor,
         borderRadius: BorderRadius.circular(4),
         child: InkWell(
-          onTap: () => selectCity(context),
+          onTap: () => goToCity(),
           borderRadius: BorderRadius.circular(4),
           child: Row(
             children: <Widget>[

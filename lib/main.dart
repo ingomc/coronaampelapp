@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import './screens/tabs_screen.dart';
+import './screens/city_screen.dart';
 
 void main() async {
   await GetStorage.init();
@@ -19,7 +20,14 @@ class MyApp extends StatelessWidget {
           theme: themecontroller.theme,
           title: 'Corona-Ampel',
           debugShowCheckedModeBanner: false,
-          home: TabsScreen(),
+          // starting point from where app should begin
+          initialRoute: '/',
+          //when initial Route is given no need to add home widget for initial start point of app
+          //full app route structure
+          routes: {
+            TabsScreen.path: (context) => TabsScreen(),
+            CityScreen.path: (context) => CityScreen(),
+          },
         );
       },
     );

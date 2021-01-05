@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:coronaampel/data/dummy_data.dart';
-import '../models/city.dart';
 import '../items/city_item.dart';
 
 class CitysScreen extends StatelessWidget {

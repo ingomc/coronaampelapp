@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
 
 class CityScreen extends StatelessWidget {
-  final String name;
-  final String district;
-  final double incidence;
-
-  CityScreen(this.name, this.district, this.incidence);
+  static const path = '/city';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('$name ($district)'),
+        title: Text('Stadt Name'),
       ),
       body: Center(
         child: Text(
-          'Inzidenz: ' + incidence.toString(),
+          'Inzidenz: XXXX',
           style: TextStyle(fontSize: 40),
         ),
       ),
