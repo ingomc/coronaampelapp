@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       title: 'Corona-Ampel',
       theme: ThemeData(
         brightness: Brightness.dark,
-        accentColor: Colors.blueGrey,
+        accentColor: Colors.teal[300],
       ),
       debugShowCheckedModeBanner: false,
       home: TabsScreen(),

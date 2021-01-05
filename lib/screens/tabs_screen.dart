@@ -12,9 +12,13 @@ class _TabsScreenState extends State<TabsScreen> {
     {
       'page': CitysScreen(),
       'fab': FloatingActionButton(
+        backgroundColor: Colors.blueGrey,
         onPressed: () {},
         tooltip: 'Suche',
-        child: Icon(Icons.search),
+        child: Icon(
+          Icons.search,
+          color: Colors.white,
+        ),
       ),
     },
     {
@@ -34,16 +38,17 @@ class _TabsScreenState extends State<TabsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('data'),
-      ),
       body: _pages[_selectedPageIndex]['page'],
+      extendBody: true,
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.grey[900],
+        unselectedItemColor: Colors.blueGrey[300],
+        selectedItemColor: Colors.white,
         currentIndex: _selectedPageIndex,
         onTap: _selectPage,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.category),
+            icon: Icon(Icons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
