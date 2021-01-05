@@ -1,4 +1,5 @@
 import 'package:coronaampel/controller/tabs_controller.dart';
+import 'package:coronaampel/screens/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import './citys_screen.dart';
@@ -12,7 +13,9 @@ class TabsScreen extends StatelessWidget {
       'page': CitysScreen(),
       'fab': FloatingActionButton(
         backgroundColor: Colors.blueGrey,
-        onPressed: () {},
+        onPressed: () {
+          Get.toNamed(SearchScreen.path);
+        },
         tooltip: 'Suche',
         child: Icon(
           Icons.search,

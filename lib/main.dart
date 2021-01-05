@@ -1,4 +1,5 @@
 import 'package:coronaampel/controller/theme_controller.dart';
+import 'package:coronaampel/screens/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
     return SimpleBuilder(
       builder: (_) {
         return GetMaterialApp(
+          defaultTransition: Transition.cupertino,
           theme: themecontroller.theme,
           title: 'Corona-Ampel',
           debugShowCheckedModeBanner: false,
@@ -27,6 +29,7 @@ class MyApp extends StatelessWidget {
           routes: {
             TabsScreen.path: (context) => TabsScreen(),
             CityScreen.path: (context) => CityScreen(),
+            SearchScreen.path: (context) => SearchScreen(),
           },
         );
       },
