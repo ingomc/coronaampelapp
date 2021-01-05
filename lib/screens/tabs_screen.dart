@@ -22,7 +22,7 @@ class TabsScreen extends StatelessWidget {
     },
     {
       'page': SettingsScreen(),
-      'fab': null,
+      'fab': Container(),
     }
   ];
 
@@ -52,7 +52,8 @@ class TabsScreen extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: _pages[tabsController.selectedIndex]['fab'],
+      floatingActionButton:
+          Obx(() => _pages[tabsController.selectedIndex]['fab']),
     );
   }
 }
