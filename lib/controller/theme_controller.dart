@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:coronaampel/themes/light.dart';
 
 class ThemeController extends GetxController {
   final box = GetStorage('theme');
@@ -11,9 +12,6 @@ class ThemeController extends GetxController {
           brightness: Brightness.dark,
           accentColor: Colors.blueGrey,
         )
-      : ThemeData(
-          brightness: Brightness.light,
-          primaryColor: Colors.white,
-        );
+      : ThemeConfig.lightTheme;
   void changeTheme(bool val) => box.write('darkmode', val);
 }
