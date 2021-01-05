@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import './citys_screen.dart';
-import './favorite_screen.dart';
+import 'settings_screen.dart';
 
 class TabsScreen extends StatefulWidget {
   @override
@@ -22,7 +22,7 @@ class _TabsScreenState extends State<TabsScreen> {
       ),
     },
     {
-      'page': FavoriteScreen(),
+      'page': SettingsScreen(),
       'fab': null,
     }
   ];

@@ -1,18 +1,24 @@
+import 'package:coronaampel/controller/theme_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import './screens/tabs_screen.dart';
 
-void main() {
+void main() async {
+  await GetStorage.init();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    final themecontroller = Get.put(ThemeController());
+    return GetMaterialApp(
       title: 'Corona-Ampel',
       theme: ThemeData(
+        // brightness: themecontroller.theme,
         brightness: Brightness.dark,
-        accentColor: Colors.teal[300],
+        accentColor: Colors.blueGrey,
       ),
       debugShowCheckedModeBanner: false,
       home: TabsScreen(),
