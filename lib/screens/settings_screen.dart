@@ -24,6 +24,8 @@ class SettingsScreen extends StatelessWidget {
                   value: themecontroller.isDark,
                   title: Text("Darkmode"),
                   onChanged: themecontroller.changeTheme,
+                  activeColor: Colors.blueGrey[200],
+                  activeTrackColor: Colors.blueGrey,
                 ),
               ),
             ],
