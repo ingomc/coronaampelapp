@@ -12,43 +12,22 @@ class SettingsScreen extends StatelessWidget {
           centerTitle: true,
           title: Text('Einstellungen'),
         ),
-        body: Column(
-          children: [
-            Container(
-                child: Center(
-              child: Text('Settings'),
-            )),
-            Container(
-              child: Text(
-                'System Brightness: ${Get.mediaQuery.platformBrightness.toString()}',
-                style: TextStyle(fontSize: 20),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          child: Column(
+            children: [
+              Container(
+                  child: Text('Settings',
+                      style: Theme.of(context).textTheme.headline6)),
+              Center(
+                child: SwitchListTile(
+                  value: themecontroller.isDark,
+                  title: Text("Darkmode"),
+                  onChanged: themecontroller.changeTheme,
+                ),
               ),
-            ),
-            Container(
-              child: Text(
-                'Theme Brightness: ${Get.theme.brightness.toString()}',
-                style: TextStyle(fontSize: 20),
-              ),
-            ),
-            SizedBox(height: 24),
-            Text(
-              'ThemeMode',
-              style: TextStyle(fontSize: 20),
-              textAlign: TextAlign.left,
-            ),
-            Text(
-              '${themecontroller.isDark}',
-              style: TextStyle(fontSize: 20),
-              textAlign: TextAlign.left,
-            ),
-            Center(
-              child: SwitchListTile(
-                value: themecontroller.isDark,
-                title: Text("Touch to change ThemeMode"),
-                onChanged: themecontroller.changeTheme,
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       );
     });
