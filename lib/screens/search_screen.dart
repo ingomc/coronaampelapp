@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 class SearchScreen extends StatelessWidget {
   static const path = '/search';
   final searchController = Get.put(SearchController());
-  final citysController = Get.put(CitysController());
+  final cityListController = Get.put(CityListController());
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class SearchScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        citysController
+                        cityListController
                             .toggleCityToList(controller.citys[index]);
                       },
                       child: Card(
@@ -52,7 +52,7 @@ class SearchScreen extends StatelessWidget {
   }
 
   Widget isFavorite(int index, BuildContext context) {
-    if (citysController.citys.firstWhere(
+    if (cityListController.citys.firstWhere(
             (city) => city.id == searchController.citys[index].id,
             orElse: () => null) !=
         null) {

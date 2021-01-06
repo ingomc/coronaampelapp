@@ -1,10 +1,11 @@
 import 'package:coronaampel/controller/city_list_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:coronaampel/data/dummy_data.dart';
 import 'package:get/get.dart';
 import '../items/city_item.dart';
 
 class CitysScreen extends StatelessWidget {
+  final cityListController = Get.put(CityListController());
+
   void _select(value) {
     switch (value) {
       case 'Entfernen':
@@ -39,7 +40,7 @@ class CitysScreen extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: GetX<CitysController>(builder: (controller) {
+              child: GetX<CityListController>(builder: (controller) {
                 return ListView.builder(
                   itemCount: controller.citys.length,
                   padding: const EdgeInsets.only(

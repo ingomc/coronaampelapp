@@ -4,12 +4,13 @@ import 'package:get/get.dart';
 
 class CityDetailScreen extends StatelessWidget {
   static const path = '/city';
-  final citysController = Get.put(CitysController());
+  final cityListController = Get.put(CityListController());
 
   @override
   Widget build(BuildContext context) {
     final cityId = ModalRoute.of(context).settings.arguments as String;
-    final city = citysController.citys.firstWhere((city) => city.id == cityId);
+    final city =
+        cityListController.citys.firstWhere((city) => city.id == cityId);
 
     return Scaffold(
       appBar: AppBar(

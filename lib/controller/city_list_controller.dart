@@ -1,7 +1,7 @@
 import 'package:coronaampel/models/city.dart';
 import 'package:get/get.dart';
 
-class CitysController extends GetxController {
+class CityListController extends GetxController {
   var citys = [].obs;
 
   toggleCityToList(City city) {
