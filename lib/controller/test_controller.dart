@@ -2,7 +2,7 @@ import 'package:coronaampel/models/city.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class TestController extends GetxController {
+class CitysController extends GetxController {
   var citys = [].obs;
 
   toggleCityToList(City city) {

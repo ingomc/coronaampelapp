@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class TestScreen extends StatelessWidget {
-  final testController = Get.put(TestController());
+  final citysController = Get.put(CitysController());
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class TestScreen extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: GetX<TestController>(builder: (controller) {
+              child: GetX<CitysController>(builder: (controller) {
                 return ListView.builder(
                   itemCount: controller.citys.length,
                   itemBuilder: (context, index) {

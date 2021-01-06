@@ -39,7 +39,7 @@ class CitysScreen extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: GetX<TestController>(builder: (controller) {
+              child: GetX<CitysController>(builder: (controller) {
                 return ListView.builder(
                   itemCount: controller.citys.length,
                   padding: const EdgeInsets.only(

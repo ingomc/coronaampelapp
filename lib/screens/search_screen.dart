@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 class SearchScreen extends StatelessWidget {
   static const path = '/search';
   final searchController = Get.put(SearchController());
-  final testController = Get.put(TestController());
+  final citysController = Get.put(CitysController());
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class SearchScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        testController
+                        citysController
                             .toggleCityToList(controller.citys[index]);
                       },
                       child: Card(
@@ -38,7 +38,7 @@ class SearchScreen extends StatelessWidget {
                                     child: Text(
                                         '${controller.citys[index].name} ${controller.citys[index].district} ${controller.citys[index].incidence}'),
                                   ),
-                                  Obx(() => isFavorite(index)),
+                                  Obx(() => isFavorite(index, context)),
                                 ],
                               ),
                             ),
@@ -56,15 +56,17 @@ class SearchScreen extends StatelessWidget {
     );
   }
 
-  Widget isFavorite(int index) {
-    if (testController.citys.firstWhere(
+  Widget isFavorite(int index, BuildContext context) {
+    if (citysController.citys.firstWhere(
             (city) => city.id == searchController.citys[index].id,
             orElse: () => null) !=
         null) {
       //if val is true
       return Icon(
         Icons.check,
-        color: Colors.greenAccent,
+        color: Theme.of(context).brightness == Brightness.dark
+            ? Colors.green
+            : Colors.green[700],
       );
     } else {
       return Icon(Icons.add);
