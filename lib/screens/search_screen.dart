@@ -30,17 +30,12 @@ class SearchScreen extends StatelessWidget {
                       child: Card(
                         child: Column(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                        '${controller.citys[index].name} ${controller.citys[index].district} ${controller.citys[index].incidence}'),
-                                  ),
-                                  Obx(() => isFavorite(index, context)),
-                                ],
-                              ),
+                            ListTile(
+                              title: Text(
+                                  '${controller.citys[index].district} ${controller.citys[index].name}'),
+                              subtitle: Text(
+                                  'Aktuelle Inzidenz: ${controller.citys[index].incidence}'),
+                              trailing: Obx(() => isFavorite(index, context)),
                             ),
                           ],
                         ),
@@ -70,7 +65,6 @@ class SearchScreen extends StatelessWidget {
       );
     } else {
       return Icon(Icons.add);
-      //if val is false
     }
   }
 }

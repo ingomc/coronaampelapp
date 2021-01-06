@@ -4,11 +4,13 @@ import 'package:get/get.dart';
 import '../screens/city_screen.dart';
 
 class CityItem extends StatelessWidget {
+  final String id;
   final String name;
   final String district;
   final double incidence;
 
   CityItem(
+    this.id,
     this.name,
     this.district,
     this.incidence,
@@ -40,6 +42,7 @@ class CityItem extends StatelessWidget {
   void goToCity() {
     Get.to(
       CityScreen(),
+      arguments: id,
     );
   }
 

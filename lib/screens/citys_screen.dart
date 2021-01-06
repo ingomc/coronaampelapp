@@ -46,21 +46,11 @@ class CitysScreen extends StatelessWidget {
                       top: 8, left: 8, right: 8, bottom: 100),
                   itemBuilder: (context, index) {
                     return CityItem(
+                      controller.citys[index].id,
                       controller.citys[index].name,
                       controller.citys[index].district,
                       controller.citys[index].incidence,
                     );
-                    //             cityData.name,
-                    //             cityData.district,
-                    //             cityData.incidence,
-                    //           )
-                    // return Card(
-                    //   child: Padding(
-                    //     padding: const EdgeInsets.all(16.0),
-                    //     child: Text(
-                    //         '${controller.citys[index].name} ${controller.citys[index].district} '),
-                    //   ),
-                    // );
                   },
                 );
               }),
@@ -68,16 +58,6 @@ class CitysScreen extends StatelessWidget {
           ],
         ),
       ),
-      // body: ListView(
-      //   physics: BouncingScrollPhysics(),
-      //   children: DUMMY_CITYS
-      //       .map((cityData) => CityItem(
-      //             cityData.name,
-      //             cityData.district,
-      //             cityData.incidence,
-      //           ))
-      //       .toList(),
-      // ),
     );
   }
 }

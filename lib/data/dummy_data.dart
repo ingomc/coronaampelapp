@@ -20,12 +20,6 @@ const DUMMY_CITYS = const [
     incidence: 51.1,
   ),
   City(
-    id: '102b',
-    district: 'Landkreis',
-    name: 'Bamberg',
-    incidence: 51.1,
-  ),
-  City(
     id: '103',
     district: 'Kreifreie Stadt',
     name: 'Bamberg',
