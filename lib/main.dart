@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import './screens/tabs_screen.dart';
-import './screens/city_screen.dart';
+import './screens/city_detail_screen.dart';
 
 void main() async {
   await GetStorage.init();
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           //full app route structure
           routes: {
             TabsScreen.path: (context) => TabsScreen(),
-            CityScreen.path: (context) => CityScreen(),
+            CityDetailScreen.path: (context) => CityDetailScreen(),
             SearchScreen.path: (context) => SearchScreen(),
           },
         );

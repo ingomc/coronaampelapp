@@ -1,7 +1,6 @@
-import 'package:coronaampel/screens/city_screen.dart';
+import 'package:coronaampel/screens/city_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../screens/city_screen.dart';
 
 class CityItem extends StatelessWidget {
   final String id;
@@ -41,7 +40,7 @@ class CityItem extends StatelessWidget {
 
   void goToCity() {
     Get.to(
-      CityScreen(),
+      CityDetailScreen(),
       arguments: id,
     );
   }

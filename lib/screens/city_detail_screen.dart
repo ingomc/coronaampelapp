@@ -2,7 +2,7 @@ import 'package:coronaampel/controller/test_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CityScreen extends StatelessWidget {
+class CityDetailScreen extends StatelessWidget {
   static const path = '/city';
   final citysController = Get.put(CitysController());
 
