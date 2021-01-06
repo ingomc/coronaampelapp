@@ -31,12 +31,15 @@ class SearchScreen extends StatelessWidget {
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(16.0),
-                              child: Text(
-                                  '${controller.citys[index].name} ${controller.citys[index].district} in Liste?'),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Obx(() => isFavorite(index)),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                        '${controller.citys[index].name} ${controller.citys[index].district} in Liste?'),
+                                  ),
+                                  Obx(() => isFavorite(index)),
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -58,9 +61,12 @@ class SearchScreen extends StatelessWidget {
             orElse: () => null) !=
         null) {
       //if val is true
-      return Text("ist Favorit ✅");
+      return Icon(
+        Icons.check,
+        color: Colors.greenAccent,
+      );
     } else {
-      return Text("nocht nicht");
+      return Icon(Icons.add);
       //if val is false
     }
   }
