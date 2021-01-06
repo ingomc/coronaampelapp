@@ -5,9 +5,10 @@ import 'package:get/get.dart';
 class TestController extends GetxController {
   var citys = [].obs;
 
-  addCity(City city) {
+  toggleCityToList(City city) {
     City cityInList = citys.firstWhere((cityItem) => cityItem.id == city.id,
         orElse: () => null);
+
     if (cityInList == null) {
       citys.add(city);
     } else {

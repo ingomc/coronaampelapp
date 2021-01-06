@@ -24,7 +24,8 @@ class SearchScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        testController.addCity(controller.citys[index]);
+                        testController
+                            .toggleCityToList(controller.citys[index]);
                       },
                       child: Card(
                         child: Column(
@@ -35,7 +36,7 @@ class SearchScreen extends StatelessWidget {
                                 children: [
                                   Expanded(
                                     child: Text(
-                                        '${controller.citys[index].name} ${controller.citys[index].district} in Liste?'),
+                                        '${controller.citys[index].name} ${controller.citys[index].district} ${controller.citys[index].incidence}'),
                                   ),
                                   Obx(() => isFavorite(index)),
                                 ],
