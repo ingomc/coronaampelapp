@@ -6,8 +6,8 @@ class ApitestController extends GetxController {
 
   @override
   void onInit() {
-    // fetchUsers();
-    super.onInit();
+    fetchUsers();
+    super.onReady();
   }
 
   void fetchUsers() async {
