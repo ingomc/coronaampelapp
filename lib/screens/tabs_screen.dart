@@ -1,5 +1,6 @@
 import 'package:coronaampel/controller/tabs_controller.dart';
 import 'package:coronaampel/screens/search_screen.dart';
+import 'package:coronaampel/screens/test_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import './citys_screen.dart';
@@ -22,6 +23,10 @@ class TabsScreen extends StatelessWidget {
           color: Colors.white,
         ),
       ),
+    },
+    {
+      'page': TestScreen(),
+      'fab': Container(),
     },
     {
       'page': SettingsScreen(),
@@ -47,6 +52,10 @@ class TabsScreen extends StatelessWidget {
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.access_alarms),
+              label: 'Test',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.settings),
