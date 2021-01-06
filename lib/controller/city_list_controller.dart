@@ -1,5 +1,4 @@
 import 'package:coronaampel/models/city.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CitysController extends GetxController {
@@ -13,12 +12,6 @@ class CitysController extends GetxController {
       citys.add(city);
     } else {
       citys.remove(cityInList);
-      // Get.snackbar(
-      //   '',
-      //   'Stadt befindet sich bereits auf ihrer List',
-      //   icon: Icon(Icons.warning),
-      //   snackPosition: SnackPosition.BOTTOM,
-      // );
     }
   }
 }

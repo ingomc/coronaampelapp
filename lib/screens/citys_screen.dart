@@ -1,4 +1,4 @@
-import 'package:coronaampel/controller/test_controller.dart';
+import 'package:coronaampel/controller/city_list_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:coronaampel/data/dummy_data.dart';
 import 'package:get/get.dart';
