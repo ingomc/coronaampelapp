@@ -28,15 +28,14 @@ class MyApp extends StatelessWidget {
           theme: themecontroller.theme,
           title: 'Corona-Ampel',
           debugShowCheckedModeBanner: false,
-          // starting point from where app should begin
-          initialRoute: '/',
           //when initial Route is given no need to add home widget for initial start point of app
           //full app route structure
-          routes: {
-            TabsScreen.path: (context) => TabsScreen(),
-            CityDetailScreen.path: (context) => CityDetailScreen(),
-            SearchScreen.path: (context) => SearchScreen(),
-          },
+          getPages: [
+            GetPage(name: TabsScreen.path, page: () => TabsScreen()),
+            GetPage(
+                name: CityDetailScreen.path, page: () => CityDetailScreen()),
+            GetPage(name: SearchScreen.path, page: () => SearchScreen()),
+          ],
         );
       },
     );

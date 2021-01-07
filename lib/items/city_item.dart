@@ -19,6 +19,11 @@ class CityItem extends StatelessWidget {
   Color bgColor = Colors.black;
 
   getBgColor() {
+    if (incidence < 0) {
+      txtColor = Colors.white38;
+      bgColor = Colors.grey[800];
+      return false;
+    }
     if (incidence >= 35 && incidence < 50) {
       txtColor = Colors.black54;
       bgColor = Colors.orange[300];
