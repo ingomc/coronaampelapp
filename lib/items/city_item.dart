@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CityItem extends StatelessWidget {
-  final String id;
+  final String county;
   final String name;
   final String district;
   final double incidence;
 
   CityItem(
-    this.id,
+    this.county,
     this.name,
     this.district,
     this.incidence,
@@ -41,7 +41,7 @@ class CityItem extends StatelessWidget {
   void goToCity() {
     Get.to(
       CityDetailScreen(),
-      arguments: id,
+      arguments: county,
     );
   }
 
@@ -72,7 +72,7 @@ class CityItem extends StatelessWidget {
                             style: TextStyle(color: txtColor),
                           ),
                           Text(
-                            'Neue Fälle: XX',
+                            'Inzidenz',
                             style: TextStyle(color: txtColor),
                           ),
                         ],
@@ -106,7 +106,7 @@ class CityItem extends StatelessWidget {
                             flex: 1,
                             child: Container(
                               child: Text(
-                                incidence.toString(),
+                                incidence >= 0 ? incidence.toString() : '-',
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
                                   color: txtColor,

@@ -19,30 +19,36 @@ class SearchScreen extends StatelessWidget {
           children: [
             Expanded(
               child: GetX<SearchController>(builder: (controller) {
-                return ListView.builder(
-                  itemCount: controller.citys.length,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        cityListController
-                            .toggleCityToList(controller.citys[index]);
-                      },
-                      child: Card(
-                        child: Column(
-                          children: [
-                            ListTile(
-                              title: Text(
-                                  '${controller.citys[index].district} ${controller.citys[index].name}'),
-                              subtitle: Text(
-                                  'Aktuelle Inzidenz: ${controller.citys[index].incidence}'),
-                              trailing: Obx(() => isFavorite(index, context)),
-                            ),
-                          ],
+                if (controller.isLoading.value) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else {
+                  return ListView.builder(
+                    itemCount: controller.citys.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          cityListController
+                              .toggleCityToList(controller.citys[index]);
+                        },
+                        child: Card(
+                          child: Column(
+                            children: [
+                              ListTile(
+                                title: Text(
+                                    '${controller.citys[index].district} ${controller.citys[index].name}'),
+                                subtitle: Text(
+                                    'Aktuelle Inzidenz: ${controller.citys[index].incidence}'),
+                                trailing: Obx(() => isFavorite(index, context)),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                );
+                      );
+                    },
+                  );
+                }
               }),
             ),
           ],

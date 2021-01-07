@@ -1,10 +1,15 @@
+import 'dart:ffi';
+
+import 'package:coronaampel/controller/apitest_controller.dart';
 import 'package:coronaampel/controller/city_list_controller.dart';
+import 'package:coronaampel/models/test_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../items/city_item.dart';
 
 class CitysScreen extends StatelessWidget {
   final cityListController = Get.put(CityListController());
+  final ApitestController apitestController = Get.put(ApitestController());
 
   void _select(value) {
     switch (value) {
@@ -46,11 +51,28 @@ class CitysScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(
                       top: 8, left: 8, right: 8, bottom: 100),
                   itemBuilder: (context, index) {
+                    double incidence = -1.0;
+                    if (apitestController.userList != null &&
+                        apitestController.userList.length > 0) {
+                      Feature asyncIncidence = apitestController.userList
+                          .firstWhere(
+                              (cityItem) =>
+                                  cityItem.attributes.county ==
+                                  controller.citys[index].county,
+                              orElse: () => null);
+
+                      if (asyncIncidence != null) {
+                        incidence = double.parse(
+                            (asyncIncidence.attributes.cases7Per100K)
+                                .toStringAsFixed(1));
+                      }
+                    }
+
                     return CityItem(
-                      controller.citys[index].id,
+                      controller.citys[index].county,
                       controller.citys[index].name,
                       controller.citys[index].district,
-                      controller.citys[index].incidence,
+                      incidence,
                     );
                   },
                 );

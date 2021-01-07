@@ -67,6 +67,7 @@ class Feature {
 
 class Attributes {
   Attributes({
+    this.county,
     this.objectid,
     this.gen,
     this.bez,
@@ -75,6 +76,7 @@ class Attributes {
     this.lastUpdate,
   });
 
+  String county;
   int objectid;
   String gen;
   String bez;
@@ -83,6 +85,7 @@ class Attributes {
   String lastUpdate;
 
   factory Attributes.fromJson(Map<String, dynamic> json) => Attributes(
+        county: json["county"],
         objectid: json["OBJECTID"],
         gen: json["GEN"],
         bez: json["BEZ"],
@@ -92,6 +95,7 @@ class Attributes {
       );
 
   Map<String, dynamic> toJson() => {
+        "county": county,
         "OBJECTID": objectid,
         "GEN": gen,
         "BEZ": bez,
@@ -107,27 +111,27 @@ class Field {
     this.type,
     this.alias,
     this.sqlType,
+    this.length,
     this.domain,
     this.defaultValue,
-    this.length,
   });
 
   String name;
   String type;
   String alias;
   String sqlType;
+  int length;
   dynamic domain;
   dynamic defaultValue;
-  int length;
 
   factory Field.fromJson(Map<String, dynamic> json) => Field(
         name: json["name"],
         type: json["type"],
         alias: json["alias"],
         sqlType: json["sqlType"],
+        length: json["length"] == null ? null : json["length"],
         domain: json["domain"],
         defaultValue: json["defaultValue"],
-        length: json["length"] == null ? null : json["length"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -135,9 +139,9 @@ class Field {
         "type": type,
         "alias": alias,
         "sqlType": sqlType,
+        "length": length == null ? null : length,
         "domain": domain,
         "defaultValue": defaultValue,
-        "length": length == null ? null : length,
       };
 }
 

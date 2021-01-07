@@ -19,8 +19,8 @@ class RemoteServices {
       // Real url fetched from RKI
       // Cityname, incidences etc.
       String url =
-          'https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?outFields=OBJECTID%2CGEN%2CBEZ%2CRS%2Ccases7_per_100k%2Clast_update&returnGeometry=false&f=json&outSR=4326&where=${citysString}';
-      // print(url);
+          'https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?outFields=COUNTY%2COBJECTID%2CGEN%2CBEZ%2CRS%2Ccases7_per_100k%2Clast_update&returnGeometry=false&f=json&outSR=4326&where=${citysString}';
+      print(url);
 
       var response = await client.get(url);
       if (response.statusCode == 200) {

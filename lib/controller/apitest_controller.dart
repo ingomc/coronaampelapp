@@ -1,3 +1,4 @@
+import 'package:coronaampel/models/test_model.dart';
 import 'package:coronaampel/services/remote_services.dart';
 import 'package:get/get.dart';
 

@@ -3,6 +3,7 @@ import 'package:coronaampel/models/city.dart';
 import 'package:get/get.dart';
 
 class SearchController extends GetxController {
+  var isLoading = false.obs;
   var citys = [].obs;
 
   @override
@@ -12,11 +13,16 @@ class SearchController extends GetxController {
   }
 
   void fetchCitys() async {
-    await Future.delayed(
-      Duration(seconds: 1),
-    );
-    var cityResults = DUMMY_CITYS;
+    isLoading(true);
+    try {
+      await Future.delayed(
+        Duration(seconds: 1),
+      );
+      var cityResults = DUMMY_CITYS;
 
-    citys.assignAll(cityResults);
+      citys.assignAll(cityResults);
+    } finally {
+      isLoading(false);
+    }
   }
 }

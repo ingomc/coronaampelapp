@@ -8,9 +8,9 @@ class CityDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cityId = ModalRoute.of(context).settings.arguments as String;
-    final city =
-        cityListController.citys.firstWhere((city) => city.id == cityId);
+    final cityCounty = ModalRoute.of(context).settings.arguments as String;
+    final city = cityListController.citys
+        .firstWhere((city) => city.county == cityCounty);
 
     return Scaffold(
       appBar: AppBar(
