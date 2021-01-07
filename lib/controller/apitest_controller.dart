@@ -19,6 +19,10 @@ class ApitestController extends GetxController {
       // print(users);
       userList.assignAll(users.features);
       // userList.value = users;
+    } else {
+      // Fehler oder keine Daten
+      // Snackbar
+      userList.assignAll([]);
     }
   }
 }
