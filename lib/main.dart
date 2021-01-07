@@ -10,9 +10,9 @@ import './screens/city_detail_screen.dart';
 void main() async {
   await GetStorage.init();
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    systemNavigationBarColor: Colors.transparent, // navigation bar color
+    systemNavigationBarColor: Colors.grey[900], // navigation bar color
     systemNavigationBarDividerColor:
-        Colors.transparent, //Navigation bar divider color
+        Colors.grey[900], //Navigation bar divider color
   ));
   runApp(MyApp());
 }
