@@ -14,10 +14,7 @@ class ApitestController extends GetxController {
   }
 
   void fetchUsers([citys]) async {
-    if (citys != null) {
-      citys.forEach((city) => {print(city.name)});
-    }
-    var users = await RemoteServices.fetchUsers();
+    var users = await RemoteServices.fetchUsers(citys);
     if (users != null) {
       // print(users);
       userList.assignAll(users.features);
