@@ -26,7 +26,7 @@ class TestScreen extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Text(
-                            '${controller.userList[index].attributes.cases7BlPer100K}'),
+                            '${controller.userList[index].attributes.cases7BlPer100K} ${controller.userList[index].attributes.gen} ${controller.userList[index].attributes.bez}'),
                       ),
                     );
                   },
