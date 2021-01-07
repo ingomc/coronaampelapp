@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:coronaampel/controller/apitest_controller.dart';
 import 'package:coronaampel/controller/city_list_controller.dart';
 import 'package:flutter/material.dart';
@@ -22,11 +24,14 @@ class TestScreen extends StatelessWidget {
                 return ListView.builder(
                   itemCount: controller.userList.length,
                   itemBuilder: (context, index) {
+                    String cases = ((controller.userList[index].attributes
+                            .cases7Per100K) as double)
+                        .toStringAsFixed(1);
                     return Card(
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Text(
-                            '${controller.userList[index].attributes.cases7Per100K} ${controller.userList[index].attributes.gen} ${controller.userList[index].attributes.bez}'),
+                            '${cases} ${controller.userList[index].attributes.gen} ${controller.userList[index].attributes.bez}'),
                       ),
                     );
                   },
