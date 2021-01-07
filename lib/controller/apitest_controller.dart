@@ -19,7 +19,8 @@ class ApitestController extends GetxController {
     }
     var users = await RemoteServices.fetchUsers();
     if (users != null) {
-      userList.assignAll(users);
+      print(users[0].attributes.cases7BlPer100K);
+      userList.value = users;
     }
   }
 }

@@ -25,7 +25,8 @@ class TestScreen extends StatelessWidget {
                     return Card(
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
-                        child: Text('${controller.userList[index].name}'),
+                        child: Text(
+                            '${controller.userList[index].attributes.cases7BlPer100K}'),
                       ),
                     );
                   },

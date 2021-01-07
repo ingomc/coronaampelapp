@@ -1,131 +1,47 @@
 // To parse this JSON data, do
 //
-//     final users = usersFromJson(jsonString);
+//     final citysData = citysDataFromJson(jsonString);
 
 import 'dart:convert';
 
-List<Users> usersFromJson(String str) =>
-    List<Users>.from(json.decode(str).map((x) => Users.fromJson(x)));
+List<CitysData> citysDataFromJson(String str) =>
+    List<CitysData>.from(json.decode(str).map((x) => CitysData.fromJson(x)));
 
-String usersToJson(List<Users> data) =>
+String citysDataToJson(List<CitysData> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class Users {
-  Users({
-    this.id,
-    this.name,
-    this.username,
-    this.email,
-    this.address,
-    this.phone,
-    this.website,
-    this.company,
+class CitysData {
+  CitysData({
+    this.attributes,
   });
 
-  int id;
-  String name;
-  String username;
-  String email;
-  Address address;
-  String phone;
-  String website;
-  Company company;
+  Attributes attributes;
 
-  factory Users.fromJson(Map<String, dynamic> json) => Users(
-        id: json["id"],
-        name: json["name"],
-        username: json["username"],
-        email: json["email"],
-        address: Address.fromJson(json["address"]),
-        phone: json["phone"],
-        website: json["website"],
-        company: Company.fromJson(json["company"]),
+  factory CitysData.fromJson(Map<String, dynamic> json) => CitysData(
+        attributes: Attributes.fromJson(json["attributes"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "username": username,
-        "email": email,
-        "address": address.toJson(),
-        "phone": phone,
-        "website": website,
-        "company": company.toJson(),
+        "attributes": attributes.toJson(),
       };
 }
 
-class Address {
-  Address({
-    this.street,
-    this.suite,
-    this.city,
-    this.zipcode,
-    this.geo,
+class Attributes {
+  Attributes({
+    this.death7Bl,
+    this.cases7BlPer100K,
   });
 
-  String street;
-  String suite;
-  String city;
-  String zipcode;
-  Geo geo;
+  int death7Bl;
+  double cases7BlPer100K;
 
-  factory Address.fromJson(Map<String, dynamic> json) => Address(
-        street: json["street"],
-        suite: json["suite"],
-        city: json["city"],
-        zipcode: json["zipcode"],
-        geo: Geo.fromJson(json["geo"]),
+  factory Attributes.fromJson(Map<String, dynamic> json) => Attributes(
+        death7Bl: json["death7_bl"],
+        cases7BlPer100K: json["cases7_bl_per_100k"].toDouble(),
       );
 
   Map<String, dynamic> toJson() => {
-        "street": street,
-        "suite": suite,
-        "city": city,
-        "zipcode": zipcode,
-        "geo": geo.toJson(),
-      };
-}
-
-class Geo {
-  Geo({
-    this.lat,
-    this.lng,
-  });
-
-  String lat;
-  String lng;
-
-  factory Geo.fromJson(Map<String, dynamic> json) => Geo(
-        lat: json["lat"],
-        lng: json["lng"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "lat": lat,
-        "lng": lng,
-      };
-}
-
-class Company {
-  Company({
-    this.name,
-    this.catchPhrase,
-    this.bs,
-  });
-
-  String name;
-  String catchPhrase;
-  String bs;
-
-  factory Company.fromJson(Map<String, dynamic> json) => Company(
-        name: json["name"],
-        catchPhrase: json["catchPhrase"],
-        bs: json["bs"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "name": name,
-        "catchPhrase": catchPhrase,
-        "bs": bs,
+        "death7_bl": death7Bl,
+        "cases7_bl_per_100k": cases7BlPer100K,
       };
 }
