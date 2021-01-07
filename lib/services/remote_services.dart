@@ -1,6 +1,5 @@
-import 'dart:convert';
-
 import 'package:coronaampel/models/test_model.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class RemoteServices {
@@ -18,7 +17,7 @@ class RemoteServices {
       String citysString = Uri.encodeFull(locations.join(' OR '));
 
       String url =
-          'https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?outFields=OBJECTID%2CGEN%2CBEZ%2CRS%2Ccases7_bl_per_100k%2Clast_update&returnGeometry=false&f=json&outSR=4326&where=${citysString}';
+          'https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?outFields=OBJECTID%2CGEN%2CBEZ%2CRS%2Ccases7_per_100k%2Clast_update&returnGeometry=false&f=json&outSR=4326&where=${citysString}';
       print(url);
       var response = await client.get(url);
       if (response.statusCode == 200) {
@@ -27,12 +26,17 @@ class RemoteServices {
         return allData;
       } else {
         // Error
-        print("Error happened");
-        // Snackbar?
+        Get.snackbar("Fehler!",
+            'Ein Fehler ist aufgetreten, versuchen sie es später noch einmal, oder updaten sie ihre Corona-Ampel-App!',
+            snackPosition: SnackPosition.BOTTOM);
         return null;
       }
     }
     // Snackbar, no Citys selected!
+    // Snackbar
+    Get.snackbar('Keine Landkreise ausgewählt',
+        'Gehe auf die Startseite, Suche dort nach Landkreisen und füge diese deiner List hinzu!',
+        snackPosition: SnackPosition.BOTTOM);
     return null;
   }
 }

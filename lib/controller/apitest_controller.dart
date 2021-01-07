@@ -7,11 +7,11 @@ class ApitestController extends GetxController {
   var userList = [].obs;
   final cityListController = Get.put(CityListController());
 
-  @override
-  void onInit() {
-    fetchUsers();
-    super.onReady();
-  }
+  // @override
+  // void onInit() {
+  //   fetchUsers();
+  //   super.onReady();
+  // }
 
   void fetchUsers([citys]) async {
     var users = await RemoteServices.fetchUsers(citys);
@@ -20,8 +20,7 @@ class ApitestController extends GetxController {
       userList.assignAll(users.features);
       // userList.value = users;
     } else {
-      // Fehler oder keine Daten
-      // Snackbar
+      // Fehler oder keine Daten, wird im service gesnacked
       userList.assignAll([]);
     }
   }

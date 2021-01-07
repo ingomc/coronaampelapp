@@ -71,7 +71,7 @@ class Attributes {
     this.gen,
     this.bez,
     this.rs,
-    this.cases7BlPer100K,
+    this.cases7Per100K,
     this.lastUpdate,
   });
 
@@ -79,7 +79,7 @@ class Attributes {
   String gen;
   String bez;
   String rs;
-  double cases7BlPer100K;
+  double cases7Per100K;
   String lastUpdate;
 
   factory Attributes.fromJson(Map<String, dynamic> json) => Attributes(
@@ -87,7 +87,7 @@ class Attributes {
         gen: json["GEN"],
         bez: json["BEZ"],
         rs: json["RS"],
-        cases7BlPer100K: json["cases7_bl_per_100k"].toDouble(),
+        cases7Per100K: json["cases7_per_100k"].toDouble(),
         lastUpdate: json["last_update"],
       );
 
@@ -96,7 +96,7 @@ class Attributes {
         "GEN": gen,
         "BEZ": bez,
         "RS": rs,
-        "cases7_bl_per_100k": cases7BlPer100K,
+        "cases7_per_100k": cases7Per100K,
         "last_update": lastUpdate,
       };
 }
