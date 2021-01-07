@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'city_list_controller.dart';
 
 class ApitestController extends GetxController {
+  var isLoading = false.obs;
   var userList = [].obs;
   final cityListController = Get.put(CityListController());
 
@@ -14,14 +15,22 @@ class ApitestController extends GetxController {
   // }
 
   void fetchUsers([citys]) async {
-    var users = await RemoteServices.fetchUsers(citys);
-    if (users != null) {
-      // print(users);
-      userList.assignAll(users.features);
-      // userList.value = users;
-    } else {
-      // Fehler oder keine Daten, wird im service gesnacked
-      userList.assignAll([]);
+    isLoading(true);
+    await Future.delayed(
+      Duration(seconds: 1),
+    );
+    try {
+      var users = await RemoteServices.fetchUsers(citys);
+      if (users != null) {
+        // print(users);
+        userList.assignAll(users.features);
+        // userList.value = users;
+      } else {
+        // Fehler oder keine Daten, wird im service gesnacked
+        userList.assignAll([]);
+      }
+    } finally {
+      isLoading(false);
     }
   }
 }

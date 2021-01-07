@@ -21,21 +21,26 @@ class TestScreen extends StatelessWidget {
           children: [
             Expanded(
               child: GetX<ApitestController>(builder: (controller) {
-                return ListView.builder(
-                  itemCount: controller.userList.length,
-                  itemBuilder: (context, index) {
-                    String cases = ((controller.userList[index].attributes
-                            .cases7Per100K) as double)
-                        .toStringAsFixed(1);
-                    return Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Text(
-                            '${cases} ${controller.userList[index].attributes.gen} ${controller.userList[index].attributes.bez}'),
-                      ),
-                    );
-                  },
-                );
+                if (controller.isLoading.value) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else {
+                  return ListView.builder(
+                      itemCount: controller.userList.length,
+                      itemBuilder: (context, index) {
+                        String cases = ((controller.userList[index].attributes
+                                .cases7Per100K) as double)
+                            .toStringAsFixed(1);
+                        return Card(
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Text(
+                                '${cases} ${controller.userList[index].attributes.gen} ${controller.userList[index].attributes.bez}'),
+                          ),
+                        );
+                      });
+                }
               }),
             ),
             RaisedButton(
