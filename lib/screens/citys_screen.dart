@@ -50,41 +50,55 @@ class CitysScreen extends StatelessWidget {
         title: Text('🚦 Corona-Ampel 🚦'),
       ),
       body: SafeArea(
-        child: Column(
+        child: Stack(
           children: [
-            Expanded(
-              child: RefreshIndicator(
-                child: Obx(
-                  () => ListView.builder(
-                    itemCount: apitestController.userList.length,
-                    padding: const EdgeInsets.only(
-                        top: 8, left: 8, right: 8, bottom: 100),
-                    itemBuilder: (context, index) {
-                      if (apitestController.userList != null &&
-                          apitestController.userList.length > 0) {
-                        Feature user = apitestController.userList.firstWhere(
-                            (cityItem) =>
-                                cityItem.attributes.county ==
-                                cityListController.citys[index].county,
-                            orElse: () => null);
+            Column(
+              children: [
+                Expanded(
+                  child: RefreshIndicator(
+                    child: Obx(
+                      () => ListView.builder(
+                        itemCount: apitestController.userList.length,
+                        padding: const EdgeInsets.only(
+                            top: 8, left: 8, right: 8, bottom: 100),
+                        itemBuilder: (context, index) {
+                          if (apitestController.userList != null &&
+                              apitestController.userList.length > 0) {
+                            Feature user = apitestController.userList
+                                .firstWhere(
+                                    (cityItem) =>
+                                        cityItem.attributes.county ==
+                                        cityListController.citys[index].county,
+                                    orElse: () => null);
 
-                        if (user != null) {
-                          return CityItem(
-                            user.attributes.county,
-                            user.attributes.gen,
-                            user.attributes.bez,
-                            double.parse((user.attributes.cases7Per100K)
-                                .toStringAsFixed(1)),
-                          );
-                        }
-                      }
-                      return null;
-                    },
+                            if (user != null) {
+                              return CityItem(
+                                user.attributes.county,
+                                user.attributes.gen,
+                                user.attributes.bez,
+                                double.parse((user.attributes.cases7Per100K)
+                                    .toStringAsFixed(1)),
+                              );
+                            }
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    onRefresh: _loadData,
                   ),
                 ),
-                onRefresh: _loadData,
-              ),
+              ],
             ),
+            Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  backgroundBlendMode: BlendMode.softLight),
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
+            )
           ],
         ),
       ),
