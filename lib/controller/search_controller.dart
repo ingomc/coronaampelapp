@@ -15,9 +15,9 @@ class SearchController extends GetxController {
   void fetchCitys() async {
     isLoading(true);
     try {
-      await Future.delayed(
-        Duration(seconds: 1),
-      );
+      // await Future.delayed(
+      //   Duration(milliseconds: 500),
+      // );
       var cityResults = DUMMY_CITYS;
 
       citys.assignAll(cityResults);

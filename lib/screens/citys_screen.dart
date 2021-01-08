@@ -91,7 +91,8 @@ class CitysScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blueGrey,
         onPressed: () {
-          Get.toNamed(SearchScreen.path);
+          // Get.to(SearchScreen(), fullscreenDialog: true);
+          Get.bottomSheet(SearchScreen());
         },
         tooltip: 'Suche',
         child: Icon(

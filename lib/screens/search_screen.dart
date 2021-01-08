@@ -39,7 +39,8 @@ class SearchScreen extends StatelessWidget {
             children: [
               Expanded(
                 child: GetX<SearchController>(builder: (controller) {
-                  if (controller.isLoading.value) {
+                  if (controller.isLoading.value ||
+                      apitestController.isLoading.value) {
                     return Center(
                       child: CircularProgressIndicator(),
                     );
