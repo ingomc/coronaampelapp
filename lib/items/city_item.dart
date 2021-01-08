@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:coronaampel/screens/city_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,12 +31,12 @@ class CityItem extends StatelessWidget {
       bgColor = Colors.orange[300];
       return false;
     }
-    if (incidence >= 50 && incidence < 200) {
+    if (incidence >= 50 && incidence < 100) {
       txtColor = Colors.black54;
       bgColor = Colors.redAccent[700];
       return false;
     }
-    if (incidence >= 200) {
+    if (incidence >= 100) {
       txtColor = Colors.redAccent[700];
       bgColor = Color.fromRGBO(60, 0, 0, 1);
       return false;
@@ -107,17 +109,19 @@ class CityItem extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Expanded(
-                            flex: 1,
-                            child: Container(
-                              child: Text(
-                                incidence >= 0 ? incidence.toString() : '-',
-                                textAlign: TextAlign.right,
-                                style: TextStyle(
-                                  color: txtColor,
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                          Container(
+                            child: Text(
+                              incidence >= 0
+                                  ? (incidence >= 200
+                                      ? '⚠️ ${incidence.toString()}'
+                                      : incidence.toString())
+                                  : '-',
+                              textAlign: TextAlign.right,
+                              style: TextStyle(
+                                color: txtColor,
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                fontFeatures: [FontFeature.tabularFigures()],
                               ),
                             ),
                           ),

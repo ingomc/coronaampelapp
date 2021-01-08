@@ -15,7 +15,7 @@ class ApitestController extends GetxController {
   //   super.onReady();
   // }
 
-  void fetchUsers([citys]) async {
+  Future<void> fetchUsers([citys]) async {
     isLoading(true);
     await Future.delayed(
       Duration(seconds: 1),

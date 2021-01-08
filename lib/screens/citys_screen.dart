@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import '../items/city_item.dart';
 
 class CitysScreen extends StatelessWidget {
-  final cityListController = Get.put(CityListController());
+  final CityListController cityListController = Get.put(CityListController());
   final ApitestController apitestController = Get.put(ApitestController());
 
   void _select(value) {
@@ -46,38 +46,56 @@ class CitysScreen extends StatelessWidget {
           children: [
             Expanded(
               child: GetX<CityListController>(builder: (controller) {
-                return ListView.builder(
-                  itemCount: controller.citys.length,
-                  padding: const EdgeInsets.only(
-                      top: 8, left: 8, right: 8, bottom: 100),
-                  itemBuilder: (context, index) {
-                    double incidence = -1.0;
-                    if (apitestController.userList != null &&
-                        apitestController.userList.length > 0) {
-                      Feature asyncIncidence = apitestController.userList
-                          .firstWhere(
-                              (cityItem) =>
-                                  cityItem.attributes.county ==
-                                  controller.citys[index].county,
-                              orElse: () => null);
+                // Call this when the user pull down the screen
+                Future<void> _loadData() async {
+                  await apitestController.fetchUsers(
+                    cityListController.citys,
+                  );
+                }
 
-                      if (asyncIncidence != null) {
-                        incidence = double.parse(
-                            (asyncIncidence.attributes.cases7Per100K)
-                                .toStringAsFixed(1));
+                return RefreshIndicator(
+                  child: ListView.builder(
+                    itemCount: controller.citys.length,
+                    padding: const EdgeInsets.only(
+                        top: 8, left: 8, right: 8, bottom: 100),
+                    itemBuilder: (context, index) {
+                      double incidence = -1.0;
+                      if (apitestController.userList != null &&
+                          apitestController.userList.length > 0) {
+                        Feature asyncIncidence = apitestController.userList
+                            .firstWhere(
+                                (cityItem) =>
+                                    cityItem.attributes.county ==
+                                    controller.citys[index].county,
+                                orElse: () => null);
+
+                        if (asyncIncidence != null) {
+                          incidence = double.parse(
+                              (asyncIncidence.attributes.cases7Per100K)
+                                  .toStringAsFixed(1));
+                        }
                       }
-                    }
 
-                    return CityItem(
-                      controller.citys[index].county,
-                      controller.citys[index].name,
-                      controller.citys[index].district,
-                      incidence,
-                    );
-                  },
+                      return CityItem(
+                        controller.citys[index].county,
+                        controller.citys[index].name,
+                        controller.citys[index].district,
+                        incidence,
+                      );
+                    },
+                  ),
+                  onRefresh: _loadData,
                 );
               }),
             ),
+            RaisedButton(
+              onPressed: () {
+                apitestController.fetchUsers(
+                  cityListController.citys,
+                );
+              },
+              child: Text('refresh'),
+            )
           ],
         ),
       ),
