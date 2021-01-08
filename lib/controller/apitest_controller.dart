@@ -18,9 +18,9 @@ class ApitestController extends GetxController {
 
   Future<void> fetchUsers([citys]) async {
     isLoading(true);
-    await Future.delayed(
-      Duration(milliseconds: 200),
-    );
+    // await Future.delayed(
+    //   Duration(milliseconds: 1000),
+    // );
     try {
       var users = await RemoteServices.fetchUsers(citys);
       if (users != null) {

@@ -1,3 +1,5 @@
+import 'package:coronaampel/controller/apitest_controller.dart';
+import 'package:coronaampel/controller/city_list_controller.dart';
 import 'package:coronaampel/controller/tabs_controller.dart';
 import 'package:coronaampel/screens/search_screen.dart';
 import 'package:coronaampel/screens/test_screen.dart';
@@ -9,12 +11,17 @@ import 'settings_screen.dart';
 class TabsScreen extends StatelessWidget {
   static const path = '/';
   final TabsController tabsController = Get.put(TabsController());
-  PageController _pageController;
+  final ApitestController apitestController = Get.put(ApitestController());
+  final CityListController cityListController = Get.put(CityListController());
+
   void _select(value) {
     switch (value) {
-      case 'Entfernen':
+      case 'Aktualisieren':
+        apitestController.fetchUsers(
+          cityListController.citys,
+        );
         break;
-      case 'Anpassen':
+      case 'Entfernen':
         break;
     }
     print(value);
@@ -22,23 +29,33 @@ class TabsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _pageController = PageController(initialPage: tabsController.selectedIndex);
+    final PageController _pageController =
+        PageController(initialPage: tabsController.selectedIndex);
 
     final List<Map<String, Object>> _pages = [
       {
         'page': CitysScreen(),
-        'actionbar': AppBar(
+        'appbar': AppBar(
           centerTitle: true,
           actions: [
             PopupMenuButton(
+              icon: Icon(Icons.more_vert),
               onSelected: _select,
               itemBuilder: (BuildContext context) {
-                return {'Anpassen', 'Entfernen'}.map((String choice) {
-                  return PopupMenuItem(
-                    value: choice,
-                    child: Text(choice),
-                  );
-                }).toList();
+                return [
+                  PopupMenuItem(
+                    value: 'Aktualisieren',
+                    child: Row(
+                      children: [
+                        Icon(Icons.sync),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text('Aktualisieren'),
+                      ],
+                    ),
+                  ),
+                ];
               },
             ),
           ],
@@ -47,14 +64,14 @@ class TabsScreen extends StatelessWidget {
       },
       {
         'page': TestScreen(),
-        'actionbar': AppBar(
+        'appbar': AppBar(
           centerTitle: true,
           title: Text('Testseite'),
         ),
       },
       {
         'page': SettingsScreen(),
-        'actionbar': AppBar(
+        'appbar': AppBar(
           centerTitle: true,
           title: Text('Einstellungen'),
         ),
@@ -73,7 +90,7 @@ class TabsScreen extends StatelessWidget {
 
     return Obx(
       () => Scaffold(
-        appBar: _pages[tabsController.selectedIndex]['actionbar'],
+        appBar: _pages[tabsController.selectedIndex]['appbar'],
         body: PageView(
           children: _pages.map((e) => e['page'] as Widget).toList(),
           onPageChanged: _onPageChanged,

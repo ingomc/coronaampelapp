@@ -12,7 +12,6 @@ class CitysScreen extends StatelessWidget {
   final CityListController cityListController = Get.put(CityListController());
   final ApitestController apitestController = Get.put(ApitestController());
 
-
   // Call this when the user pull down the screen
   Future<void> _loadData() async {
     await apitestController.fetchUsers(
@@ -66,15 +65,19 @@ class CitysScreen extends StatelessWidget {
             ),
             // lokales is loading ist true, wenn man nach unten zieh
             // ween lokales loading false und anderes loading true is dann loading
-            // Container(
-            //   width: double.infinity,
-            //   decoration: BoxDecoration(
-            //       color: Theme.of(context).primaryColor,
-            //       backgroundBlendMode: BlendMode.softLight),
-            //   child: Center(
-            //     child: CircularProgressIndicator(),
-            //   ),
-            // ),
+            GetX<ApitestController>(builder: (controller) {
+              if (!controller.isLoading.value) {
+                return Container();
+              } else {
+                return Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(color: Colors.black45),
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              }
+            }),
           ],
         ),
       ),
