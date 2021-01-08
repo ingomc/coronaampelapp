@@ -12,15 +12,6 @@ class CitysScreen extends StatelessWidget {
   final CityListController cityListController = Get.put(CityListController());
   final ApitestController apitestController = Get.put(ApitestController());
 
-  void _select(value) {
-    switch (value) {
-      case 'Entfernen':
-        break;
-      case 'Anpassen':
-        break;
-    }
-    print(value);
-  }
 
   // Call this when the user pull down the screen
   Future<void> _loadData() async {
@@ -32,23 +23,6 @@ class CitysScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        actions: [
-          PopupMenuButton(
-            onSelected: _select,
-            itemBuilder: (BuildContext context) {
-              return {'Anpassen', 'Entfernen'}.map((String choice) {
-                return PopupMenuItem(
-                  value: choice,
-                  child: Text(choice),
-                );
-              }).toList();
-            },
-          ),
-        ],
-        title: Text('🚦 Corona-Ampel 🚦'),
-      ),
       body: SafeArea(
         child: Stack(
           children: [
@@ -90,15 +64,17 @@ class CitysScreen extends StatelessWidget {
                 ),
               ],
             ),
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  backgroundBlendMode: BlendMode.softLight),
-              child: Center(
-                child: CircularProgressIndicator(),
-              ),
-            )
+            // lokales is loading ist true, wenn man nach unten zieh
+            // ween lokales loading false und anderes loading true is dann loading
+            // Container(
+            //   width: double.infinity,
+            //   decoration: BoxDecoration(
+            //       color: Theme.of(context).primaryColor,
+            //       backgroundBlendMode: BlendMode.softLight),
+            //   child: Center(
+            //     child: CircularProgressIndicator(),
+            //   ),
+            // ),
           ],
         ),
       ),
