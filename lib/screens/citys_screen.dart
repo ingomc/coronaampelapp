@@ -1,4 +1,4 @@
-import 'dart:ffi';
+import 'dart:math';
 
 import 'package:coronaampel/controller/apitest_controller.dart';
 import 'package:coronaampel/controller/city_list_controller.dart';
@@ -19,6 +19,13 @@ class CitysScreen extends StatelessWidget {
         break;
     }
     print(value);
+  }
+
+  // Call this when the user pull down the screen
+  Future<void> _loadData() async {
+    await apitestController.fetchUsers(
+      cityListController.citys,
+    );
   }
 
   @override
@@ -45,48 +52,27 @@ class CitysScreen extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: GetX<CityListController>(builder: (controller) {
-                // Call this when the user pull down the screen
-                Future<void> _loadData() async {
-                  await apitestController.fetchUsers(
-                    cityListController.citys,
-                  );
-                }
-
-                return RefreshIndicator(
-                  child: ListView.builder(
-                    itemCount: controller.citys.length,
+              child: RefreshIndicator(
+                child: Obx(
+                  () => ListView.builder(
+                    itemCount: apitestController.userList.length,
                     padding: const EdgeInsets.only(
                         top: 8, left: 8, right: 8, bottom: 100),
                     itemBuilder: (context, index) {
-                      double incidence = -1.0;
-                      if (apitestController.userList != null &&
-                          apitestController.userList.length > 0) {
-                        Feature asyncIncidence = apitestController.userList
-                            .firstWhere(
-                                (cityItem) =>
-                                    cityItem.attributes.county ==
-                                    controller.citys[index].county,
-                                orElse: () => null);
-
-                        if (asyncIncidence != null) {
-                          incidence = double.parse(
-                              (asyncIncidence.attributes.cases7Per100K)
-                                  .toStringAsFixed(1));
-                        }
-                      }
-
                       return CityItem(
-                        controller.citys[index].county,
-                        controller.citys[index].name,
-                        controller.citys[index].district,
-                        incidence,
+                        apitestController.userList[index].attributes.county,
+                        apitestController.userList[index].attributes.gen,
+                        apitestController.userList[index].attributes.bez,
+                        double.parse((apitestController
+                                    .userList[index].attributes.cases7Per100K)
+                                .toStringAsFixed(1)) +
+                            (new Random()).nextInt(100),
                       );
                     },
                   ),
-                  onRefresh: _loadData,
-                );
-              }),
+                ),
+                onRefresh: _loadData,
+              ),
             ),
             RaisedButton(
               onPressed: () {

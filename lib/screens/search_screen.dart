@@ -1,3 +1,4 @@
+import 'package:coronaampel/controller/apitest_controller.dart';
 import 'package:coronaampel/controller/search_controller.dart';
 import 'package:coronaampel/controller/city_list_controller.dart';
 import 'package:flutter/material.dart';
@@ -7,51 +8,65 @@ class SearchScreen extends StatelessWidget {
   static const path = '/search';
   final searchController = Get.put(SearchController());
   final cityListController = Get.put(CityListController());
+  final apitestController = Get.put(ApitestController());
+
+  Future<bool> _onWillPop() async {
+    print('Backbutton');
+    await apitestController.fetchUsers(
+      cityListController.citys,
+    );
+    Get.back();
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Suche'),
-      ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: GetX<SearchController>(builder: (controller) {
-                if (controller.isLoading.value) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else {
-                  return ListView.builder(
-                    itemCount: controller.citys.length,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          cityListController
-                              .toggleCityToList(controller.citys[index]);
-                        },
-                        child: Card(
-                          child: Column(
-                            children: [
-                              ListTile(
-                                title: Text(
-                                    '${controller.citys[index].district} ${controller.citys[index].name}'),
-                                subtitle: Text(
-                                    'Aktuelle Inzidenz: ${controller.citys[index].incidence}'),
-                                trailing: Obx(() => isFavorite(index, context)),
-                              ),
-                            ],
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Suche'),
+        ),
+        body: SafeArea(
+          child: Column(
+            children: [
+              Expanded(
+                child: GetX<SearchController>(builder: (controller) {
+                  if (controller.isLoading.value) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return ListView.builder(
+                      itemCount: controller.citys.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            cityListController
+                                .toggleCityToList(controller.citys[index]);
+                          },
+                          child: Card(
+                            child: Column(
+                              children: [
+                                ListTile(
+                                  title: Text(
+                                      '${controller.citys[index].district} ${controller.citys[index].name}'),
+                                  subtitle: Text(
+                                      'Aktuelle Inzidenz: ${controller.citys[index].incidence}'),
+                                  trailing:
+                                      Obx(() => isFavorite(index, context)),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                  );
-                }
-              }),
-            ),
-          ],
+                        );
+                      },
+                    );
+                  }
+                }),
+              ),
+            ],
+          ),
         ),
       ),
     );
