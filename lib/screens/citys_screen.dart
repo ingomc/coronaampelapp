@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:coronaampel/controller/apitest_controller.dart';
 import 'package:coronaampel/controller/city_list_controller.dart';
 import 'package:coronaampel/models/test_model.dart';
+import 'package:coronaampel/screens/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../items/city_item.dart';
@@ -59,30 +60,43 @@ class CitysScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 8, left: 8, right: 8, bottom: 100),
                     itemBuilder: (context, index) {
-                      return CityItem(
-                        apitestController.userList[index].attributes.county,
-                        apitestController.userList[index].attributes.gen,
-                        apitestController.userList[index].attributes.bez,
-                        double.parse((apitestController
-                                    .userList[index].attributes.cases7Per100K)
-                                .toStringAsFixed(1)) +
-                            (new Random()).nextInt(100),
-                      );
+                      if (apitestController.userList != null &&
+                          apitestController.userList.length > 0) {
+                        Feature user = apitestController.userList.firstWhere(
+                            (cityItem) =>
+                                cityItem.attributes.county ==
+                                cityListController.citys[index].county,
+                            orElse: () => null);
+
+                        if (user != null) {
+                          return CityItem(
+                            user.attributes.county,
+                            user.attributes.gen,
+                            user.attributes.bez,
+                            double.parse((user.attributes.cases7Per100K)
+                                .toStringAsFixed(1)),
+                          );
+                        }
+                      }
+                      return null;
                     },
                   ),
                 ),
                 onRefresh: _loadData,
               ),
             ),
-            RaisedButton(
-              onPressed: () {
-                apitestController.fetchUsers(
-                  cityListController.citys,
-                );
-              },
-              child: Text('refresh'),
-            )
           ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blueGrey,
+        onPressed: () {
+          Get.toNamed(SearchScreen.path);
+        },
+        tooltip: 'Suche',
+        child: Icon(
+          Icons.search,
+          color: Colors.white,
         ),
       ),
     );

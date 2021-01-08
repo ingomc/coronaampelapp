@@ -12,25 +12,12 @@ class TabsScreen extends StatelessWidget {
   final List<Map<String, Object>> _pages = [
     {
       'page': CitysScreen(),
-      'fab': FloatingActionButton(
-        backgroundColor: Colors.blueGrey,
-        onPressed: () {
-          Get.toNamed(SearchScreen.path);
-        },
-        tooltip: 'Suche',
-        child: Icon(
-          Icons.search,
-          color: Colors.white,
-        ),
-      ),
     },
     {
       'page': TestScreen(),
-      'fab': Container(),
     },
     {
       'page': SettingsScreen(),
-      'fab': Container(),
     }
   ];
 
@@ -40,7 +27,6 @@ class TabsScreen extends StatelessWidget {
 
     return Scaffold(
       body: Obx(() => _pages[tabsController.selectedIndex]['page']),
-      extendBody: true,
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(
           backgroundColor: Theme.of(context).primaryColor,
@@ -64,8 +50,6 @@ class TabsScreen extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton:
-          Obx(() => _pages[tabsController.selectedIndex]['fab']),
     );
   }
 }

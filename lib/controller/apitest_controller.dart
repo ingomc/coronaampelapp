@@ -1,5 +1,6 @@
 import 'package:coronaampel/models/test_model.dart';
 import 'package:coronaampel/services/remote_services.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'city_list_controller.dart';
@@ -30,6 +31,9 @@ class ApitestController extends GetxController {
         // Fehler oder keine Daten, wird im service gesnacked
         userList.assignAll([]);
       }
+    } catch (err) {
+      print(err);
+      print(err.statusCode);
     } finally {
       isLoading(false);
     }

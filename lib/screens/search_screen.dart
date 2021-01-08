@@ -12,9 +12,16 @@ class SearchScreen extends StatelessWidget {
 
   Future<bool> _onWillPop() async {
     print('Backbutton');
-    await apitestController.fetchUsers(
-      cityListController.citys,
-    );
+    try {
+      await apitestController.fetchUsers(
+        cityListController.citys,
+      );
+    } catch (err) {
+      print('searchscreen');
+      print(err);
+    } finally {
+      Get.back();
+    }
     Get.back();
     return null;
   }

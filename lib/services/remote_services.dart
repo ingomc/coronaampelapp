@@ -22,18 +22,22 @@ class RemoteServices {
           'https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?outFields=COUNTY%2COBJECTID%2CGEN%2CBEZ%2CRS%2Ccases7_per_100k%2Clast_update&returnGeometry=false&f=json&outSR=4326&where=${citysString}';
       // print(url);
 
-      var response = await client.get(url);
-      if (response.statusCode == 200) {
-        // Succesful fetch
-        var jsonString = response.body;
-        var allData = citysFromJson(jsonString);
-        return allData;
-      } else {
-        // Error
-        Get.snackbar("Fehler!",
-            'Ein Fehler ist aufgetreten, versuchen sie es später noch einmal, oder updaten sie ihre Corona-Ampel-App!',
-            snackPosition: SnackPosition.BOTTOM);
-        return null;
+      try {
+        var response = await client.get(url);
+        if (response.statusCode == 200) {
+          // Succesful fetch
+          var jsonString = response.body;
+          var allData = citysFromJson(jsonString);
+          return allData;
+        } else {
+          // Error
+          Get.snackbar("Fehler!",
+              'Ein Fehler ist aufgetreten, versuchen sie es später noch einmal, oder updaten sie ihre Corona-Ampel-App!',
+              snackPosition: SnackPosition.BOTTOM);
+          return null;
+        }
+      } catch (error) {
+        print(error);
       }
     }
     // Snackbar, no Citys selected!
