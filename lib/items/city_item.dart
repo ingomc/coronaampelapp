@@ -109,13 +109,14 @@ class CityItem extends StatelessWidget {
                               ),
                             ),
                           ),
+                          if (incidence >= 200)
+                            Icon(
+                              Icons.warning_amber_rounded,
+                              color: txtColor,
+                            ),
                           Container(
                             child: Text(
-                              incidence >= 0
-                                  ? (incidence >= 200
-                                      ? '⚠️ ${incidence.toString()}'
-                                      : incidence.toString())
-                                  : '-',
+                              incidence >= 0 ? ' ${incidence.toString()}' : '-',
                               textAlign: TextAlign.right,
                               style: TextStyle(
                                 color: txtColor,
