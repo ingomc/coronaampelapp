@@ -58,6 +58,7 @@ class CityItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: Material(
+        elevation: 2.0,
         color: bgColor,
         borderRadius: BorderRadius.circular(4),
         child: InkWell(
