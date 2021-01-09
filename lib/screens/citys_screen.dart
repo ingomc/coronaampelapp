@@ -30,6 +30,25 @@ class CitysScreen extends StatelessWidget {
           children: [
             Column(
               children: [
+                GetX<ApitestController>(builder: (controller) {
+                  if (controller.userList != null &&
+                      controller.userList.length > 0) {
+                    return Container(
+                      width: double.infinity,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 12),
+                        child: Text(
+                          'Stand: ${controller.userList[0].attributes.lastUpdate}',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Theme.of(context).highlightColor),
+                        ),
+                      ),
+                    );
+                  } else {
+                    return null;
+                  }
+                }),
                 Expanded(
                   child: RefreshIndicator(
                     child: Obx(
