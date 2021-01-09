@@ -1,16 +1,17 @@
+import 'package:coronaampel/controller/apitest_controller.dart';
 import 'package:coronaampel/controller/city_list_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CityDetailScreen extends StatelessWidget {
   static const path = '/city';
-  final cityListController = Get.put(CityListController());
+  final apitestController = Get.put(ApitestController());
 
   @override
   Widget build(BuildContext context) {
     final cityCounty = ModalRoute.of(context).settings.arguments as String;
-    final city = cityListController.citys
-        .firstWhere((city) => city.county == cityCounty);
+    final city = apitestController.userList
+        .firstWhere((city) => city.attributes.county == cityCounty);
 
     return Scaffold(
       appBar: AppBar(
@@ -24,8 +25,10 @@ class CityDetailScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   ListTile(
-                    title: Text('${city.district} ${city.name}'),
-                    subtitle: Text('Aktuelle Inzidenz: ${city.incidence}'),
+                    title:
+                        Text('${city.attributes.bez} ${city.attributes.gen}'),
+                    subtitle: Text(
+                        'Aktuelle Inzidenz: ${city.attributes.cases7Per100K}'),
                   ),
                 ],
               ),
