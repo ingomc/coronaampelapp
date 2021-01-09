@@ -16,7 +16,7 @@ class CityDetailScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Stadt Name'),
+        title: Text('${city.attributes.bez} ${city.attributes.gen}'),
       ),
       body: SafeArea(
         child: Padding(
