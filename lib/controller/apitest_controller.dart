@@ -10,16 +10,10 @@ class ApitestController extends GetxController {
   var userList = [].obs;
   final cityListController = Get.put(CityListController());
 
-  // @override
-  // void onInit() {
-  //   fetchUsers();
-  //   super.onReady();
-  // }
-
   Future<void> fetchUsers([citys]) async {
     isLoading(true);
     // await Future.delayed(
-    //   Duration(milliseconds: 1000),
+    //   Duration(milliseconds: 2000),
     // );
     try {
       var users = await RemoteServices.fetchUsers(citys);

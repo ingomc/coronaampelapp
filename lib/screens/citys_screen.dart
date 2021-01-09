@@ -9,14 +9,17 @@ import 'package:get/get.dart';
 import '../items/city_item.dart';
 
 class CitysScreen extends StatelessWidget {
+  bool isRefreshIndicatorActive = false;
   final CityListController cityListController = Get.put(CityListController());
   final ApitestController apitestController = Get.put(ApitestController());
 
   // Call this when the user pull down the screen
   Future<void> _loadData() async {
+    isRefreshIndicatorActive = true;
     await apitestController.fetchUsers(
       cityListController.citys,
     );
+    isRefreshIndicatorActive = false;
   }
 
   @override
@@ -66,7 +69,7 @@ class CitysScreen extends StatelessWidget {
             // lokales is loading ist true, wenn man nach unten zieh
             // ween lokales loading false und anderes loading true is dann loading
             GetX<ApitestController>(builder: (controller) {
-              if (!controller.isLoading.value) {
+              if (!controller.isLoading.value || isRefreshIndicatorActive) {
                 return Container();
               } else {
                 return Container(
