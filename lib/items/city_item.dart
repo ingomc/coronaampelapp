@@ -9,13 +9,10 @@ class CityItem extends StatelessWidget {
   final String name;
   final String district;
   final double incidence;
+  final bool isLinked;
 
-  CityItem(
-    this.county,
-    this.name,
-    this.district,
-    this.incidence,
-  );
+  CityItem(this.county, this.name, this.district, this.incidence,
+      [this.isLinked = true]);
 
   Color txtColor = Colors.amber;
   Color bgColor = Colors.black;
@@ -133,15 +130,17 @@ class CityItem extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 8),
-                  child: Icon(
-                    Icons.arrow_forward_ios,
-                    color: txtColor,
-                  ),
-                ),
-              ),
+              isLinked
+                  ? Container(
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 8),
+                        child: Icon(
+                          Icons.arrow_forward_ios,
+                          color: txtColor,
+                        ),
+                      ),
+                    )
+                  : Container(),
             ],
           ),
         ),

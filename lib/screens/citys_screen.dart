@@ -48,12 +48,15 @@ class CitysScreen extends StatelessWidget {
                                     orElse: () => null);
 
                             if (user != null) {
-                              return CityItem(
-                                user.attributes.county,
-                                user.attributes.gen,
-                                user.attributes.bez,
-                                double.parse((user.attributes.cases7Per100K)
-                                    .toStringAsFixed(1)),
+                              return Hero(
+                                tag: '${user.attributes.county}',
+                                child: CityItem(
+                                  user.attributes.county,
+                                  user.attributes.gen,
+                                  user.attributes.bez,
+                                  double.parse((user.attributes.cases7Per100K)
+                                      .toStringAsFixed(1)),
+                                ),
                               );
                             }
                           }

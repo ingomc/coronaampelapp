@@ -126,11 +126,11 @@ class TabsScreen extends StatelessWidget {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.location_city),
-              label: 'Test',
+              label: 'Bundesländer',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.public),
-              label: 'Bundesländer',
+              label: 'Global',
             ),
           ],
         ),
