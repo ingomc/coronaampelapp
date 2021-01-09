@@ -7,21 +7,39 @@ class RemoteServices {
 
   static Future<Citys> fetchUsers([citys]) async {
     if (citys != null && citys.length > 0) {
+      // Outfields
+      final List<String> outfields = [
+        'AGS', // Allgemeiner Gemeinderschluessel
+        'BEZ', // "Landkreis"
+        'BL', // Bundesland
+        'cases', // Alle Faelle
+        'cases7_per_100k', // incidence BL
+        'cases7_bl_per_100k', // incidence BL
+        'cases7_lk', // Faelle der letzten 7 Tage
+        'county', // "SK Coburg"
+        'deaths',
+        'death_rate', // 3.04%
+        'EWZ',
+        'GEN', // Name
+        'last_update', // "09.01.2021, 00:00 Uhr"
+        'OBJECTID', // 274
+        'RS',
+      ];
       // Make list map with all locationstrings
       var locations = [];
       citys.forEach((city) => {
             locations.add("county = '${city.county.toString().toUpperCase()}'")
           });
-
       // join all locations encode it
       String citysString = Uri.encodeFull(locations.join(' OR '));
+
+      String outfieldsString = Uri.encodeFull(outfields.join(','));
 
       // Real url fetched from RKI
       // Cityname, incidences etc.
       String url =
-          'https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?outFields=COUNTY%2COBJECTID%2CGEN%2CBEZ%2CRS%2Ccases7_per_100k%2Clast_update&returnGeometry=false&f=json&outSR=4326&where=${citysString}';
+          'https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?outFields=$outfieldsString&returnGeometry=false&f=json&outSR=4326&where=$citysString';
       // print(url);
-
       try {
         var response = await client.get(url);
         if (response.statusCode == 200) {

@@ -121,7 +121,7 @@ class TabsScreen extends StatelessWidget {
           onTap: _onTap,
           items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.house),
+              icon: Icon(Icons.home),
               label: 'Landkreise',
             ),
             BottomNavigationBarItem(
