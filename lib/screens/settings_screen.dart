@@ -8,13 +8,14 @@ class SettingsScreen extends StatelessWidget {
     final themecontroller = Get.put(ThemeController());
     return SimpleBuilder(builder: (_) {
       return Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text('Einstellungen'),
+        ),
         body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16),
           child: Column(
             children: [
-              Container(
-                  child: Text('Settings',
-                      style: Theme.of(context).textTheme.headline6)),
               Center(
                 child: SwitchListTile(
                   value: themecontroller.isDark,

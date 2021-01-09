@@ -2,6 +2,7 @@ import 'package:coronaampel/controller/apitest_controller.dart';
 import 'package:coronaampel/controller/city_list_controller.dart';
 import 'package:coronaampel/controller/tabs_controller.dart';
 import 'package:coronaampel/screens/search_screen.dart';
+import 'package:coronaampel/screens/states_screen.dart';
 import 'package:coronaampel/screens/test_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,7 +22,8 @@ class TabsScreen extends StatelessWidget {
           cityListController.citys,
         );
         break;
-      case 'Entfernen':
+      case 'Einstellungen':
+        Get.to(SettingsScreen());
         break;
     }
     print(value);
@@ -35,7 +37,28 @@ class TabsScreen extends StatelessWidget {
     final List<Map<String, Object>> _pages = [
       {
         'page': CitysScreen(),
-        'appbar': AppBar(
+      },
+      {
+        'page': TestScreen(),
+      },
+      {
+        'page': StatesScreen(),
+      }
+    ];
+    void _onPageChanged(int page) {
+      tabsController.selectedIndex = page;
+    }
+
+    void _onTap(int index) {
+      tabsController.selectedIndex = index;
+      _pageController.animateToPage(tabsController.selectedIndex,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeOutCirc);
+    }
+
+    return Obx(
+      () => Scaffold(
+        appBar: AppBar(
           centerTitle: true,
           actions: [
             PopupMenuButton(
@@ -55,42 +78,36 @@ class TabsScreen extends StatelessWidget {
                       ],
                     ),
                   ),
+                  PopupMenuItem(
+                    value: 'Anpassen',
+                    child: Row(
+                      children: [
+                        Icon(Icons.edit),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text('Anpassen'),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem(
+                    value: 'Einstellungen',
+                    child: Row(
+                      children: [
+                        Icon(Icons.tune_outlined),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text('Einstellungen'),
+                      ],
+                    ),
+                  ),
                 ];
               },
             ),
           ],
           title: Text('🚦 Corona-Ampel 🚦'),
         ),
-      },
-      {
-        'page': TestScreen(),
-        'appbar': AppBar(
-          centerTitle: true,
-          title: Text('Testseite'),
-        ),
-      },
-      {
-        'page': SettingsScreen(),
-        'appbar': AppBar(
-          centerTitle: true,
-          title: Text('Einstellungen'),
-        ),
-      }
-    ];
-    void _onPageChanged(int page) {
-      tabsController.selectedIndex = page;
-    }
-
-    void _onTap(int index) {
-      tabsController.selectedIndex = index;
-      _pageController.animateToPage(tabsController.selectedIndex,
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.easeOutCirc);
-    }
-
-    return Obx(
-      () => Scaffold(
-        appBar: _pages[tabsController.selectedIndex]['appbar'],
         body: PageView(
           children: _pages.map((e) => e['page'] as Widget).toList(),
           onPageChanged: _onPageChanged,
@@ -104,16 +121,16 @@ class TabsScreen extends StatelessWidget {
           onTap: _onTap,
           items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
+              icon: Icon(Icons.house),
+              label: 'Landkreise',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.access_alarms),
+              icon: Icon(Icons.location_city),
               label: 'Test',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Einstellungen',
+              icon: Icon(Icons.public),
+              label: 'Bundesländer',
             ),
           ],
         ),
