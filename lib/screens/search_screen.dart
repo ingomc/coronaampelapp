@@ -50,8 +50,8 @@ class SearchScreen extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: () {
-                            cityListController
-                                .toggleCityToList(controller.citys[index]);
+                            cityListController.toggleCityToList(
+                                controller.citys[index].county);
                           },
                           child: Card(
                             child: Column(
@@ -82,7 +82,7 @@ class SearchScreen extends StatelessWidget {
 
   Widget isFavorite(int index, BuildContext context) {
     if (cityListController.citys.firstWhere(
-            (city) => city.id == searchController.citys[index].id,
+            (city) => city == searchController.citys[index].county,
             orElse: () => null) !=
         null) {
       //if val is true

@@ -46,7 +46,7 @@ class CitysScreen extends StatelessWidget {
                       ),
                     );
                   } else {
-                    return null;
+                    return Container();
                   }
                 }),
                 Expanded(
@@ -59,12 +59,11 @@ class CitysScreen extends StatelessWidget {
                         itemBuilder: (context, index) {
                           if (apitestController.userList != null &&
                               apitestController.userList.length > 0) {
-                            Feature user = apitestController.userList
-                                .firstWhere(
-                                    (cityItem) =>
-                                        cityItem.attributes.county ==
-                                        cityListController.citys[index].county,
-                                    orElse: () => null);
+                            Feature user = cityListController.citys.firstWhere(
+                                (cityItem) =>
+                                    cityItem ==
+                                    apitestController.userList[index],
+                                orElse: () => null);
 
                             if (user != null) {
                               return Hero(
@@ -79,7 +78,7 @@ class CitysScreen extends StatelessWidget {
                               );
                             }
                           }
-                          return null;
+                          return Container();
                         },
                       ),
                     ),

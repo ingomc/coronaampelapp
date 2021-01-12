@@ -25,16 +25,28 @@ class TestScreen extends StatelessWidget {
                   return ListView.builder(
                       itemCount: controller.userList.length,
                       itemBuilder: (context, index) {
-                        String cases = ((controller.userList[index].attributes
-                                .cases7Per100K) as double)
-                            .toStringAsFixed(1);
-                        return Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Text(
-                                '${cases} ${controller.userList[index].attributes.gen} ${controller.userList[index].attributes.bez}'),
-                          ),
-                        );
+                        if (controller.userList != null &&
+                            controller.userList.length > 0) {
+                          var test = apitestController.userList.firstWhere(
+                              (cityItem) =>
+                                  cityItem.attributes.county ==
+                                  cityListController.citys[index],
+                              orElse: () => null);
+                          if (test != null) {
+                            print(test.attributes.county);
+                          }
+                          String cases =
+                              ((test.attributes.cases7Per100K) as double)
+                                  .toStringAsFixed(1);
+                          return Card(
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Text(
+                                  '${cases} ${test.attributes.gen} ${test.attributes.bez}'),
+                            ),
+                          );
+                        }
+                        return Container();
                       });
                 }
               }),

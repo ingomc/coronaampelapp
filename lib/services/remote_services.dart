@@ -27,9 +27,8 @@ class RemoteServices {
       ];
       // Make list map with all locationstrings
       var locations = [];
-      citys.forEach((city) => {
-            locations.add("county = '${city.county.toString().toUpperCase()}'")
-          });
+      citys.forEach((city) =>
+          {locations.add("county = '${city.toString().toUpperCase()}'")});
       // join all locations encode it
       String citysString = Uri.encodeFull(locations.join(' OR '));
 
