@@ -9,10 +9,12 @@ class CityListController extends GetxController {
 
   @override
   void onInit() {
+    print(box.read('citys'));
     // box.listen(() {
     //   var storedCitys = box.read('citys') ?? [];
     //   if (storedCitys.length > 0) {
     //     citys.assignAll(storedCitys);
+    //     // box.removeListen();
     //   }
     // });
 
