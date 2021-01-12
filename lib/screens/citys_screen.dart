@@ -59,11 +59,12 @@ class CitysScreen extends StatelessWidget {
                         itemBuilder: (context, index) {
                           if (apitestController.userList != null &&
                               apitestController.userList.length > 0) {
-                            Feature user = cityListController.citys.firstWhere(
-                                (cityItem) =>
-                                    cityItem ==
-                                    apitestController.userList[index],
-                                orElse: () => null);
+                            Feature user = apitestController.userList
+                                .firstWhere(
+                                    (cityItem) =>
+                                        cityItem.attributes.county ==
+                                        cityListController.storedCitys[index],
+                                    orElse: () => null);
 
                             if (user != null) {
                               return Hero(

@@ -5,6 +5,7 @@ import 'package:get_storage/get_storage.dart';
 
 class CityListController extends GetxController {
   final box = GetStorage('citys');
+  get storedCitys => box.read('citys') ?? [];
   var citys = [].obs;
 
   @override
