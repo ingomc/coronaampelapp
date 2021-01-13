@@ -63,7 +63,7 @@ class CitysScreen extends StatelessWidget {
                                 .firstWhere(
                                     (cityItem) =>
                                         cityItem.attributes.county ==
-                                        cityListController.storedCitys[index],
+                                        cityListController.citys[index],
                                     orElse: () => null);
 
                             if (user != null) {

@@ -12,16 +12,16 @@ class SearchScreen extends StatelessWidget {
 
   Future<bool> _onWillPop() async {
     print('Backbutton');
-    try {
-      await apitestController.fetchUsers(
-        cityListController.citys,
-      );
-    } catch (err) {
-      print('searchscreen');
-      print(err);
-    } finally {
-      Get.back();
-    }
+    // try {
+    //   await apitestController.fetchUsers(
+    //     cityListController.citys,
+    //   );
+    // } catch (err) {
+    //   print('searchscreen');
+    //   print(err);
+    // } finally {
+    //   Get.back();
+    // }
     Get.back();
     return null;
   }
@@ -42,7 +42,9 @@ class SearchScreen extends StatelessWidget {
                   if (controller.isLoading.value ||
                       apitestController.isLoading.value) {
                     return Center(
-                      child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator(
+                        backgroundColor: Colors.amber,
+                      ),
                     );
                   } else {
                     return ListView.builder(

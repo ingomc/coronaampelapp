@@ -3,21 +3,26 @@ import 'package:coronaampel/models/test_model.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import 'apitest_controller.dart';
+
 class CityListController extends GetxController {
+  final ApitestController apitestController = Get.put(ApitestController());
   final box = GetStorage('citys');
-  get storedCitys => box.read('citys') ?? [];
+  // get storedCitys => box.read('citys') ?? [];
   var citys = [].obs;
 
   @override
   void onInit() {
     print(box.read('citys'));
-    // box.listen(() {
-    //   var storedCitys = box.read('citys') ?? [];
-    //   if (storedCitys.length > 0) {
-    //     citys.assignAll(storedCitys);
-    //     // box.removeListen();
-    //   }
-    // });
+    box.listen(() async {
+      var storedCitys = box.read('citys') ?? [];
+      if (storedCitys.length > 0) {
+        citys.assignAll(storedCitys);
+        await apitestController.fetchUsers(
+          citys,
+        );
+      }
+    });
 
     super.onInit();
   }
@@ -26,11 +31,15 @@ class CityListController extends GetxController {
     String cityInList =
         citys.firstWhere((cityItem) => cityItem == county, orElse: () => null);
 
+    var _tempCitys = [...citys];
+
     if (cityInList == null) {
-      citys.add(county);
+      _tempCitys.add(county);
     } else {
-      citys.remove(county);
+      _tempCitys.remove(county);
     }
-    box.write('citys', citys);
+    box.write('citys', _tempCitys);
+    print('saved');
+    print(box.read('citys'));
   }
 }

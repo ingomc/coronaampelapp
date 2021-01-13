@@ -8,7 +8,6 @@ import 'city_list_controller.dart';
 class ApitestController extends GetxController {
   var isLoading = false.obs;
   var userList = [].obs;
-  final cityListController = Get.put(CityListController());
 
   Future<void> fetchUsers([citys]) async {
     isLoading(true);

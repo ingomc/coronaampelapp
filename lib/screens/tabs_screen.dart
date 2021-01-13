@@ -26,7 +26,7 @@ class TabsScreen extends StatelessWidget {
         Get.to(SettingsScreen());
         break;
     }
-    print(value);
+    // print(value);
   }
 
   @override

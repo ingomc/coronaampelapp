@@ -32,9 +32,6 @@ class TestScreen extends StatelessWidget {
                                   cityItem.attributes.county ==
                                   cityListController.citys[index],
                               orElse: () => null);
-                          if (test != null) {
-                            print(test.attributes.county);
-                          }
                           String cases =
                               ((test.attributes.cases7Per100K) as double)
                                   .toStringAsFixed(1);
