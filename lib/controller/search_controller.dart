@@ -14,6 +14,7 @@ class SearchController extends GetxController {
 
   void fetchCitys() async {
     isLoading(true);
+    print('triggered');
     try {
       // await Future.delayed(
       //   Duration(milliseconds: 500),

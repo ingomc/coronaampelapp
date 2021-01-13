@@ -16,12 +16,8 @@ class CityListController extends GetxController {
     print(box.read('citys'));
     box.listen(() async {
       var storedCitys = box.read('citys') ?? [];
-      if (storedCitys.length > 0) {
-        citys.assignAll(storedCitys);
-        await apitestController.fetchUsers(
-          citys,
-        );
-      }
+      citys.assignAll(storedCitys);
+      await apitestController.fetchUsers(citys);
     });
 
     super.onInit();
