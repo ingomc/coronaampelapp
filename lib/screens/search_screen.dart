@@ -7,21 +7,9 @@ import 'package:get/get.dart';
 class SearchScreen extends StatelessWidget {
   static const path = '/search';
   final searchController = Get.put(SearchController());
-  final cityListController = Get.put(CityListController());
-  final apitestController = Get.put(ApitestController());
+  final CityListController cityListController = Get.find<CityListController>();
 
   Future<bool> _onWillPop() async {
-    print('Backbutton');
-    try {
-      await apitestController.fetchUsers(
-        cityListController.citys,
-      );
-    } catch (err) {
-      print('searchscreen');
-      print(err);
-    } finally {
-      Get.back();
-    }
     Get.back();
     return null;
   }
@@ -39,10 +27,11 @@ class SearchScreen extends StatelessWidget {
             children: [
               Expanded(
                 child: GetX<SearchController>(builder: (controller) {
-                  if (controller.isLoading.value ||
-                      apitestController.isLoading.value) {
+                  if (controller.isLoading.value) {
                     return Center(
-                      child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator(
+                        backgroundColor: Colors.amber,
+                      ),
                     );
                   } else {
                     return ListView.builder(
@@ -50,8 +39,8 @@ class SearchScreen extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: () {
-                            cityListController
-                                .toggleCityToList(controller.citys[index]);
+                            cityListController.toggleCityToList(
+                                controller.citys[index].county);
                           },
                           child: Card(
                             child: Column(
@@ -82,7 +71,7 @@ class SearchScreen extends StatelessWidget {
 
   Widget isFavorite(int index, BuildContext context) {
     if (cityListController.citys.firstWhere(
-            (city) => city.id == searchController.citys[index].id,
+            (city) => city == searchController.citys[index].county,
             orElse: () => null) !=
         null) {
       //if val is true

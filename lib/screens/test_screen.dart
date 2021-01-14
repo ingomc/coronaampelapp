@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class TestScreen extends StatelessWidget {
-  final ApitestController apitestController = Get.put(ApitestController());
-  final CityListController cityListController = Get.put(CityListController());
+  final ApitestController apitestController = Get.find<ApitestController>();
+  final CityListController cityListController = Get.find<CityListController>();
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +25,25 @@ class TestScreen extends StatelessWidget {
                   return ListView.builder(
                       itemCount: controller.userList.length,
                       itemBuilder: (context, index) {
-                        String cases = ((controller.userList[index].attributes
-                                .cases7Per100K) as double)
-                            .toStringAsFixed(1);
-                        return Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Text(
-                                '${cases} ${controller.userList[index].attributes.gen} ${controller.userList[index].attributes.bez}'),
-                          ),
-                        );
+                        if (controller.userList != null &&
+                            controller.userList.length > 0) {
+                          var test = apitestController.userList.firstWhere(
+                              (cityItem) =>
+                                  cityItem.attributes.county ==
+                                  cityListController.citys[index],
+                              orElse: () => null);
+                          String cases =
+                              ((test.attributes.cases7Per100K) as double)
+                                  .toStringAsFixed(1);
+                          return Card(
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Text(
+                                  '${cases} ${test.attributes.gen} ${test.attributes.bez}'),
+                            ),
+                          );
+                        }
+                        return Container();
                       });
                 }
               }),

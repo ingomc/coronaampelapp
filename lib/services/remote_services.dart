@@ -27,9 +27,8 @@ class RemoteServices {
       ];
       // Make list map with all locationstrings
       var locations = [];
-      citys.forEach((city) => {
-            locations.add("county = '${city.county.toString().toUpperCase()}'")
-          });
+      citys.forEach((city) =>
+          {locations.add("county = '${city.toString().toUpperCase()}'")});
       // join all locations encode it
       String citysString = Uri.encodeFull(locations.join(' OR '));
 
@@ -58,10 +57,7 @@ class RemoteServices {
         print(error);
       }
     }
-    // Snackbar, no Citys selected!
-    Get.snackbar('Keine Landkreise ausgewählt',
-        'Gehe auf die Startseite, Suche dort nach Landkreisen und füge diese deiner List hinzu!',
-        snackPosition: SnackPosition.BOTTOM);
+    // No City selected, but no problem, show empty screen
     return null;
   }
 }

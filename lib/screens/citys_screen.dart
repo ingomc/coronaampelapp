@@ -10,8 +10,8 @@ import '../items/city_item.dart';
 
 class CitysScreen extends StatelessWidget {
   bool isRefreshIndicatorActive = false;
-  final CityListController cityListController = Get.put(CityListController());
-  final ApitestController apitestController = Get.put(ApitestController());
+  final CityListController cityListController = Get.find<CityListController>();
+  final ApitestController apitestController = Get.find<ApitestController>();
 
   // Call this when the user pull down the screen
   Future<void> _loadData() async {
@@ -46,7 +46,7 @@ class CitysScreen extends StatelessWidget {
                       ),
                     );
                   } else {
-                    return null;
+                    return Container();
                   }
                 }),
                 Expanded(
@@ -63,7 +63,7 @@ class CitysScreen extends StatelessWidget {
                                 .firstWhere(
                                     (cityItem) =>
                                         cityItem.attributes.county ==
-                                        cityListController.citys[index].county,
+                                        cityListController.citys[index],
                                     orElse: () => null);
 
                             if (user != null) {
@@ -79,7 +79,7 @@ class CitysScreen extends StatelessWidget {
                               );
                             }
                           }
-                          return null;
+                          return Container();
                         },
                       ),
                     ),

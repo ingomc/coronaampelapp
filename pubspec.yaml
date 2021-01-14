@@ -21,8 +21,8 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  get: ^3.24.0
-  get_storage: ^1.4.0
+  get: 
+  get_storage: 
   http: ^0.12.2
   flutter:
     sdk: flutter
