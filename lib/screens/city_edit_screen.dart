@@ -79,7 +79,6 @@ class CityEditScreen extends StatelessWidget {
                                     color: Colors.grey,
                                   ),
                                 ),
-                                trailing: Icon(Icons.delete),
                               ),
                             ),
                           ),
