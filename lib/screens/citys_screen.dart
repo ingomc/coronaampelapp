@@ -41,7 +41,7 @@ class CitysScreen extends StatelessWidget {
                           'Stand: ${controller.userList[0].attributes.lastUpdate}',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              color: Theme.of(context).highlightColor),
+                              color: Theme.of(context).backgroundColor),
                         ),
                       ),
                     );

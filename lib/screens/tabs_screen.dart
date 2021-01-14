@@ -74,7 +74,10 @@ class TabsScreen extends StatelessWidget {
                     value: 'Aktualisieren',
                     child: Row(
                       children: [
-                        Icon(Icons.sync),
+                        Icon(
+                          Icons.sync,
+                          color: Theme.of(context).textTheme.bodyText1.color,
+                        ),
                         SizedBox(
                           width: 10,
                         ),
@@ -86,7 +89,10 @@ class TabsScreen extends StatelessWidget {
                     value: 'Anpassen',
                     child: Row(
                       children: [
-                        Icon(Icons.edit),
+                        Icon(
+                          Icons.edit,
+                          color: Theme.of(context).textTheme.bodyText1.color,
+                        ),
                         SizedBox(
                           width: 10,
                         ),
@@ -98,7 +104,10 @@ class TabsScreen extends StatelessWidget {
                     value: 'Einstellungen',
                     child: Row(
                       children: [
-                        Icon(Icons.tune_outlined),
+                        Icon(
+                          Icons.tune_outlined,
+                          color: Theme.of(context).textTheme.bodyText1.color,
+                        ),
                         SizedBox(
                           width: 10,
                         ),

@@ -8,6 +8,7 @@ class ThemeConfig {
         primaryColorBrightness: Brightness.dark,
         primaryColorLight: Color(0xffcfd8dc),
         primaryColorDark: Color(0xff455a64),
+        appBarTheme: AppBarTheme(backgroundColor: Colors.white),
         accentColor: Color(0xff607d8b),
         accentColorBrightness: Brightness.dark,
         canvasColor: Color(0xfffafafa),

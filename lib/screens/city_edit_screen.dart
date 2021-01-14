@@ -17,7 +17,7 @@ class CityEditScreen extends StatelessWidget {
     final sortedCitys = [...cityListController.citys];
     return Scaffold(
       appBar: AppBar(
-        title: Text('Landkreise anpassen'),
+        title: Text('Sortien / Löschen'),
       ),
       body: SafeArea(
         child: Column(
@@ -94,7 +94,19 @@ class CityEditScreen extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Center(
-                      child: Text('Löschen: Landkreis zur Seite wischen'),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.delete,
+                              color: Theme.of(context).highlightColor),
+                          Text(
+                            'Löschen: Landkreis zur Seite wischen',
+                            style: TextStyle(
+                                color: Theme.of(context).highlightColor),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
