@@ -13,6 +13,7 @@ class CityListController extends GetxController {
 
   @override
   void onInit() {
+    print('Init:    ------');
     print(box.read('citys'));
     box.listen(() async {
       var storedCitys = box.read('citys') ?? [];

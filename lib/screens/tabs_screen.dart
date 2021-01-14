@@ -11,9 +11,9 @@ import 'settings_screen.dart';
 
 class TabsScreen extends StatelessWidget {
   static const path = '/';
-  final TabsController tabsController = Get.put(TabsController());
-  final ApitestController apitestController = Get.put(ApitestController());
-  final CityListController cityListController = Get.put(CityListController());
+  final TabsController tabsController = Get.find<TabsController>();
+  final ApitestController apitestController = Get.find<ApitestController>();
+  final CityListController cityListController = Get.find<CityListController>();
 
   void _select(value) {
     switch (value) {

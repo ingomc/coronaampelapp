@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 
 class CityDetailScreen extends StatelessWidget {
   static const path = '/city';
-  final apitestController = Get.put(ApitestController());
+  final apitestController = Get.find<ApitestController>();
 
   @override
   Widget build(BuildContext context) {

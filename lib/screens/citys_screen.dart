@@ -10,8 +10,8 @@ import '../items/city_item.dart';
 
 class CitysScreen extends StatelessWidget {
   bool isRefreshIndicatorActive = false;
-  final CityListController cityListController = Get.put(CityListController());
-  final ApitestController apitestController = Get.put(ApitestController());
+  final CityListController cityListController = Get.find<CityListController>();
+  final ApitestController apitestController = Get.find<ApitestController>();
 
   // Call this when the user pull down the screen
   Future<void> _loadData() async {

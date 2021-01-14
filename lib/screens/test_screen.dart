@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class TestScreen extends StatelessWidget {
-  final ApitestController apitestController = Get.put(ApitestController());
-  final CityListController cityListController = Get.put(CityListController());
+  final ApitestController apitestController = Get.find<ApitestController>();
+  final CityListController cityListController = Get.find<CityListController>();
 
   @override
   Widget build(BuildContext context) {

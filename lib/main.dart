@@ -6,14 +6,12 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import './screens/tabs_screen.dart';
 import './screens/city_detail_screen.dart';
+import 'controller/apitest_controller.dart';
+import 'controller/city_list_controller.dart';
+import 'controller/tabs_controller.dart';
 
 void main() async {
   await GetStorage.init();
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    systemNavigationBarColor: Colors.grey[900], // navigation bar color
-    systemNavigationBarDividerColor:
-        Colors.grey[900], //Navigation bar divider color
-  ));
   runApp(MyApp());
 }
 
@@ -21,6 +19,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themecontroller = Get.put(ThemeController());
+    final apitestController = Get.put(ApitestController());
+    final cityListController = Get.put(CityListController());
+    final tabsController = Get.put(TabsController());
+
     return SimpleBuilder(
       builder: (_) {
         return GetMaterialApp(
