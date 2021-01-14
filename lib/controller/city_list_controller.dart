@@ -18,17 +18,27 @@ class CityListController extends GetxController {
     box.listen(() async {
       var storedCitys = box.read('citys') ?? [];
       citys.assignAll(storedCitys);
+      // if (storedCitys.sort() == citys.generate().sort()) {}
       await apitestController.fetchUsers(citys);
     });
 
     super.onInit();
   }
 
+  saveCityList(List<dynamic> newCityList) {
+    box.write('citys', newCityList);
+  }
+
+  instantRemoveCity(index) {
+    citys.removeAt(index);
+    box.write('citys', citys.toList());
+  }
+
   toggleCityToList(String county) {
     String cityInList =
         citys.firstWhere((cityItem) => cityItem == county, orElse: () => null);
 
-    var _tempCitys = [...citys];
+    List<String> _tempCitys = [...citys.toList()];
 
     if (cityInList == null) {
       _tempCitys.add(county);

@@ -1,6 +1,7 @@
 import 'package:coronaampel/controller/apitest_controller.dart';
 import 'package:coronaampel/controller/city_list_controller.dart';
 import 'package:coronaampel/controller/tabs_controller.dart';
+import 'package:coronaampel/screens/city_edit_screen.dart';
 import 'package:coronaampel/screens/search_screen.dart';
 import 'package:coronaampel/screens/states_screen.dart';
 import 'package:coronaampel/screens/test_screen.dart';
@@ -12,8 +13,8 @@ import 'settings_screen.dart';
 class TabsScreen extends StatelessWidget {
   static const path = '/';
   final TabsController tabsController = Get.put(TabsController());
-  final ApitestController apitestController = Get.find<ApitestController>();
-  final CityListController cityListController = Get.find<CityListController>();
+  final ApitestController apitestController = Get.put(ApitestController());
+  final CityListController cityListController = Get.put(CityListController());
 
   void _select(value) {
     switch (value) {
@@ -21,6 +22,9 @@ class TabsScreen extends StatelessWidget {
         apitestController.fetchUsers(
           cityListController.citys,
         );
+        break;
+      case 'Anpassen':
+        Get.to(CityEditScreen());
         break;
       case 'Einstellungen':
         Get.to(SettingsScreen());

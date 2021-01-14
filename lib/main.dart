@@ -16,12 +16,11 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  final themecontroller = Get.put(ThemeController());
+  final TabsController tabsController = Get.put(TabsController());
+
   @override
   Widget build(BuildContext context) {
-    final themecontroller = Get.put(ThemeController());
-    final apitestController = Get.put(ApitestController());
-    final cityListController = Get.put(CityListController());
-
     return SimpleBuilder(
       builder: (_) {
         return GetMaterialApp(

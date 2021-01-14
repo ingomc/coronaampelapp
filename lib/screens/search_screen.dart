@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 class SearchScreen extends StatelessWidget {
   static const path = '/search';
   final searchController = Get.put(SearchController());
-  final CityListController cityListController = Get.find<CityListController>();
+  final CityListController cityListController = Get.put(CityListController());
 
   Future<bool> _onWillPop() async {
     Get.back();

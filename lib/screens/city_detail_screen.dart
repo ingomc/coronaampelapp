@@ -2,12 +2,11 @@ import 'package:coronaampel/controller/apitest_controller.dart';
 import 'package:coronaampel/controller/city_list_controller.dart';
 import 'package:coronaampel/items/city_item.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 
 class CityDetailScreen extends StatelessWidget {
   static const path = '/city';
-  final apitestController = Get.find<ApitestController>();
+  final ApitestController apitestController = Get.put(ApitestController());
 
   @override
   Widget build(BuildContext context) {
