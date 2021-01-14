@@ -16,12 +16,8 @@ class TestScreen extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: GetX<ApitestController>(builder: (controller) {
-                if (controller.isLoading.value) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else {
+              child: GetX<ApitestController>(
+                builder: (controller) {
                   return ListView.builder(
                       itemCount: controller.userList.length,
                       itemBuilder: (context, index) {
@@ -45,8 +41,8 @@ class TestScreen extends StatelessWidget {
                         }
                         return Container();
                       });
-                }
-              }),
+                },
+              ),
             ),
             RaisedButton(
               onPressed: () {

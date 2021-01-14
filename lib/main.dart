@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
     final themecontroller = Get.put(ThemeController());
     final apitestController = Get.put(ApitestController());
     final cityListController = Get.put(CityListController());
-    final tabsController = Get.put(TabsController());
 
     return SimpleBuilder(
       builder: (_) {
