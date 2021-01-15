@@ -72,7 +72,7 @@ class CityEditScreen extends StatelessWidget {
                                 // use the delay parameter to specify the duration for how long a pointer
                                 // must press the child, until it can be dragged.
                                 enableFeedback: true,
-                                leading: Handle(
+                                trailing: Handle(
                                   delay: const Duration(milliseconds: 0),
                                   child: Icon(
                                     Icons.unfold_more,
