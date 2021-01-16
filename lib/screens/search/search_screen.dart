@@ -23,35 +23,52 @@ class SearchScreen extends StatelessWidget {
       onWillPop: _onWillPop,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Suche'),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Get.back();
+            },
+          ),
+          title: Row(
+            children: <Widget>[
+              Expanded(
+                child: Obx(
+                  () => TextField(
+                    autocorrect: false,
+                    autofocus: true,
+                    controller: TextEditingController.fromValue(
+                      new TextEditingValue(
+                        text: searchController.searchString.value,
+                        selection: TextSelection.collapsed(
+                            offset: searchController.searchString.value.length),
+                      ),
+                    ),
+                    decoration: InputDecoration(
+                      fillColor: Colors.amber,
+                      contentPadding: EdgeInsets.all(16),
+                      hintText: "Landkreis Suchen ...",
+                      border: InputBorder.none,
+                    ),
+                    onChanged: (String keyword) {
+                      searchController.searchString.value = keyword;
+                    },
+                  ),
+                ),
+              ),
+              IconButton(
+                icon: Icon(Icons.close),
+                onPressed: () {
+                  searchController.searchString.value = '';
+                },
+              ),
+            ],
+          ),
         ),
         body: SafeArea(
           child: Column(
             children: [
               Container(
                 width: double.infinity,
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: TextField(
-                        autocorrect: false,
-                        autofocus: true,
-                        decoration: InputDecoration(
-                          fillColor: Colors.amber,
-                          contentPadding: EdgeInsets.all(16),
-                          hintText: "Landkreis Suchen ...",
-                          border: InputBorder.none,
-                        ),
-                        onChanged: (String keyword) {
-                          searchController.searchString.value = keyword;
-                        },
-                      ),
-                    ),
-                    Icon(
-                      Icons.search,
-                    )
-                  ],
-                ),
               ),
               Container(
                   width: double.infinity,
