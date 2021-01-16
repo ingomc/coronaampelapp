@@ -1,34 +1,72 @@
 import 'dart:ffi';
 import 'dart:ui';
 
-import 'package:coronaampel/controller/apitest_controller.dart';
-import 'package:coronaampel/controller/city_list_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:implicitly_animated_reorderable_list/implicitly_animated_reorderable_list.dart';
 import 'package:implicitly_animated_reorderable_list/transitions.dart';
+import 'package:coronaampel/controller/get_countys_controller.dart';
+import 'package:coronaampel/controller/pinned_countys_controller.dart';
 
-class CityEditScreen extends StatelessWidget {
-  final ApitestController apitestController = Get.put(ApitestController());
-  final CityListController cityListController = Get.put(CityListController());
+class CountyEditScreen extends StatelessWidget {
+  final PinnedCountysController pinnedCountysController =
+      Get.put(PinnedCountysController());
+  final GetCountysController getCountysController =
+      Get.put(GetCountysController());
 
   @override
   Widget build(BuildContext context) {
-    final sortedCitys = [...cityListController.citys];
+    final sortedCountys = [...pinnedCountysController.countys];
+
+    void _select(value) {
+      switch (value) {
+        case 'deleteall':
+          pinnedCountysController.countys.assignAll([]);
+          Get.back();
+          break;
+      }
+      // print(value);
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Sortien / Löschen'),
+        actions: [
+          PopupMenuButton(
+            icon: Icon(Icons.more_vert),
+            onSelected: _select,
+            itemBuilder: (BuildContext context) {
+              return [
+                PopupMenuItem(
+                  value: 'deleteall',
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.delete,
+                        color: Theme.of(context).textTheme.bodyText1.color,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text('Alle Städte entfernen'),
+                    ],
+                  ),
+                ),
+              ];
+            },
+          ),
+        ],
       ),
       body: SafeArea(
         child: Column(
           children: [
             Expanded(
               child: ImplicitlyAnimatedReorderableList<dynamic>(
-                items: sortedCitys,
+                items: sortedCountys,
                 onReorderFinished: (item, from, to, newItems) {
                   // Remember to update the underlying data when the list has been
                   // reordered.
-                  cityListController.saveCityList(newItems);
+                  pinnedCountysController.countys.assignAll(newItems);
                 },
                 areItemsTheSame: (a, b) => a == b,
                 itemBuilder: (context, itemAnimation, item, index) {
@@ -57,8 +95,11 @@ class CityEditScreen extends StatelessWidget {
                           onDismissed: (direction) {
                             // cityListController.citys.removeAt(index);
                             // cityListController.instantRemoveCity(index);
-                            cityListController
-                                .toggleCityToList(sortedCitys[index]);
+                            // cityListController
+                            //     .toggleCityToList(sortedCitys[index]);
+                            print(item);
+                            sortedCountys.remove(item);
+                            pinnedCountysController.toggleCounty(item);
                           },
                           child: Card(
                             color: color,
@@ -66,7 +107,8 @@ class CityEditScreen extends StatelessWidget {
                             child: Material(
                               type: MaterialType.transparency,
                               child: ListTile(
-                                title: Text(item),
+                                title: Text(
+                                    '${getCountysController.countys[item].bez} ${getCountysController.countys[item].gen}'),
                                 // The child of a Handle can initialize a drag/reorder.
                                 // This could for example be an Icon or the whole item itself. You can
                                 // use the delay parameter to specify the duration for how long a pointer

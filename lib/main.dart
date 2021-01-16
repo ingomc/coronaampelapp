@@ -1,14 +1,8 @@
-import 'package:coronaampel/controller/theme_controller.dart';
-import 'package:coronaampel/screens/search_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import './screens/tabs_screen.dart';
-import './screens/city_detail_screen.dart';
-import 'controller/apitest_controller.dart';
-import 'controller/city_list_controller.dart';
-import 'controller/tabs_controller.dart';
+import 'controller/pinned_countys_controller.dart';
+import 'screens/home/home_screen.dart';
 
 void main() async {
   await GetStorage.init();
@@ -16,28 +10,20 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final themecontroller = Get.put(ThemeController());
-  final TabsController tabsController = Get.put(TabsController());
+  final PinnedCountysController pinnedCountysController =
+      Get.put(PinnedCountysController());
 
   @override
   Widget build(BuildContext context) {
-    return SimpleBuilder(
-      builder: (_) {
-        return GetMaterialApp(
-          defaultTransition: Transition.cupertino,
-          theme: themecontroller.theme,
-          title: 'Corona-Ampel',
-          debugShowCheckedModeBanner: false,
-          //when initial Route is given no need to add home widget for initial start point of app
-          //full app route structure
-          getPages: [
-            GetPage(name: TabsScreen.path, page: () => TabsScreen()),
-            GetPage(
-                name: CityDetailScreen.path, page: () => CityDetailScreen()),
-            GetPage(name: SearchScreen.path, page: () => SearchScreen()),
-          ],
-        );
-      },
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(brightness: Brightness.dark),
+      home: Scaffold(
+        body: Center(
+          child: HomeScreen(),
+        ),
+      ),
     );
   }
 }

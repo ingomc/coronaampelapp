@@ -1,53 +1,25 @@
-import '../models/city.dart';
+import '../models/countys.dart';
 
-const DUMMY_CITYS = const [
-  City(
-    id: '100',
-    county: 'LK Coburg',
-    district: 'Landkreis',
-    name: 'Coburg',
-    incidence: 15.7,
-  ),
-  City(
-    id: '101',
-    county: 'SK Coburg',
-    district: 'Kreifreie Stadt',
-    name: 'Coburg',
-    incidence: 36.1,
-  ),
-  City(
-    id: '102',
-    county: 'LK Bamberg',
-    district: 'Landkreis',
-    name: 'Bamberg',
-    incidence: 51.1,
-  ),
-  City(
-    id: '103',
-    county: 'SK Bamberg',
-    district: 'Kreifreie Stadt',
-    name: 'Bamberg',
-    incidence: 101.1,
-  ),
-  City(
-    id: '104',
-    county: 'LK Schweinfurt',
-    district: 'Landkreis',
-    name: 'Schweinfurt',
-    incidence: 244.1,
-  ),
-  City(
-    id: '105',
-    county: 'SK Schweinfurt',
-    district: 'Kreifreie Stadt',
-    name: 'Schweinfurt',
-    incidence: 244.1,
-  ),
-  City(
-    id: '106',
-    county: 'LK Rhön-Grabfeld',
-    district: 'Landkreis',
-    name: 'Rhön-Grabfeld',
-    incidence: 244.1,
-  ),
-];
+Countys DUMMY_CITYS = Countys(
+  locations: [
+    Location(
+        bez: 'Bezirk',
+        cases7Per100K: 23.4,
+        gen: 'Coburg',
+        newCases: 43,
+        rs: '323'),
+    Location(
+        bez: 'Kreis',
+        cases7Per100K: 123.4,
+        gen: 'Kronach',
+        newCases: 243,
+        rs: '3123'),
+    Location(
+        bez: 'Landkreis',
+        cases7Per100K: 55.4,
+        gen: 'Bamberg',
+        newCases: 24,
+        rs: '31233'),
+  ],
+  date: 'Date',
+);
