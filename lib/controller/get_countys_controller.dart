@@ -14,7 +14,7 @@ class GetCountysController extends GetxController {
     super.onInit();
   }
 
-  void fetchCountys() async {
+  Future<void> fetchCountys() async {
     isLoading(true);
     print('triggered fetch all countys');
     try {

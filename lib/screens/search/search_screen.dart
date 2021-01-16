@@ -55,12 +55,18 @@ class SearchScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              IconButton(
-                icon: Icon(Icons.close),
-                onPressed: () {
-                  searchController.searchString.value = '';
-                },
-              ),
+              GetX<SearchController>(builder: (controller) {
+                if (searchController.searchString.value.length > 0) {
+                  return IconButton(
+                    icon: Icon(Icons.close),
+                    onPressed: () {
+                      searchController.searchString.value = '';
+                    },
+                  );
+                } else {
+                  return Container();
+                }
+              }),
             ],
           ),
         ),

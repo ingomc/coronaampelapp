@@ -11,15 +11,20 @@ class TabCountyScreen extends StatelessWidget {
   final PinnedCountysController pinnedCountysController =
       Get.put(PinnedCountysController());
 
+  // Call this when the user pull down the screen
+  Future<void> _loadData() async {
+    // isRefreshIndicatorActive = true;
+    await getCountysController.fetchCountys();
+    // isRefreshIndicatorActive = false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: RefreshIndicator(
-          onRefresh: () {
-            print('refresh');
-          },
+          onRefresh: _loadData,
           child: Scrollbar(
             child: ListView.builder(
               itemCount: 1,
