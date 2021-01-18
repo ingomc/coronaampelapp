@@ -28,6 +28,7 @@ class TabCountyScreen extends StatelessWidget {
           onRefresh: _loadData,
           child: CupertinoScrollbar(
             child: ListView.builder(
+              padding: EdgeInsets.only(bottom: 100),
               itemCount: 1,
               itemBuilder: (context, i) {
                 return Column(
@@ -61,13 +62,16 @@ class TabCountyScreen extends StatelessWidget {
                                   (index) {
                                     var thisCounty = getCountysController
                                         .countys[controller.countys[index]];
-                                    return CountyCard(
-                                        controller.countys[index],
-                                        thisCounty.rs,
-                                        thisCounty.gen,
-                                        thisCounty.bez,
-                                        thisCounty.cases7Per100K,
-                                        thisCounty.newCases);
+                                    return Hero(
+                                      tag: 'card${controller.countys[index]}',
+                                      child: CountyCard(
+                                          controller.countys[index],
+                                          thisCounty.rs,
+                                          thisCounty.gen,
+                                          thisCounty.bez,
+                                          thisCounty.cases7Per100K,
+                                          thisCounty.newCases),
+                                    );
                                   },
                                 )
                               ],

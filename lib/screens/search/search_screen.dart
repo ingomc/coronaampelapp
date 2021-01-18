@@ -1,4 +1,5 @@
 import 'package:coronaampel/controller/search_controller.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:coronaampel/controller/get_countys_controller.dart';
@@ -94,7 +95,7 @@ class SearchScreen extends StatelessWidget {
                       ),
                     );
                   } else {
-                    return Scrollbar(
+                    return CupertinoScrollbar(
                       child: ListView.builder(
                         itemCount: controller.countys.length,
                         itemBuilder: (context, index) {

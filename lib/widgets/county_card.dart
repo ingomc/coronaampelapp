@@ -81,7 +81,7 @@ class CountyCard extends StatelessWidget {
                             style: TextStyle(color: txtColor),
                           ),
                           Text(
-                            'Neue Fälle: $newCases',
+                            'Neue Fälle: ${newCases != null && newCases > 0 ? newCases : 0}',
                             style: TextStyle(color: txtColor),
                           ),
                         ],
