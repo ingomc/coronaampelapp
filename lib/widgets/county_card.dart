@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:coronaampel/controller/get_single_county_controller.dart';
 import 'package:coronaampel/screens/county_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -45,7 +46,11 @@ class CountyCard extends StatelessWidget {
     bgColor = Colors.green;
   }
 
+  final GetSingleCountyController getSingleCountyController =
+      Get.put(GetSingleCountyController());
+
   void goToCity() {
+    getSingleCountyController.selectedCountyRS.value = rs;
     Get.to(CountyDetailScreen(), arguments: countyIndex);
     // Get.to(
     // CityDetailScreen(),

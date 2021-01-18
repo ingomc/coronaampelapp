@@ -51,7 +51,11 @@ class CountyDetailScreen extends StatelessWidget {
                     ),
                     Center(
                       child: Text(getSingleCountyController.dummydata),
-                    )
+                    ),
+                    Center(
+                      child:
+                          Text('${getSingleCountyController.selectedCountyRS}'),
+                    ),
                   ],
                 );
               },
