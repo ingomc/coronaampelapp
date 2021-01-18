@@ -23,7 +23,7 @@ class TabCountyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 12.0),
         child: RefreshIndicator(
           onRefresh: _loadData,
           child: CupertinoScrollbar(

@@ -49,7 +49,9 @@ class Location {
         cases7Per100K: json["cases7_per_100k"].toDouble(),
         gen: json["GEN"],
         bez: json["BEZ"],
-        newCases: json["newCases"] == null ? null : json["newCases"],
+        newCases: json["newCases"] == null || json["newCases"] < 1
+            ? 0
+            : json["newCases"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -57,6 +59,6 @@ class Location {
         "cases7_per_100k": cases7Per100K,
         "GEN": gen,
         "BEZ": bez,
-        "newCases": newCases == null ? null : newCases,
+        "newCases": newCases > 0 ? newCases : null,
       };
 }

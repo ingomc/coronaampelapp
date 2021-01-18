@@ -28,33 +28,30 @@ class CountyDetailScreen extends StatelessWidget {
             '${getCountysController.countys[countyIndex].bez} ${getCountysController.countys[countyIndex].gen}'),
       ),
       body: SafeArea(
+        bottom: false,
         child: RefreshIndicator(
           onRefresh: _loadData,
           child: CupertinoScrollbar(
             child: ListView.builder(
-              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              padding: EdgeInsets.fromLTRB(4, 4, 4, 32),
               itemCount: 1,
               itemBuilder: (context, index) {
                 return Column(
                   children: [
-                    Hero(
-                      tag: 'card$countyIndex',
-                      child: CountyCard(
-                          countyIndex,
-                          getCountysController.countys[countyIndex].rs,
-                          getCountysController.countys[countyIndex].gen,
-                          getCountysController.countys[countyIndex].bez,
-                          getCountysController
-                              .countys[countyIndex].cases7Per100K,
-                          getCountysController.countys[countyIndex].newCases,
-                          false),
-                    ),
-                    Center(
-                      child: Text(getSingleCountyController.dummydata),
-                    ),
-                    Center(
-                      child:
-                          Text('${getSingleCountyController.selectedCountyRS}'),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Hero(
+                        tag: 'card$countyIndex',
+                        child: CountyCard(
+                            countyIndex,
+                            getCountysController.countys[countyIndex].rs,
+                            getCountysController.countys[countyIndex].gen,
+                            getCountysController.countys[countyIndex].bez,
+                            getCountysController
+                                .countys[countyIndex].cases7Per100K,
+                            getCountysController.countys[countyIndex].newCases,
+                            false),
+                      ),
                     ),
                     GetX<GetSingleCountyController>(builder: (controller) {
                       if (controller.isLoading.value) {
@@ -67,12 +64,32 @@ class CountyDetailScreen extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(vertical: 4),
                             child: Row(
                               children: <Widget>[
-                                ThirdCard('Neue Fälle von Gestern', '-'),
+                                ThirdCard('Neue Fälle von Gestern',
+                                    '${getCountysController.countys[countyIndex].newCases == 0 ? 0 : getCountysController.countys[countyIndex].newCases}'),
                                 ThirdCard('Fälle der letzten 7 Tage',
-                                    '+ ${getCountysController.countys[countyIndex].newCases}'),
+                                    '+ ${controller.county.value.cases7Lk}'),
                                 ThirdCard('Fälle insgesamt',
                                     '${controller.county.value.cases}'),
                               ],
+                            ),
+                          ),
+                          CityDetailsRowCard('Tote bisher',
+                              '${controller.county.value.deaths}'),
+                          CityDetailsRowCard('Todesrate',
+                              '${(controller.county.value.deathRate).toStringAsFixed(2)} %'),
+                          CityDetailsRowCard('Einwohnerzahl',
+                              '${controller.county.value.ewz}'),
+                          CityDetailsRowCard(
+                              '7 Tage Inzidenz in ${controller.county.value.bl}',
+                              '${controller.county.value.cases7BlPer100K.toStringAsFixed(2)}'),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          Center(
+                            child: Text(
+                              'Intensivstation',
+                              style:
+                                  TextStyle(color: Theme.of(context).hintColor),
                             ),
                           ),
                           CityDetailsRowCard('Tote bisher',

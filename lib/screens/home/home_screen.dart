@@ -116,7 +116,7 @@ class HomeScreen extends StatelessWidget {
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(
           backgroundColor: Theme.of(context).primaryColor,
-          unselectedItemColor: Colors.grey[300],
+          unselectedItemColor: Theme.of(context).hintColor,
           selectedItemColor: Colors.white,
           currentIndex: uiTabsController.selectedIndex,
           onTap: _onTap,

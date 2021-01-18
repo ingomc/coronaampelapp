@@ -16,9 +16,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      defaultTransition: Transition.cupertino,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(brightness: Brightness.dark),
+      theme: ThemeData(
+        primaryColor: Colors.grey[900],
+        brightness: Brightness.dark,
+        accentColor: Colors.blueGrey,
+      ),
       home: Scaffold(
         body: Center(
           child: HomeScreen(),
