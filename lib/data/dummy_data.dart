@@ -1,4 +1,4 @@
-import '../models/countys.dart';
+import '../models/countys_model.dart';
 
 // ignore: non_constant_identifier_names
 Countys DUMMY_CITYS = Countys(

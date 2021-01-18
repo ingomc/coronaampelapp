@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:coronaampel/controller/get_single_county_controller.dart';
-import 'package:coronaampel/screens/county_detail_screen.dart';
+import 'package:coronaampel/screens/detail/county_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 // import 'package:coronaampel/data/dummy_data.dart';
-import 'package:coronaampel/models/countys.dart';
-import 'package:coronaampel/services/county_remote_service.dart';
+import 'package:coronaampel/models/countys_model.dart';
+import 'package:coronaampel/services/countys_remote_service.dart';
 
 class GetCountysController extends GetxController {
   var isLoading = false.obs;
@@ -25,10 +25,10 @@ class GetCountysController extends GetxController {
       // var cityResults = DUMMY_CITYS.locations;
       // schau im todo beispiel nach wie das geht
 
-      var countyResult = await RemoteServiceCounty.fetchAllCountys();
+      var countysResult = await RemoteServiceCountys.fetchAllCountys();
 
-      countys.assignAll(countyResult.locations);
-      lastUpdate.value = countyResult.date;
+      countys.assignAll(countysResult.locations);
+      lastUpdate.value = countysResult.date;
     } catch (error) {
       print(error);
       throw Exception('Failed to load all countys');

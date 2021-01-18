@@ -1,19 +1,19 @@
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:coronaampel/models/county_model.dart';
+import 'package:coronaampel/models/countys_model.dart';
 
-class RemoteServiceCounty {
+class RemoteServiceCountys {
   static var client = http.Client();
 
-  static Future<County> fetchAllCounty(rs) async {
-    String url = 'https://ingomc.github.io/corona-ampel-be/county/$rs.json';
+  static Future<Countys> fetchAllCountys() async {
+    String url = 'https://ingomc.github.io/corona-ampel-be/countys/index.json';
 
     try {
       var response = await client.get(url);
       if (response.statusCode == 200) {
         // Succesful fetch
         var jsonString = response.body;
-        var allData = countyFromJson(jsonString);
+        var allData = countysFromJson(jsonString);
         return allData;
       } else {
         // If that call was not successful, throw an error.
