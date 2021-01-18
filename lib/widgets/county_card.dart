@@ -1,8 +1,10 @@
 import 'dart:ui';
+import 'package:coronaampel/screens/county_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CountyCard extends StatelessWidget {
+  final int countyIndex;
   final String rs;
   final String name;
   final String district;
@@ -10,7 +12,8 @@ class CountyCard extends StatelessWidget {
   final int newCases;
   final bool isLinked;
 
-  CountyCard(this.rs, this.name, this.district, this.incidence, this.newCases,
+  CountyCard(this.countyIndex, this.rs, this.name, this.district,
+      this.incidence, this.newCases,
       [this.isLinked = true]);
 
   Color txtColor = Colors.amber;
@@ -42,6 +45,7 @@ class CountyCard extends StatelessWidget {
   }
 
   void goToCity() {
+    Get.to(CountyDetailScreen(), arguments: countyIndex);
     // Get.to(
     // CityDetailScreen(),
     //   arguments: rs,

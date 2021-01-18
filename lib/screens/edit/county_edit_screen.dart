@@ -30,7 +30,7 @@ class CountyEditScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sortien / Löschen'),
+        title: Text('Sortieren / Löschen'),
         actions: [
           PopupMenuButton(
             icon: Icon(Icons.more_vert),
@@ -48,7 +48,7 @@ class CountyEditScreen extends StatelessWidget {
                       SizedBox(
                         width: 10,
                       ),
-                      Text('Alle Städte entfernen'),
+                      Text('Alle Landkreise entfernen'),
                     ],
                   ),
                 ),

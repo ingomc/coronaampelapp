@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:coronaampel/controller/pinned_countys_controller.dart';
@@ -25,14 +26,14 @@ class TabCountyScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: RefreshIndicator(
           onRefresh: _loadData,
-          child: Scrollbar(
+          child: CupertinoScrollbar(
             child: ListView.builder(
               itemCount: 1,
               itemBuilder: (context, i) {
                 return Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.fromLTRB(0, 8, 0, 4),
                       child: Obx(
                         () => Text(
                           'Stand: ${getCountysController.lastUpdate == null ? "" : getCountysController.lastUpdate}',
@@ -61,6 +62,7 @@ class TabCountyScreen extends StatelessWidget {
                                     var thisCounty = getCountysController
                                         .countys[controller.countys[index]];
                                     return CountyCard(
+                                        controller.countys[index],
                                         thisCounty.rs,
                                         thisCounty.gen,
                                         thisCounty.bez,
