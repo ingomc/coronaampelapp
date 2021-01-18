@@ -3,6 +3,7 @@ import 'package:coronaampel/screens/county_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class CountyCard extends StatelessWidget {
   final int countyIndex;
   final String rs;

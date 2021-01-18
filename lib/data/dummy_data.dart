@@ -1,5 +1,6 @@
 import '../models/countys.dart';
 
+// ignore: non_constant_identifier_names
 Countys DUMMY_CITYS = Countys(
   locations: [
     Location(
