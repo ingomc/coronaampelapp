@@ -1,3 +1,4 @@
+import 'package:flutter_fadein/flutter_fadein.dart';
 import 'package:coronaampel/controller/get_countys_controller.dart';
 import 'package:coronaampel/controller/get_single_county_controller.dart';
 import 'package:coronaampel/widgets/county_card.dart';
@@ -153,12 +154,16 @@ class ThirdCard extends StatelessWidget {
                   ),
                 ),
                 Obx(
-                  () => Text(
-                    !getSingleCountyController.isLoading.value
-                        ? cardNumber
-                        : ' ',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  () => FadeIn(
+                    duration: Duration(milliseconds: 500),
+                    child: Text(
+                      !getSingleCountyController.isLoading.value
+                          ? cardNumber
+                          : ' ',
+                      textAlign: TextAlign.center,
+                      style:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
               ],
@@ -191,11 +196,16 @@ class CityDetailsRowCard extends StatelessWidget {
                 child: Text(cardTitle),
               ),
               Obx(
-                () => Text(
-                  !getSingleCountyController.isLoading.value ? cardNumber : ' ',
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
+                () => FadeIn(
+                  duration: Duration(milliseconds: 500),
+                  child: Text(
+                    !getSingleCountyController.isLoading.value
+                        ? cardNumber
+                        : ' ',
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
