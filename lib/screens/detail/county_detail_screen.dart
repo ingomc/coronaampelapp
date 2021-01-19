@@ -38,6 +38,7 @@ class CountyDetailScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Column(
                   children: [
+                    SizedBox(height: 4),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8),
                       child: Hero(
@@ -54,55 +55,64 @@ class CountyDetailScreen extends StatelessWidget {
                       ),
                     ),
                     GetX<GetSingleCountyController>(builder: (controller) {
-                      if (controller.isLoading.value) {
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      } else {
-                        return Column(children: [
+                      return Column(
+                        children: [
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 4),
                             child: Row(
                               children: <Widget>[
                                 ThirdCard('Neue Fälle von Gestern',
-                                    '${getCountysController.countys[countyIndex].newCases == 0 ? 0 : getCountysController.countys[countyIndex].newCases}'),
+                                    '${getCountysController.countys[countyIndex].newCases > 0 ? getCountysController.countys[countyIndex].newCases : 0}'),
                                 ThirdCard('Fälle der letzten 7 Tage',
-                                    '+ ${controller.county.value.cases7Lk}'),
+                                    '+ ${controller.county.value.cases7Lk != null ? controller.county.value.cases7Lk : 0}'),
                                 ThirdCard('Fälle insgesamt',
-                                    '${controller.county.value.cases}'),
+                                    '${controller.county.value.cases != null ? controller.county.value.cases : 0}'),
                               ],
                             ),
                           ),
                           CityDetailsRowCard('Tote bisher',
-                              '${controller.county.value.deaths}'),
+                              '${controller.county.value.deaths != null ? controller.county.value.deaths : 0}'),
                           CityDetailsRowCard('Todesrate',
-                              '${(controller.county.value.deathRate).toStringAsFixed(2)} %'),
+                              '${controller.county.value.deathRate != null ? (controller.county.value.deathRate).toStringAsFixed(2) : ""} %'),
                           CityDetailsRowCard('Einwohnerzahl',
-                              '${controller.county.value.ewz}'),
+                              '${controller.county.value.ewz != null ? controller.county.value.ewz : 0}'),
                           CityDetailsRowCard(
-                              '7 Tage Inzidenz in ${controller.county.value.bl}',
-                              '${controller.county.value.cases7BlPer100K.toStringAsFixed(2)}'),
+                              '7 Tage Inzidenz in ${controller.county.value.bl != null ? controller.county.value.bl : ''}',
+                              '${controller.county.value.cases7BlPer100K != null ? controller.county.value.cases7BlPer100K.toStringAsFixed(2) : ''}'),
                           SizedBox(
                             height: 16,
                           ),
-                          Center(
-                            child: Text(
-                              'Intensivstation',
-                              style:
-                                  TextStyle(color: Theme.of(context).hintColor),
+                          if (controller.isLoading.value)
+                            Center(
+                              child: CircularProgressIndicator(),
                             ),
-                          ),
-                          CityDetailsRowCard('Tote bisher',
-                              '${controller.county.value.deaths}'),
-                          CityDetailsRowCard('Todesrate',
-                              '${(controller.county.value.deathRate).toStringAsFixed(2)} %'),
-                          CityDetailsRowCard('Einwohnerzahl',
-                              '${controller.county.value.ewz}'),
-                          CityDetailsRowCard(
-                              '7 Tage Inzidenz in ${controller.county.value.bl}',
-                              '${controller.county.value.cases7BlPer100K.toStringAsFixed(2)}'),
-                        ]);
-                      }
+                          if (!controller.isLoading.value &&
+                              controller.county.value.bettenFrei != null)
+                            Column(
+                              children: [
+                                Center(
+                                  child: Text(
+                                    'Intensivstation',
+                                    style: TextStyle(
+                                        color: Theme.of(context).hintColor),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 8,
+                                ),
+                                CityDetailsRowCard('Betten frei',
+                                    '${controller.county.value.bettenFrei != null ? controller.county.value.bettenFrei : 0}'),
+                                CityDetailsRowCard('Betten belegt',
+                                    '${controller.county.value.bettenBelegt != null ? controller.county.value.bettenBelegt : 0}'),
+                                CityDetailsRowCard('Betten belegt mit Covid-19',
+                                    '${controller.county.value.faelleCovidAktuell != null ? controller.county.value.faelleCovidAktuell : 0}'),
+                                CityDetailsRowCard(
+                                    'Covid-19-Fälle die beatmet werden',
+                                    '${controller.county.value.faelleCovidAktuellBeatmet != null ? controller.county.value.faelleCovidAktuellBeatmet : 0}'),
+                              ],
+                            ),
+                        ],
+                      );
                     }),
                   ],
                 );
@@ -116,6 +126,7 @@ class CountyDetailScreen extends StatelessWidget {
 }
 
 class ThirdCard extends StatelessWidget {
+  final GetSingleCountyController getSingleCountyController = Get.find();
   final String cardTitle;
   final String cardNumber;
 
@@ -141,10 +152,14 @@ class ThirdCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                Text(
-                  cardNumber,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                Obx(
+                  () => Text(
+                    !getSingleCountyController.isLoading.value
+                        ? cardNumber
+                        : ' ',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
                 ),
               ],
             ),
@@ -156,6 +171,8 @@ class ThirdCard extends StatelessWidget {
 }
 
 class CityDetailsRowCard extends StatelessWidget {
+  final GetSingleCountyController getSingleCountyController = Get.find();
+
   final String cardTitle;
   final String cardNumber;
 
@@ -173,11 +190,13 @@ class CityDetailsRowCard extends StatelessWidget {
               Expanded(
                 child: Text(cardTitle),
               ),
-              Text(
-                cardNumber,
-                textAlign: TextAlign.right,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
+              Obx(
+                () => Text(
+                  !getSingleCountyController.isLoading.value ? cardNumber : ' ',
+                  textAlign: TextAlign.right,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],
