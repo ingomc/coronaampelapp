@@ -51,7 +51,8 @@ class CountyCard extends StatelessWidget {
 
   void goToCity() {
     getSingleCountyController.selectedCountyRS.value = rs;
-    Get.to(CountyDetailScreen(), arguments: countyIndex);
+    Get.to(CountyDetailScreen(),
+        arguments: countyIndex, transition: Transition.cupertino);
     // Get.to(
     // CityDetailScreen(),
     //   arguments: rs,
