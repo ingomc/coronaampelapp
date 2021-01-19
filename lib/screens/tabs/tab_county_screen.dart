@@ -22,70 +22,67 @@ class TabCountyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12.0),
-        child: RefreshIndicator(
-          onRefresh: _loadData,
-          child: CupertinoScrollbar(
-            child: ListView.builder(
-              padding: EdgeInsets.only(bottom: 100),
-              itemCount: 1,
-              itemBuilder: (context, i) {
-                return Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 8, 0, 4),
-                      child: Obx(
-                        () => Text(
-                          'Stand: ${getCountysController.lastUpdate == null ? "" : getCountysController.lastUpdate}',
-                          style: TextStyle(
-                            color: Theme.of(context).hintColor,
-                          ),
+      body: RefreshIndicator(
+        onRefresh: _loadData,
+        child: CupertinoScrollbar(
+          child: ListView.builder(
+            padding: EdgeInsets.fromLTRB(12, 4, 12, 100),
+            itemCount: 1,
+            itemBuilder: (context, i) {
+              return Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 8, 0, 4),
+                    child: Obx(
+                      () => Text(
+                        'Stand: ${getCountysController.lastUpdate == null ? "" : getCountysController.lastUpdate}',
+                        style: TextStyle(
+                          color: Theme.of(context).hintColor,
                         ),
                       ),
                     ),
-                    GetX<PinnedCountysController>(
-                      builder: (controller) {
-                        if (getCountysController.isLoading.value) {
-                          return Center(
-                            child: CircularProgressIndicator(),
+                  ),
+                  GetX<PinnedCountysController>(
+                    builder: (controller) {
+                      if (getCountysController.isLoading.value) {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      } else {
+                        if (controller.countys.length > 0 &&
+                            getCountysController.countys.length > 0) {
+                          return Column(
+                            children: [
+                              ...List.generate(
+                                controller.countys.length > 100
+                                    ? 100
+                                    : controller.countys.length,
+                                (index) {
+                                  var thisCounty = getCountysController
+                                      .countys[controller.countys[index]];
+                                  return Hero(
+                                    tag: 'card${controller.countys[index]}',
+                                    child: CountyCard(
+                                        controller.countys[index],
+                                        thisCounty.rs,
+                                        thisCounty.gen,
+                                        thisCounty.bez,
+                                        thisCounty.cases7Per100K,
+                                        thisCounty.newCases),
+                                  );
+                                },
+                              )
+                            ],
                           );
                         } else {
-                          if (controller.countys.length > 0 &&
-                              getCountysController.countys.length > 0) {
-                            return Column(
-                              children: [
-                                ...List.generate(
-                                  controller.countys.length > 100
-                                      ? 100
-                                      : controller.countys.length,
-                                  (index) {
-                                    var thisCounty = getCountysController
-                                        .countys[controller.countys[index]];
-                                    return Hero(
-                                      tag: 'card${controller.countys[index]}',
-                                      child: CountyCard(
-                                          controller.countys[index],
-                                          thisCounty.rs,
-                                          thisCounty.gen,
-                                          thisCounty.bez,
-                                          thisCounty.cases7Per100K,
-                                          thisCounty.newCases),
-                                    );
-                                  },
-                                )
-                              ],
-                            );
-                          } else {
-                            return Container();
-                          }
+                          return Container();
                         }
-                      },
-                    ),
-                  ],
-                );
-              },
-            ),
+                      }
+                    },
+                  ),
+                ],
+              );
+            },
           ),
         ),
       ),

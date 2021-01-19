@@ -84,33 +84,40 @@ class CountyDetailScreen extends StatelessWidget {
                             height: 16,
                           ),
                           if (controller.isLoading.value)
-                            Center(
-                              child: CircularProgressIndicator(),
+                            FadeIn(
+                              duration: Duration(milliseconds: 500),
+                              child: Center(
+                                child: CircularProgressIndicator(),
+                              ),
                             ),
                           if (!controller.isLoading.value &&
                               controller.county.value.bettenFrei != null)
-                            Column(
-                              children: [
-                                Center(
-                                  child: Text(
-                                    'Intensivstation',
-                                    style: TextStyle(
-                                        color: Theme.of(context).hintColor),
+                            FadeIn(
+                              duration: Duration(milliseconds: 500),
+                              child: Column(
+                                children: [
+                                  Center(
+                                    child: Text(
+                                      'Intensivstation',
+                                      style: TextStyle(
+                                          color: Theme.of(context).hintColor),
+                                    ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 8,
-                                ),
-                                CityDetailsRowCard('Betten frei',
-                                    '${controller.county.value.bettenFrei != null ? controller.county.value.bettenFrei : 0}'),
-                                CityDetailsRowCard('Betten belegt',
-                                    '${controller.county.value.bettenBelegt != null ? controller.county.value.bettenBelegt : 0}'),
-                                CityDetailsRowCard('Betten belegt mit Covid-19',
-                                    '${controller.county.value.faelleCovidAktuell != null ? controller.county.value.faelleCovidAktuell : 0}'),
-                                CityDetailsRowCard(
-                                    'Covid-19-Fälle die beatmet werden',
-                                    '${controller.county.value.faelleCovidAktuellBeatmet != null ? controller.county.value.faelleCovidAktuellBeatmet : 0}'),
-                              ],
+                                  SizedBox(
+                                    height: 8,
+                                  ),
+                                  CityDetailsRowCard('Betten frei',
+                                      '${controller.county.value.bettenFrei != null ? controller.county.value.bettenFrei : 0}'),
+                                  CityDetailsRowCard('Betten belegt',
+                                      '${controller.county.value.bettenBelegt != null ? controller.county.value.bettenBelegt : 0}'),
+                                  CityDetailsRowCard(
+                                      'Betten belegt mit Covid-19',
+                                      '${controller.county.value.faelleCovidAktuell != null ? controller.county.value.faelleCovidAktuell : 0}'),
+                                  CityDetailsRowCard(
+                                      'Covid-19-Fälle die beatmet werden',
+                                      '${controller.county.value.faelleCovidAktuellBeatmet != null ? controller.county.value.faelleCovidAktuellBeatmet : 0}'),
+                                ],
+                              ),
                             ),
                         ],
                       );
