@@ -56,70 +56,73 @@ class CountyDetailScreen extends StatelessWidget {
                       ),
                     ),
                     GetX<GetSingleCountyController>(builder: (controller) {
-                      return Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 4),
-                            child: Row(
-                              children: <Widget>[
-                                ThirdCard('Neue Fälle von Gestern',
-                                    '${getCountysController.countys[countyIndex].newCases > 0 ? getCountysController.countys[countyIndex].newCases : 0}'),
-                                ThirdCard('Fälle der letzten 7 Tage',
-                                    '+ ${controller.county.value.cases7Lk != null ? controller.county.value.cases7Lk : 0}'),
-                                ThirdCard('Fälle insgesamt',
-                                    '${controller.county.value.cases != null ? controller.county.value.cases : 0}'),
-                              ],
-                            ),
-                          ),
-                          CityDetailsRowCard('Tote bisher',
-                              '${controller.county.value.deaths != null ? controller.county.value.deaths : 0}'),
-                          CityDetailsRowCard('Todesrate',
-                              '${controller.county.value.deathRate != null ? (controller.county.value.deathRate).toStringAsFixed(2) : ""} %'),
-                          CityDetailsRowCard('Einwohnerzahl',
-                              '${controller.county.value.ewz != null ? controller.county.value.ewz : 0}'),
-                          CityDetailsRowCard(
-                              '7 Tage Inzidenz in ${controller.county.value.bl != null ? controller.county.value.bl : ''}',
-                              '${controller.county.value.cases7BlPer100K != null ? controller.county.value.cases7BlPer100K.toStringAsFixed(2) : ''}'),
-                          SizedBox(
-                            height: 16,
-                          ),
-                          if (controller.isLoading.value)
-                            FadeIn(
-                              duration: Duration(milliseconds: 500),
-                              child: Center(
-                                child: CircularProgressIndicator(),
-                              ),
-                            ),
-                          if (!controller.isLoading.value &&
-                              controller.county.value.bettenFrei != null)
-                            FadeIn(
-                              duration: Duration(milliseconds: 500),
-                              child: Column(
-                                children: [
-                                  Center(
-                                    child: Text(
-                                      'Intensivstation',
-                                      style: TextStyle(
-                                          color: Theme.of(context).hintColor),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
-                                  CityDetailsRowCard('Betten frei',
-                                      '${controller.county.value.bettenFrei != null ? controller.county.value.bettenFrei : 0}'),
-                                  CityDetailsRowCard('Betten belegt',
-                                      '${controller.county.value.bettenBelegt != null ? controller.county.value.bettenBelegt : 0}'),
-                                  CityDetailsRowCard(
-                                      'Betten belegt mit Covid-19',
-                                      '${controller.county.value.faelleCovidAktuell != null ? controller.county.value.faelleCovidAktuell : 0}'),
-                                  CityDetailsRowCard(
-                                      'Covid-19-Fälle die beatmet werden',
-                                      '${controller.county.value.faelleCovidAktuellBeatmet != null ? controller.county.value.faelleCovidAktuellBeatmet : 0}'),
+                      return FadeIn(
+                        duration: Duration(milliseconds: 600),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 4),
+                              child: Row(
+                                children: <Widget>[
+                                  ThirdCard('Neue Fälle von Gestern',
+                                      '${getCountysController.countys[countyIndex].newCases > 0 ? getCountysController.countys[countyIndex].newCases : 0}'),
+                                  ThirdCard('Fälle der letzten 7 Tage',
+                                      '+ ${controller.county.value.cases7Lk != null ? controller.county.value.cases7Lk : 0}'),
+                                  ThirdCard('Fälle insgesamt',
+                                      '${controller.county.value.cases != null ? controller.county.value.cases : 0}'),
                                 ],
                               ),
                             ),
-                        ],
+                            CityDetailsRowCard('Tote bisher',
+                                '${controller.county.value.deaths != null ? controller.county.value.deaths : 0}'),
+                            CityDetailsRowCard('Todesrate',
+                                '${controller.county.value.deathRate != null ? (controller.county.value.deathRate).toStringAsFixed(2) : ""} %'),
+                            CityDetailsRowCard('Einwohnerzahl',
+                                '${controller.county.value.ewz != null ? controller.county.value.ewz : 0}'),
+                            CityDetailsRowCard(
+                                '7 Tage Inzidenz in ${controller.county.value.bl != null ? controller.county.value.bl : ''}',
+                                '${controller.county.value.cases7BlPer100K != null ? controller.county.value.cases7BlPer100K.toStringAsFixed(2) : ''}'),
+                            SizedBox(
+                              height: 16,
+                            ),
+                            if (controller.isLoading.value)
+                              FadeIn(
+                                duration: Duration(milliseconds: 500),
+                                child: Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                              ),
+                            if (!controller.isLoading.value &&
+                                controller.county.value.bettenFrei != null)
+                              FadeIn(
+                                duration: Duration(milliseconds: 500),
+                                child: Column(
+                                  children: [
+                                    Center(
+                                      child: Text(
+                                        'Intensivstation',
+                                        style: TextStyle(
+                                            color: Theme.of(context).hintColor),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    CityDetailsRowCard('Betten frei',
+                                        '${controller.county.value.bettenFrei != null ? controller.county.value.bettenFrei : 0}'),
+                                    CityDetailsRowCard('Betten belegt',
+                                        '${controller.county.value.bettenBelegt != null ? controller.county.value.bettenBelegt : 0}'),
+                                    CityDetailsRowCard(
+                                        'Betten belegt mit Covid-19',
+                                        '${controller.county.value.faelleCovidAktuell != null ? controller.county.value.faelleCovidAktuell : 0}'),
+                                    CityDetailsRowCard(
+                                        'Covid-19-Fälle die beatmet werden',
+                                        '${controller.county.value.faelleCovidAktuellBeatmet != null ? controller.county.value.faelleCovidAktuellBeatmet : 0}'),
+                                  ],
+                                ),
+                              ),
+                          ],
+                        ),
                       );
                     }),
                   ],
