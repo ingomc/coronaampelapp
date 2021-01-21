@@ -21,7 +21,7 @@ class TabStateScreen extends StatelessWidget {
         onRefresh: _loadData,
         child: CupertinoScrollbar(
           child: ListView.builder(
-            padding: EdgeInsets.fromLTRB(12, 4, 12, 100),
+            padding: EdgeInsets.fromLTRB(12, 4, 12, 8),
             itemCount: 1,
             itemBuilder: (context, i) {
               return Column(
@@ -56,17 +56,76 @@ class TabStateScreen extends StatelessWidget {
                                     child: Container(
                                       width: double.infinity,
                                       child: Card(
-                                        child: ListTile(
-                                          leading: CircleAvatar(),
-                                          trailing: Text(
-                                              '${controller.states[index].cases7BlPer100K.toStringAsFixed(1)}'),
-                                          title: Text(
-                                            '${controller.states[index].lanEwGen}',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          subtitle: Text(
-                                              'Einwohlerzahl: ${controller.states[index].lanEwEwz}'),
+                                        child: Column(
+                                          children: [
+                                            ListTile(
+                                              leading: CircleAvatar(),
+                                              trailing: Text(
+                                                  '${controller.states[index].cases7BlPer100K.toStringAsFixed(1)}'),
+                                              title: Text(
+                                                '${controller.states[index].lanEwGen}',
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              subtitle: Text(
+                                                  'Einwohlerzahl: ${controller.states[index].lanEwEwz}'),
+                                            ),
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                border: Border(
+                                                  top: BorderSide(
+                                                      color: Theme.of(context)
+                                                          .primaryColor,
+                                                      width: 1),
+                                                ),
+                                              ),
+                                              child: Row(
+                                                children: [
+                                                  Expanded(
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              8.0),
+                                                      child: Row(
+                                                        children: [
+                                                          Expanded(
+                                                            child:
+                                                                Text('Vorne'),
+                                                          ),
+                                                          Text('Vorne'),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    decoration: BoxDecoration(
+                                                        color: Theme.of(context)
+                                                            .primaryColor),
+                                                    child: SizedBox(
+                                                      width: 1,
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              8.0),
+                                                      child: Row(
+                                                        children: [
+                                                          Expanded(
+                                                            child:
+                                                                Text('Hinten'),
+                                                          ),
+                                                          Text('Hinten'),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
