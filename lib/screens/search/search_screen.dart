@@ -145,8 +145,9 @@ class SearchScreen extends StatelessWidget {
   Widget isFavorite(int index, BuildContext context) {
     if (pinnedCountysController.countys.contains(index)) {
       return TweenAnimationBuilder(
-        duration: const Duration(milliseconds: 200),
+        duration: const Duration(milliseconds: 1500),
         tween: Tween<double>(begin: -1, end: 0),
+        curve: Curves.elasticOut,
         builder: (_, double angle, __) {
           return Transform.rotate(
             angle: angle,
