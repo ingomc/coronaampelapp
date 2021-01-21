@@ -60,15 +60,19 @@ class TabCountyScreen extends StatelessWidget {
                                 (index) {
                                   var thisCounty = getCountysController
                                       .countys[controller.countys[index]];
-                                  return Hero(
-                                    tag: 'card${controller.countys[index]}',
-                                    child: CountyCard(
-                                        controller.countys[index],
-                                        thisCounty.rs,
-                                        thisCounty.gen,
-                                        thisCounty.bez,
-                                        thisCounty.cases7Per100K,
-                                        thisCounty.newCases),
+                                  return Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 2.0),
+                                    child: Hero(
+                                      tag: 'card${controller.countys[index]}',
+                                      child: CountyCard(
+                                          controller.countys[index],
+                                          thisCounty.rs,
+                                          thisCounty.gen,
+                                          thisCounty.bez,
+                                          thisCounty.cases7Per100K,
+                                          thisCounty.newCases),
+                                    ),
                                   );
                                 },
                               )

@@ -11,7 +11,7 @@ class PinnedCountysController extends GetxController {
     var storedCountys = box.read('countys');
     countys.assignAll(storedCountys ??= []);
     ever(countys, (_) {
-      box.write('countys', countys);
+      box.write('countys', countys.toSet().toList());
     });
     super.onInit();
   }
