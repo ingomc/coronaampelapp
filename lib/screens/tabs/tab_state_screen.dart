@@ -53,8 +53,22 @@ class TabStateScreen extends StatelessWidget {
                                   return Padding(
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 2.0),
-                                    child: Card(
-                                      child: Text('Hallo $index'),
+                                    child: Container(
+                                      width: double.infinity,
+                                      child: Card(
+                                        child: ListTile(
+                                          leading: CircleAvatar(),
+                                          trailing: Text(
+                                              '${controller.states[index].cases7BlPer100K.toStringAsFixed(1)}'),
+                                          title: Text(
+                                            '${controller.states[index].lanEwGen}',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          subtitle: Text(
+                                              'Einwohlerzahl: ${controller.states[index].lanEwEwz}'),
+                                        ),
+                                      ),
                                     ),
                                   );
                                 },
