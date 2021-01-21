@@ -144,9 +144,18 @@ class SearchScreen extends StatelessWidget {
 
   Widget isFavorite(int index, BuildContext context) {
     if (pinnedCountysController.countys.contains(index)) {
-      return Icon(
-        Icons.check,
-        color: Colors.green,
+      return TweenAnimationBuilder(
+        duration: const Duration(milliseconds: 200),
+        tween: Tween<double>(begin: -1, end: 0),
+        builder: (_, double angle, __) {
+          return Transform.rotate(
+            angle: angle,
+            child: Icon(
+              Icons.check,
+              color: Colors.green,
+            ),
+          );
+        },
       );
     } else {
       return Icon(Icons.add);
