@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 import 'package:coronaampel/controller/get_states_controller.dart';
 
@@ -21,7 +22,7 @@ class TabStateScreen extends StatelessWidget {
         onRefresh: _loadData,
         child: CupertinoScrollbar(
           child: ListView.builder(
-            padding: EdgeInsets.fromLTRB(12, 4, 12, 8),
+            padding: EdgeInsets.fromLTRB(8, 4, 8, 8),
             itemCount: 1,
             itemBuilder: (context, i) {
               return Column(
@@ -70,12 +71,14 @@ class TabStateScreen extends StatelessWidget {
                                                           .cases7BlPer100K),
                                               title: Text(
                                                 '${controller.states[index].lanEwGen}',
+                                                softWrap: false,
+                                                overflow: TextOverflow.fade,
                                                 style: TextStyle(
                                                     fontWeight:
                                                         FontWeight.bold),
                                               ),
                                               subtitle: Text(
-                                                  'Einwohner: ${controller.states[index].lanEwEwz}'),
+                                                  'Einwohner: ${NumberFormat.decimalPattern('de-DE').format(controller.states[index].lanEwEwz)}'),
                                             ),
                                             Container(
                                               decoration: BoxDecoration(
@@ -104,7 +107,7 @@ class TabStateScreen extends StatelessWidget {
                                                                     'Neue Fälle'),
                                                               ),
                                                               Text(
-                                                                '+ ${controller.states[index].newCases}',
+                                                                '+ ${NumberFormat.decimalPattern('de-DE').format(controller.states[index].newCases)}',
                                                                 style: TextStyle(
                                                                     fontWeight:
                                                                         FontWeight
@@ -127,7 +130,7 @@ class TabStateScreen extends StatelessWidget {
                                                                   'Fälle insg.'),
                                                             ),
                                                             Text(
-                                                              '${controller.states[index].fallzahl}',
+                                                              '${NumberFormat.decimalPattern('de-DE').format(controller.states[index].fallzahl)}',
                                                               style: TextStyle(
                                                                   fontWeight:
                                                                       FontWeight
@@ -191,7 +194,7 @@ class TabStateScreen extends StatelessWidget {
                                                                   'Todesfälle insg.'),
                                                             ),
                                                             Text(
-                                                              '${controller.states[index].death}',
+                                                              '${NumberFormat.decimalPattern('de-DE').format(controller.states[index].death)}',
                                                               style: TextStyle(
                                                                   fontWeight:
                                                                       FontWeight

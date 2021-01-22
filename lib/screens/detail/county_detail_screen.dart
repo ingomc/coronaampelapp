@@ -5,6 +5,7 @@ import 'package:coronaampel/widgets/county_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class CountyDetailScreen extends StatelessWidget {
   final GetCountysController getCountysController =
@@ -69,19 +70,19 @@ class CountyDetailScreen extends StatelessWidget {
                                   ThirdCard('Fälle der letzten 7 Tage',
                                       '+ ${controller.county.value.cases7Lk != null ? controller.county.value.cases7Lk : 0}'),
                                   ThirdCard('Fälle insgesamt',
-                                      '${controller.county.value.cases != null ? controller.county.value.cases : 0}'),
+                                      '${controller.county.value.cases != null ? NumberFormat.decimalPattern('de-DE').format(controller.county.value.cases) : 0}'),
                                 ],
                               ),
                             ),
                             CityDetailsRowCard('Tote bisher',
-                                '${controller.county.value.deaths != null ? controller.county.value.deaths : 0}'),
+                                '${controller.county.value.deaths != null ? NumberFormat.decimalPattern('de-DE').format(controller.county.value.deaths) : 0}'),
                             CityDetailsRowCard('Todesrate',
                                 '${controller.county.value.deathRate != null ? (controller.county.value.deathRate).toStringAsFixed(2) : ""} %'),
                             CityDetailsRowCard('Einwohnerzahl',
-                                '${controller.county.value.ewz != null ? controller.county.value.ewz : 0}'),
+                                '${controller.county.value.ewz != null ? NumberFormat.decimalPattern('de-DE').format(controller.county.value.ewz) : 0}'),
                             CityDetailsRowCard(
                                 '7 Tage Inzidenz in ${controller.county.value.bl != null ? controller.county.value.bl : ''}',
-                                '${controller.county.value.cases7BlPer100K != null ? controller.county.value.cases7BlPer100K.toStringAsFixed(2) : ''}'),
+                                '${controller.county.value.cases7BlPer100K != null ? controller.county.value.cases7BlPer100K.toStringAsFixed(1) : ''}'),
                             SizedBox(
                               height: 16,
                             ),
