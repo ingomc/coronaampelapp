@@ -91,7 +91,7 @@ class TabCountyScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.search),
+        child: Icon(Icons.add),
         onPressed: () {
           Get.to(SearchScreen(), fullscreenDialog: true);
         },
