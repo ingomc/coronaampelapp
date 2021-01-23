@@ -63,57 +63,63 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         actions: [
-          PopupMenuButton(
-            icon: Icon(Icons.more_vert),
-            onSelected: _select,
-            itemBuilder: (BuildContext context) {
-              return [
-                PopupMenuItem(
-                  value: 'Aktualisieren',
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.sync,
-                        color: Theme.of(context).textTheme.bodyText1.color,
+          GetX<UiTabsController>(
+            builder: (controller) {
+              return PopupMenuButton(
+                icon: Icon(Icons.more_vert),
+                onSelected: _select,
+                itemBuilder: (BuildContext context) {
+                  return [
+                    PopupMenuItem(
+                      value: 'Aktualisieren',
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.sync,
+                            color: Theme.of(context).textTheme.bodyText1.color,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text('Aktualisieren'),
+                        ],
                       ),
-                      SizedBox(
-                        width: 10,
+                    ),
+                    if (controller.selectedIndex == 1)
+                      PopupMenuItem(
+                        value: 'Anpassen',
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.edit,
+                              color:
+                                  Theme.of(context).textTheme.bodyText1.color,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text('Anpassen'),
+                          ],
+                        ),
                       ),
-                      Text('Aktualisieren'),
-                    ],
-                  ),
-                ),
-                PopupMenuItem(
-                  value: 'Anpassen',
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.edit,
-                        color: Theme.of(context).textTheme.bodyText1.color,
+                    PopupMenuItem(
+                      value: 'Einstellungen',
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.tune_outlined,
+                            color: Theme.of(context).textTheme.bodyText1.color,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text('Einstellungen'),
+                        ],
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text('Anpassen'),
-                    ],
-                  ),
-                ),
-                PopupMenuItem(
-                  value: 'Einstellungen',
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.tune_outlined,
-                        color: Theme.of(context).textTheme.bodyText1.color,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text('Einstellungen'),
-                    ],
-                  ),
-                ),
-              ];
+                    ),
+                  ];
+                },
+              );
             },
           ),
         ],
