@@ -1,5 +1,6 @@
 import 'package:coronaampel/controller/get_countys_controller.dart';
 import 'package:coronaampel/controller/get_states_controller.dart';
+import 'package:coronaampel/screens/tabs/tab_vaccine_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:coronaampel/controller/ui/ui_tabs_controller.dart';
 import 'package:coronaampel/screens/edit/county_edit_screen.dart';
@@ -7,6 +8,7 @@ import 'package:coronaampel/screens/tabs/tab_country_screen.dart';
 import 'package:coronaampel/screens/tabs/tab_county_screen.dart';
 import 'package:coronaampel/screens/tabs/tab_state_screen.dart';
 import 'package:get/get.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class HomeScreen extends StatelessWidget {
   final UiTabsController uiTabsController = Get.put(UiTabsController());
@@ -35,6 +37,7 @@ class HomeScreen extends StatelessWidget {
     TabCountyScreen(),
     TabStateScreen(),
     TabCountryScreen(),
+    TabVaccineScreen(),
   ];
 
   @override
@@ -128,16 +131,20 @@ class HomeScreen extends StatelessWidget {
           onTap: _onTap,
           items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: new Icon(MdiIcons.homeSearch),
               label: 'Landkreise',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.location_city),
+              icon: new Icon(MdiIcons.homeGroup),
               label: 'Bundesländer',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.public),
+              icon: new Icon(MdiIcons.earth),
               label: 'Global',
+            ),
+            BottomNavigationBarItem(
+              icon: new Icon(MdiIcons.needle),
+              label: 'Impfungen',
             ),
           ],
         ),
