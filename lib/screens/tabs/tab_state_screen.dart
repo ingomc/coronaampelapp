@@ -10,9 +10,9 @@ class TabStateScreen extends StatelessWidget {
 
   // Call this when the user pull down the screen
   Future<void> _loadData() async {
-    // getStatesController.isRefreshIndicatorActive.toggle();
+    getStatesController.isRefreshIndicatorActive.value = true;
     await getStatesController.fetchStates();
-    // getStatesController.isRefreshIndicatorActive.toggle();
+    getStatesController.isRefreshIndicatorActive.value = false;
   }
 
   @override
@@ -21,94 +21,114 @@ class TabStateScreen extends StatelessWidget {
       body: RefreshIndicator(
         onRefresh: _loadData,
         backgroundColor: Theme.of(context).primaryColor,
-        child: CupertinoScrollbar(
-          child: ListView.builder(
-            padding: EdgeInsets.fromLTRB(8, 4, 8, 8),
-            itemCount: 1,
-            itemBuilder: (context, i) {
-              return Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 8, 0, 4),
-                    child: Obx(
-                      () => Text(
-                        'Stand: ${getStatesController.lastUpdate == null ? "" : getStatesController.lastUpdate}',
-                        style: TextStyle(
-                          color: Theme.of(context).hintColor,
+        child: Stack(
+          children: [
+            CupertinoScrollbar(
+              child: ListView.builder(
+                padding: EdgeInsets.fromLTRB(8, 4, 8, 8),
+                itemCount: 1,
+                itemBuilder: (context, i) {
+                  return Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 8, 0, 4),
+                        child: Obx(
+                          () => Text(
+                            'Stand: ${getStatesController.lastUpdate == null ? "" : getStatesController.lastUpdate}',
+                            style: TextStyle(
+                              color: Theme.of(context).hintColor,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                  GetX<GetStatesController>(
-                    builder: (controller) {
-                      if (getStatesController.isLoading.value == true) {
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      } else {
-                        if (controller.states.length > 0) {
-                          return Column(
-                            children: [
-                              ...List.generate(
-                                controller.states.length,
-                                (index) {
-                                  return Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 4.0,
-                                    ),
-                                    child: Container(
-                                      width: double.infinity,
-                                      child: Card(
-                                        child: Column(
-                                          children: [
-                                            ListTile(
-                                              leading: CircleAvatar(
-                                                backgroundImage: ExactAssetImage(
-                                                    'assets/states/${controller.states[index].lanEwAgs}.png'),
-                                              ),
-                                              trailing:
-                                                  IncidenceNumberContainer(
-                                                      controller.states[index]
-                                                          .cases7BlPer100K),
-                                              title: Text(
-                                                '${controller.states[index].lanEwGen}',
-                                                softWrap: false,
-                                                overflow: TextOverflow.fade,
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              subtitle: Text(
-                                                  'Einwohner: ${NumberFormat.decimalPattern('de-DE').format(controller.states[index].lanEwEwz)}'),
-                                            ),
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                border: Border(
-                                                  top: BorderSide(
-                                                      color: Theme.of(context)
-                                                          .primaryColor,
-                                                      width: 1),
+                      GetX<GetStatesController>(
+                        builder: (controller) {
+                          if (controller.states.length > 0) {
+                            return Column(
+                              children: [
+                                ...List.generate(
+                                  controller.states.length,
+                                  (index) {
+                                    return Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 4.0,
+                                      ),
+                                      child: Container(
+                                        width: double.infinity,
+                                        child: Card(
+                                          child: Column(
+                                            children: [
+                                              ListTile(
+                                                leading: CircleAvatar(
+                                                  backgroundImage: ExactAssetImage(
+                                                      'assets/states/${controller.states[index].lanEwAgs}.png'),
                                                 ),
+                                                trailing:
+                                                    IncidenceNumberContainer(
+                                                        controller.states[index]
+                                                            .cases7BlPer100K),
+                                                title: Text(
+                                                  '${controller.states[index].lanEwGen}',
+                                                  softWrap: false,
+                                                  overflow: TextOverflow.fade,
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                subtitle: Text(
+                                                    'Einwohner: ${NumberFormat.decimalPattern('de-DE').format(controller.states[index].lanEwEwz)}'),
                                               ),
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: Row(
-                                                  children: [
-                                                    Expanded(
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(8.0),
-                                                        child: Container(
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                  border: Border(
+                                                    top: BorderSide(
+                                                        color: Theme.of(context)
+                                                            .primaryColor,
+                                                        width: 1),
+                                                  ),
+                                                ),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Row(
+                                                    children: [
+                                                      Expanded(
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child: Container(
+                                                            child: Row(
+                                                              children: [
+                                                                Expanded(
+                                                                  child: Text(
+                                                                      'Neue Fälle'),
+                                                                ),
+                                                                Text(
+                                                                  '+ ${NumberFormat.decimalPattern('de-DE').format(controller.states[index].newCases)}',
+                                                                  style: TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Expanded(
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
                                                           child: Row(
                                                             children: [
                                                               Expanded(
                                                                 child: Text(
-                                                                    'Neue Fälle'),
+                                                                    'Fälle insg.'),
                                                               ),
                                                               Text(
-                                                                '+ ${NumberFormat.decimalPattern('de-DE').format(controller.states[index].newCases)}',
+                                                                '${NumberFormat.decimalPattern('de-DE').format(controller.states[index].fallzahl)}',
                                                                 style: TextStyle(
                                                                     fontWeight:
                                                                         FontWeight
@@ -118,61 +138,61 @@ class TabStateScreen extends StatelessWidget {
                                                           ),
                                                         ),
                                                       ),
-                                                    ),
-                                                    Expanded(
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(8.0),
-                                                        child: Row(
-                                                          children: [
-                                                            Expanded(
-                                                              child: Text(
-                                                                  'Fälle insg.'),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                  border: Border(
+                                                    top: BorderSide(
+                                                        color: Theme.of(context)
+                                                            .primaryColor,
+                                                        width: 1),
+                                                  ),
+                                                ),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Row(
+                                                    children: [
+                                                      Expanded(
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child: Container(
+                                                            child: Row(
+                                                              children: [
+                                                                Expanded(
+                                                                  child: Text(
+                                                                      'Neue Todesfälle'),
+                                                                ),
+                                                                Text(
+                                                                  '+ ${controller.states[index].newDeaths}',
+                                                                  style: TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold),
+                                                                ),
+                                                              ],
                                                             ),
-                                                            Text(
-                                                              '${NumberFormat.decimalPattern('de-DE').format(controller.states[index].fallzahl)}',
-                                                              style: TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                            ),
-                                                          ],
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                border: Border(
-                                                  top: BorderSide(
-                                                      color: Theme.of(context)
-                                                          .primaryColor,
-                                                      width: 1),
-                                                ),
-                                              ),
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: Row(
-                                                  children: [
-                                                    Expanded(
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(8.0),
-                                                        child: Container(
+                                                      Expanded(
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
                                                           child: Row(
                                                             children: [
                                                               Expanded(
                                                                 child: Text(
-                                                                    'Neue Todesfälle'),
+                                                                    'Todesfälle insg.'),
                                                               ),
                                                               Text(
-                                                                '+ ${controller.states[index].newDeaths}',
+                                                                '${NumberFormat.decimalPattern('de-DE').format(controller.states[index].death)}',
                                                                 style: TextStyle(
                                                                     fontWeight:
                                                                         FontWeight
@@ -182,52 +202,46 @@ class TabStateScreen extends StatelessWidget {
                                                           ),
                                                         ),
                                                       ),
-                                                    ),
-                                                    Expanded(
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(8.0),
-                                                        child: Row(
-                                                          children: [
-                                                            Expanded(
-                                                              child: Text(
-                                                                  'Todesfälle insg.'),
-                                                            ),
-                                                            Text(
-                                                              '${NumberFormat.decimalPattern('de-DE').format(controller.states[index].death)}',
-                                                              style: TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  );
-                                },
-                              )
-                            ],
-                          );
-                        } else {
-                          return Container();
-                        }
-                      }
-                    },
-                  ),
-                ],
-              );
-            },
-          ),
+                                    );
+                                  },
+                                )
+                              ],
+                            );
+                          } else {
+                            return Container();
+                          }
+                        },
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+            GetX<GetStatesController>(
+              builder: (controller) {
+                if (controller.isLoading.value &&
+                    !controller.isRefreshIndicatorActive.value) {
+                  return Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(color: Colors.black45),
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                } else {
+                  return Container();
+                }
+              },
+            ),
+          ],
         ),
       ),
     );
