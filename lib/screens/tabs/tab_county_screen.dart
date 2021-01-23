@@ -1,3 +1,4 @@
+import 'package:coronaampel/widgets/loading_list_overlay.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fadein/flutter_fadein.dart';
@@ -105,16 +106,7 @@ class TabCountyScreen extends StatelessWidget {
               builder: (controller) {
                 if (controller.isLoading.value &&
                     !controller.isRefreshIndicatorActive.value) {
-                  return FadeIn(
-                    duration: Duration(milliseconds: 500),
-                    child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(color: Colors.black45),
-                      child: Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                    ),
-                  );
+                  return LoadingListOverlay();
                 } else {
                   return Container();
                 }
