@@ -105,11 +105,14 @@ class TabCountyScreen extends StatelessWidget {
               builder: (controller) {
                 if (controller.isLoading.value &&
                     !controller.isRefreshIndicatorActive.value) {
-                  return Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(color: Colors.black45),
-                    child: Center(
-                      child: CircularProgressIndicator(),
+                  return FadeIn(
+                    duration: Duration(milliseconds: 500),
+                    child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(color: Colors.black45),
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
                     ),
                   );
                 } else {

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_fadein/flutter_fadein.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 import 'package:coronaampel/controller/get_states_controller.dart';
@@ -229,11 +230,14 @@ class TabStateScreen extends StatelessWidget {
               builder: (controller) {
                 if (controller.isLoading.value &&
                     !controller.isRefreshIndicatorActive.value) {
-                  return Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(color: Colors.black45),
-                    child: Center(
-                      child: CircularProgressIndicator(),
+                  return FadeIn(
+                    duration: Duration(milliseconds: 500),
+                    child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(color: Colors.black45),
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
                     ),
                   );
                 } else {
