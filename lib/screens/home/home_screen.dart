@@ -1,5 +1,6 @@
 import 'package:coronaampel/controller/get_countys_controller.dart';
 import 'package:coronaampel/controller/get_states_controller.dart';
+import 'package:coronaampel/screens/tabs/tab_browse_screen.dart';
 import 'package:coronaampel/screens/tabs/tab_vaccine_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:coronaampel/controller/ui/ui_tabs_controller.dart';
@@ -34,6 +35,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   final List<Widget> _pages = [
+    TabBrowseScreen(),
     TabCountyScreen(),
     TabStateScreen(),
     TabCountryScreen(),
@@ -53,8 +55,8 @@ class HomeScreen extends StatelessWidget {
     void _onTap(int index) {
       uiTabsController.saveSelectedIndex = index;
       _pageController.animateToPage(uiTabsController.selectedIndex,
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.easeOutCirc);
+          duration: const Duration(milliseconds: 1000),
+          curve: Curves.easeOutCubic);
     }
 
     return Scaffold(
@@ -132,6 +134,10 @@ class HomeScreen extends StatelessWidget {
           items: [
             BottomNavigationBarItem(
               icon: new Icon(MdiIcons.homeSearch),
+              label: 'Stöbern',
+            ),
+            BottomNavigationBarItem(
+              icon: new Icon(MdiIcons.homeHeart),
               label: 'Landkreise',
             ),
             BottomNavigationBarItem(
@@ -140,7 +146,7 @@ class HomeScreen extends StatelessWidget {
             ),
             BottomNavigationBarItem(
               icon: new Icon(MdiIcons.earth),
-              label: 'Global',
+              label: 'Weltweit',
             ),
             BottomNavigationBarItem(
               icon: new Icon(MdiIcons.needle),
