@@ -126,13 +126,14 @@ class HomeScreen extends StatelessWidget {
       ),
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(
-          backgroundColor: Theme.of(context).primaryColor,
           unselectedItemColor: Theme.of(context).hintColor,
           selectedItemColor: Colors.white,
           currentIndex: uiTabsController.selectedIndex,
           onTap: _onTap,
+          type: BottomNavigationBarType.shifting,
           items: [
             BottomNavigationBarItem(
+              backgroundColor: Theme.of(context).primaryColor,
               icon: new Icon(MdiIcons.homeSearch),
               label: 'Stöbern',
             ),
