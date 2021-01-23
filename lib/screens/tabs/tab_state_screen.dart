@@ -10,9 +10,9 @@ class TabStateScreen extends StatelessWidget {
 
   // Call this when the user pull down the screen
   Future<void> _loadData() async {
-    // isRefreshIndicatorActive = true;
+    // getStatesController.isRefreshIndicatorActive.toggle();
     await getStatesController.fetchStates();
-    // isRefreshIndicatorActive = false;
+    // getStatesController.isRefreshIndicatorActive.toggle();
   }
 
   @override
@@ -20,6 +20,7 @@ class TabStateScreen extends StatelessWidget {
     return Scaffold(
       body: RefreshIndicator(
         onRefresh: _loadData,
+        backgroundColor: Theme.of(context).primaryColor,
         child: CupertinoScrollbar(
           child: ListView.builder(
             padding: EdgeInsets.fromLTRB(8, 4, 8, 8),
@@ -40,7 +41,7 @@ class TabStateScreen extends StatelessWidget {
                   ),
                   GetX<GetStatesController>(
                     builder: (controller) {
-                      if (getStatesController.isLoading.value) {
+                      if (getStatesController.isLoading.value == true) {
                         return Center(
                           child: CircularProgressIndicator(),
                         );

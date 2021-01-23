@@ -5,6 +5,7 @@ import 'package:coronaampel/services/states_remote_service.dart';
 
 class GetStatesController extends GetxController {
   var isLoading = false.obs;
+  var isRefreshIndicatorActive = false.obs;
   var states = States().locations.obs;
   var lastUpdate = States().lastUpdate.obs;
 

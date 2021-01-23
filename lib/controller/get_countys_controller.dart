@@ -5,8 +5,9 @@ import 'package:coronaampel/services/countys_remote_service.dart';
 
 class GetCountysController extends GetxController {
   var isLoading = false.obs;
-  var countys = Countys().locations.obs;
-  var lastUpdate = Countys().date.obs;
+  var isRefreshIndicatorActive = false.obs;
+  var countys = [].obs;
+  var lastUpdate = ''.obs;
 
   @override
   void onInit() {
@@ -19,9 +20,9 @@ class GetCountysController extends GetxController {
     print('triggered fetch all countys');
     try {
       // DUMMY CONTNENT ----------------- //
-      // await Future.delayed(
-      //   Duration(milliseconds: 2000),
-      // );
+      await Future.delayed(
+        Duration(milliseconds: 2000),
+      );
       // var cityResults = DUMMY_CITYS.locations;
       // schau im todo beispiel nach wie das geht
 

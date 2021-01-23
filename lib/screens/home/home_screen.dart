@@ -1,3 +1,5 @@
+import 'package:coronaampel/controller/get_countys_controller.dart';
+import 'package:coronaampel/controller/get_states_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:coronaampel/controller/ui/ui_tabs_controller.dart';
 import 'package:coronaampel/screens/edit/county_edit_screen.dart';
@@ -8,12 +10,16 @@ import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
   final UiTabsController uiTabsController = Get.put(UiTabsController());
+  final GetStatesController getStatesController =
+      Get.put(GetStatesController());
+  final GetCountysController getCountysController =
+      Get.put(GetCountysController());
+
   void _select(value) {
     switch (value) {
       case 'Aktualisieren':
-        // apitestController.fetchUsers(
-        //   cityListController.citys,
-        // );
+        getStatesController.fetchStates();
+        getCountysController.fetchCountys();
         break;
       case 'Anpassen':
         Get.to(CountyEditScreen());
