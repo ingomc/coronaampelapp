@@ -1,4 +1,5 @@
 import 'package:coronaampel/controller/get_global_controller.dart';
+import 'package:coronaampel/widgets/incidence_number_container.dart';
 import 'package:coronaampel/widgets/loading_list_overlay.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -79,6 +80,9 @@ class TabCountryScreen extends StatelessWidget {
                                         backgroundImage: ExactAssetImage(
                                             'assets/countries/de.png'),
                                       ),
+                                      trailing: IncidenceNumberContainer(
+                                          controller.data.value.germany
+                                              .cases7Per100K),
                                       title: Text(
                                         'Deutschland',
                                         softWrap: false,

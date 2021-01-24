@@ -1,4 +1,5 @@
 import 'package:coronaampel/controller/get_countys_controller.dart';
+import 'package:coronaampel/controller/get_global_controller.dart';
 import 'package:coronaampel/controller/get_states_controller.dart';
 import 'package:coronaampel/screens/tabs/tab_browse_screen.dart';
 import 'package:coronaampel/screens/tabs/tab_vaccine_screen.dart';
@@ -17,12 +18,15 @@ class HomeScreen extends StatelessWidget {
       Get.put(GetStatesController());
   final GetCountysController getCountysController =
       Get.put(GetCountysController());
+  final GetGlobalController getGlobalController =
+      Get.put(GetGlobalController());
 
   void _select(value) {
     switch (value) {
       case 'Aktualisieren':
         getStatesController.fetchStates();
         getCountysController.fetchCountys();
+        getGlobalController.fetchGlobalData();
         break;
       case 'Anpassen':
         Get.to(CountyEditScreen());
