@@ -50,11 +50,11 @@ class HomeScreen extends StatelessWidget {
     }
 
     final PageController _pageController =
-        PageController(initialPage: uiTabsController.selectedIndex);
+        PageController(initialPage: uiTabsController.selectedIndex.value);
 
     void _onTap(int index) {
       uiTabsController.saveSelectedIndex = index;
-      _pageController.animateToPage(uiTabsController.selectedIndex,
+      _pageController.animateToPage(uiTabsController.selectedIndex.value,
           duration: const Duration(milliseconds: 500),
           curve: Curves.easeOutCubic);
     }
@@ -63,63 +63,59 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         actions: [
-          GetX<UiTabsController>(
-            builder: (controller) {
-              return PopupMenuButton(
-                icon: Icon(Icons.more_vert),
-                onSelected: _select,
-                itemBuilder: (BuildContext context) {
-                  return [
-                    PopupMenuItem(
-                      value: 'Aktualisieren',
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.sync,
-                            color: Theme.of(context).textTheme.bodyText1.color,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text('Aktualisieren'),
-                        ],
+          PopupMenuButton(
+            icon: Icon(Icons.more_vert),
+            onSelected: _select,
+            itemBuilder: (BuildContext context) {
+              return [
+                PopupMenuItem(
+                  value: 'Aktualisieren',
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.sync,
+                        color: Theme.of(context).textTheme.bodyText1.color,
                       ),
-                    ),
-                    if (controller.selectedIndex == 1)
-                      PopupMenuItem(
-                        value: 'Anpassen',
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.edit,
-                              color:
-                                  Theme.of(context).textTheme.bodyText1.color,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text('Anpassen'),
-                          ],
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text('Aktualisieren'),
+                    ],
+                  ),
+                ),
+                if (uiTabsController.selectedIndex.value == 1)
+                  PopupMenuItem(
+                    key: Key(uiTabsController.selectedIndex.value.toString()),
+                    value: 'Anpassen',
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.edit,
+                          color: Theme.of(context).textTheme.bodyText1.color,
                         ),
-                      ),
-                    PopupMenuItem(
-                      value: 'Einstellungen',
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.tune_outlined,
-                            color: Theme.of(context).textTheme.bodyText1.color,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text('Einstellungen'),
-                        ],
-                      ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text('Anpassen'),
+                      ],
                     ),
-                  ];
-                },
-              );
+                  ),
+                PopupMenuItem(
+                  value: 'Einstellungen',
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.tune_outlined,
+                        color: Theme.of(context).textTheme.bodyText1.color,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text('Einstellungen'),
+                    ],
+                  ),
+                ),
+              ];
             },
           ),
         ],
@@ -132,9 +128,10 @@ class HomeScreen extends StatelessWidget {
       ),
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(
+          backgroundColor: Theme.of(context).primaryColor,
           unselectedItemColor: Theme.of(context).hintColor,
           selectedItemColor: Colors.white,
-          currentIndex: uiTabsController.selectedIndex,
+          currentIndex: uiTabsController.selectedIndex.value,
           onTap: _onTap,
           type: BottomNavigationBarType.shifting,
           items: [
@@ -144,18 +141,22 @@ class HomeScreen extends StatelessWidget {
               label: 'Stöbern',
             ),
             BottomNavigationBarItem(
+              backgroundColor: Theme.of(context).primaryColor,
               icon: new Icon(MdiIcons.homeHeart),
               label: 'Landkreise',
             ),
             BottomNavigationBarItem(
+              backgroundColor: Theme.of(context).primaryColor,
               icon: new Icon(MdiIcons.homeGroup),
               label: 'Bundesländer',
             ),
             BottomNavigationBarItem(
+              backgroundColor: Theme.of(context).primaryColor,
               icon: new Icon(MdiIcons.earth),
               label: 'Weltweit',
             ),
             BottomNavigationBarItem(
+              backgroundColor: Theme.of(context).primaryColor,
               icon: new Icon(MdiIcons.needle),
               label: 'Impfungen',
             ),

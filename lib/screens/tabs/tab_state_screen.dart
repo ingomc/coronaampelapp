@@ -2,7 +2,6 @@ import 'package:coronaampel/widgets/incidence_number_container.dart';
 import 'package:coronaampel/widgets/loading_list_overlay.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_fadein/flutter_fadein.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 import 'package:coronaampel/controller/get_states_controller.dart';
