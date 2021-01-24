@@ -89,16 +89,17 @@ class TabStateScreen extends StatelessWidget {
                                                         width: 1),
                                                   ),
                                                 ),
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
+                                                child: IntrinsicHeight(
                                                   child: Row(
                                                     children: [
                                                       Expanded(
                                                         child: Padding(
                                                           padding:
                                                               const EdgeInsets
-                                                                  .all(8.0),
+                                                                      .symmetric(
+                                                                  vertical: 12,
+                                                                  horizontal:
+                                                                      16.0),
                                                           child: Container(
                                                             child: Row(
                                                               children: [
@@ -118,16 +119,25 @@ class TabStateScreen extends StatelessWidget {
                                                           ),
                                                         ),
                                                       ),
+                                                      VerticalDivider(
+                                                        thickness: 1,
+                                                        width: 1,
+                                                        color: Theme.of(context)
+                                                            .primaryColor,
+                                                      ),
                                                       Expanded(
                                                         child: Padding(
                                                           padding:
                                                               const EdgeInsets
-                                                                  .all(8.0),
+                                                                      .symmetric(
+                                                                  vertical: 12,
+                                                                  horizontal:
+                                                                      16.0),
                                                           child: Row(
                                                             children: [
                                                               Expanded(
                                                                 child: Text(
-                                                                    'Fälle insg.'),
+                                                                    'Alle Fälle'),
                                                               ),
                                                               Text(
                                                                 '${NumberFormat.decimalPattern('de-DE').format(controller.states[index].fallzahl)}',
@@ -153,16 +163,17 @@ class TabStateScreen extends StatelessWidget {
                                                         width: 1),
                                                   ),
                                                 ),
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
+                                                child: IntrinsicHeight(
                                                   child: Row(
                                                     children: [
                                                       Expanded(
                                                         child: Padding(
                                                           padding:
                                                               const EdgeInsets
-                                                                  .all(8.0),
+                                                                      .symmetric(
+                                                                  vertical: 12,
+                                                                  horizontal:
+                                                                      16.0),
                                                           child: Container(
                                                             child: Row(
                                                               children: [
@@ -182,16 +193,25 @@ class TabStateScreen extends StatelessWidget {
                                                           ),
                                                         ),
                                                       ),
+                                                      VerticalDivider(
+                                                        thickness: 1,
+                                                        width: 1,
+                                                        color: Theme.of(context)
+                                                            .primaryColor,
+                                                      ),
                                                       Expanded(
                                                         child: Padding(
                                                           padding:
                                                               const EdgeInsets
-                                                                  .all(8.0),
+                                                                      .symmetric(
+                                                                  vertical: 12,
+                                                                  horizontal:
+                                                                      16.0),
                                                           child: Row(
                                                             children: [
                                                               Expanded(
                                                                 child: Text(
-                                                                    'Todesfälle insg.'),
+                                                                    'Alle Todesfälle'),
                                                               ),
                                                               Text(
                                                                 '${NumberFormat.decimalPattern('de-DE').format(controller.states[index].death)}',
