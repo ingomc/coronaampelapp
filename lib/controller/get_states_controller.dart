@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 // import 'package:coronaampel/data/dummy_data.dart';
-import 'package:coronaampel/models/states_model.dart';
 import 'package:coronaampel/services/states_remote_service.dart';
 
 class GetStatesController extends GetxController {

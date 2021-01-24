@@ -1,7 +1,6 @@
 import 'package:coronaampel/widgets/loading_list_overlay.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_fadein/flutter_fadein.dart';
 import 'package:get/get.dart';
 import 'package:coronaampel/controller/pinned_countys_controller.dart';
 import 'package:coronaampel/controller/get_countys_controller.dart';
