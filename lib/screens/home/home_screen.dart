@@ -55,7 +55,7 @@ class HomeScreen extends StatelessWidget {
     void _onTap(int index) {
       uiTabsController.saveSelectedIndex = index;
       _pageController.animateToPage(uiTabsController.selectedIndex,
-          duration: const Duration(milliseconds: 1000),
+          duration: const Duration(milliseconds: 500),
           curve: Curves.easeOutCubic);
     }
 
