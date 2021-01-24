@@ -81,7 +81,7 @@ class SearchScreen extends StatelessWidget {
                   width: double.infinity,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: RaisedButton(
+                    child: ElevatedButton(
                       onPressed: () {},
                       child: Text('Aktuelle Position verwenden'),
                     ),
