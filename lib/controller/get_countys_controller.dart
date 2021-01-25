@@ -9,7 +9,7 @@ class GetCountysController extends GetxController {
   var isRefreshIndicatorActive = false.obs;
   ScrollController scrollController = new ScrollController();
   var dateUpdated =
-      DateFormat('dd.MM., kk:mm').format(DateTime.now()).toString().obs;
+      DateFormat('dd.MM., HH:mm').format(DateTime.now()).toString().obs;
   var countys = [].obs;
   var lastUpdate = ''.obs;
 
@@ -35,7 +35,7 @@ class GetCountysController extends GetxController {
       countys.assignAll(countysResult.locations);
       lastUpdate.value = countysResult.date;
       dateUpdated.value =
-          DateFormat('dd.MM., kk:mm').format(DateTime.now()).toString();
+          DateFormat('dd.MM., HH:mm').format(DateTime.now()).toString();
     } catch (error) {
       print(error);
       throw Exception('Failed to load all countys');

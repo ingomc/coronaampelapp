@@ -9,7 +9,7 @@ class GetStatesController extends GetxController {
   var isRefreshIndicatorActive = false.obs;
   ScrollController scrollController = new ScrollController();
   var dateUpdated =
-      DateFormat('dd.MM., kk:mm').format(DateTime.now()).toString().obs;
+      DateFormat('dd.MM., HH:mm').format(DateTime.now()).toString().obs;
   var states = [].obs;
   var lastUpdate = ''.obs;
 
@@ -35,7 +35,7 @@ class GetStatesController extends GetxController {
       states.assignAll(statesResult.locations);
       lastUpdate.value = statesResult.lastUpdate;
       dateUpdated.value =
-          DateFormat('dd.MM., kk:mm').format(DateTime.now()).toString();
+          DateFormat('dd.MM., HH:mm').format(DateTime.now()).toString();
     } catch (error) {
       print(error);
       throw Exception('Failed to load all states');

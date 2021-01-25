@@ -7,7 +7,7 @@ class GetGlobalController extends GetxController {
   var isLoading = false.obs;
   var isRefreshIndicatorActive = false.obs;
   var dateUpdated =
-      DateFormat('dd.MM., kk:mm').format(DateTime.now()).toString().obs;
+      DateFormat('dd.MM., HH:mm').format(DateTime.now()).toString().obs;
   var data = Worldwide().obs;
 
   void onInit() {
@@ -27,7 +27,7 @@ class GetGlobalController extends GetxController {
       var globalResult = await RemoteServiceGlobal.fetchGlobal();
       data.value = globalResult;
       dateUpdated.value =
-          DateFormat('dd.MM., kk:mm').format(DateTime.now()).toString();
+          DateFormat('dd.MM., HH:mm').format(DateTime.now()).toString();
     } catch (error) {
       print(error);
       throw Exception('Failed to load all countys');
