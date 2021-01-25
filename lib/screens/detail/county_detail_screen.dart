@@ -74,15 +74,27 @@ class CountyDetailScreen extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            CityDetailsRowCard('Tote bisher',
-                                '${controller.county.value.deaths != null ? NumberFormat.decimalPattern('de-DE').format(controller.county.value.deaths) : 0}'),
-                            CityDetailsRowCard('Todesrate',
-                                '${controller.county.value.deathRate != null ? (controller.county.value.deathRate).toStringAsFixed(2) : ""} %'),
-                            CityDetailsRowCard('Einwohnerzahl',
-                                '${controller.county.value.ewz != null ? NumberFormat.decimalPattern('de-DE').format(controller.county.value.ewz) : 0}'),
                             CityDetailsRowCard(
-                                '7 Tage Inzidenz in ${controller.county.value.bl != null ? controller.county.value.bl : ''}',
-                                '${controller.county.value.cases7BlPer100K != null ? controller.county.value.cases7BlPer100K.toStringAsFixed(1) : ''}'),
+                              label: 'Tote bisher',
+                              number:
+                                  '${controller.county.value.deaths != null ? NumberFormat.decimalPattern('de-DE').format(controller.county.value.deaths) : 0}',
+                            ),
+                            CityDetailsRowCard(
+                              label: 'Todesrate',
+                              number:
+                                  '${controller.county.value.deathRate != null ? (controller.county.value.deathRate).toStringAsFixed(2) : ""} %',
+                            ),
+                            CityDetailsRowCard(
+                              label: 'Einwohnerzahl',
+                              number:
+                                  '${controller.county.value.ewz != null ? NumberFormat.decimalPattern('de-DE').format(controller.county.value.ewz) : 0}',
+                            ),
+                            CityDetailsRowCard(
+                              label:
+                                  '7 Tage Inzidenz in ${controller.county.value.bl != null ? controller.county.value.bl : ''}',
+                              number:
+                                  '${controller.county.value.cases7BlPer100K != null ? controller.county.value.cases7BlPer100K.toStringAsFixed(1) : ''}',
+                            ),
                             SizedBox(
                               height: 16,
                             ),
@@ -109,16 +121,31 @@ class CountyDetailScreen extends StatelessWidget {
                                     SizedBox(
                                       height: 8,
                                     ),
-                                    CityDetailsRowCard('Betten frei',
-                                        '${controller.county.value.bettenFrei != null ? controller.county.value.bettenFrei : 0}'),
-                                    CityDetailsRowCard('Betten belegt',
-                                        '${controller.county.value.bettenBelegt != null ? controller.county.value.bettenBelegt : 0}'),
                                     CityDetailsRowCard(
-                                        'Betten belegt mit Covid-19',
-                                        '${controller.county.value.faelleCovidAktuell != null ? controller.county.value.faelleCovidAktuell : 0}'),
+                                      label: 'Betten frei',
+                                      percentage:
+                                          '${(controller.county.value.bettenFrei / (controller.county.value.bettenFrei + controller.county.value.bettenBelegt) * 100).toStringAsFixed(0)}',
+                                      number:
+                                          '${controller.county.value.bettenFrei != null ? controller.county.value.bettenFrei : 0}',
+                                    ),
                                     CityDetailsRowCard(
-                                        'Covid-19-Fälle die beatmet werden',
-                                        '${controller.county.value.faelleCovidAktuellBeatmet != null ? controller.county.value.faelleCovidAktuellBeatmet : 0}'),
+                                      label: 'Betten belegt',
+                                      number:
+                                          '${controller.county.value.bettenBelegt != null ? controller.county.value.bettenBelegt : 0}',
+                                    ),
+                                    CityDetailsRowCard(
+                                      label: 'Betten belegt mit Covid-19',
+                                      percentage:
+                                          '${(controller.county.value.faelleCovidAktuell / (controller.county.value.faelleCovidAktuell + controller.county.value.bettenBelegt) * 100).toStringAsFixed(0)}',
+                                      number:
+                                          '${controller.county.value.faelleCovidAktuell != null ? controller.county.value.faelleCovidAktuell : 0}',
+                                    ),
+                                    CityDetailsRowCard(
+                                      label:
+                                          'Covid-19-Fälle die beatmet werden',
+                                      number:
+                                          '${controller.county.value.faelleCovidAktuellBeatmet != null ? controller.county.value.faelleCovidAktuellBeatmet : 0}',
+                                    ),
                                   ],
                                 ),
                               ),
@@ -172,8 +199,7 @@ class ThirdCard extends StatelessWidget {
                           ? cardNumber
                           : ' ',
                       textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
@@ -187,12 +213,16 @@ class ThirdCard extends StatelessWidget {
 }
 
 class CityDetailsRowCard extends StatelessWidget {
-  final GetSingleCountyController getSingleCountyController = Get.find();
+  const CityDetailsRowCard({
+    Key key,
+    @required this.label,
+    this.percentage,
+    @required this.number,
+  }) : super(key: key);
 
-  final String cardTitle;
-  final String cardNumber;
-
-  CityDetailsRowCard(this.cardTitle, this.cardNumber);
+  final String label;
+  final String number;
+  final String percentage;
 
   @override
   Widget build(BuildContext context) {
@@ -204,21 +234,35 @@ class CityDetailsRowCard extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                child: Text(cardTitle),
+                child: Text(label),
               ),
-              Obx(
-                () => FadeIn(
-                  duration: Duration(milliseconds: 500),
-                  child: Text(
-                    !getSingleCountyController.isLoading.value
-                        ? cardNumber
-                        : ' ',
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
+              FadeIn(
+                duration: Duration(milliseconds: 500),
+                child: Text.rich(
+                  TextSpan(
+                    text: this.percentage == null
+                        ? ''
+                        : '(${this.percentage} %) ',
+                    style: TextStyle(color: Theme.of(context).hintColor),
+                    children: <InlineSpan>[
+                      TextSpan(
+                        text: ' ${this.number ?? ''}',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).textTheme.bodyText1.color),
+                      ),
+                    ],
                   ),
                 ),
+                // Text(
+                //   !getSingleCountyController.isLoading.value
+                //       ? cardNumber
+                //       : ' ',
+                //   textAlign: TextAlign.right,
+                //   style: TextStyle(
+                //     fontWeight: FontWeight.bold,
+                //   ),
+                // ),
               ),
             ],
           ),
