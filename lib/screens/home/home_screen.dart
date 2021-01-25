@@ -3,6 +3,7 @@ import 'package:coronaampel/controller/get_global_controller.dart';
 import 'package:coronaampel/controller/get_states_controller.dart';
 import 'package:coronaampel/screens/tabs/tab_browse_screen.dart';
 import 'package:coronaampel/screens/tabs/tab_vaccine_screen.dart';
+import 'package:coronaampel/widgets/keep_alive_page.dart';
 import 'package:flutter/material.dart';
 import 'package:coronaampel/controller/ui/ui_tabs_controller.dart';
 import 'package:coronaampel/screens/edit/county_edit_screen.dart';
@@ -39,11 +40,11 @@ class HomeScreen extends StatelessWidget {
   }
 
   final List<Widget> _pages = [
-    TabBrowseScreen(),
-    TabCountyScreen(),
-    TabStateScreen(),
-    TabCountryScreen(),
-    TabVaccineScreen(),
+    KeepAlivePage(child: TabBrowseScreen()),
+    KeepAlivePage(child: TabCountyScreen()),
+    KeepAlivePage(child: TabStateScreen()),
+    KeepAlivePage(child: TabCountryScreen()),
+    KeepAlivePage(child: TabVaccineScreen()),
   ];
 
   @override
@@ -53,8 +54,8 @@ class HomeScreen extends StatelessWidget {
       uiTabsController.saveSelectedIndex = page;
     }
 
-    final PageController _pageController =
-        PageController(initialPage: uiTabsController.selectedIndex.value);
+    final PageController _pageController = PageController(
+        initialPage: uiTabsController.selectedIndex.value, keepPage: true);
 
     void _onTap(int index) {
       uiTabsController.saveSelectedIndex = index;

@@ -1,10 +1,13 @@
 import 'package:get/get.dart';
 // import 'package:coronaampel/data/dummy_data.dart';
 import 'package:coronaampel/services/states_remote_service.dart';
+import 'package:intl/intl.dart';
 
 class GetStatesController extends GetxController {
   var isLoading = false.obs;
   var isRefreshIndicatorActive = false.obs;
+  var dateUpdated =
+      DateFormat('dd.MM., kk:mm').format(DateTime.now()).toString().obs;
   var states = [].obs;
   var lastUpdate = ''.obs;
 
@@ -29,6 +32,8 @@ class GetStatesController extends GetxController {
 
       states.assignAll(statesResult.locations);
       lastUpdate.value = statesResult.lastUpdate;
+      dateUpdated.value =
+          DateFormat('dd.MM., kk:mm').format(DateTime.now()).toString();
     } catch (error) {
       print(error);
       throw Exception('Failed to load all states');

@@ -1,5 +1,6 @@
 import 'package:coronaampel/widgets/incidence_number_container.dart';
 import 'package:coronaampel/widgets/loading_list_overlay.dart';
+import 'package:coronaampel/widgets/update_line.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -33,13 +34,12 @@ class TabStateScreen extends StatelessWidget {
                   return Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 8, 0, 4),
+                        padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
                         child: Obx(
-                          () => Text(
-                            'Stand: ${getStatesController.lastUpdate == null ? "" : getStatesController.lastUpdate}',
-                            style: TextStyle(
-                              color: Theme.of(context).hintColor,
-                            ),
+                          () => UpdateLine(
+                            left: ' ${getStatesController.dateUpdated} Uhr',
+                            right:
+                                'Stand: ${getStatesController.lastUpdate == null ? "" : getStatesController.lastUpdate}',
                           ),
                         ),
                       ),

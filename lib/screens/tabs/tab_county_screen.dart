@@ -1,4 +1,5 @@
 import 'package:coronaampel/widgets/loading_list_overlay.dart';
+import 'package:coronaampel/widgets/update_line.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -36,21 +37,13 @@ class TabCountyScreen extends StatelessWidget {
                   return Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 8, 0, 4),
-                        child: GetX<PinnedCountysController>(
-                          builder: (controller) {
-                            if (getCountysController.countys.length > 0 &&
-                                controller.countys.length > 0) {
-                              return Text(
+                        padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
+                        child: Obx(
+                          () => UpdateLine(
+                            left: ' ${getCountysController.dateUpdated} Uhr',
+                            right:
                                 'Stand: ${getCountysController.lastUpdate == null ? "" : getCountysController.lastUpdate}',
-                                style: TextStyle(
-                                  color: Theme.of(context).hintColor,
-                                ),
-                              );
-                            } else {
-                              return Container();
-                            }
-                          },
+                          ),
                         ),
                       ),
                       GetX<PinnedCountysController>(

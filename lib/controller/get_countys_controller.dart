@@ -1,10 +1,13 @@
 import 'package:get/get.dart';
 // import 'package:coronaampel/data/dummy_data.dart';
 import 'package:coronaampel/services/countys_remote_service.dart';
+import 'package:intl/intl.dart';
 
 class GetCountysController extends GetxController {
   var isLoading = false.obs;
   var isRefreshIndicatorActive = false.obs;
+  var dateUpdated =
+      DateFormat('dd.MM., kk:mm').format(DateTime.now()).toString().obs;
   var countys = [].obs;
   var lastUpdate = ''.obs;
 
@@ -29,6 +32,8 @@ class GetCountysController extends GetxController {
 
       countys.assignAll(countysResult.locations);
       lastUpdate.value = countysResult.date;
+      dateUpdated.value =
+          DateFormat('dd.MM., kk:mm').format(DateTime.now()).toString();
     } catch (error) {
       print(error);
       throw Exception('Failed to load all countys');
