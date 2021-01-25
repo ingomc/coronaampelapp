@@ -31,6 +31,7 @@ class TabCountyScreen extends StatelessWidget {
           children: [
             CupertinoScrollbar(
               child: ListView.builder(
+                controller: getCountysController.scrollController,
                 padding: EdgeInsets.fromLTRB(12, 4, 12, 100),
                 itemCount: 1,
                 itemBuilder: (context, i) {

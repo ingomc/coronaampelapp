@@ -58,6 +58,17 @@ class HomeScreen extends StatelessWidget {
         initialPage: uiTabsController.selectedIndex.value, keepPage: true);
 
     void _onTap(int index) {
+      if (uiTabsController.selectedIndex.value == index) {
+        switch (index) {
+          case 1:
+            getCountysController.scrollController.animateTo(
+              0.0,
+              curve: Curves.easeOutQuint,
+              duration: const Duration(milliseconds: 1000),
+            );
+            break;
+        }
+      }
       uiTabsController.saveSelectedIndex = index;
       _pageController.animateToPage(uiTabsController.selectedIndex.value,
           duration: const Duration(milliseconds: 500),
