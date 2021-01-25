@@ -60,6 +60,7 @@ class HomeScreen extends StatelessWidget {
     void _onTap(int index) {
       if (uiTabsController.selectedIndex.value == index) {
         switch (index) {
+          // Landkreise
           case 1:
             getCountysController.scrollController.animateTo(
               0.0,
@@ -67,12 +68,21 @@ class HomeScreen extends StatelessWidget {
               duration: const Duration(milliseconds: 1000),
             );
             break;
+          // Bundlaender
+          case 2:
+            getStatesController.scrollController.animateTo(
+              0.0,
+              curve: Curves.easeOutQuint,
+              duration: const Duration(milliseconds: 1000),
+            );
+            break;
         }
+      } else {
+        uiTabsController.saveSelectedIndex = index;
+        _pageController.animateToPage(uiTabsController.selectedIndex.value,
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeOutCubic);
       }
-      uiTabsController.saveSelectedIndex = index;
-      _pageController.animateToPage(uiTabsController.selectedIndex.value,
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.easeOutCubic);
     }
 
     return Scaffold(

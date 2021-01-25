@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 // import 'package:coronaampel/data/dummy_data.dart';
 import 'package:coronaampel/services/states_remote_service.dart';
@@ -6,6 +7,7 @@ import 'package:intl/intl.dart';
 class GetStatesController extends GetxController {
   var isLoading = false.obs;
   var isRefreshIndicatorActive = false.obs;
+  ScrollController scrollController = new ScrollController();
   var dateUpdated =
       DateFormat('dd.MM., kk:mm').format(DateTime.now()).toString().obs;
   var states = [].obs;

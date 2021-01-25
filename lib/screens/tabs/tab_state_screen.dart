@@ -28,6 +28,7 @@ class TabStateScreen extends StatelessWidget {
           children: [
             CupertinoScrollbar(
               child: ListView.builder(
+                controller: getStatesController.scrollController,
                 padding: EdgeInsets.fromLTRB(8, 4, 8, 8),
                 itemCount: 1,
                 itemBuilder: (context, i) {
