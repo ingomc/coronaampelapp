@@ -2,6 +2,7 @@ import 'package:coronaampel/widgets/loading_list_overlay.dart';
 import 'package:coronaampel/widgets/update_line.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_fadein/flutter_fadein.dart';
 import 'package:get/get.dart';
 import 'package:coronaampel/controller/pinned_countys_controller.dart';
 import 'package:coronaampel/controller/get_countys_controller.dart';
@@ -40,10 +41,12 @@ class TabCountyScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
                         child: Obx(
-                          () => UpdateLine(
-                            left: ' ${getCountysController.dateUpdated} Uhr',
-                            right:
-                                'Stand: ${getCountysController.lastUpdate == null ? "" : getCountysController.lastUpdate}',
+                          () => FadeIn(
+                            child: UpdateLine(
+                              left: ' ${getCountysController.dateUpdated} Uhr',
+                              right:
+                                  'Stand: ${getCountysController.lastUpdate == null ? "" : getCountysController.lastUpdate}',
+                            ),
                           ),
                         ),
                       ),
@@ -60,18 +63,21 @@ class TabCountyScreen extends StatelessWidget {
                                   (index) {
                                     var thisCounty = getCountysController
                                         .countys[controller.countys[index]];
-                                    return Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 2.0),
-                                      child: Hero(
-                                        tag: 'card${controller.countys[index]}',
-                                        child: CountyCard(
-                                            controller.countys[index],
-                                            thisCounty.rs,
-                                            thisCounty.gen,
-                                            thisCounty.bez,
-                                            thisCounty.cases7Per100K,
-                                            thisCounty.newCases),
+                                    return FadeIn(
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 2.0),
+                                        child: Hero(
+                                          tag:
+                                              'card${controller.countys[index]}',
+                                          child: CountyCard(
+                                              controller.countys[index],
+                                              thisCounty.rs,
+                                              thisCounty.gen,
+                                              thisCounty.bez,
+                                              thisCounty.cases7Per100K,
+                                              thisCounty.newCases),
+                                        ),
                                       ),
                                     );
                                   },
