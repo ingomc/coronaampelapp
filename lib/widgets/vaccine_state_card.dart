@@ -6,6 +6,7 @@ class VaccineStateCard extends StatelessWidget {
   const VaccineStateCard({
     Key key,
     @required this.state,
+    @required this.flag,
     @required this.progress,
     this.daysLeft = 0,
     @required this.vaccinated,
@@ -15,6 +16,7 @@ class VaccineStateCard extends StatelessWidget {
   }) : super(key: key);
 
   final String state;
+  final String flag;
   final double progress;
   final int daysLeft;
   final int vaccinated;
@@ -29,7 +31,7 @@ class VaccineStateCard extends StatelessWidget {
         children: [
           ListTile(
             leading: CircleAvatar(
-              backgroundImage: ExactAssetImage('assets/states/10.png'),
+              backgroundImage: ExactAssetImage('$flag'),
             ),
             trailing: DaysLeft(daysLeft: daysLeft),
             title: Text(
@@ -46,7 +48,7 @@ class VaccineStateCard extends StatelessWidget {
             child: LinearPercentIndicator(
               animation: true,
               lineHeight: 10,
-              percent: progress / 100,
+              percent: progress / 70,
               linearStrokeCap: LinearStrokeCap.roundAll,
               backgroundColor: Theme.of(context).primaryColor,
               progressColor: Colors.green,

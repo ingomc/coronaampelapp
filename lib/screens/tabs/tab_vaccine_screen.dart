@@ -3,6 +3,7 @@ import 'package:coronaampel/widgets/vaccine_state_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class TabVaccineScreen extends StatelessWidget {
@@ -26,7 +27,8 @@ class TabVaccineScreen extends StatelessWidget {
                       right: 'Stand: XX:XX ',
                     ),
                     VaccineStateCard(
-                      state: 'Bundesland!',
+                      state: 'Deutschland',
+                      flag: 'assets/countries/de.png',
                       progress: 30.1,
                       daysLeft: 1337,
                       vaccinated: 1513377,
@@ -67,7 +69,8 @@ class TabVaccineScreen extends StatelessWidget {
                                     text: 'Noch ',
                                     children: <InlineSpan>[
                                       TextSpan(
-                                        text: 'XX Tage',
+                                        text:
+                                            '${NumberFormat.decimalPattern('de-DE').format(1245)} Tage',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -94,8 +97,9 @@ class TabVaccineScreen extends StatelessWidget {
                     ),
 
                     VaccineStateCard(
-                      state: 'Bundesland!',
-                      progress: 30.1,
+                      state: 'Bayern',
+                      flag: 'assets/states/09.png',
+                      progress: 3.1,
                       vaccinated: 1513377,
                       today: 1337,
                       target: (83021123 * 2 * 0.7).toInt(),
@@ -103,7 +107,8 @@ class TabVaccineScreen extends StatelessWidget {
 
                     VaccineStateCard(
                       state: 'Bundesland!',
-                      progress: 30.1,
+                      flag: 'assets/states/11.png',
+                      progress: 69,
                       vaccinated: 1513377,
                       today: 1337,
                       target: (83021123 * 2 * 0.7).toInt(),
