@@ -68,7 +68,7 @@ class VaccineStateCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '${NumberFormat.compact(locale: 'de-DE').format(target)}',
+                  'ca. ${NumberFormat.compact(locale: 'de-DE').format(target)}',
                   textAlign: TextAlign.right,
                 ),
               ],
