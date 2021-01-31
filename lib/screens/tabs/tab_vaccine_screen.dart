@@ -87,6 +87,22 @@ class TabVaccineScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+
+                    VaccineStateCard(
+                      state: 'Bundesland!',
+                      progress: 30.1,
+                      vaccinated: 1513377,
+                      today: 1337,
+                      target: (83021123 * 2 * 0.7).toInt(),
+                    ),
+
+                    VaccineStateCard(
+                      state: 'Bundesland!',
+                      progress: 30.1,
+                      vaccinated: 1513377,
+                      today: 1337,
+                      target: (83021123 * 2 * 0.7).toInt(),
+                    ),
                   ],
                 );
               },

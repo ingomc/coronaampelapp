@@ -7,7 +7,7 @@ class VaccineStateCard extends StatelessWidget {
     Key key,
     @required this.state,
     @required this.progress,
-    @required this.daysLeft,
+    this.daysLeft = 0,
     @required this.vaccinated,
     @required this.today,
     @required this.target,
@@ -31,10 +31,7 @@ class VaccineStateCard extends StatelessWidget {
             leading: CircleAvatar(
               backgroundImage: ExactAssetImage('assets/states/10.png'),
             ),
-            trailing: Text(
-              'Noch ${NumberFormat.decimalPattern('de-DE').format(daysLeft)} \nTage',
-              textAlign: TextAlign.right,
-            ),
+            trailing: DaysLeft(daysLeft: daysLeft),
             title: Text(
               '$state',
               softWrap: false,
@@ -87,11 +84,32 @@ class VaccineStateCard extends StatelessWidget {
                 ),
               ),
             ),
-          SizedBox(
-            height: 16,
-          )
+          if (label == true)
+            SizedBox(
+              height: 16,
+            ),
         ],
       ),
     );
+  }
+}
+
+class DaysLeft extends StatelessWidget {
+  const DaysLeft({
+    Key key,
+    this.daysLeft,
+  }) : super(key: key);
+
+  final int daysLeft;
+
+  @override
+  Widget build(BuildContext context) {
+    if (daysLeft > 0)
+      return Text(
+        'Noch ${NumberFormat.decimalPattern('de-DE').format(1234)} \nTage',
+        textAlign: TextAlign.right,
+      );
+    else
+      return Text('');
   }
 }
