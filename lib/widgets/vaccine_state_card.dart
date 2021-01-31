@@ -79,7 +79,7 @@ class VaccineStateCard extends StatelessWidget {
             Container(
               width: double.infinity,
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(0, 16, 16, 0),
+                padding: const EdgeInsets.only(right: 16),
                 child: Text(
                   'je 2 Impfdosen für 70% aller \nEinwohner*innen',
                   textAlign: TextAlign.right,
