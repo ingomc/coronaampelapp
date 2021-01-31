@@ -1,3 +1,4 @@
+import 'package:coronaampel/controller/reload_controller.dart';
 import 'package:coronaampel/widgets/incidence_number_container.dart';
 import 'package:coronaampel/widgets/loading_list_overlay.dart';
 import 'package:coronaampel/widgets/update_line.dart';
@@ -10,12 +11,12 @@ import 'package:coronaampel/controller/get_states_controller.dart';
 class TabStateScreen extends StatelessWidget {
   final GetStatesController getStatesController =
       Get.put(GetStatesController());
+  final ReloadController reloadController = Get.put(ReloadController());
 
   // Call this when the user pull down the screen
   Future<void> _loadData() async {
     getStatesController.isRefreshIndicatorActive.value = true;
-    await getStatesController.fetchStates();
-    getStatesController.isRefreshIndicatorActive.value = false;
+    await reloadController.reload();
   }
 
   @override

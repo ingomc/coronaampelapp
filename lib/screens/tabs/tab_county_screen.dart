@@ -1,3 +1,4 @@
+import 'package:coronaampel/controller/reload_controller.dart';
 import 'package:coronaampel/widgets/loading_list_overlay.dart';
 import 'package:coronaampel/widgets/update_line.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,12 +15,12 @@ class TabCountyScreen extends StatelessWidget {
       Get.put(GetCountysController());
   final PinnedCountysController pinnedCountysController =
       Get.put(PinnedCountysController());
+  final ReloadController reloadController = Get.put(ReloadController());
 
   // Call this when the user pull down the screen
   Future<void> _loadData() async {
     getCountysController.isRefreshIndicatorActive.value = true;
-    await getCountysController.fetchCountys();
-    getCountysController.isRefreshIndicatorActive.value = false;
+    await reloadController.reload();
   }
 
   @override
@@ -32,6 +33,7 @@ class TabCountyScreen extends StatelessWidget {
           children: [
             CupertinoScrollbar(
               child: ListView.builder(
+                physics: const AlwaysScrollableScrollPhysics(),
                 controller: getCountysController.scrollController,
                 padding: EdgeInsets.fromLTRB(12, 4, 12, 100),
                 itemCount: 1,
@@ -110,7 +112,7 @@ class TabCountyScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
-          Get.to(SearchScreen(), fullscreenDialog: true);
+          Get.to(SearchScreen(), transition: Transition.downToUp);
         },
       ),
     );

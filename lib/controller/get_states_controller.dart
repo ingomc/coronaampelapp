@@ -41,6 +41,7 @@ class GetStatesController extends GetxController {
       throw Exception('Failed to load all states');
     } finally {
       isLoading(false);
+      isRefreshIndicatorActive(false);
     }
   }
 }

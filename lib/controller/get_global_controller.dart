@@ -33,6 +33,7 @@ class GetGlobalController extends GetxController {
       throw Exception('Failed to load all countys');
     } finally {
       isLoading(false);
+      isRefreshIndicatorActive(false);
     }
   }
 }

@@ -1,6 +1,7 @@
 import 'package:coronaampel/controller/get_countys_controller.dart';
 import 'package:coronaampel/controller/get_global_controller.dart';
 import 'package:coronaampel/controller/get_states_controller.dart';
+import 'package:coronaampel/controller/reload_controller.dart';
 import 'package:coronaampel/screens/tabs/tab_browse_screen.dart';
 import 'package:coronaampel/screens/tabs/tab_vaccine_screen.dart';
 import 'package:coronaampel/widgets/keep_alive_page.dart';
@@ -19,15 +20,12 @@ class HomeScreen extends StatelessWidget {
       Get.put(GetStatesController());
   final GetCountysController getCountysController =
       Get.put(GetCountysController());
-  final GetGlobalController getGlobalController =
-      Get.put(GetGlobalController());
+  final ReloadController reloadController = Get.put(ReloadController());
 
-  void _select(value) {
+  void _select(value) async {
     switch (value) {
       case 'Aktualisieren':
-        getStatesController.fetchStates();
-        getCountysController.fetchCountys();
-        getGlobalController.fetchGlobalData();
+        await reloadController.reload();
         break;
       case 'Anpassen':
         Get.to(CountyEditScreen());
@@ -58,6 +56,7 @@ class HomeScreen extends StatelessWidget {
         initialPage: uiTabsController.selectedIndex.value, keepPage: true);
 
     void _onTap(int index) {
+      // if tab is already select, then scrollpage to top
       if (uiTabsController.selectedIndex.value == index) {
         switch (index) {
           // Landkreise
@@ -78,6 +77,7 @@ class HomeScreen extends StatelessWidget {
             break;
         }
       } else {
+        // go to Page
         uiTabsController.saveSelectedIndex = index;
         _pageController.animateToPage(uiTabsController.selectedIndex.value,
             duration: const Duration(milliseconds: 500),

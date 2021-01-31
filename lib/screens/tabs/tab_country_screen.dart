@@ -1,4 +1,5 @@
 import 'package:coronaampel/controller/get_global_controller.dart';
+import 'package:coronaampel/controller/reload_controller.dart';
 import 'package:coronaampel/widgets/incidence_number_container.dart';
 import 'package:coronaampel/widgets/loading_list_overlay.dart';
 import 'package:coronaampel/widgets/update_line.dart';
@@ -10,12 +11,12 @@ import 'package:intl/intl.dart';
 class TabCountryScreen extends StatelessWidget {
   final GetGlobalController getGlobalController =
       Get.put(GetGlobalController());
+  final ReloadController reloadController = Get.put(ReloadController());
 
   // Call this when the user pull down the screen
   Future<void> _loadData() async {
     getGlobalController.isRefreshIndicatorActive.value = true;
-    await getGlobalController.fetchGlobalData();
-    getGlobalController.isRefreshIndicatorActive.value = false;
+    await reloadController.reload();
   }
 
   @override

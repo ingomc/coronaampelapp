@@ -1,9 +1,11 @@
+import 'package:coronaampel/controller/get_location_controller.dart';
 import 'package:coronaampel/controller/search_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:coronaampel/controller/get_countys_controller.dart';
 import 'package:coronaampel/controller/pinned_countys_controller.dart';
+import 'package:geolocator/geolocator.dart';
 
 class SearchScreen extends StatelessWidget {
   static const path = '/search';
@@ -12,6 +14,8 @@ class SearchScreen extends StatelessWidget {
   final PinnedCountysController pinnedCountysController =
       Get.put(PinnedCountysController());
   final SearchController searchController = Get.put(SearchController());
+  final GetLocationController getLocationController =
+      Get.put(GetLocationController());
 
   Future<bool> _onWillPop() async {
     Get.back();
@@ -81,10 +85,29 @@ class SearchScreen extends StatelessWidget {
                   width: double.infinity,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: Text('Aktuelle Position verwenden'),
-                    ),
+                    child: GetX<GetLocationController>(builder: (controller) {
+                      if (controller.isLoading.value) {
+                        return ElevatedButton(
+                          onPressed: () {},
+                          child: Center(
+                            child: SizedBox(
+                              child: CircularProgressIndicator(
+                                backgroundColor: Colors.white,
+                                strokeWidth: 2,
+                              ),
+                              width: 16,
+                              height: 16,
+                            ),
+                          ),
+                        );
+                      }
+                      return ElevatedButton(
+                        onPressed: () {
+                          getLocationController.getLocation();
+                        },
+                        child: Text('Aktuelle Position verwenden'),
+                      );
+                    }),
                   )),
               Expanded(
                 child: GetX<GetCountysController>(builder: (controller) {
