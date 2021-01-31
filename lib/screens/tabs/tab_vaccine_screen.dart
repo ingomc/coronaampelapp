@@ -76,7 +76,7 @@ class TabVaccineScreen extends StatelessWidget {
                                       ),
                                       TextSpan(
                                         text:
-                                            ' bis zur Herdenimmunität in Deutschland ',
+                                            ' (14.04.2024) bis zur Herdenimmunität in Deutschland ',
                                       ),
                                       WidgetSpan(
                                         baseline: TextBaseline.alphabetic,

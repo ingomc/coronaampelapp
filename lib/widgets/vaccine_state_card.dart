@@ -33,7 +33,6 @@ class VaccineStateCard extends StatelessWidget {
             leading: CircleAvatar(
               backgroundImage: ExactAssetImage('$flag'),
             ),
-            trailing: DaysLeft(daysLeft: daysLeft),
             title: Text(
               '$state',
               softWrap: false,
@@ -93,25 +92,5 @@ class VaccineStateCard extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-class DaysLeft extends StatelessWidget {
-  const DaysLeft({
-    Key key,
-    this.daysLeft,
-  }) : super(key: key);
-
-  final int daysLeft;
-
-  @override
-  Widget build(BuildContext context) {
-    if (daysLeft > 0)
-      return Text(
-        'Noch ${NumberFormat.decimalPattern('de-DE').format(1234)} \nTage',
-        textAlign: TextAlign.right,
-      );
-    else
-      return Text('');
   }
 }
