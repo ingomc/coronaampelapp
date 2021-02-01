@@ -32,7 +32,7 @@ class UpdateLine extends StatelessWidget {
           ),
         ),
         Text(
-          right,
+          '$right Uhr',
           style: TextStyle(
             color: Theme.of(context).hintColor,
           ),
