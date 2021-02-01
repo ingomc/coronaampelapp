@@ -96,7 +96,7 @@ class TabVaccineScreen extends StatelessWidget {
                               );
                             },
                             child: Padding(
-                              padding: const EdgeInsets.all(16.0),
+                              padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
                               child: Row(
                                 children: [
                                   Padding(
