@@ -8,7 +8,6 @@ class VaccineStateCard extends StatelessWidget {
     @required this.state,
     @required this.flag,
     @required this.progress,
-    this.daysLeft = 0,
     @required this.vaccinated,
     @required this.today,
     @required this.target,
@@ -18,7 +17,6 @@ class VaccineStateCard extends StatelessWidget {
   final String state;
   final String flag;
   final double progress;
-  final int daysLeft;
   final int vaccinated;
   final int today;
   final int target;

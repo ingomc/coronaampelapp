@@ -4,6 +4,7 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'get_countys_controller.dart';
 import 'get_global_controller.dart';
 import 'get_states_controller.dart';
+import 'get_vaccine_controller.dart';
 
 class ReloadController extends GetxController {
   final GetStatesController getStatesController =
@@ -12,12 +13,15 @@ class ReloadController extends GetxController {
       Get.put(GetCountysController());
   final GetGlobalController getGlobalController =
       Get.put(GetGlobalController());
+  final GetVaccineController getVaccineController =
+      Get.put(GetVaccineController());
 
   Future<void> reload() async {
-    Future.wait([
+    await Future.wait([
       getStatesController.fetchStates(),
       getCountysController.fetchCountys(),
-      getGlobalController.fetchGlobalData()
+      getGlobalController.fetchGlobalData(),
+      getVaccineController.fetchVaccine()
     ]);
   }
 }

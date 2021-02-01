@@ -1,3 +1,6 @@
+import 'package:coronaampel/controller/get_vaccine_controller.dart';
+import 'package:coronaampel/controller/reload_controller.dart';
+import 'package:coronaampel/widgets/loading_list_overlay.dart';
 import 'package:coronaampel/widgets/update_line.dart';
 import 'package:coronaampel/widgets/vaccine_state_card.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,11 +10,21 @@ import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class TabVaccineScreen extends StatelessWidget {
+  final GetVaccineController getVaccineController =
+      Get.put(GetVaccineController());
+  final ReloadController reloadController = Get.put(ReloadController());
+
+  // Call this when the user pull down the screen
+  Future<void> _loadData() async {
+    getVaccineController.isRefreshIndicatorActive.value = true;
+    await reloadController.reload();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: RefreshIndicator(
-      onRefresh: () {},
+      onRefresh: _loadData,
       backgroundColor: Theme.of(context).primaryColor,
       child: Stack(
         children: [
@@ -22,19 +35,35 @@ class TabVaccineScreen extends StatelessWidget {
               itemBuilder: (context, i) {
                 return Column(
                   children: [
-                    UpdateLine(
-                      left: ' XX:XX Uhr',
-                      right: 'Stand: XX:XX ',
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
+                      child: Obx(
+                        () => UpdateLine(
+                          left: ' ${getVaccineController.dateUpdated} Uhr',
+                          right:
+                              'Stand: ${getVaccineController.lastUpdate == null ? "" : getVaccineController.lastUpdate}',
+                        ),
+                      ),
                     ),
-                    VaccineStateCard(
-                      state: 'Deutschland',
-                      flag: 'assets/countries/de.png',
-                      progress: 30.1,
-                      daysLeft: 1337,
-                      vaccinated: 1513377,
-                      today: 1337,
-                      target: (83021123 * 2 * 0.7).toInt(),
-                      label: true,
+                    Obx(
+                      () => VaccineStateCard(
+                        state: 'Deutschland',
+                        flag: 'assets/countries/de.png',
+                        progress:
+                            getVaccineController.germany.value.sumVaccineDoses /
+                                (getVaccineController.germany.value.total *
+                                    2 *
+                                    0.7) *
+                                100,
+                        vaccinated:
+                            getVaccineController.germany.value.sumVaccineDoses,
+                        today: getVaccineController
+                            .germany.value.differenceToThePreviousDay,
+                        target:
+                            (getVaccineController.germany.value.total * 2 * 0.7)
+                                .toInt(),
+                        label: true,
+                      ),
                     ),
 
                     //Timer
@@ -64,31 +93,48 @@ class TabVaccineScreen extends StatelessWidget {
                                 ),
                               ),
                               Expanded(
-                                child: Text.rich(
-                                  TextSpan(
-                                    text: 'Noch ',
-                                    children: <InlineSpan>[
-                                      TextSpan(
-                                        text:
-                                            '${NumberFormat.decimalPattern('de-DE').format(1245)} Tage',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      TextSpan(
-                                        text:
-                                            ' (14.04.2024) bis zur Herdenimmunität in Deutschland ',
-                                      ),
-                                      WidgetSpan(
-                                        baseline: TextBaseline.alphabetic,
-                                        alignment: PlaceholderAlignment.middle,
-                                        child: Icon(
-                                          Icons.info_outline,
-                                          size: 16,
+                                child: GetX<GetVaccineController>(
+                                    builder: (controller) {
+                                  final left = controller.germany.value.total *
+                                          2 -
+                                      controller.germany.value.sumVaccineDoses;
+                                  final perDay =
+                                      controller.germany.value.cumsum7DaysAgo /
+                                          7;
+                                  final daysleft = left ~/ perDay;
+                                  final today = new DateTime.now();
+                                  final targetDate =
+                                      today.add(new Duration(days: daysleft));
+                                  final formatedTargetDate =
+                                      new DateFormat("dd.MM.yyyy")
+                                          .format(targetDate);
+                                  return Text.rich(
+                                    TextSpan(
+                                      text: 'Noch ',
+                                      children: <InlineSpan>[
+                                        TextSpan(
+                                          text:
+                                              '${NumberFormat.decimalPattern('de-DE').format(daysleft)} Tage',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                                        TextSpan(
+                                          text:
+                                              ' ($formatedTargetDate) bis zur Herdenimmunität in Deutschland ',
+                                        ),
+                                        WidgetSpan(
+                                          baseline: TextBaseline.alphabetic,
+                                          alignment:
+                                              PlaceholderAlignment.middle,
+                                          child: Icon(
+                                            Icons.info_outline,
+                                            size: 16,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                }),
                               ),
                             ],
                           ),
@@ -117,6 +163,16 @@ class TabVaccineScreen extends StatelessWidget {
                 );
               },
             ),
+          ),
+          GetX<GetVaccineController>(
+            builder: (controller) {
+              if (controller.isLoading.value &&
+                  !controller.isRefreshIndicatorActive.value) {
+                return LoadingListOverlay();
+              } else {
+                return Container();
+              }
+            },
           ),
         ],
       ),
