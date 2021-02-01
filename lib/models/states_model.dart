@@ -67,16 +67,18 @@ class State {
         lanEwAgs: json["LAN_ew_AGS"],
         lanEwGen: json["LAN_ew_GEN"],
         lanEwBez: json["LAN_ew_BEZ"],
-        lanEwEwz: json["LAN_ew_EWZ"],
-        fallzahl: json["Fallzahl"],
-        death: json["Death"],
-        cases7BlPer100K: json["cases7_bl_per_100k"].toDouble(),
-        cases7Bl: json["cases7_bl"],
-        death7Bl: json["death7_bl"],
+        lanEwEwz: json["LAN_ew_EWZ"] == null ? 0 : json["LAN_ew_EWZ"],
+        fallzahl: json["Fallzahl"] == null ? 0 : json["Fallzahl"],
+        death: json["Death"] == null ? 0 : json["Death"],
+        cases7BlPer100K: json["cases7_bl_per_100k"] == null
+            ? 0.0
+            : json["cases7_bl_per_100k"].toDouble(),
+        cases7Bl: json["cases7_bl"] == null ? 0 : json["cases7_bl"],
+        death7Bl: json["death7_bl"] == null ? 0 : json["death7_bl"],
         objectid1: json["OBJECTID_1"],
         lastUpdate: json["last_update"],
-        newCases: json["new_cases"],
-        newDeaths: json["new_deaths"],
+        newCases: json["new_cases"] == null ? 0 : json["new_cases"],
+        newDeaths: json["new_deaths"] == null ? 0 : json["new_deaths"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -84,16 +86,16 @@ class State {
         "LAN_ew_AGS": lanEwAgs,
         "LAN_ew_GEN": lanEwGen,
         "LAN_ew_BEZ": lanEwBez,
-        "LAN_ew_EWZ": lanEwEwz,
-        "Fallzahl": fallzahl,
-        "Death": death,
-        "cases7_bl_per_100k": cases7BlPer100K,
-        "cases7_bl": cases7Bl,
-        "death7_bl": death7Bl,
+        "LAN_ew_EWZ": lanEwEwz == null ? 0 : lanEwEwz,
+        "Fallzahl": fallzahl == null ? 0 : fallzahl,
+        "Death": death == null ? 0 : death,
+        "cases7_bl_per_100k": cases7BlPer100K == null ? 0.0 : cases7BlPer100K,
+        "cases7_bl": cases7Bl == null ? 0 : cases7Bl,
+        "death7_bl": death7Bl == null ? 0 : death7Bl,
         "OBJECTID_1": objectid1,
         "last_update": lastUpdate,
-        "new_cases": newCases,
-        "new_deaths": newDeaths,
+        "new_cases": newCases == null ? 0 : newCases,
+        "new_deaths": newDeaths == null ? 0 : newDeaths,
       };
 }
 
