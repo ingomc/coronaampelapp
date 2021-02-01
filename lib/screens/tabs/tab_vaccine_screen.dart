@@ -156,16 +156,21 @@ class TabVaccineScreen extends StatelessWidget {
                                               allTotal *
                                               100)
                                           .toStringAsFixed(1));
-                                  return VaccineStateCard(
-                                    state: controller.states[index].name,
-                                    flag:
-                                        'assets/states/${controller.states[index].rs}.png',
-                                    progress: progress,
-                                    vaccinated:
-                                        controller.states[index].vaccinated,
-                                    today: controller.states[index]
-                                        .differenceToThePreviousDay,
-                                    target: allTotal.toInt(),
+                                  return Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 4.0,
+                                    ),
+                                    child: VaccineStateCard(
+                                      state: controller.states[index].name,
+                                      flag:
+                                          'assets/states/${controller.states[index].rs}.png',
+                                      progress: progress,
+                                      vaccinated:
+                                          controller.states[index].vaccinated,
+                                      today: controller.states[index]
+                                          .differenceToThePreviousDay,
+                                      target: allTotal.toInt(),
+                                    ),
                                   );
                                 },
                               ),
