@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:coronaampel/controller/get_countys_controller.dart';
 import 'package:coronaampel/controller/pinned_countys_controller.dart';
-import 'package:geolocator/geolocator.dart';
 
 class SearchScreen extends StatelessWidget {
   static const path = '/search';

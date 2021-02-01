@@ -1,5 +1,4 @@
 import 'package:coronaampel/controller/get_countys_controller.dart';
-import 'package:coronaampel/controller/get_global_controller.dart';
 import 'package:coronaampel/controller/get_states_controller.dart';
 import 'package:coronaampel/controller/reload_controller.dart';
 import 'package:coronaampel/screens/tabs/tab_browse_screen.dart';
