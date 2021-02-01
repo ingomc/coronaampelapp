@@ -141,23 +141,40 @@ class TabVaccineScreen extends StatelessWidget {
                         );
                       },
                     ),
-
-                    VaccineStateCard(
-                      state: 'Bayern',
-                      flag: 'assets/states/09.png',
-                      progress: 3.1,
-                      vaccinated: 1513377,
-                      today: 1337,
-                      target: (83021123 * 2 * 0.7).toInt(),
-                    ),
-
-                    VaccineStateCard(
-                      state: 'Bundesland!',
-                      flag: 'assets/states/11.png',
-                      progress: 69,
-                      vaccinated: 1513377,
-                      today: 1337,
-                      target: (83021123 * 2 * 0.7).toInt(),
+                    GetX<GetVaccineController>(
+                      builder: (controller) {
+                        if (controller.states.length > 0) {
+                          return Column(
+                            children: [
+                              ...List.generate(
+                                controller.states.length,
+                                (index) {
+                                  final allTotal =
+                                      controller.states[index].total * 2 * 0.7;
+                                  final progress = double.parse(
+                                      (controller.states[index].vaccinated /
+                                              allTotal *
+                                              100)
+                                          .toStringAsFixed(1));
+                                  return VaccineStateCard(
+                                    state: controller.states[index].name,
+                                    flag:
+                                        'assets/states/${controller.states[index].rs}.png',
+                                    progress: progress,
+                                    vaccinated:
+                                        controller.states[index].vaccinated,
+                                    today: controller.states[index]
+                                        .differenceToThePreviousDay,
+                                    target: allTotal.toInt(),
+                                  );
+                                },
+                              ),
+                            ],
+                          );
+                        } else {
+                          return Container();
+                        }
+                      },
                     ),
                   ],
                 );

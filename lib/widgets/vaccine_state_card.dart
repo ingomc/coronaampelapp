@@ -62,7 +62,7 @@ class VaccineStateCard extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    '${NumberFormat.compact(locale: 'de-DE').format(vaccinated)} verabreicht \n(+${NumberFormat.decimalPattern('de-DE').format(today)})',
+                    '${vaccinated < 1000000 ? NumberFormat.decimalPattern('de-DE').format(vaccinated) : NumberFormat.compact(locale: 'de-DE').format(vaccinated)} verabreicht \n(+${NumberFormat.decimalPattern('de-DE').format(today)})',
                   ),
                 ),
                 Text(
