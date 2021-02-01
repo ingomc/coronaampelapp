@@ -67,79 +67,79 @@ class TabVaccineScreen extends StatelessWidget {
                     ),
 
                     //Timer
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      child: InkWell(
-                        onTap: () {
-                          Get.defaultDialog(
-                            title: 'Hinweis',
-                            content: Text(
-                                'In den letzten 7 Tagen wurden durchschnittlich XX Impfdosen verabreicht. Aus dieser Zahl berechne ich den wahrscheinlichen Zeitpunkt an dem die Herdenimmunität erreicht ist. Die Annahme ist, dass eine Herdenimmunität dann erreicht ist, wenn mind. 70% der Einwohner*innen mit jeweils 2 Impfdosen gegen das Virus immunisiert wurden. \nHinweis: Zum aktuellen Zeitpunkt ist das reine Theorie!'),
-                            textConfirm: 'Ok',
-                            onConfirm: () {
-                              Get.back();
+                    GetX<GetVaccineController>(
+                      builder: (controller) {
+                        final left = controller.germany.value.total * 0.7 * 2 -
+                            controller.germany.value.sumVaccineDoses;
+                        final lastWeek =
+                            controller.germany.value.sumVaccineDoses -
+                                controller.germany.value.cumsum7DaysAgo;
+                        final perDay = lastWeek / 7;
+                        final daysleft = left ~/ perDay;
+                        final today = new DateTime.now();
+                        final targetDate =
+                            today.add(new Duration(days: daysleft));
+                        final formatedTargetDate =
+                            new DateFormat("dd.MM.yyyy").format(targetDate);
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 16.0),
+                          child: InkWell(
+                            onTap: () {
+                              Get.defaultDialog(
+                                title: 'Hinweis',
+                                content: Text(
+                                    'In den letzten 7 Tagen wurden durchschnittlich ${NumberFormat.decimalPattern('de-DE').format(lastWeek ~/ 7)} Impfdosen pro Tag verabreicht. Aus dieser Zahl berechne ich den wahrscheinlichen Zeitpunkt an dem die Herdenimmunität erreicht ist. Die Annahme ist, dass eine Herdenimmunität dann erreicht ist, wenn mind. 70% der Einwohner*innen mit jeweils 2 Impfdosen gegen das Virus immunisiert wurden. \nHinweis: Zum aktuellen Zeitpunkt ist das reine Theorie!'),
+                                textConfirm: 'Ok',
+                                onConfirm: () {
+                                  Get.back();
+                                },
+                              );
                             },
-                          );
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(right: 16.0),
-                                child: Icon(
-                                  MdiIcons.calendarClock,
-                                  size: 36,
-                                ),
-                              ),
-                              Expanded(
-                                child: GetX<GetVaccineController>(
-                                    builder: (controller) {
-                                  final left = controller.germany.value.total *
-                                          2 -
-                                      controller.germany.value.sumVaccineDoses;
-                                  final perDay =
-                                      controller.germany.value.cumsum7DaysAgo /
-                                          7;
-                                  final daysleft = left ~/ perDay;
-                                  final today = new DateTime.now();
-                                  final targetDate =
-                                      today.add(new Duration(days: daysleft));
-                                  final formatedTargetDate =
-                                      new DateFormat("dd.MM.yyyy")
-                                          .format(targetDate);
-                                  return Text.rich(
-                                    TextSpan(
-                                      text: 'Noch ',
-                                      children: <InlineSpan>[
-                                        TextSpan(
-                                          text:
-                                              '${NumberFormat.decimalPattern('de-DE').format(daysleft)} Tage',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        TextSpan(
-                                          text:
-                                              ' ($formatedTargetDate) bis zur Herdenimmunität in Deutschland ',
-                                        ),
-                                        WidgetSpan(
-                                          baseline: TextBaseline.alphabetic,
-                                          alignment:
-                                              PlaceholderAlignment.middle,
-                                          child: Icon(
-                                            Icons.info_outline,
-                                            size: 16,
-                                          ),
-                                        ),
-                                      ],
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 16.0),
+                                    child: Icon(
+                                      MdiIcons.calendarClock,
+                                      size: 36,
                                     ),
-                                  );
-                                }),
+                                  ),
+                                  Expanded(
+                                    child: Text.rich(
+                                      TextSpan(
+                                        text: 'Noch ',
+                                        children: <InlineSpan>[
+                                          TextSpan(
+                                            text:
+                                                '${NumberFormat.decimalPattern('de-DE').format(daysleft)} Tage',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          TextSpan(
+                                            text:
+                                                ' ($formatedTargetDate) bis zur Herdenimmunität in Deutschland ',
+                                          ),
+                                          WidgetSpan(
+                                            baseline: TextBaseline.alphabetic,
+                                            alignment:
+                                                PlaceholderAlignment.middle,
+                                            child: Icon(
+                                              Icons.info_outline,
+                                              size: 16,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
-                        ),
-                      ),
+                        );
+                      },
                     ),
 
                     VaccineStateCard(
