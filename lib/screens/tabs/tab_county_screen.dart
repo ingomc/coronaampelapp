@@ -43,13 +43,16 @@ class TabCountyScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
                         child: Obx(
-                          () => FadeIn(
-                            child: UpdateLine(
-                              left: ' ${getCountysController.dateUpdated} Uhr',
-                              right:
-                                  'Stand: ${getCountysController.lastUpdate == null ? "" : getCountysController.lastUpdate}',
-                            ),
-                          ),
+                          () => (pinnedCountysController.countys.length > 0)
+                              ? FadeIn(
+                                  child: UpdateLine(
+                                    left:
+                                        ' ${getCountysController.dateUpdated} Uhr',
+                                    right:
+                                        'Stand: ${getCountysController.lastUpdate == null ? "" : getCountysController.lastUpdate}',
+                                  ),
+                                )
+                              : Container(),
                         ),
                       ),
                       GetX<PinnedCountysController>(
@@ -87,7 +90,46 @@ class TabCountyScreen extends StatelessWidget {
                               ],
                             );
                           } else {
-                            return Container();
+                            return Opacity(
+                              opacity: .3,
+                              child: Padding(
+                                padding: const EdgeInsets.all(36.0),
+                                child: Center(
+                                  child: Column(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(36.0),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: Colors.white10,
+                                            borderRadius:
+                                                BorderRadius.circular(100),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(28.0),
+                                            child: Icon(
+                                              Icons.add,
+                                              size: 48,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Text('Landkreise Suche',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline5),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          'Suche deine Landkreise und füge sie deiner Liste hinzu',
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
                           }
                         },
                       ),

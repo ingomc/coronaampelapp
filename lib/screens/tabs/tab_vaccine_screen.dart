@@ -49,12 +49,13 @@ class TabVaccineScreen extends StatelessWidget {
                       () => VaccineStateCard(
                         state: 'Deutschland',
                         flag: 'assets/countries/de.png',
-                        progress:
-                            getVaccineController.germany.value.sumVaccineDoses /
+                        progress: double.parse((getVaccineController
+                                    .germany.value.sumVaccineDoses /
                                 (getVaccineController.germany.value.total *
                                     2 *
                                     0.7) *
-                                100,
+                                100)
+                            .toStringAsFixed(2)),
                         vaccinated:
                             getVaccineController.germany.value.sumVaccineDoses,
                         today: getVaccineController
@@ -155,7 +156,7 @@ class TabVaccineScreen extends StatelessWidget {
                                       (controller.states[index].vaccinated /
                                               allTotal *
                                               100)
-                                          .toStringAsFixed(1));
+                                          .toStringAsFixed(2));
                                   return Padding(
                                     padding: const EdgeInsets.symmetric(
                                       vertical: 4.0,

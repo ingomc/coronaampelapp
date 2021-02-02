@@ -23,6 +23,9 @@ class CountyEditScreen extends StatelessWidget {
         case 'deleteall':
           pinnedCountysController.countys.assignAll([]);
           Get.back();
+          Get.snackbar('Alle Landkreise entfernt',
+              'Ihre Liste ist jetzt leer, fügen sie neue Landkreise über das "+"-Symbol hinzu.',
+              snackPosition: SnackPosition.BOTTOM);
           break;
       }
       // print(value);
