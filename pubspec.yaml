@@ -43,6 +43,7 @@ dev_dependencies:
   flutter_launcher_icons: "^0.8.0"
   integration_test:
     sdk: flutter
+  flutter_native_splash: ^0.2.9
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
