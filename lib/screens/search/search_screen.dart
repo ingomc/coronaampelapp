@@ -87,6 +87,9 @@ class SearchScreen extends StatelessWidget {
                     child: GetX<GetLocationController>(builder: (controller) {
                       if (controller.isLoading.value) {
                         return ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.blueGrey,
+                          ),
                           onPressed: () {},
                           child: Center(
                             child: SizedBox(
@@ -101,10 +104,23 @@ class SearchScreen extends StatelessWidget {
                         );
                       }
                       return ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.blueGrey,
+                        ),
                         onPressed: () {
                           getLocationController.getLocation();
                         },
-                        child: Text('Aktuelle Position verwenden'),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.gps_fixed),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text('Aktuelle Position verwenden'),
+                          ],
+                        ),
                       );
                     }),
                   )),
