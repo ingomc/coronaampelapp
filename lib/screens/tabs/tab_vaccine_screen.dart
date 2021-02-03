@@ -96,18 +96,24 @@ class TabVaccineScreen extends StatelessWidget {
                                 },
                               );
                             },
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
+                            child: Container(
+                              width: double.infinity,
                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 16.0),
-                                    child: Icon(
-                                      MdiIcons.calendarClock,
-                                      size: 36,
+                                  Flexible(
+                                    flex: 1,
+                                    child: Padding(
+                                      padding:
+                                          const EdgeInsets.only(right: 16.0),
+                                      child: Icon(
+                                        MdiIcons.calendarClock,
+                                        size: 36,
+                                      ),
                                     ),
                                   ),
-                                  Expanded(
+                                  Flexible(
+                                    flex: 3,
                                     child: Text.rich(
                                       TextSpan(
                                         text: 'Noch ',
