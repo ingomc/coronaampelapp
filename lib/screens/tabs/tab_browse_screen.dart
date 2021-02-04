@@ -61,6 +61,9 @@ class TabBrowseScreen extends StatelessWidget {
                       HighestEWZWidget(
                           getSingleCountyController: getSingleCountyController,
                           hero: hero),
+                      // HighestPer100k(
+                      //     getSingleCountyController: getSingleCountyController,
+                      //     hero: hero),
                     ],
                   );
                 },
@@ -256,6 +259,84 @@ class HighestEWZWidget extends StatelessWidget {
                   controller.highest5Ewz.length,
                   (index) {
                     BrowseCounty thisCounty = controller.highest5Ewz[index];
+                    return FadeIn(
+                      child: Card(
+                        child: InkWell(
+                          onTap: () {
+                            getSingleCountyController.selectedCountyRS.value =
+                                thisCounty.rs;
+                            Get.to(
+                                CountyDetailScreen(
+                                  hero: hero,
+                                  rs: thisCounty.rs,
+                                  name: thisCounty.gen,
+                                  district: thisCounty.bez,
+                                  incidence: thisCounty.cases7Per100K,
+                                  newCases: thisCounty.newCases,
+                                ),
+                                transition: Transition.cupertino);
+                          },
+                          child: ListTile(
+                            title: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(right: 8.0),
+                                    child: Text(
+                                        '${thisCounty.gen} (${thisCounty.bez})'),
+                                  ),
+                                ),
+                                IncidenceNumberContainer(
+                                    thisCounty.cases7Per100K),
+                              ],
+                            ),
+                            trailing: Icon(Icons.arrow_forward_ios),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                )
+              ],
+            );
+          },
+        ),
+      ],
+    );
+  }
+}
+
+class HighestPer100k extends StatelessWidget {
+  const HighestPer100k({
+    Key key,
+    @required this.getSingleCountyController,
+    @required this.hero,
+  }) : super(key: key);
+
+  final GetSingleCountyController getSingleCountyController;
+  final String hero;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(
+          height: 16,
+        ),
+        Text(
+          'Die meisten Fälle pro 100.000 Einwohner*innen',
+          style: Theme.of(context).textTheme.headline6,
+        ),
+        GetX<GetBrowseController>(
+          builder: (controller) {
+            return Column(
+              children: [
+                ...List.generate(
+                  controller.highest5CasesPer100K.length,
+                  (index) {
+                    BrowseCounty thisCounty =
+                        controller.highest5CasesPer100K[index];
                     return FadeIn(
                       child: Card(
                         child: InkWell(
