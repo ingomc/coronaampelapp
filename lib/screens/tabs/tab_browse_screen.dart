@@ -5,6 +5,7 @@ import 'package:coronaampel/controller/reload_controller.dart';
 import 'package:coronaampel/models/browse_model.dart';
 import 'package:coronaampel/screens/detail/county_detail_screen.dart';
 import 'package:coronaampel/widgets/incidence_number_container.dart';
+import 'package:coronaampel/widgets/tab_title.dart';
 import 'package:coronaampel/widgets/update_line.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -95,16 +96,7 @@ class BrowseCard extends StatelessWidget {
 
     return Column(
       children: [
-        SizedBox(
-          height: 32,
-        ),
-        Text(
-          '$title',
-          style: Theme.of(context).textTheme.headline6,
-        ),
-        SizedBox(
-          height: 16,
-        ),
+        TabTitle(title: title),
         GetX<GetBrowseController>(
           builder: (controller) {
             return Column(
