@@ -14,6 +14,7 @@ class TabBrowseScreen extends StatelessWidget {
   final GetCountysController getCountysController =
       Get.put(GetCountysController());
   final ReloadController reloadController = Get.put(ReloadController());
+  final String hero = 'browse';
 
   // Call this when the user pull down the screen
   Future<void> _loadData() async {
@@ -66,20 +67,19 @@ class TabBrowseScreen extends StatelessWidget {
                                   return Column(
                                     children: [
                                       ...List.generate(
-                                        controller.data.value.lowest5.length,
+                                        controller.lowest5.length,
                                         (index) {
-                                          var thisCounty = controller
-                                              .data.value.lowest5[index];
+                                          var thisCounty =
+                                              controller.lowest5[index];
                                           return FadeIn(
                                             child: Padding(
                                               padding:
                                                   const EdgeInsets.symmetric(
                                                       vertical: 2.0),
                                               child: Hero(
-                                                tag:
-                                                    'card${controller.data.value.lowest5[index]}',
+                                                tag: '$hero${thisCounty.rs}',
                                                 child: CountyCard(
-                                                    0,
+                                                    hero,
                                                     thisCounty.rs,
                                                     thisCounty.gen,
                                                     thisCounty.bez,

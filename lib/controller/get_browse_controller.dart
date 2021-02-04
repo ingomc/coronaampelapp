@@ -10,11 +10,11 @@ class GetBrowseController extends GetxController {
   ScrollController scrollController = new ScrollController();
   var dateUpdated =
       DateFormat('dd.MM., HH:mm').format(DateTime.now()).toString().obs;
-  var data = Browse().obs;
-  // var highest5 = [].obs;
-  // var lowest5 = [].obs;
-  // var highest5CasesPer100K = [].obs;
-  // var highest5Ewz = [].obs;
+  // var data = Map<Browse>.obs;
+  var highest5 = [].obs;
+  var lowest5 = [].obs;
+  var highest5CasesPer100K = [].obs;
+  var highest5Ewz = [].obs;
 
   @override
   void onInit() {
@@ -35,11 +35,11 @@ class GetBrowseController extends GetxController {
 
       var browseResult = await RemoteServiceBrowse.fetchBrowse();
 
-      data.value = browseResult;
-      // highest5.assignAll(browseResult.highest5);
-      // lowest5.assignAll(browseResult.lowest5);
-      // highest5CasesPer100K.assignAll(browseResult.highest5CasesPer100K);
-      // highest5Ewz.assignAll(browseResult.highest5Ewz);
+      // data.value = browseResult;
+      highest5.assignAll(browseResult.highest5);
+      lowest5.assignAll(browseResult.lowest5);
+      highest5CasesPer100K.assignAll(browseResult.highest5CasesPer100K);
+      highest5Ewz.assignAll(browseResult.highest5Ewz);
 
       dateUpdated.value =
           DateFormat('dd.MM., HH:mm').format(DateTime.now()).toString();

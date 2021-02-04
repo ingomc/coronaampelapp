@@ -8,6 +8,25 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class CountyDetailScreen extends StatelessWidget {
+  CountyDetailScreen({
+    Key key,
+    @required this.hero,
+    @required this.rs,
+    @required this.name,
+    @required this.district,
+    @required this.incidence,
+    @required this.newCases,
+    this.isLinked = false,
+  }) : super(key: key);
+
+  final String hero;
+  final String rs;
+  final String name;
+  final String district;
+  final double incidence;
+  final int newCases;
+  final bool isLinked;
+
   final GetCountysController getCountysController =
       Get.put(GetCountysController());
   final GetSingleCountyController getSingleCountyController =
@@ -22,12 +41,9 @@ class CountyDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final countyIndex = ModalRoute.of(context).settings.arguments as int;
-
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-            '${getCountysController.countys[countyIndex].bez} ${getCountysController.countys[countyIndex].gen}'),
+        title: Text('$district $name'),
       ),
       body: SafeArea(
         bottom: false,
@@ -44,16 +60,9 @@ class CountyDetailScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8),
                       child: Hero(
-                        tag: 'card$countyIndex',
-                        child: CountyCard(
-                            countyIndex,
-                            getCountysController.countys[countyIndex].rs,
-                            getCountysController.countys[countyIndex].gen,
-                            getCountysController.countys[countyIndex].bez,
-                            getCountysController
-                                .countys[countyIndex].cases7Per100K,
-                            getCountysController.countys[countyIndex].newCases,
-                            false),
+                        tag: '$hero$rs',
+                        child: CountyCard(hero, rs, name, district, incidence,
+                            newCases, false),
                       ),
                     ),
                     GetX<GetSingleCountyController>(builder: (controller) {
@@ -66,7 +75,7 @@ class CountyDetailScreen extends StatelessWidget {
                               child: Row(
                                 children: <Widget>[
                                   ThirdCard('Neue Fälle von Gestern',
-                                      '${getCountysController.countys[countyIndex].newCases > 0 ? getCountysController.countys[countyIndex].newCases : 0}'),
+                                      '${newCases > 0 ? newCases : 0}'),
                                   ThirdCard('Fälle der letzten 7 Tage',
                                       '+ ${controller.county.value.cases7Lk != null ? controller.county.value.cases7Lk : 0}'),
                                   ThirdCard('Fälle insgesamt',

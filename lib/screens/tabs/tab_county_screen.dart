@@ -16,6 +16,7 @@ class TabCountyScreen extends StatelessWidget {
   final PinnedCountysController pinnedCountysController =
       Get.put(PinnedCountysController());
   final ReloadController reloadController = Get.put(ReloadController());
+  final String hero = 'county';
 
   // Call this when the user pull down the screen
   Future<void> _loadData() async {
@@ -73,10 +74,9 @@ class TabCountyScreen extends StatelessWidget {
                                         padding: const EdgeInsets.symmetric(
                                             vertical: 2.0),
                                         child: Hero(
-                                          tag:
-                                              'card${controller.countys[index]}',
+                                          tag: '$hero${thisCounty.rs}',
                                           child: CountyCard(
-                                              controller.countys[index],
+                                              hero,
                                               thisCounty.rs,
                                               thisCounty.gen,
                                               thisCounty.bez,

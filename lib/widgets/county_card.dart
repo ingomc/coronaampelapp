@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class CountyCard extends StatelessWidget {
-  final int countyIndex;
+  final String hero;
   final String rs;
   final String name;
   final String district;
@@ -14,8 +14,8 @@ class CountyCard extends StatelessWidget {
   final int newCases;
   final bool isLinked;
 
-  CountyCard(this.countyIndex, this.rs, this.name, this.district,
-      this.incidence, this.newCases,
+  CountyCard(this.hero, this.rs, this.name, this.district, this.incidence,
+      this.newCases,
       [this.isLinked = true]);
 
   Color txtColor = Colors.amber;
@@ -51,8 +51,17 @@ class CountyCard extends StatelessWidget {
 
   void goToCity() {
     getSingleCountyController.selectedCountyRS.value = rs;
-    Get.to(CountyDetailScreen(),
-        arguments: countyIndex, transition: Transition.cupertino);
+    Get.to(
+        CountyDetailScreen(
+          hero: hero,
+          rs: rs,
+          name: name,
+          district: district,
+          incidence: incidence,
+          newCases: newCases,
+          isLinked: isLinked,
+        ),
+        transition: Transition.cupertino);
     // Get.to(
     // CityDetailScreen(),
     //   arguments: rs,
