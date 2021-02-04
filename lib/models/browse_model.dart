@@ -16,20 +16,20 @@ class Browse {
     this.highest5CasesPer100K,
   });
 
-  List<Highest5> lowest5;
-  List<Highest5> highest5;
-  List<Highest5> highest5Ewz;
-  List<Highest5> highest5CasesPer100K;
+  List<BrowseCounty> lowest5;
+  List<BrowseCounty> highest5;
+  List<BrowseCounty> highest5Ewz;
+  List<BrowseCounty> highest5CasesPer100K;
 
   factory Browse.fromJson(Map<String, dynamic> json) => Browse(
-        lowest5: List<Highest5>.from(
-            json["lowest5"].map((x) => Highest5.fromJson(x))),
-        highest5: List<Highest5>.from(
-            json["highest5"].map((x) => Highest5.fromJson(x))),
-        highest5Ewz: List<Highest5>.from(
-            json["highest5EWZ"].map((x) => Highest5.fromJson(x))),
-        highest5CasesPer100K: List<Highest5>.from(
-            json["highest5casesPer100k"].map((x) => Highest5.fromJson(x))),
+        lowest5: List<BrowseCounty>.from(
+            json["lowest5"].map((x) => BrowseCounty.fromJson(x))),
+        highest5: List<BrowseCounty>.from(
+            json["highest5"].map((x) => BrowseCounty.fromJson(x))),
+        highest5Ewz: List<BrowseCounty>.from(
+            json["highest5EWZ"].map((x) => BrowseCounty.fromJson(x))),
+        highest5CasesPer100K: List<BrowseCounty>.from(
+            json["highest5casesPer100k"].map((x) => BrowseCounty.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -41,8 +41,8 @@ class Browse {
       };
 }
 
-class Highest5 {
-  Highest5({
+class BrowseCounty {
+  BrowseCounty({
     this.casesPer100K,
     this.rs,
     this.ewz,
@@ -60,7 +60,7 @@ class Highest5 {
   String bez;
   int newCases;
 
-  factory Highest5.fromJson(Map<String, dynamic> json) => Highest5(
+  factory BrowseCounty.fromJson(Map<String, dynamic> json) => BrowseCounty(
         casesPer100K: json["cases_per_100k"].toDouble(),
         rs: json["RS"],
         ewz: json["EWZ"],

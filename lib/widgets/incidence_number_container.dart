@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -45,7 +47,11 @@ class IncidenceNumberContainer extends StatelessWidget {
         child: Text(
           '${incidence.toStringAsFixed(1)}',
           style: TextStyle(
-              color: txtColor, fontWeight: FontWeight.bold, fontSize: 16),
+            color: txtColor,
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+            fontFeatures: [FontFeature.tabularFigures()],
+          ),
         ),
       ),
     );
