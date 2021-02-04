@@ -52,18 +52,18 @@ class TabBrowseScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Lowest5Widget(
-                          getSingleCountyController: getSingleCountyController,
+                      BrowseCard(
+                          title: 'Niedrigste Inzidenz',
+                          data: getBrowseController.lowest5,
                           hero: hero),
-                      Highest5Widget(
-                          getSingleCountyController: getSingleCountyController,
+                      BrowseCard(
+                          title: 'Höchste Inzidenz',
+                          data: getBrowseController.highest5,
                           hero: hero),
-                      HighestEWZWidget(
-                          getSingleCountyController: getSingleCountyController,
+                      BrowseCard(
+                          title: 'Meisten Einwohner*innen',
+                          data: getBrowseController.highest5Ewz,
                           hero: hero),
-                      // HighestPer100k(
-                      //     getSingleCountyController: getSingleCountyController,
-                      //     hero: hero),
                     ],
                   );
                 },
@@ -76,267 +76,43 @@ class TabBrowseScreen extends StatelessWidget {
   }
 }
 
-class Lowest5Widget extends StatelessWidget {
-  const Lowest5Widget({
+class BrowseCard extends StatelessWidget {
+  const BrowseCard({
     Key key,
-    @required this.getSingleCountyController,
+    @required this.title,
+    @required this.data,
     @required this.hero,
   }) : super(key: key);
 
-  final GetSingleCountyController getSingleCountyController;
+  final String title;
+  final data;
   final String hero;
 
   @override
   Widget build(BuildContext context) {
+    final GetSingleCountyController getSingleCountyController =
+        Get.put(GetSingleCountyController());
+
     return Column(
       children: [
         SizedBox(
-          height: 16,
+          height: 32,
         ),
         Text(
-          'Niedrigste Inzidenz',
+          '$title',
           style: Theme.of(context).textTheme.headline6,
+        ),
+        SizedBox(
+          height: 16,
         ),
         GetX<GetBrowseController>(
           builder: (controller) {
             return Column(
               children: [
                 ...List.generate(
-                  controller.lowest5.length,
+                  data.length,
                   (index) {
-                    BrowseCounty thisCounty = controller.lowest5[index];
-                    return FadeIn(
-                      child: Card(
-                        child: InkWell(
-                          onTap: () {
-                            getSingleCountyController.selectedCountyRS.value =
-                                thisCounty.rs;
-                            Get.to(
-                                CountyDetailScreen(
-                                  hero: hero,
-                                  rs: thisCounty.rs,
-                                  name: thisCounty.gen,
-                                  district: thisCounty.bez,
-                                  incidence: thisCounty.cases7Per100K,
-                                  newCases: thisCounty.newCases,
-                                ),
-                                transition: Transition.cupertino);
-                          },
-                          child: ListTile(
-                            title: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(right: 8.0),
-                                    child: Text(
-                                        '${thisCounty.gen} (${thisCounty.bez})'),
-                                  ),
-                                ),
-                                IncidenceNumberContainer(
-                                    thisCounty.cases7Per100K),
-                              ],
-                            ),
-                            trailing: Icon(Icons.arrow_forward_ios),
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                )
-              ],
-            );
-          },
-        ),
-      ],
-    );
-  }
-}
-
-class Highest5Widget extends StatelessWidget {
-  const Highest5Widget({
-    Key key,
-    @required this.getSingleCountyController,
-    @required this.hero,
-  }) : super(key: key);
-
-  final GetSingleCountyController getSingleCountyController;
-  final String hero;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: 16,
-        ),
-        Text(
-          'Höchste Inzidenz',
-          style: Theme.of(context).textTheme.headline6,
-        ),
-        GetX<GetBrowseController>(
-          builder: (controller) {
-            return Column(
-              children: [
-                ...List.generate(
-                  controller.highest5.length,
-                  (index) {
-                    BrowseCounty thisCounty = controller.highest5[index];
-                    return FadeIn(
-                      child: Card(
-                        child: InkWell(
-                          onTap: () {
-                            getSingleCountyController.selectedCountyRS.value =
-                                thisCounty.rs;
-                            Get.to(
-                                CountyDetailScreen(
-                                  hero: hero,
-                                  rs: thisCounty.rs,
-                                  name: thisCounty.gen,
-                                  district: thisCounty.bez,
-                                  incidence: thisCounty.cases7Per100K,
-                                  newCases: thisCounty.newCases,
-                                ),
-                                transition: Transition.cupertino);
-                          },
-                          child: ListTile(
-                            title: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(right: 8.0),
-                                    child: Text(
-                                        '${thisCounty.gen} (${thisCounty.bez})'),
-                                  ),
-                                ),
-                                IncidenceNumberContainer(
-                                    thisCounty.cases7Per100K),
-                              ],
-                            ),
-                            trailing: Icon(Icons.arrow_forward_ios),
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                )
-              ],
-            );
-          },
-        ),
-      ],
-    );
-  }
-}
-
-class HighestEWZWidget extends StatelessWidget {
-  const HighestEWZWidget({
-    Key key,
-    @required this.getSingleCountyController,
-    @required this.hero,
-  }) : super(key: key);
-
-  final GetSingleCountyController getSingleCountyController;
-  final String hero;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: 16,
-        ),
-        Text(
-          'Höchste Einwohnerzahl',
-          style: Theme.of(context).textTheme.headline6,
-        ),
-        GetX<GetBrowseController>(
-          builder: (controller) {
-            return Column(
-              children: [
-                ...List.generate(
-                  controller.highest5Ewz.length,
-                  (index) {
-                    BrowseCounty thisCounty = controller.highest5Ewz[index];
-                    return FadeIn(
-                      child: Card(
-                        child: InkWell(
-                          onTap: () {
-                            getSingleCountyController.selectedCountyRS.value =
-                                thisCounty.rs;
-                            Get.to(
-                                CountyDetailScreen(
-                                  hero: hero,
-                                  rs: thisCounty.rs,
-                                  name: thisCounty.gen,
-                                  district: thisCounty.bez,
-                                  incidence: thisCounty.cases7Per100K,
-                                  newCases: thisCounty.newCases,
-                                ),
-                                transition: Transition.cupertino);
-                          },
-                          child: ListTile(
-                            title: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(right: 8.0),
-                                    child: Text(
-                                        '${thisCounty.gen} (${thisCounty.bez})'),
-                                  ),
-                                ),
-                                IncidenceNumberContainer(
-                                    thisCounty.cases7Per100K),
-                              ],
-                            ),
-                            trailing: Icon(Icons.arrow_forward_ios),
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                )
-              ],
-            );
-          },
-        ),
-      ],
-    );
-  }
-}
-
-class HighestPer100k extends StatelessWidget {
-  const HighestPer100k({
-    Key key,
-    @required this.getSingleCountyController,
-    @required this.hero,
-  }) : super(key: key);
-
-  final GetSingleCountyController getSingleCountyController;
-  final String hero;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: 16,
-        ),
-        Text(
-          'Die meisten Fälle pro 100.000 Einwohner*innen',
-          style: Theme.of(context).textTheme.headline6,
-        ),
-        GetX<GetBrowseController>(
-          builder: (controller) {
-            return Column(
-              children: [
-                ...List.generate(
-                  controller.highest5CasesPer100K.length,
-                  (index) {
-                    BrowseCounty thisCounty =
-                        controller.highest5CasesPer100K[index];
+                    BrowseCounty thisCounty = data[index];
                     return FadeIn(
                       child: Card(
                         child: InkWell(
