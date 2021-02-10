@@ -1,5 +1,5 @@
-import 'package:coronaampel/models/browse_model.dart';
-import 'package:coronaampel/services/browse_remote_service.dart';
+import 'package:coronampel/models/browse_model.dart';
+import 'package:coronampel/services/browse_remote_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -27,9 +27,9 @@ class GetBrowseController extends GetxController {
     print('triggered fetch vaccine');
     try {
       // DUMMY CONTNENT ----------------- //
-      await Future.delayed(
-        Duration(milliseconds: 1000),
-      );
+      // await Future.delayed(
+      //   Duration(milliseconds: 1000),
+      // );
       // var cityResults = DUMMY_CITYS.locations;
       // schau im todo beispiel nach wie das geht
 

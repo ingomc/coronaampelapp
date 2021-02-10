@@ -1,4 +1,4 @@
-import 'package:coronaampel/models/gps_location_model.dart';
+import 'package:coronampel/models/gps_location_model.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 

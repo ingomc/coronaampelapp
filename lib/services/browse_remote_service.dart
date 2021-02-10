@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:coronaampel/models/browse_model.dart';
+import 'package:coronampel/models/browse_model.dart';
 
 class RemoteServiceBrowse {
   static var client = http.Client();
@@ -19,7 +19,7 @@ class RemoteServiceBrowse {
         // If that call was not successful, throw an error.
         // Error
         Get.snackbar("Fehler!",
-            'Ein Fehler ist aufgetreten, versuchen sie es später noch einmal, oder updaten sie ihre Corona-Ampel-App!',
+            'Ein Fehler ist aufgetreten, versuchen sie es später noch einmal, oder updaten sie ihre CoronAmpel-App!',
             snackPosition: SnackPosition.BOTTOM);
         throw Exception('Failed to load browsedata');
       }

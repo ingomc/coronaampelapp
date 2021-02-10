@@ -1,5 +1,5 @@
-import 'package:coronaampel/models/county_model.dart';
-import 'package:coronaampel/services/county_remote_service.dart';
+import 'package:coronampel/models/county_model.dart';
+import 'package:coronampel/services/county_remote_service.dart';
 import 'package:get/get.dart';
 
 class GetSingleCountyController extends GetxController {

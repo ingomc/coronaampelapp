@@ -1,12 +1,13 @@
-import 'package:coronaampel/controller/get_browse_controller.dart';
-import 'package:coronaampel/controller/get_countys_controller.dart';
-import 'package:coronaampel/controller/get_single_county_controller.dart';
-import 'package:coronaampel/controller/reload_controller.dart';
-import 'package:coronaampel/models/browse_model.dart';
-import 'package:coronaampel/screens/detail/county_detail_screen.dart';
-import 'package:coronaampel/widgets/incidence_number_container.dart';
-import 'package:coronaampel/widgets/tab_title.dart';
-import 'package:coronaampel/widgets/update_line.dart';
+import 'package:coronampel/controller/get_browse_controller.dart';
+import 'package:coronampel/controller/get_countys_controller.dart';
+import 'package:coronampel/controller/get_single_county_controller.dart';
+import 'package:coronampel/controller/reload_controller.dart';
+import 'package:coronampel/models/browse_model.dart';
+import 'package:coronampel/screens/detail/county_detail_screen.dart';
+import 'package:coronampel/widgets/incidence_number_container.dart';
+import 'package:coronampel/widgets/loading_list_overlay.dart';
+import 'package:coronampel/widgets/tab_title.dart';
+import 'package:coronampel/widgets/update_line.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fadein/flutter_fadein.dart';
@@ -69,6 +70,16 @@ class TabBrowseScreen extends StatelessWidget {
                   );
                 },
               ),
+            ),
+            GetX<GetCountysController>(
+              builder: (controller) {
+                if (controller.isLoading.value &&
+                    !controller.isRefreshIndicatorActive.value) {
+                  return LoadingListOverlay();
+                } else {
+                  return Container();
+                }
+              },
             ),
           ],
         ),

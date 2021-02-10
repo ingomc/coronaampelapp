@@ -1,5 +1,5 @@
-import 'package:coronaampel/models/global_model.dart';
-import 'package:coronaampel/services/global_remote_service.dart';
+import 'package:coronampel/models/global_model.dart';
+import 'package:coronampel/services/global_remote_service.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -20,9 +20,9 @@ class GetGlobalController extends GetxController {
     print('triggered fetch global');
     try {
       // DUMMY CONTNENT ----------------- //
-      await Future.delayed(
-        Duration(milliseconds: 1000),
-      );
+      // await Future.delayed(
+      //   Duration(milliseconds: 1000),
+      // );
 
       var globalResult = await RemoteServiceGlobal.fetchGlobal();
       data.value = globalResult;

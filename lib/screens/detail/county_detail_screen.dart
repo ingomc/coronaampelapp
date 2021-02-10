@@ -1,7 +1,7 @@
 import 'package:flutter_fadein/flutter_fadein.dart';
-import 'package:coronaampel/controller/get_countys_controller.dart';
-import 'package:coronaampel/controller/get_single_county_controller.dart';
-import 'package:coronaampel/widgets/county_card.dart';
+import 'package:coronampel/controller/get_countys_controller.dart';
+import 'package:coronampel/controller/get_single_county_controller.dart';
+import 'package:coronampel/widgets/county_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -1,5 +1,5 @@
-name: coronaampel
-description: Aktuelle Fälle, Zahlen und Inzidenz für Landkreise in Deutschland
+name: coronampel
+description: Aktuelle Fälle, Zahlen Inzidenz und Impfzahlen
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -44,6 +44,7 @@ dev_dependencies:
   integration_test:
     sdk: flutter
   flutter_native_splash: ^0.2.9
+  flutter_rename_app:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -92,3 +93,10 @@ flutter_icons:
   android: true
   image_path_ios: "assets/launcher/icon.png"
   image_path_android: "assets/launcher/icon.png"
+
+flutter_rename_app:
+  application_name: CoronAmpel
+  dart_package_name: coronampel
+  application_id: com.ingomc.ampel
+  bundle_id: com.ingomc.ampel
+  android_package_name: com.ingomc.ampel

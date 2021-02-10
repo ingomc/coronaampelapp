@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:coronaampel/models/states_model.dart';
+import 'package:coronampel/models/states_model.dart';
 
 class RemoteServiceStates {
   static var client = http.Client();
@@ -19,7 +19,7 @@ class RemoteServiceStates {
         // If that call was not successful, throw an error.
         // Error
         Get.snackbar("Fehler!",
-            'Ein Fehler ist aufgetreten, versuchen sie es später noch einmal, oder updaten sie ihre Corona-Ampel-App!',
+            'Ein Fehler ist aufgetreten, versuchen sie es später noch einmal, oder updaten sie ihre -App!',
             snackPosition: SnackPosition.BOTTOM);
         throw Exception('Failed to load all states');
       }

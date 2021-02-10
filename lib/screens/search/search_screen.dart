@@ -1,10 +1,10 @@
-import 'package:coronaampel/controller/get_location_controller.dart';
-import 'package:coronaampel/controller/search_controller.dart';
+import 'package:coronampel/controller/get_location_controller.dart';
+import 'package:coronampel/controller/search_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:coronaampel/controller/get_countys_controller.dart';
-import 'package:coronaampel/controller/pinned_countys_controller.dart';
+import 'package:coronampel/controller/get_countys_controller.dart';
+import 'package:coronampel/controller/pinned_countys_controller.dart';
 
 class SearchScreen extends StatelessWidget {
   static const path = '/search';

@@ -1,5 +1,5 @@
-import 'package:coronaampel/models/vaccine_model.dart';
-import 'package:coronaampel/services/vaccine_remote_service.dart';
+import 'package:coronampel/models/vaccine_model.dart';
+import 'package:coronampel/services/vaccine_remote_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -26,9 +26,9 @@ class GetVaccineController extends GetxController {
     print('triggered fetch vaccine');
     try {
       // DUMMY CONTNENT ----------------- //
-      await Future.delayed(
-        Duration(milliseconds: 1000),
-      );
+      // await Future.delayed(
+      //   Duration(milliseconds: 1000),
+      // );
       // var cityResults = DUMMY_CITYS.locations;
       // schau im todo beispiel nach wie das geht
 

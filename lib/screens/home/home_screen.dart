@@ -1,15 +1,15 @@
-import 'package:coronaampel/controller/get_countys_controller.dart';
-import 'package:coronaampel/controller/get_states_controller.dart';
-import 'package:coronaampel/controller/reload_controller.dart';
-import 'package:coronaampel/screens/tabs/tab_browse_screen.dart';
-import 'package:coronaampel/screens/tabs/tab_vaccine_screen.dart';
-import 'package:coronaampel/widgets/keep_alive_page.dart';
+import 'package:coronampel/controller/get_countys_controller.dart';
+import 'package:coronampel/controller/get_states_controller.dart';
+import 'package:coronampel/controller/reload_controller.dart';
+import 'package:coronampel/screens/tabs/tab_browse_screen.dart';
+import 'package:coronampel/screens/tabs/tab_vaccine_screen.dart';
+import 'package:coronampel/widgets/keep_alive_page.dart';
 import 'package:flutter/material.dart';
-import 'package:coronaampel/controller/ui/ui_tabs_controller.dart';
-import 'package:coronaampel/screens/edit/county_edit_screen.dart';
-import 'package:coronaampel/screens/tabs/tab_country_screen.dart';
-import 'package:coronaampel/screens/tabs/tab_county_screen.dart';
-import 'package:coronaampel/screens/tabs/tab_state_screen.dart';
+import 'package:coronampel/controller/ui/ui_tabs_controller.dart';
+import 'package:coronampel/screens/edit/county_edit_screen.dart';
+import 'package:coronampel/screens/tabs/tab_country_screen.dart';
+import 'package:coronampel/screens/tabs/tab_county_screen.dart';
+import 'package:coronampel/screens/tabs/tab_state_screen.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -144,7 +144,7 @@ class HomeScreen extends StatelessWidget {
             },
           ),
         ],
-        title: Text('🚦 Corona-Ampel 🚦'),
+        title: Text('🚦 CoronAMPEL 🚦'),
       ),
       body: PageView(
         children: _pages,

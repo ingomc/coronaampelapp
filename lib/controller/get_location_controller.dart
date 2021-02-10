@@ -1,5 +1,5 @@
-import 'package:coronaampel/controller/search_controller.dart';
-import 'package:coronaampel/services/location_remote_service.dart';
+import 'package:coronampel/controller/search_controller.dart';
+import 'package:coronampel/services/location_remote_service.dart';
 import 'package:get/get.dart';
 import 'package:geolocator/geolocator.dart';
 import 'dart:io';
@@ -31,8 +31,8 @@ class GetLocationController extends GetxController {
       Get.snackbar(
         'Ortungsdienste sind deaktiviert',
         (Platform.isIOS)
-            ? 'Zum aktivieren: Einstellungen > Datenschutz > Ortungsdienste > Corona-Ampel'
-            : 'Zum aktivieren: Einstellungen > Anwendungen > Corona-Ampel > Berechtigungen',
+            ? 'Zum aktivieren: Einstellungen > Datenschutz > Ortungsdienste > CoronAmpel'
+            : 'Zum aktivieren: Einstellungen > Anwendungen > CoronAmpel > Berechtigungen',
         snackPosition: SnackPosition.BOTTOM,
         duration: Duration(milliseconds: 5000),
         isDismissible: true,

@@ -1,14 +1,14 @@
-import 'package:coronaampel/controller/reload_controller.dart';
-import 'package:coronaampel/widgets/loading_list_overlay.dart';
-import 'package:coronaampel/widgets/update_line.dart';
+import 'package:coronampel/controller/reload_controller.dart';
+import 'package:coronampel/widgets/loading_list_overlay.dart';
+import 'package:coronampel/widgets/update_line.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fadein/flutter_fadein.dart';
 import 'package:get/get.dart';
-import 'package:coronaampel/controller/pinned_countys_controller.dart';
-import 'package:coronaampel/controller/get_countys_controller.dart';
-import 'package:coronaampel/screens/search/search_screen.dart';
-import 'package:coronaampel/widgets/county_card.dart';
+import 'package:coronampel/controller/pinned_countys_controller.dart';
+import 'package:coronampel/controller/get_countys_controller.dart';
+import 'package:coronampel/screens/search/search_screen.dart';
+import 'package:coronampel/widgets/county_card.dart';
 
 class TabCountyScreen extends StatelessWidget {
   final GetCountysController getCountysController =

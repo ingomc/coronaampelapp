@@ -1,12 +1,12 @@
-import 'package:coronaampel/controller/reload_controller.dart';
-import 'package:coronaampel/widgets/incidence_number_container.dart';
-import 'package:coronaampel/widgets/loading_list_overlay.dart';
-import 'package:coronaampel/widgets/update_line.dart';
+import 'package:coronampel/controller/reload_controller.dart';
+import 'package:coronampel/widgets/incidence_number_container.dart';
+import 'package:coronampel/widgets/loading_list_overlay.dart';
+import 'package:coronampel/widgets/update_line.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
-import 'package:coronaampel/controller/get_states_controller.dart';
+import 'package:coronampel/controller/get_states_controller.dart';
 
 class TabStateScreen extends StatelessWidget {
   final GetStatesController getStatesController =

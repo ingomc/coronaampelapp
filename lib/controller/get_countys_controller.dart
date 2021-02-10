@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:coronaampel/data/dummy_data.dart';
-import 'package:coronaampel/services/countys_remote_service.dart';
+// import 'package:coronampel/data/dummy_data.dart';
+import 'package:coronampel/services/countys_remote_service.dart';
 import 'package:intl/intl.dart';
 
 class GetCountysController extends GetxController {
@@ -24,9 +24,9 @@ class GetCountysController extends GetxController {
     print('triggered fetch all countys');
     try {
       // DUMMY CONTNENT ----------------- //
-      await Future.delayed(
-        Duration(milliseconds: 1000),
-      );
+      // await Future.delayed(
+      //   Duration(milliseconds: 1000),
+      // );
       // var cityResults = DUMMY_CITYS.locations;
       // schau im todo beispiel nach wie das geht
 

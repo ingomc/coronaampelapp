@@ -1,8 +1,8 @@
-import 'package:coronaampel/controller/get_vaccine_controller.dart';
-import 'package:coronaampel/controller/reload_controller.dart';
-import 'package:coronaampel/widgets/loading_list_overlay.dart';
-import 'package:coronaampel/widgets/update_line.dart';
-import 'package:coronaampel/widgets/vaccine_state_card.dart';
+import 'package:coronampel/controller/get_vaccine_controller.dart';
+import 'package:coronampel/controller/reload_controller.dart';
+import 'package:coronampel/widgets/loading_list_overlay.dart';
+import 'package:coronampel/widgets/update_line.dart';
+import 'package:coronampel/widgets/vaccine_state_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

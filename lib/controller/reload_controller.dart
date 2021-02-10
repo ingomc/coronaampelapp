@@ -1,3 +1,4 @@
+import 'package:coronampel/controller/get_browse_controller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
@@ -15,13 +16,16 @@ class ReloadController extends GetxController {
       Get.put(GetGlobalController());
   final GetVaccineController getVaccineController =
       Get.put(GetVaccineController());
+  final GetBrowseController getBrowseController =
+      Get.put(GetBrowseController());
 
   Future<void> reload() async {
     await Future.wait([
       getStatesController.fetchStates(),
       getCountysController.fetchCountys(),
       getGlobalController.fetchGlobalData(),
-      getVaccineController.fetchVaccine()
+      getVaccineController.fetchVaccine(),
+      getBrowseController.fetchBrowse(),
     ]);
   }
 }

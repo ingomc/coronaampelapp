@@ -15,6 +15,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.40.6"
+  ansicolor:
+    dependency: transitive
+    description:
+      name: ansicolor
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.1"
   archive:
     dependency: transitive
     description:
@@ -151,6 +158,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.9"
+  flutter_rename_app:
+    dependency: "direct dev"
+    description:
+      name: flutter_rename_app
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -397,6 +411,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0-nullsafety.4"
+  process_run:
+    dependency: transitive
+    description:
+      name: process_run
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.10.12+3"
   pub_semver:
     dependency: transitive
     description:

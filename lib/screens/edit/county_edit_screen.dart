@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:implicitly_animated_reorderable_list/implicitly_animated_reorderable_list.dart';
 import 'package:implicitly_animated_reorderable_list/transitions.dart';
-import 'package:coronaampel/controller/get_countys_controller.dart';
-import 'package:coronaampel/controller/pinned_countys_controller.dart';
+import 'package:coronampel/controller/get_countys_controller.dart';
+import 'package:coronampel/controller/pinned_countys_controller.dart';
 
 class CountyEditScreen extends StatelessWidget {
   final PinnedCountysController pinnedCountysController =
