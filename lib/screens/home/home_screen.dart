@@ -1,6 +1,7 @@
 import 'package:coronampel/controller/get_countys_controller.dart';
 import 'package:coronampel/controller/get_states_controller.dart';
 import 'package:coronampel/controller/reload_controller.dart';
+import 'package:coronampel/screens/settings/settings_screen.dart';
 import 'package:coronampel/screens/tabs/tab_browse_screen.dart';
 import 'package:coronampel/screens/tabs/tab_vaccine_screen.dart';
 import 'package:coronampel/widgets/keep_alive_page.dart';
@@ -30,7 +31,7 @@ class HomeScreen extends StatelessWidget {
         Get.to(CountyEditScreen());
         break;
       case 'Einstellungen':
-        // Get.to(SettingsScreen());
+        Get.to(SettingsScreen());
         break;
     }
     // print(value);
