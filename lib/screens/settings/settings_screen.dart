@@ -1,7 +1,25 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:share/share.dart';
+import 'package:launch_review/launch_review.dart';
 
 class SettingsScreen extends StatelessWidget {
+  final _webUrl = 'https://corona-ampel.app';
+  Future<void> _launchInBrowser(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: false,
+        forceWebView: false,
+      );
+    } else {
+      print(await canLaunch(url));
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,6 +42,9 @@ class SettingsScreen extends StatelessWidget {
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
+                    ),
+                    SizedBox(
+                      height: 8,
                     ),
                     Text('Inzidenz, Intensivstation, Impfungen'),
                   ],
@@ -50,7 +71,7 @@ class SettingsScreen extends StatelessWidget {
                 Expanded(
                   child: Card(
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () => LaunchReview.launch(),
                       child: Padding(
                         padding: const EdgeInsets.all(16),
                         child: Column(
@@ -69,7 +90,12 @@ class SettingsScreen extends StatelessWidget {
                 Expanded(
                   child: Card(
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Share.share(
+                          'Kennst du schon die Corona-Ampel App? Dort kann man die aktuellen Inzidenzen, Impfstatus, Intensivstationbelegung und vieles mehr anschauen. http://corona-ampel.app \n \n LG',
+                          subject: "Empfehlung: Coole Corona-Übersicht",
+                        );
+                      },
                       child: Padding(
                         padding: const EdgeInsets.all(16),
                         child: Column(
@@ -144,33 +170,7 @@ class SettingsScreen extends StatelessWidget {
             child: Card(
               child: InkWell(
                 onTap: () {
-                  showLicensePage(
-                    context: context,
-                    applicationIcon: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 20,
-                              spreadRadius: -5,
-                            )
-                          ],
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          clipBehavior: Clip.hardEdge,
-                          child: Image.asset(
-                            'assets/launcher/playstore-icon.png',
-                            height: 100,
-                            width: 100,
-                          ),
-                        ),
-                      ),
-                    ),
-                    applicationName: "CoronAMPEL",
-                    applicationVersion: "1.0.0",
-                  );
+                  _launchInBrowser(_webUrl);
                 },
                 child: ListTile(
                   leading: Icon(MdiIcons.shieldLock),

@@ -28,10 +28,13 @@ dependencies:
     sdk: flutter
   implicitly_animated_reorderable_list: ^0.3.2
   flutter_fadein: ^1.1.1
-  intl:
+  intl: ^0.16.1
   material_design_icons_flutter: 4.0.5855
-  geolocator:
+  geolocator: ^6.2.0
   percent_indicator: ^2.1.9
+  url_launcher: ^5.7.10
+  share: ^0.6.5+4
+  launch_review: ^2.0.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
