@@ -96,7 +96,7 @@ flutter_icons:
   image_path_android: "assets/launcher/icon.png"
 
 flutter_rename_app:
-  application_name: CoronAmpel
+  application_name: CoronAMPEL
   dart_package_name: coronampel
   application_id: com.ingomc.ampel
   bundle_id: com.ingomc.ampel

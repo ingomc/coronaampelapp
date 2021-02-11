@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
    <application
-        android:label="CoronAmpel"
+        android:label="Coron-AMPEL"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
