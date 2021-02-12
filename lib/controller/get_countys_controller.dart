@@ -25,7 +25,7 @@ class GetCountysController extends GetxController {
     try {
       // DUMMY CONTNENT ----------------- //
       // await Future.delayed(
-      //   Duration(milliseconds: 1000),
+      //   Duration(milliseconds: 2000),
       // );
       // var cityResults = DUMMY_CITYS.locations;
       // schau im todo beispiel nach wie das geht

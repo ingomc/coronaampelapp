@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:coronampel/controller/get_single_county_controller.dart';
 import 'package:coronampel/screens/detail/county_detail_screen.dart';
+import 'package:coronampel/screens/edit/county_edit_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -62,10 +63,6 @@ class CountyCard extends StatelessWidget {
           isLinked: isLinked,
         ),
         transition: Transition.cupertino);
-    // Get.to(
-    // CityDetailScreen(),
-    //   arguments: rs,
-    // );
   }
 
   @override
@@ -79,6 +76,9 @@ class CountyCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(4),
         child: InkWell(
           onTap: () => goToCity(),
+          onLongPress: () => {
+            if (isLinked) Get.to(CountyEditScreen()),
+          },
           borderRadius: BorderRadius.circular(4),
           child: Row(
             children: <Widget>[

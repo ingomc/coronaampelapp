@@ -18,8 +18,6 @@ class TabBrowseScreen extends StatelessWidget {
       Get.put(GetBrowseController());
   final GetCountysController getCountysController =
       Get.put(GetCountysController());
-  final GetSingleCountyController getSingleCountyController =
-      Get.put(GetSingleCountyController());
   final ReloadController reloadController = Get.put(ReloadController());
   final String hero = 'browse';
 
@@ -48,30 +46,47 @@ class TabBrowseScreen extends StatelessWidget {
                         padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
                         child: Obx(
                           () => UpdateLine(
-                            left: ' ${getCountysController.dateUpdated} Uhr',
-                            right:
-                                'Stand: ${getCountysController.lastUpdate == null ? "" : getCountysController.lastUpdate}',
+                            left: ' ${getBrowseController.dateUpdated} Uhr',
+                            right: getCountysController.lastUpdate.value == ''
+                                ? ''
+                                : 'Stand: ${getCountysController.lastUpdate}',
                           ),
                         ),
                       ),
-                      BrowseCard(
-                          title: 'Niedrigste Inzidenz',
-                          data: getBrowseController.lowest5,
-                          hero: hero),
-                      BrowseCard(
-                          title: 'Höchste Inzidenz',
-                          data: getBrowseController.highest5,
-                          hero: hero),
-                      BrowseCard(
-                          title: 'Meisten Einwohner*innen',
-                          data: getBrowseController.highest5Ewz,
-                          hero: hero),
+                      GetX<GetBrowseController>(
+                        builder: (controller) {
+                          if (controller.isRefreshIndicatorActive.value ==
+                                  false &&
+                              controller.isLoading.value == true) {
+                            return Container();
+                          } else {
+                            return FadeIn(
+                              child: Column(
+                                children: [
+                                  BrowseCard(
+                                      title: 'Niedrigste Inzidenz',
+                                      data: controller.lowest5,
+                                      hero: hero),
+                                  BrowseCard(
+                                      title: 'Höchste Inzidenz',
+                                      data: controller.highest5,
+                                      hero: hero),
+                                  BrowseCard(
+                                      title: 'Meisten Einwohner*innen',
+                                      data: controller.highest5Ewz,
+                                      hero: hero),
+                                ],
+                              ),
+                            );
+                          }
+                        },
+                      ),
                     ],
                   );
                 },
               ),
             ),
-            GetX<GetCountysController>(
+            GetX<GetBrowseController>(
               builder: (controller) {
                 if (controller.isLoading.value &&
                     !controller.isRefreshIndicatorActive.value) {

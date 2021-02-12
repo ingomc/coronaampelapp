@@ -1,4 +1,3 @@
-import 'package:coronampel/models/browse_model.dart';
 import 'package:coronampel/services/browse_remote_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,6 +9,7 @@ class GetBrowseController extends GetxController {
   ScrollController scrollController = new ScrollController();
   var dateUpdated =
       DateFormat('dd.MM., HH:mm').format(DateTime.now()).toString().obs;
+  var lastUpdate = ''.obs;
   // var data = Map<Browse>.obs;
   var highest5 = [].obs;
   var lowest5 = [].obs;
@@ -24,11 +24,11 @@ class GetBrowseController extends GetxController {
 
   Future<void> fetchBrowse() async {
     isLoading(true);
-    print('triggered fetch vaccine');
+    print('triggered fetch browse');
     try {
       // DUMMY CONTNENT ----------------- //
       // await Future.delayed(
-      //   Duration(milliseconds: 1000),
+      //   Duration(milliseconds: 2000),
       // );
       // var cityResults = DUMMY_CITYS.locations;
       // schau im todo beispiel nach wie das geht

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fadein/flutter_fadein.dart';
 
 class UpdateLine extends StatelessWidget {
   const UpdateLine({
@@ -12,32 +13,37 @@ class UpdateLine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Row(
-            children: [
-              Icon(
-                Icons.sync,
-                color: Theme.of(context).hintColor,
-                size: 16,
-              ),
-              Text(
-                left,
-                style: TextStyle(
+    if (right == '') {
+      return Container();
+    }
+    return FadeIn(
+      child: Row(
+        children: [
+          Expanded(
+            child: Row(
+              children: [
+                Icon(
+                  Icons.sync,
                   color: Theme.of(context).hintColor,
+                  size: 16,
                 ),
-              ),
-            ],
+                Text(
+                  left,
+                  style: TextStyle(
+                    color: Theme.of(context).hintColor,
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-        Text(
-          '$right Uhr',
-          style: TextStyle(
-            color: Theme.of(context).hintColor,
+          Text(
+            '$right Uhr',
+            style: TextStyle(
+              color: Theme.of(context).hintColor,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
