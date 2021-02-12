@@ -1,12 +1,14 @@
 import 'dart:async';
+import 'package:coronampel/screens/help/help_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share/share.dart';
 import 'package:launch_review/launch_review.dart';
 
 class SettingsScreen extends StatelessWidget {
-  final _webUrl = 'https://corona-ampel.app';
+  final _webUrl = 'https://corona-ampel.app/datenschutz';
   Future<void> _launchInBrowser(String url) async {
     if (await canLaunch(url)) {
       await launch(
@@ -24,7 +26,7 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Einstellungen'),
+        title: Text('Info & Hilfe'),
         centerTitle: true,
       ),
       body: ListView(
@@ -48,6 +50,22 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     Text('Inzidenz, Intensivstation, Impfungen'),
                   ],
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+            child: Card(
+              child: InkWell(
+                onTap: () {
+                  _launchInBrowser(_webUrl);
+                },
+                child: ListTile(
+                  leading: Icon(MdiIcons.heart),
+                  title: Text(
+                      'Spende und helfe mir diese App weiter zu verbessern'),
+                  trailing: Icon(MdiIcons.launch),
                 ),
               ),
             ),
@@ -111,6 +129,34 @@ class SettingsScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+                Expanded(
+                  child: Card(
+                    child: InkWell(
+                      onTap: () async {
+                        await Get.defaultDialog(
+                            title: 'Kontakt',
+                            textConfirm: 'OK',
+                            onConfirm: () {
+                              Get.back();
+                            },
+                            middleText:
+                                'Wenn du mit mir Kontakt aufnehmen willst, melde dich unter: \n \n info@corona-ampel.app');
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Icon(Icons.email),
+                            ),
+                            Text('Kontakt'),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -120,12 +166,34 @@ class SettingsScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(
+              'Hilfe',
+              style: Theme.of(context).textTheme.headline6,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+            child: Card(
+              child: InkWell(
+                onTap: () {
+                  Get.to(HelpScreen());
+                },
+                child: ListTile(
+                  leading: Icon(MdiIcons.helpCircle),
+                  title: Text('Hilfe & Hinweise'),
+                  trailing: Icon(Icons.arrow_forward_ios_outlined),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
               'Rechtliches',
               style: Theme.of(context).textTheme.headline6,
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
             child: Card(
               child: InkWell(
                 onTap: () {
@@ -166,7 +234,7 @@ class SettingsScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
             child: Card(
               child: InkWell(
                 onTap: () {
@@ -178,6 +246,22 @@ class SettingsScreen extends StatelessWidget {
                   trailing: Icon(MdiIcons.launch),
                 ),
               ),
+            ),
+          ),
+          SizedBox(
+            height: 32,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text(
+              'Statement',
+              style: Theme.of(context).textTheme.headline6,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              'Diese App dient der reinen übersichtlichen Darstellung der wichtigsten Daten im Zusammenhang mit Covid-19. Da die Regierung ihre Entscheidungen aufgrund des Inzidenzwertes festlegt, ist der Hauptwert um den sich diese App dreht die 7 Tage Inzidenz pro 100.000 Einwohner*innen. Ob dieser Wert wirklich als Basis für Anti-Corona-Maßnahmen geeignet ist, darf sich jeder selbst überlegen. \n \nBleibt bitte Gesund! \nAndre',
             ),
           ),
         ],

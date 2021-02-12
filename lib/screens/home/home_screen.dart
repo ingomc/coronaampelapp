@@ -30,7 +30,7 @@ class HomeScreen extends StatelessWidget {
       case 'Anpassen':
         Get.to(CountyEditScreen());
         break;
-      case 'Einstellungen':
+      case 'Info':
         Get.to(SettingsScreen());
         break;
     }
@@ -127,17 +127,17 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 PopupMenuItem(
-                  value: 'Einstellungen',
+                  value: 'Info',
                   child: Row(
                     children: [
                       Icon(
-                        Icons.tune_outlined,
+                        Icons.info,
                         color: Theme.of(context).textTheme.bodyText1.color,
                       ),
                       SizedBox(
                         width: 10,
                       ),
-                      Text('Einstellungen'),
+                      Text('Info & Hilfe'),
                     ],
                   ),
                 ),
