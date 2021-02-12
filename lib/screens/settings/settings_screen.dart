@@ -59,7 +59,7 @@ class SettingsScreen extends StatelessWidget {
             child: Card(
               child: InkWell(
                 onTap: () {
-                  _launchInBrowser(_webUrl);
+                  _launchInBrowser('https://paypal.me/ingomc?locale.x=de_DE');
                 },
                 child: ListTile(
                   leading: Icon(MdiIcons.heart),
