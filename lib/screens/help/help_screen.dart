@@ -74,7 +74,7 @@ class HelpScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(
-              'Hinweis: Bitte gehen Sie davon aus, wenn Daten komisch aussehen, dass sie auch falsch sein könnten. Weder ich noch meine Quellen garantieren 100% korrekte Zahlen! Das RKI und die andere Quellen sind bei weitem nicht fehlerfrei. Beinahe täglich kommt es zu Probleme bei Daten aus einzelnen Landkreisen. Ob falsche oder fehlende Werte dann zu einem späteren Zeitpunkt korrigiert werden ist leider nicht bekannt.',
+              'Hinweis: Bitte gehen Sie davon aus, wenn Daten komisch aussehen, dass sie auch falsch sein könnten. Weder ich noch meine Quellen garantieren 100% korrekte Zahlen! Das RKI und die anderen Quellen sind bei weitem nicht fehlerfrei. Beinahe täglich kommt es zu Probleme bei Daten aus einzelnen Landkreisen. Ob falsche oder fehlende Werte dann zu einem späteren Zeitpunkt korrigiert werden ist leider nicht bekannt.',
             ),
           ),
         ],

@@ -1,5 +1,7 @@
+import 'package:coronampel/controller/get_browse_controller.dart';
 import 'package:coronampel/controller/get_countys_controller.dart';
 import 'package:coronampel/controller/get_states_controller.dart';
+import 'package:coronampel/controller/get_vaccine_controller.dart';
 import 'package:coronampel/controller/reload_controller.dart';
 import 'package:coronampel/screens/settings/settings_screen.dart';
 import 'package:coronampel/screens/tabs/tab_browse_screen.dart';
@@ -16,6 +18,10 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 
 class HomeScreen extends StatelessWidget {
   final UiTabsController uiTabsController = Get.put(UiTabsController());
+  final GetVaccineController getVaccineController =
+      Get.put(GetVaccineController());
+  final GetBrowseController getBrowseController =
+      Get.put(GetBrowseController());
   final GetStatesController getStatesController =
       Get.put(GetStatesController());
   final GetCountysController getCountysController =
@@ -59,6 +65,14 @@ class HomeScreen extends StatelessWidget {
       // if tab is already select, then scrollpage to top
       if (uiTabsController.selectedIndex.value == index) {
         switch (index) {
+          // Stoebern
+          case 0:
+            getBrowseController.scrollController.animateTo(
+              0.0,
+              curve: Curves.easeOutQuint,
+              duration: const Duration(milliseconds: 1000),
+            );
+            break;
           // Landkreise
           case 1:
             getCountysController.scrollController.animateTo(
@@ -70,6 +84,14 @@ class HomeScreen extends StatelessWidget {
           // Bundlaender
           case 2:
             getStatesController.scrollController.animateTo(
+              0.0,
+              curve: Curves.easeOutQuint,
+              duration: const Duration(milliseconds: 1000),
+            );
+            break;
+          // Bundlaender
+          case 4:
+            getVaccineController.scrollController.animateTo(
               0.0,
               curve: Curves.easeOutQuint,
               duration: const Duration(milliseconds: 1000),

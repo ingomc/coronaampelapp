@@ -30,6 +30,7 @@ class TabVaccineScreen extends StatelessWidget {
         children: [
           CupertinoScrollbar(
             child: ListView.builder(
+              controller: getVaccineController.scrollController,
               itemCount: 1,
               padding: EdgeInsets.fromLTRB(8, 4, 8, 8),
               itemBuilder: (context, i) {
