@@ -75,7 +75,7 @@ class CountyDetailScreen extends StatelessWidget {
                               child: Row(
                                 children: <Widget>[
                                   ThirdCard('Neue Fälle von Gestern',
-                                      '${newCases != null && newCases > 0 ? newCases : 0}'),
+                                      '${newCases != null && newCases > 0 ? '+ $newCases' : 0}'),
                                   ThirdCard('Fälle der letzten 7 Tage',
                                       '+ ${controller.county.value.cases7Lk != null ? controller.county.value.cases7Lk : 0}'),
                                   ThirdCard('Fälle insgesamt',
@@ -208,7 +208,8 @@ class ThirdCard extends StatelessWidget {
                           ? cardNumber
                           : ' ',
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     ),
                   ),
                 ),
