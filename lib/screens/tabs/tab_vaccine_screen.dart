@@ -189,6 +189,41 @@ class TabVaccineScreen extends StatelessWidget {
                         }
                       },
                     ),
+                    InkWell(
+                      onTap: () {
+                        Get.defaultDialog(
+                          title: 'Hinweis',
+                          content: Text(
+                              'Die Daten der Länder und für Deutschland sind die 1. und 2. Impfung(en) zusammengezählt. Wie gut die Impfdaten tatsächlich sind kann ich leider nicht einschätzen, außerdem veröffentlicht das RKI diese Daten nicht wirklich Zeitnah, immer etwa 2 - 3 Tage verzögert.'),
+                          textConfirm: 'Ok',
+                          onConfirm: () {
+                            Get.back();
+                          },
+                        );
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Flexible(
+                              flex: 1,
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 16.0),
+                                child: Icon(
+                                  MdiIcons.informationOutline,
+                                  size: 36,
+                                ),
+                              ),
+                            ),
+                            Flexible(
+                              flex: 3,
+                              child: Text('Informationen zu den Impfdaten'),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 );
               },
