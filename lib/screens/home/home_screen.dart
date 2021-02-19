@@ -15,6 +15,7 @@ import 'package:coronampel/screens/tabs/tab_county_screen.dart';
 import 'package:coronampel/screens/tabs/tab_state_screen.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:connectivity_widget/connectivity_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   final UiTabsController uiTabsController = Get.put(UiTabsController());
@@ -109,6 +110,7 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        leading: Text('asd'),
         centerTitle: true,
         actions: [
           PopupMenuButton(

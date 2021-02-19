@@ -8,8 +8,12 @@ PODS:
     - Flutter
   - path_provider (0.0.1):
     - Flutter
+  - Reachability (3.2)
   - share (0.0.1):
     - Flutter
+  - simple_connectivity (0.0.1):
+    - Flutter
+    - Reachability
   - url_launcher (0.0.1):
     - Flutter
 
@@ -20,7 +24,12 @@ DEPENDENCIES:
   - launch_review (from `.symlinks/plugins/launch_review/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - share (from `.symlinks/plugins/share/ios`)
+  - simple_connectivity (from `.symlinks/plugins/simple_connectivity/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
+
+SPEC REPOS:
+  trunk:
+    - Reachability
 
 EXTERNAL SOURCES:
   Flutter:
@@ -35,6 +44,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/path_provider/ios"
   share:
     :path: ".symlinks/plugins/share/ios"
+  simple_connectivity:
+    :path: ".symlinks/plugins/simple_connectivity/ios"
   url_launcher:
     :path: ".symlinks/plugins/url_launcher/ios"
 
@@ -44,9 +55,11 @@ SPEC CHECKSUMS:
   integration_test: 6eb66a19f7104200dcfdd62bc0077e1b09686e4f
   launch_review: 75d5a956ba8eaa493e9c9d4bf4c05e505e8d5ed0
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   share: 0b2c3e82132f5888bccca3351c504d0003b3b410
+  simple_connectivity: 84a7221f5ca3d54ebf18faa4d74f0bb6cc757cbe
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.10.1
