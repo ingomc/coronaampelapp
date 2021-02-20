@@ -48,9 +48,11 @@ class TabBrowseScreen extends StatelessWidget {
                         child: Obx(
                           () => UpdateLine(
                             left: ' ${getBrowseController.dateUpdated} Uhr',
-                            right: getCountysController.lastUpdate.value == ''
+                            right: getCountysController.lastUpdate.value ==
+                                        null ||
+                                    getCountysController.lastUpdate.value == ''
                                 ? ''
-                                : 'Stand: ${getCountysController.lastUpdate}',
+                                : 'Stand: ${getCountysController.lastUpdate.value}',
                           ),
                         ),
                       ),

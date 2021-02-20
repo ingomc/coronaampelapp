@@ -1,5 +1,6 @@
 import 'package:coronampel/controller/get_vaccine_controller.dart';
 import 'package:coronampel/controller/reload_controller.dart';
+import 'package:coronampel/widgets/empty_page.dart';
 import 'package:coronampel/widgets/loading_list_overlay.dart';
 import 'package:coronampel/widgets/update_line.dart';
 import 'package:coronampel/widgets/vaccine_state_card.dart';
@@ -41,13 +42,20 @@ class TabVaccineScreen extends StatelessWidget {
                       child: Obx(
                         () => UpdateLine(
                           left: ' ${getVaccineController.dateUpdated} Uhr',
-                          right:
-                              'Stand: ${getVaccineController.lastUpdate == null ? "" : getVaccineController.lastUpdate}',
+                          right: getVaccineController.lastUpdate.value ==
+                                      null ||
+                                  getVaccineController.lastUpdate.value == ''
+                              ? ''
+                              : 'Stand: ${getVaccineController.lastUpdate.value}',
                         ),
                       ),
                     ),
-                    Obx(
-                      () => VaccineStateCard(
+                    GetX<GetVaccineController>(builder: (controller) {
+                      if (getVaccineController.germany.value.cumsum7DaysAgo ==
+                          null) {
+                        return EmptyPage();
+                      }
+                      return VaccineStateCard(
                         state: 'Deutschland',
                         flag: 'assets/countries/de.png',
                         progress: double.parse((getVaccineController
@@ -65,12 +73,15 @@ class TabVaccineScreen extends StatelessWidget {
                             (getVaccineController.germany.value.total * 2 * 0.7)
                                 .toInt(),
                         label: true,
-                      ),
-                    ),
+                      );
+                    }),
 
                     //Timer
                     GetX<GetVaccineController>(
                       builder: (controller) {
+                        if (controller.germany.value.total == null) {
+                          return Container();
+                        }
                         final left = controller.germany.value.total * 0.7 * 2 -
                             controller.germany.value.sumVaccineDoses;
                         final lastWeek =

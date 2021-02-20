@@ -1,5 +1,6 @@
 import 'package:coronampel/controller/get_global_controller.dart';
 import 'package:coronampel/controller/reload_controller.dart';
+import 'package:coronampel/widgets/empty_page.dart';
 import 'package:coronampel/widgets/incidence_number_container.dart';
 import 'package:coronampel/widgets/loading_list_overlay.dart';
 import 'package:coronampel/widgets/update_line.dart';
@@ -39,13 +40,18 @@ class TabCountryScreen extends StatelessWidget {
                         child: Obx(
                           () => UpdateLine(
                             left: ' ${getGlobalController.dateUpdated} Uhr',
-                            right:
-                                'Stand: ${getGlobalController.data.value.germany.lastUpdate == null ? "" : getGlobalController.data.value.germany.lastUpdate}',
+                            right: getGlobalController.data.value.germany ==
+                                    null
+                                ? ''
+                                : 'Stand: ${getGlobalController.data.value.germany.lastUpdate}',
                           ),
                         ),
                       ),
                       GetX<GetGlobalController>(
                         builder: (controller) {
+                          if (controller.data.value.germany == null) {
+                            return EmptyPage();
+                          }
                           return Column(
                             children: [
                               Padding(

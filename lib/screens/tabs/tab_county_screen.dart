@@ -49,8 +49,14 @@ class TabCountyScreen extends StatelessWidget {
                                   child: UpdateLine(
                                     left:
                                         ' ${getCountysController.dateUpdated} Uhr',
-                                    right:
-                                        'Stand: ${getCountysController.lastUpdate == null ? "" : getCountysController.lastUpdate}',
+                                    right: getCountysController
+                                                    .lastUpdate.value ==
+                                                null ||
+                                            getCountysController
+                                                    .lastUpdate.value ==
+                                                ''
+                                        ? ''
+                                        : 'Stand: ${getCountysController.lastUpdate}',
                                   ),
                                 )
                               : Container(),

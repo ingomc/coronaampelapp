@@ -1,4 +1,5 @@
 import 'package:coronampel/controller/reload_controller.dart';
+import 'package:coronampel/widgets/empty_page.dart';
 import 'package:coronampel/widgets/incidence_number_container.dart';
 import 'package:coronampel/widgets/loading_list_overlay.dart';
 import 'package:coronampel/widgets/update_line.dart';
@@ -40,8 +41,11 @@ class TabStateScreen extends StatelessWidget {
                         child: Obx(
                           () => UpdateLine(
                             left: ' ${getStatesController.dateUpdated} Uhr',
-                            right:
-                                'Stand: ${getStatesController.lastUpdate == null ? "" : getStatesController.lastUpdate}',
+                            right: getStatesController.lastUpdate.value ==
+                                        null ||
+                                    getStatesController.lastUpdate.value == ''
+                                ? ''
+                                : 'Stand: ${getStatesController.lastUpdate.value}',
                           ),
                         ),
                       ),
@@ -240,7 +244,7 @@ class TabStateScreen extends StatelessWidget {
                               ],
                             );
                           } else {
-                            return Container();
+                            return EmptyPage();
                           }
                         },
                       ),

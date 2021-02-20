@@ -30,6 +30,8 @@ class HomeScreen extends StatelessWidget {
   final GetCountysController getCountysController =
       Get.put(GetCountysController());
   final ReloadController reloadController = Get.put(ReloadController());
+  final GetConnectivityController getConnectivityController =
+      Get.put(GetConnectivityController());
 
   void _select(value) async {
     switch (value) {
@@ -112,7 +114,6 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        leading: IsOffline(),
         centerTitle: true,
         actions: [
           PopupMenuButton(
@@ -173,10 +174,17 @@ class HomeScreen extends StatelessWidget {
         ],
         title: Text('🚦 CoronAMPEL 🚦'),
       ),
-      body: PageView(
-        children: _pages,
-        onPageChanged: _onPageChanged,
-        controller: _pageController,
+      body: Column(
+        children: [
+          IsOffline(),
+          Expanded(
+            child: PageView(
+              children: _pages,
+              onPageChanged: _onPageChanged,
+              controller: _pageController,
+            ),
+          ),
+        ],
       ),
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(
@@ -254,17 +262,48 @@ class _IsOfflineState extends State<IsOffline> {
     return Obx(
       () => Center(
         child: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(4),
-              color: getConnectivityController.isOffline.value
-                  ? Colors.red
-                  : Colors.transparent),
+          width: double.infinity,
+          height: getConnectivityController.isOffline.value ? 46 : 0,
+          decoration: BoxDecoration(color: Colors.red),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8),
-            child: getConnectivityController.isOffline.value
-                ? Text('Offline')
-                : Container(),
-          ),
+              padding: const EdgeInsets.all(8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Offline'),
+                  ElevatedButton(
+                    onPressed: () async {
+                      ConnectivityResult connectivityResult =
+                          await (Connectivity().checkConnectivity());
+                      if (connectivityResult == ConnectivityResult.mobile ||
+                          connectivityResult == ConnectivityResult.wifi) {
+                        getConnectivityController.isOffline.value = false;
+                        Get.snackbar('Du bist wieder ONLINE 👍🏻',
+                            'Neue Daten werden geladen ...');
+                      } else {
+                        getConnectivityController.isOffline.value = true;
+                        Get.snackbar('Keine Verbindung zum Internet',
+                            'Bitte überprüfe ob du online bist oder probiere es zu einem späteren Zeitpunkt noch einmal.');
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.red[600],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.sync,
+                            size: 16,
+                          ),
+                          Text('Aktualisieren'),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              )),
         ),
       ),
     );

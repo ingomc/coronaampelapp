@@ -2,6 +2,7 @@ import 'package:coronampel/controller/get_browse_controller.dart';
 import 'package:coronampel/controller/get_connectivity_controller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:connectivity/connectivity.dart';
 
 import 'get_countys_controller.dart';
 import 'get_global_controller.dart';
@@ -29,7 +30,11 @@ class ReloadController extends GetxController {
   }
 
   Future<void> reload() async {
-    if (!getConnectivityController.isOffline.value) {
+    ConnectivityResult connectivityResult =
+        await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      getConnectivityController.isOffline.value = false;
       await Future.wait([
         getStatesController.fetchStates(),
         getCountysController.fetchCountys(),
@@ -38,9 +43,7 @@ class ReloadController extends GetxController {
         getBrowseController.fetchBrowse(),
       ]);
     } else {
-      Get.snackbar('Keine Netwerkverbindung',
-          'Du bist Offline, bitte Verbinde dich mit dem Internet oder versuche es später noch einmal!',
-          snackPosition: SnackPosition.BOTTOM);
+      getConnectivityController.isOffline.value = true;
     }
   }
 }
