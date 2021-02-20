@@ -16,12 +16,6 @@ class GetBrowseController extends GetxController {
   var highest5CasesPer100K = [].obs;
   var highest5Ewz = [].obs;
 
-  @override
-  void onInit() {
-    fetchBrowse();
-    super.onInit();
-  }
-
   Future<void> fetchBrowse() async {
     isLoading(true);
     print('triggered fetch browse');

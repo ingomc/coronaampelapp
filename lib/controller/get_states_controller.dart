@@ -13,12 +13,6 @@ class GetStatesController extends GetxController {
   var states = [].obs;
   var lastUpdate = ''.obs;
 
-  @override
-  void onInit() {
-    fetchStates();
-    super.onInit();
-  }
-
   Future<void> fetchStates() async {
     isLoading(true);
     print('triggered fetch all states');

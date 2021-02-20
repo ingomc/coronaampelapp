@@ -1,4 +1,5 @@
 import 'package:coronampel/controller/get_browse_controller.dart';
+import 'package:coronampel/controller/get_connectivity_controller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
@@ -18,14 +19,28 @@ class ReloadController extends GetxController {
       Get.put(GetVaccineController());
   final GetBrowseController getBrowseController =
       Get.put(GetBrowseController());
+  final GetConnectivityController getConnectivityController =
+      Get.put(GetConnectivityController());
+
+  @override
+  void onInit() {
+    reload();
+    super.onInit();
+  }
 
   Future<void> reload() async {
-    await Future.wait([
-      getStatesController.fetchStates(),
-      getCountysController.fetchCountys(),
-      getGlobalController.fetchGlobalData(),
-      getVaccineController.fetchVaccine(),
-      getBrowseController.fetchBrowse(),
-    ]);
+    if (!getConnectivityController.isOffline.value) {
+      await Future.wait([
+        getStatesController.fetchStates(),
+        getCountysController.fetchCountys(),
+        getGlobalController.fetchGlobalData(),
+        getVaccineController.fetchVaccine(),
+        getBrowseController.fetchBrowse(),
+      ]);
+    } else {
+      Get.snackbar('Keine Netwerkverbindung',
+          'Du bist Offline, bitte Verbinde dich mit dem Internet oder versuche es später noch einmal!',
+          snackPosition: SnackPosition.BOTTOM);
+    }
   }
 }

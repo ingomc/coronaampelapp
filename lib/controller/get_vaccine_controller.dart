@@ -15,12 +15,6 @@ class GetVaccineController extends GetxController {
   var states = [].obs;
   var lastUpdate = ''.obs;
 
-  @override
-  void onInit() {
-    fetchVaccine();
-    super.onInit();
-  }
-
   Future<void> fetchVaccine() async {
     isLoading(true);
     print('triggered fetch vaccine');

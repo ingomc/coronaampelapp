@@ -13,12 +13,6 @@ class GetCountysController extends GetxController {
   var countys = [].obs;
   var lastUpdate = ''.obs;
 
-  @override
-  void onInit() {
-    fetchCountys();
-    super.onInit();
-  }
-
   Future<void> fetchCountys() async {
     isLoading(true);
     print('triggered fetch all countys');

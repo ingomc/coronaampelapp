@@ -10,11 +10,6 @@ class GetGlobalController extends GetxController {
       DateFormat('dd.MM., HH:mm').format(DateTime.now()).toString().obs;
   var data = Worldwide().obs;
 
-  void onInit() {
-    fetchGlobalData();
-    super.onInit();
-  }
-
   Future<void> fetchGlobalData() async {
     isLoading(true);
     print('triggered fetch global');
