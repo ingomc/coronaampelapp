@@ -1,4 +1,7 @@
+import 'dart:async';
+import 'package:connectivity/connectivity.dart';
 import 'package:coronampel/controller/get_browse_controller.dart';
+import 'package:coronampel/controller/get_connectivity_controller.dart';
 import 'package:coronampel/controller/get_countys_controller.dart';
 import 'package:coronampel/controller/get_states_controller.dart';
 import 'package:coronampel/controller/get_vaccine_controller.dart';
@@ -15,7 +18,6 @@ import 'package:coronampel/screens/tabs/tab_county_screen.dart';
 import 'package:coronampel/screens/tabs/tab_state_screen.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:connectivity_widget/connectivity_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   final UiTabsController uiTabsController = Get.put(UiTabsController());
@@ -110,7 +112,7 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        leading: Text('asd'),
+        leading: IsOffline(),
         centerTitle: true,
         actions: [
           PopupMenuButton(
@@ -211,6 +213,58 @@ class HomeScreen extends StatelessWidget {
               label: 'Impfungen',
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class IsOffline extends StatefulWidget {
+  @override
+  _IsOfflineState createState() => _IsOfflineState();
+}
+
+class _IsOfflineState extends State<IsOffline> {
+  final GetConnectivityController getConnectivityController =
+      Get.put(GetConnectivityController());
+  StreamSubscription subscription;
+  @override
+  void initState() {
+    subscription = Connectivity()
+        .onConnectivityChanged
+        .listen((ConnectivityResult result) {
+      if (result == ConnectivityResult.mobile ||
+          result == ConnectivityResult.wifi) {
+        getConnectivityController.isOffline.value = false;
+      } else {
+        getConnectivityController.isOffline.value = true;
+      }
+    });
+    super.initState();
+  }
+
+  @override
+  dispose() {
+    super.dispose();
+    subscription.cancel();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(
+      () => Center(
+        child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(4),
+              color: getConnectivityController.isOffline.value
+                  ? Colors.red
+                  : Colors.transparent),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8),
+            child: getConnectivityController.isOffline.value
+                ? Text('Offline')
+                : Container(),
+          ),
         ),
       ),
     );
