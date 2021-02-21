@@ -1,5 +1,3 @@
-import 'dart:async';
-import 'package:connectivity/connectivity.dart';
 import 'package:coronampel/controller/get_browse_controller.dart';
 import 'package:coronampel/controller/get_connectivity_controller.dart';
 import 'package:coronampel/controller/get_countys_controller.dart';
