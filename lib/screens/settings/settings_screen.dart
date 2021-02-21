@@ -214,7 +214,7 @@ class SettingsScreen extends StatelessWidget {
                       ),
                     ),
                     applicationName: "CoronAMPEL",
-                    applicationVersion: "1.0.0",
+                    applicationVersion: "1.1.0",
                   );
                 },
                 child: ListTile(
