@@ -1,6 +1,6 @@
 import 'package:coronampel/controller/get_vaccine_controller.dart';
 import 'package:coronampel/controller/reload_controller.dart';
-import 'package:coronampel/widgets/empty_page.dart';
+import 'package:coronampel/widgets/offline_page.dart';
 import 'package:coronampel/widgets/loading_list_overlay.dart';
 import 'package:coronampel/widgets/update_line.dart';
 import 'package:coronampel/widgets/vaccine_state_card.dart';
@@ -53,7 +53,7 @@ class TabVaccineScreen extends StatelessWidget {
                     GetX<GetVaccineController>(builder: (controller) {
                       if (getVaccineController.germany.value.cumsum7DaysAgo ==
                           null) {
-                        return EmptyPage();
+                        return OfflinePage();
                       }
                       return VaccineStateCard(
                         state: 'Deutschland',

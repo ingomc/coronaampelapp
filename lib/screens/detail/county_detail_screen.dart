@@ -35,7 +35,7 @@ class CountyDetailScreen extends StatelessWidget {
   // Call this when the user pull down the screen
   Future<void> _loadData() async {
     // isRefreshIndicatorActive = true;
-    await getCountysController.fetchCountys();
+    await getSingleCountyController.fetchCounty();
     // isRefreshIndicatorActive = false;
   }
 

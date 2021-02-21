@@ -202,14 +202,6 @@ class SettingsScreen extends StatelessWidget {
                     applicationIcon: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 20,
-                              spreadRadius: -5,
-                            )
-                          ],
-                        ),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
                           clipBehavior: Clip.hardEdge,

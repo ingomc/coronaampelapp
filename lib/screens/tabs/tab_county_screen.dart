@@ -1,5 +1,7 @@
+import 'package:coronampel/controller/get_connectivity_controller.dart';
 import 'package:coronampel/controller/reload_controller.dart';
 import 'package:coronampel/widgets/loading_list_overlay.dart';
+import 'package:coronampel/widgets/offline_page.dart';
 import 'package:coronampel/widgets/update_line.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +17,8 @@ class TabCountyScreen extends StatelessWidget {
       Get.put(GetCountysController());
   final PinnedCountysController pinnedCountysController =
       Get.put(PinnedCountysController());
+  final GetConnectivityController getConnectivityController =
+      Get.put(GetConnectivityController());
   final ReloadController reloadController = Get.put(ReloadController());
   final String hero = 'county';
 
@@ -95,6 +99,9 @@ class TabCountyScreen extends StatelessWidget {
                                 )
                               ],
                             );
+                          } else if (getConnectivityController
+                              .isOffline.value) {
+                            return OfflinePage();
                           } else {
                             return Opacity(
                               opacity: .3,
@@ -157,12 +164,18 @@ class TabCountyScreen extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          Get.to(SearchScreen(), transition: Transition.downToUp);
-        },
-      ),
+      floatingActionButton:
+          GetX<GetConnectivityController>(builder: (controller) {
+        if (controller.isOffline.value) {
+          return Container();
+        }
+        return FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {
+            Get.to(SearchScreen(), transition: Transition.downToUp);
+          },
+        );
+      }),
     );
   }
 }

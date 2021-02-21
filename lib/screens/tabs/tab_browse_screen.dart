@@ -1,4 +1,5 @@
 import 'package:coronampel/controller/get_browse_controller.dart';
+import 'package:coronampel/controller/get_connectivity_controller.dart';
 import 'package:coronampel/controller/get_countys_controller.dart';
 import 'package:coronampel/controller/get_single_county_controller.dart';
 import 'package:coronampel/controller/reload_controller.dart';
@@ -6,6 +7,7 @@ import 'package:coronampel/models/browse_model.dart';
 import 'package:coronampel/screens/detail/county_detail_screen.dart';
 import 'package:coronampel/widgets/incidence_number_container.dart';
 import 'package:coronampel/widgets/loading_list_overlay.dart';
+import 'package:coronampel/widgets/offline_page.dart';
 import 'package:coronampel/widgets/tab_title.dart';
 import 'package:coronampel/widgets/update_line.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,6 +20,8 @@ class TabBrowseScreen extends StatelessWidget {
       Get.put(GetBrowseController());
   final GetCountysController getCountysController =
       Get.put(GetCountysController());
+  final GetConnectivityController getConnectivityController =
+      Get.put(GetConnectivityController());
   final ReloadController reloadController = Get.put(ReloadController());
   final String hero = 'browse';
 
@@ -62,6 +66,10 @@ class TabBrowseScreen extends StatelessWidget {
                                   false &&
                               controller.isLoading.value == true) {
                             return Container();
+                          } else if (getConnectivityController
+                                  .isOffline.value &&
+                              controller.lowest5.length < 1) {
+                            return OfflinePage();
                           } else {
                             return FadeIn(
                               child: Column(
