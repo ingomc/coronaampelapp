@@ -44,11 +44,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: "^0.8.0"
   integration_test:
     sdk: flutter
-  flutter_native_splash: ^0.2.9
-  flutter_rename_app:
+  # flutter_launcher_icons: "^0.8.0"
+  # flutter_native_splash: ^0.2.9
+  # flutter_rename_app:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -93,15 +93,15 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
 
-flutter_icons:
-  ios: true
-  android: true
-  image_path_ios: "assets/launcher/playstore-icon.png"
-  image_path_android: "assets/launcher/playstore-icon.png"
+# flutter_icons:
+#   ios: true
+#   android: true
+#   image_path_ios: "assets/launcher/playstore-icon.png"
+#   image_path_android: "assets/launcher/playstore-icon.png"
 
-flutter_rename_app:
-  application_name: CoronAMPEL
-  dart_package_name: coronampel
-  application_id: com.ingomc.ampel
-  bundle_id: com.ingomc.ampel
-  android_package_name: com.ingomc.ampel
+# flutter_rename_app:
+#   application_name: CoronAMPEL
+#   dart_package_name: coronampel
+#   application_id: com.ingomc.ampel
+#   bundle_id: com.ingomc.ampel
+#   android_package_name: com.ingomc.ampel
