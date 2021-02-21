@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "512109187657",
+    "project_id": "coronampel",
+    "storage_bucket": "coronampel.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:512109187657:android:8c995e4d7a6d5b7220e598",
+        "android_client_info": {
+          "package_name": "com.ingomc.coronampel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "512109187657-qvl82524l2jt433a59l302gbuv8hu9l5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6aXIHHtdq52r8iQ6qri5-bV_9d0KYE9Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "512109187657-qvl82524l2jt433a59l302gbuv8hu9l5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
