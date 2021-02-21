@@ -41,7 +41,8 @@ class GetSingleCountyController extends GetxController {
     } else {
       getConnectivityController.isOffline.value = true;
       Get.snackbar('Keine Verbindung zum Internet',
-          'Du bist OFFLINE, deswegen könnten hier veraltete Daten angezeigt werden.');
+          'Du bist OFFLINE, deswegen könnten hier veraltete Daten angezeigt werden.',
+          snackPosition: SnackPosition.BOTTOM);
     }
   }
 }

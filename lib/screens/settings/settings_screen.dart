@@ -244,10 +244,9 @@ class SettingsScreen extends StatelessWidget {
             height: 32,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            padding: const EdgeInsets.all(16.0),
             child: Text(
-              'Statement',
-              style: Theme.of(context).textTheme.headline6,
+              'Google- und Playstore-Richtlinien verbieten mir meine App so zu benennen wie ich sie ursprünglich nennen wollte. Deswegen sie nun CoronAMPEL.',
             ),
           ),
           Padding(

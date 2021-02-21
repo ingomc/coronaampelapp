@@ -66,9 +66,7 @@ class TabBrowseScreen extends StatelessWidget {
                                   false &&
                               controller.isLoading.value == true) {
                             return Container();
-                          } else if (getConnectivityController
-                                  .isOffline.value &&
-                              controller.lowest5.length < 1) {
+                          } else if (controller.lowest5.length < 1) {
                             return OfflinePage();
                           } else {
                             return FadeIn(

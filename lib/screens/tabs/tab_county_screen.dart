@@ -100,7 +100,9 @@ class TabCountyScreen extends StatelessWidget {
                               ],
                             );
                           } else if (getConnectivityController
-                              .isOffline.value) {
+                                  .isOffline.value ||
+                              (controller.countys.length > 0 &&
+                                  getCountysController.countys.length < 1)) {
                             return OfflinePage();
                           } else {
                             return Opacity(
@@ -166,7 +168,8 @@ class TabCountyScreen extends StatelessWidget {
       ),
       floatingActionButton:
           GetX<GetConnectivityController>(builder: (controller) {
-        if (controller.isOffline.value) {
+        if (controller.isOffline.value ||
+            getCountysController.countys.length < 1) {
           return Container();
         }
         return FloatingActionButton(

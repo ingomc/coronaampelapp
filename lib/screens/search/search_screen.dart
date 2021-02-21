@@ -145,6 +145,7 @@ class SearchScreen extends StatelessWidget {
                                       .toLowerCase()
                                       .contains(searchController
                                           .searchString.value
+                                          .trim()
                                           .toLowerCase())) {
                                 return Card(
                                   // Material ripple effect
