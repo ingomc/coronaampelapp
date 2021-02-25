@@ -10,6 +10,7 @@ import 'package:coronampel/screens/tabs/tab_browse_screen.dart';
 import 'package:coronampel/screens/tabs/tab_vaccine_screen.dart';
 import 'package:coronampel/widgets/is_offline.dart';
 import 'package:coronampel/widgets/keep_alive_page.dart';
+import 'package:coronampel/widgets/pro_label.dart';
 import 'package:flutter/material.dart';
 import 'package:coronampel/controller/ui/ui_tabs_controller.dart';
 import 'package:coronampel/screens/edit/county_edit_screen.dart';
@@ -114,6 +115,7 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        leading: ProLabel(),
         centerTitle: true,
         actions: [
           PopupMenuButton(

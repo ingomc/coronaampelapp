@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:io';
+import 'package:coronampel/controller/pro_controller.dart';
 import 'package:coronampel/data/base_data.dart';
 import 'package:coronampel/screens/help/help_screen.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +27,7 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ProController proController = Get.put(ProController());
     return Scaffold(
       appBar: AppBar(
         title: Text('Info & Hilfe'),
@@ -55,6 +58,16 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
           ),
+          Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+              child: Obx(
+                () => SwitchListTile(
+                    title: Text('Pro'),
+                    value: proController.isPro.value,
+                    onChanged: (bool value) {
+                      proController.isPro.value = !(proController.isPro.value);
+                    }),
+              )),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
             child: Card(
@@ -244,12 +257,13 @@ class SettingsScreen extends StatelessWidget {
           SizedBox(
             height: 32,
           ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              'Google- und Playstore-Richtlinien verbieten mir meine App so zu benennen wie ich sie ursprünglich nennen wollte. Deswegen heisst sie nun ${BaseData.appName}.',
+          if (Platform.isAndroid)
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                'Google- und Playstore-Richtlinien verbieten mir meine App so zu benennen wie ich sie ursprünglich nennen wollte. Deswegen heisst sie nun ${BaseData.appName}.',
+              ),
             ),
-          ),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(
