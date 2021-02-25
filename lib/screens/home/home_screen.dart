@@ -4,6 +4,7 @@ import 'package:coronampel/controller/get_countys_controller.dart';
 import 'package:coronampel/controller/get_states_controller.dart';
 import 'package:coronampel/controller/get_vaccine_controller.dart';
 import 'package:coronampel/controller/reload_controller.dart';
+import 'package:coronampel/data/base_data.dart';
 import 'package:coronampel/screens/settings/settings_screen.dart';
 import 'package:coronampel/screens/tabs/tab_browse_screen.dart';
 import 'package:coronampel/screens/tabs/tab_vaccine_screen.dart';
@@ -171,7 +172,7 @@ class HomeScreen extends StatelessWidget {
             },
           ),
         ],
-        title: Text('🚦 CoronAMPEL 🚦'),
+        title: Text('🚦 ${BaseData.appName} 🚦'),
       ),
       body: Column(
         children: [

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:coronampel/data/base_data.dart';
 import 'package:coronampel/screens/help/help_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -39,7 +40,7 @@ class SettingsScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      '🚦 CoronAMPEL 🚦',
+                      '🚦 ${BaseData.appName} 🚦',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -213,7 +214,7 @@ class SettingsScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    applicationName: "CoronAMPEL",
+                    applicationName: BaseData.appName,
                     applicationVersion: "1.1.0",
                   );
                 },
@@ -246,7 +247,7 @@ class SettingsScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(
-              'Google- und Playstore-Richtlinien verbieten mir meine App so zu benennen wie ich sie ursprünglich nennen wollte. Deswegen sie nun CoronAMPEL.',
+              'Google- und Playstore-Richtlinien verbieten mir meine App so zu benennen wie ich sie ursprünglich nennen wollte. Deswegen heisst sie nun ${BaseData.appName}.',
             ),
           ),
           Padding(

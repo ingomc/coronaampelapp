@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:coronampel/controller/get_connectivity_controller.dart';
 import 'package:coronampel/controller/rewared_controller.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,9 @@ class BannerAdContainer extends StatefulWidget {
 }
 
 class _BannerAdContainerState extends State<BannerAdContainer> {
-  RewardedController rewardedController = RewardedController();
+  final GetConnectivityController getConnectivityController =
+      Get.put(GetConnectivityController());
+  final RewardedController rewardedController = Get.put(RewardedController());
   MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
     keywords: <String>[
       'Coburg',
@@ -48,13 +51,12 @@ class _BannerAdContainerState extends State<BannerAdContainer> {
         }
       }
       if (event == RewardedVideoAdEvent.failedToLoad) {
-        print('left');
-        Get.snackbar('Feature nicht freigeschalten',
-            'Du hast Leider keinen Belohnung erhalten.');
-        RewardedVideoAd.instance.load(
-          adUnitId: RewardedVideoAd.testAdUnitId,
-          targetingInfo: targetingInfo,
-        );
+        print('Error FailedToLoad');
+        if (!getConnectivityController.isOffline.value)
+          RewardedVideoAd.instance.load(
+            adUnitId: RewardedVideoAd.testAdUnitId,
+            targetingInfo: targetingInfo,
+          );
       }
     };
     RewardedVideoAd.instance.load(
