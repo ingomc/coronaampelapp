@@ -2,6 +2,7 @@ import 'package:coronampel/controller/get_browse_controller.dart';
 import 'package:coronampel/controller/get_connectivity_controller.dart';
 import 'package:coronampel/controller/get_countys_controller.dart';
 import 'package:coronampel/controller/get_single_county_controller.dart';
+import 'package:coronampel/controller/pro_controller.dart';
 import 'package:coronampel/controller/reload_controller.dart';
 import 'package:coronampel/models/browse_model.dart';
 import 'package:coronampel/screens/detail/county_detail_screen.dart';
@@ -11,7 +12,6 @@ import 'package:coronampel/widgets/loading_list_overlay.dart';
 import 'package:coronampel/widgets/offline_page.dart';
 import 'package:coronampel/widgets/tab_title.dart';
 import 'package:coronampel/widgets/update_line.dart';
-import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fadein/flutter_fadein.dart';
@@ -20,6 +20,7 @@ import 'package:get/get.dart';
 class TabBrowseScreen extends StatelessWidget {
   final GetBrowseController getBrowseController =
       Get.put(GetBrowseController());
+  final ProController proController = Get.put(ProController());
   final GetCountysController getCountysController =
       Get.put(GetCountysController());
   final GetConnectivityController getConnectivityController =
@@ -49,7 +50,11 @@ class TabBrowseScreen extends StatelessWidget {
                 itemBuilder: (context, i) {
                   return Column(
                     children: [
-                      BannerAdContainer(),
+                      Obx(
+                        () => proController.isPro.value
+                            ? Container()
+                            : BannerAdContainer(),
+                      ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
                         child: Obx(

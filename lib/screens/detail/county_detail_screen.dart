@@ -1,3 +1,5 @@
+import 'package:coronampel/controller/pro_controller.dart';
+import 'package:coronampel/widgets/non_pro_its.dart';
 import 'package:flutter_fadein/flutter_fadein.dart';
 import 'package:coronampel/controller/get_countys_controller.dart';
 import 'package:coronampel/controller/get_single_county_controller.dart';
@@ -31,6 +33,7 @@ class CountyDetailScreen extends StatelessWidget {
       Get.put(GetCountysController());
   final GetSingleCountyController getSingleCountyController =
       Get.put(GetSingleCountyController());
+  final ProController proController = Get.put(ProController());
 
   // Call this when the user pull down the screen
   Future<void> _loadData() async {
@@ -107,7 +110,8 @@ class CountyDetailScreen extends StatelessWidget {
                             SizedBox(
                               height: 16,
                             ),
-                            if (controller.isLoading.value)
+                            if (controller.isLoading.value &&
+                                proController.isPro.value)
                               FadeIn(
                                 duration: Duration(milliseconds: 500),
                                 child: Center(
@@ -115,7 +119,8 @@ class CountyDetailScreen extends StatelessWidget {
                                 ),
                               ),
                             if (!controller.isLoading.value &&
-                                controller.county.value.bettenFrei != null)
+                                controller.county.value.bettenFrei != null &&
+                                proController.isPro.value)
                               FadeIn(
                                 duration: Duration(milliseconds: 500),
                                 child: Column(
@@ -158,6 +163,7 @@ class CountyDetailScreen extends StatelessWidget {
                                   ],
                                 ),
                               ),
+                            if (!proController.isPro.value) NonProITS(),
                           ],
                         ),
                       );
