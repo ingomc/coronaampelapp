@@ -7,21 +7,28 @@ class ProLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     ProController proController = Get.put(ProController());
     return Obx(
-      () => proController.isPro.value
-          ? Center(
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(width: 1, color: Colors.white),
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 3, horizontal: 6),
-                  child: Text('PRO'),
-                ),
-              ),
-            )
-          : Container(),
+      () => Center(
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border.all(
+                width: 1,
+                color: proController.isPro.value
+                    ? Colors.white
+                    : Theme.of(context).primaryColor),
+            borderRadius: BorderRadius.circular(4),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 6),
+            child: Text(
+              'PRO',
+              style: TextStyle(
+                  color: proController.isPro.value
+                      ? Colors.white
+                      : Theme.of(context).primaryColor),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
