@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:coronampel/controller/pro_controller.dart';
 import 'package:coronampel/data/base_data.dart';
+import 'package:coronampel/screens/devtools_screen.dart';
 import 'package:coronampel/screens/help/help_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -58,16 +59,6 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-              child: Obx(
-                () => SwitchListTile(
-                    title: Text('Pro'),
-                    value: proController.isPro.value,
-                    onChanged: (bool value) {
-                      proController.isPro.value = !(proController.isPro.value);
-                    }),
-              )),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
             child: Card(
@@ -174,8 +165,13 @@ class SettingsScreen extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
-            height: 16,
+          GestureDetector(
+            onDoubleTap: () {
+              Get.to(Devtools());
+            },
+            child: SizedBox(
+              height: 16,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
