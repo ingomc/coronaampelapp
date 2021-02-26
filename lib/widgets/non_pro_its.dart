@@ -85,13 +85,13 @@ class NonProITS extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                'Intensivstation entsperren:',
+                                'Intensivstation kostenlos entsperren:',
                                 textAlign: TextAlign.center,
                               ),
                             ),
                             ElevatedButton(
                               onPressed: () {},
-                              child: Text('Werbung anschauen und entsperren'),
+                              child: Text('Mit Werbung KOSTENLOS entsperren'),
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.blueGrey,
                               ),
