@@ -166,13 +166,14 @@ class SettingsScreen extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onDoubleTap: () {
-              Get.to(Devtools());
-            },
-            child: SizedBox(
-              height: 16,
-            ),
-          ),
+              onDoubleTap: () {
+                Get.to(Devtools());
+              },
+              child: Container(
+                width: 16,
+                height: 16,
+                decoration: BoxDecoration(color: Colors.transparent),
+              )),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(

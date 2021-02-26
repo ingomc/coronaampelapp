@@ -14,6 +14,12 @@ class ProController extends GetxController {
     }
     ever(isPro, (_) {
       box.write(boxnamespace, isPro.value);
+      Get.snackbar(
+          isPro.value ? 'PRO wurde aktiviert! ✅' : 'Pro wurde deaktiviert ❌',
+          isPro.value
+              ? 'Alle Features sind freigeschalten, du musst keine Werbung mehr anschauen.'
+              : 'Du hast die Standardapp mit Werbung.',
+          snackPosition: SnackPosition.BOTTOM);
     });
     super.onInit();
   }

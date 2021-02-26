@@ -14,18 +14,17 @@ class Devtools extends StatelessWidget {
       body: Column(
         children: [
           Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+            child: Card(
               child: Obx(
                 () => SwitchListTile(
-                    title: Text('Pro'),
-                    value: proController.isPro.value,
-                    onChanged: (bool value) {
-                      proController.isPro.value = !(proController.isPro.value);
-                    }),
-              )),
-          Container(
-            child: Center(
-              child: Text('Devtools'),
+                  title: Text('Pro'),
+                  value: proController.isPro.value,
+                  onChanged: (bool value) {
+                    proController.isPro.value = !(proController.isPro.value);
+                  },
+                ),
+              ),
             ),
           ),
         ],
