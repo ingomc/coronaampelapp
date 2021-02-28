@@ -18,7 +18,7 @@ class AdScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'Intensivstation kostenlos entsperren:',
+                  'Intensivstation kostenlos freischalten:',
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -33,7 +33,7 @@ class AdScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'Mit der PRO-Mitgliedschaft (einm. 2,49€) alle Funktionen für immer entsperren und Werbung entfernen:',
+                  'Mit der PRO-Mitgliedschaft (einm. 2,49€) alle Funktionen für immer freischalten und Werbung entfernen:',
                 ),
               ),
               Row(
@@ -54,7 +54,7 @@ class AdScreen extends StatelessWidget {
                     width: 4,
                   ),
                   RichText(
-                    text: TextSpan(text: 'Keine Werbung mehr'),
+                    text: TextSpan(text: 'Nie mehr Werbung'),
                   ),
                 ],
               ),
@@ -73,7 +73,7 @@ class AdScreen extends StatelessWidget {
               SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {},
-                child: Text('Jetzt mit PRO alles entsperren'),
+                child: Text('Jetzt mit PRO alles freischalten'),
                 style: ElevatedButton.styleFrom(
                   primary: Colors.blueGrey,
                 ),

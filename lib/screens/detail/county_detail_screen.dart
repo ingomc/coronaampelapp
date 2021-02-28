@@ -120,7 +120,8 @@ class CountyDetailScreen extends StatelessWidget {
                               ),
                             if (!controller.isLoading.value &&
                                 controller.county.value.bettenFrei != null &&
-                                proController.isPro.value)
+                                (proController.isPro.value ||
+                                    proController.freeITS.value))
                               FadeIn(
                                 duration: Duration(milliseconds: 500),
                                 child: Column(
@@ -163,8 +164,8 @@ class CountyDetailScreen extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                            if (!proController.isPro.value ||
-                                proController.freeITS.value)
+                            if (!proController.isPro.value &&
+                                !proController.freeITS.value)
                               NonProITS(),
                           ],
                         ),
