@@ -77,7 +77,9 @@ class _BannerAdContainerState extends State<BannerAdContainer> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Jetzt mit Werbung entsperren'),
+                    Text(rewardedController.isloaded.value
+                        ? 'Jetzt mit Werbung entsperren'
+                        : 'Lade Werbeanzeige zum entsperren'),
                     rewardedController.isloaded.value
                         ? Container()
                         : SizedBox(
