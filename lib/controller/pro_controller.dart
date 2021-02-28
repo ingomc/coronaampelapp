@@ -3,6 +3,8 @@ import 'package:get_storage/get_storage.dart';
 
 class ProController extends GetxController {
   var isPro = false.obs;
+  var freeITS = false.obs;
+  var freeVaccine = false.obs;
   final box = GetStorage();
   final boxnamespace = 'pro';
 

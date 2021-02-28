@@ -73,21 +73,41 @@ class _BannerAdContainerState extends State<BannerAdContainer> {
             ? Container(
                 child: Text('Feature freigeschalten ✅'),
               )
-            : rewardedController.isloaded.value
-                ? ElevatedButton(
-                    child: const Text('SHOW REWARDED VIDEO'),
-                    onPressed: () async {
-                      try {
-                        await RewardedVideoAd.instance.show();
-                        rewardedController.isloaded.value = false;
-                      } on PlatformException catch (e) {
-                        print(e.message);
+            : ElevatedButton(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Jetzt mit Werbung entsperren'),
+                    rewardedController.isloaded.value
+                        ? Container()
+                        : SizedBox(
+                            width: 8,
+                          ),
+                    rewardedController.isloaded.value
+                        ? Container()
+                        : SizedBox(
+                            child: CircularProgressIndicator(
+                              backgroundColor: Colors.white,
+                              strokeWidth: 2,
+                            ),
+                            width: 16,
+                            height: 16,
+                          ),
+                  ],
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.blueGrey,
+                ),
+                onPressed: rewardedController.isloaded.value
+                    ? () async {
+                        try {
+                          await RewardedVideoAd.instance.show();
+                          rewardedController.isloaded.value = false;
+                        } on PlatformException catch (e) {
+                          print(e.message);
+                        }
                       }
-                    },
-                  )
-                : Center(
-                    child: CircularProgressIndicator(),
-                  ),
+                    : null),
       ),
     );
   }

@@ -1,7 +1,9 @@
 import 'dart:ui';
 
+import 'package:coronampel/screens/ad/ad_screen.dart';
 import 'package:coronampel/screens/detail/county_detail_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class NonProITS extends StatelessWidget {
@@ -90,23 +92,22 @@ class NonProITS extends StatelessWidget {
                               ),
                             ),
                             ElevatedButton(
-                              onPressed: () {},
-                              child: Text('Mit Werbung KOSTENLOS entsperren'),
-                              style: ElevatedButton.styleFrom(
-                                primary: Colors.blueGrey,
+                              onPressed: () {
+                                Get.bottomSheet(AdScreen());
+                              },
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    MdiIcons.lockOpenVariantOutline,
+                                    size: 14,
+                                  ),
+                                  SizedBox(
+                                    width: 8,
+                                  ),
+                                  Text('Funktion jetzt kostenlos entsperren'),
+                                ],
                               ),
-                            ),
-                            SizedBox(height: 16),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                'Mit der PRO-Mitgliedschaft (einm. 2,49€) alle Features entsperren und Werbung entfernen:',
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                            ElevatedButton(
-                              onPressed: () {},
-                              child: Text('Jetzt mit PRO alles entsperren'),
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.blueGrey,
                               ),
