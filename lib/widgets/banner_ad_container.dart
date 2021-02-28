@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:coronampel/controller/get_connectivity_controller.dart';
+import 'package:coronampel/controller/pro_controller.dart';
 import 'package:coronampel/controller/rewared_controller.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class _BannerAdContainerState extends State<BannerAdContainer> {
   final GetConnectivityController getConnectivityController =
       Get.put(GetConnectivityController());
   final RewardedController rewardedController = Get.put(RewardedController());
+  final ProController proController = Get.put(ProController());
   MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
     keywords: <String>[
       'Coburg',
@@ -35,6 +37,7 @@ class _BannerAdContainerState extends State<BannerAdContainer> {
       if (event == RewardedVideoAdEvent.rewarded) {
         print('rewarded');
         rewardedController.isRewarded.value = true;
+        proController.freeITS.value = true;
       }
       if (event == RewardedVideoAdEvent.loaded) {
         rewardedController.isloaded.value = true;

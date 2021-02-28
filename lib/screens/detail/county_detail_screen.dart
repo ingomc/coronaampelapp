@@ -163,7 +163,9 @@ class CountyDetailScreen extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                            if (!proController.isPro.value) NonProITS(),
+                            if (!proController.isPro.value ||
+                                proController.freeITS.value)
+                              NonProITS(),
                           ],
                         ),
                       );
