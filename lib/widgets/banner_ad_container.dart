@@ -45,12 +45,17 @@ class _BannerAdContainerState extends State<BannerAdContainer> {
       if (event == RewardedVideoAdEvent.closed) {
         if (rewardedController.isRewarded.value == false) {
           Get.snackbar('Feature nicht freigeschalten',
-              'Du hast Leider keinen Belohnung erhalten.');
+              'Du hast Leider keine Belohnung erhalten.');
           rewardedController.isloaded.value = false;
           RewardedVideoAd.instance.load(
             adUnitId: RewardedVideoAd.testAdUnitId,
             targetingInfo: targetingInfo,
           );
+        } else {
+          print('close rewarded');
+          Get.back();
+          Get.snackbar('✅ Intensivation freigeschalten',
+              'Du kannst jetzt die Intensivstationstatistiken solange sehen bis deine App einmal geschlossen wurde, danach kannst du die Funktion wieder freischalten.');
         }
       }
       if (event == RewardedVideoAdEvent.failedToLoad) {

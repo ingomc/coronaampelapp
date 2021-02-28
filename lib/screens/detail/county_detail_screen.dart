@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class CountyDetailScreen extends StatelessWidget {
   CountyDetailScreen({
@@ -127,10 +128,25 @@ class CountyDetailScreen extends StatelessWidget {
                                 child: Column(
                                   children: [
                                     Center(
-                                      child: Text(
-                                        'Intensivstation',
-                                        style: TextStyle(
-                                            color: Theme.of(context).hintColor),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          if (proController.freeITS.value)
+                                            Icon(
+                                              MdiIcons.lockOpenVariant,
+                                              size: 16,
+                                            ),
+                                          SizedBox(
+                                            width: 8,
+                                          ),
+                                          Text(
+                                            'Intensivstation',
+                                            style: TextStyle(
+                                                color: Theme.of(context)
+                                                    .hintColor),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                     SizedBox(
