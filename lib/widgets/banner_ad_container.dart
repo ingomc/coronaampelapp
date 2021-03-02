@@ -68,6 +68,7 @@ class _BannerAdContainerState extends State<BannerAdContainer> {
           Get.back();
           Get.snackbar('✅ Intensivation freigeschalten',
               'Du kannst jetzt die Intensivstationstatistiken solange sehen bis deine App einmal geschlossen wurde, danach kannst du die Funktion wieder freischalten.');
+          rewardedController.isRewarded.value = false;
         }
       }
       if (event == RewardedVideoAdEvent.failedToLoad) {
@@ -91,7 +92,12 @@ class _BannerAdContainerState extends State<BannerAdContainer> {
       child: Obx(
         () => rewardedController.isRewarded.value
             ? Container(
-                child: Text('Feature freigeschalten ✅'),
+                child: Center(
+                  child: Text(
+                    'Feature freigeschalten ✅',
+                    textScaleFactor: 1.5,
+                  ),
+                ),
               )
             : ElevatedButton(
                 child: Row(
