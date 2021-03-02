@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:coronampel/controller/pro_controller.dart';
 import 'package:coronampel/data/base_data.dart';
 import 'package:coronampel/screens/devtools_screen.dart';
 import 'package:coronampel/screens/help/help_screen.dart';
@@ -28,7 +27,6 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ProController proController = Get.put(ProController());
     return Scaffold(
       appBar: AppBar(
         title: Text('Info & Hilfe'),

@@ -12,8 +12,6 @@ class NonProVaccine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GetVaccineController getVaccineController =
-        Get.put(GetVaccineController());
     return Column(
       children: [
         Center(
@@ -46,6 +44,7 @@ class NonProVaccine extends StatelessWidget {
                     controller.states.length,
                     (index) {
                       final allTotal = controller.states[index].total * 2 * 0.7;
+                      // ignore: unused_local_variable
                       final progress = double.parse(
                           (controller.states[index].vaccinated / allTotal * 100)
                               .toStringAsFixed(2));
