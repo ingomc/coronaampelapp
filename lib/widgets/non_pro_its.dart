@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:coronampel/data/_interfaces.dart';
 import 'package:coronampel/screens/ad/ad_screen.dart';
 import 'package:coronampel/screens/detail/county_detail_screen.dart';
 import 'package:flutter/material.dart';
@@ -93,7 +94,9 @@ class NonProITS extends StatelessWidget {
                             ),
                             ElevatedButton(
                               onPressed: () {
-                                Get.bottomSheet(AdScreen());
+                                Get.bottomSheet(AdScreen(
+                                  unlockadtype: UnlockAdType.Its,
+                                ));
                               },
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,

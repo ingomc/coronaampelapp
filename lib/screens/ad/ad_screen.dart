@@ -1,12 +1,21 @@
+import 'package:coronampel/data/_interfaces.dart';
 import 'package:coronampel/widgets/banner_ad_container.dart';
 import 'package:flutter/material.dart';
 
 class AdScreen extends StatelessWidget {
+  const AdScreen({
+    Key key,
+    @required this.unlockadtype,
+  }) : super(key: key);
+  final UnlockAdType unlockadtype;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Freischalten'),
+        title: Text(unlockadtype == UnlockAdType.Its
+            ? 'Intensivstation freischalten'
+            : 'Impfdaten freischalten'),
       ),
       body: Center(
         child: Container(
@@ -18,11 +27,15 @@ class AdScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'Intensivstation kostenlos freischalten:',
+                  unlockadtype == UnlockAdType.Its
+                      ? 'Intensivstation kostenlos freischalten:'
+                      : 'Impfdaten kostenlos freischalten:',
                   textAlign: TextAlign.center,
                 ),
               ),
-              BannerAdContainer(),
+              BannerAdContainer(
+                unlockadtype: unlockadtype,
+              ),
               SizedBox(height: 16),
               Text(
                 'oder',

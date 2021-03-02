@@ -1,0 +1,1 @@
+enum UnlockAdType { Its, Vaccine }

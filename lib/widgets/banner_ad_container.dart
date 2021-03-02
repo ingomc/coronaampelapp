@@ -1,14 +1,19 @@
-import 'dart:async';
-
 import 'package:coronampel/controller/get_connectivity_controller.dart';
 import 'package:coronampel/controller/pro_controller.dart';
 import 'package:coronampel/controller/rewared_controller.dart';
+import 'package:coronampel/data/_interfaces.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class BannerAdContainer extends StatefulWidget {
+  const BannerAdContainer({
+    Key key,
+    @required this.unlockadtype,
+  }) : super(key: key);
+  final UnlockAdType unlockadtype;
+
   @override
   _BannerAdContainerState createState() => _BannerAdContainerState();
 }
@@ -37,7 +42,14 @@ class _BannerAdContainerState extends State<BannerAdContainer> {
       if (event == RewardedVideoAdEvent.rewarded) {
         print('rewarded');
         rewardedController.isRewarded.value = true;
-        proController.freeITS.value = true;
+        switch (widget.unlockadtype) {
+          case UnlockAdType.Its:
+            proController.freeITS.value = true;
+            break;
+          case UnlockAdType.Vaccine:
+            proController.freeVaccine.value = true;
+            break;
+        }
       }
       if (event == RewardedVideoAdEvent.loaded) {
         rewardedController.isloaded.value = true;
