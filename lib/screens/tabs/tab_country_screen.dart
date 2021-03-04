@@ -303,12 +303,10 @@ class TabCountryScreen extends StatelessWidget {
                               SizedBox(
                                 height: 16,
                               ),
-                              Card(
-                                child: Obx(
-                                  () => proController.isPro.value
-                                      ? Container()
-                                      : NativeAdCard(),
-                                ),
+                              Obx(
+                                () => proController.isPro.value
+                                    ? Container()
+                                    : NativeAdCard(),
                               ),
                             ],
                           );

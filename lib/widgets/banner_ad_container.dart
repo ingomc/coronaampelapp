@@ -25,10 +25,10 @@ class _BannerAdContainerState extends State<BannerAdContainer> {
   final ProController proController = Get.put(ProController());
   MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
     keywords: <String>[
-      'Coburg',
+      'pandemie',
+      'Gesundheit',
       'corona',
       'covid',
-      'bayern',
     ],
     childDirected: false,
   );
@@ -36,6 +36,8 @@ class _BannerAdContainerState extends State<BannerAdContainer> {
   @override
   void initState() {
     super.initState();
+    rewardedController.isError.value = false;
+    rewardedController.waitingForError();
     RewardedVideoAd.instance.listener =
         (RewardedVideoAdEvent event, {String rewardType, int rewardAmount}) {
       print("RewardedVideoAd event $event");
@@ -105,13 +107,17 @@ class _BannerAdContainerState extends State<BannerAdContainer> {
                   children: [
                     Text(rewardedController.isloaded.value
                         ? 'Jetzt mit Werbung entsperren'
-                        : 'Lade Werbeanzeige zum entsperren'),
-                    rewardedController.isloaded.value
+                        : rewardedController.isError.value
+                            ? 'Fehler: Ohne Werbung entsperren'
+                            : 'Lade Werbeanzeige zum entsperren'),
+                    rewardedController.isloaded.value ||
+                            rewardedController.isError.value
                         ? Container()
                         : SizedBox(
                             width: 8,
                           ),
-                    rewardedController.isloaded.value
+                    rewardedController.isloaded.value ||
+                            rewardedController.isError.value
                         ? Container()
                         : SizedBox(
                             child: CircularProgressIndicator(
@@ -135,7 +141,21 @@ class _BannerAdContainerState extends State<BannerAdContainer> {
                           print(e.message);
                         }
                       }
-                    : null),
+                    : (rewardedController.isError.value)
+                        ? () async {
+                            rewardedController.isRewarded.value = true;
+                            switch (widget.unlockadtype) {
+                              case UnlockAdType.Its:
+                                proController.freeITS.value = true;
+                                break;
+                              case UnlockAdType.Vaccine:
+                                proController.freeVaccine.value = true;
+                                break;
+                            }
+                            Get.back();
+                            rewardedController.isRewarded.value = false;
+                          }
+                        : null),
       ),
     );
   }
