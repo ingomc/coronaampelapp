@@ -12,6 +12,7 @@ class GetSingleCountyController extends GetxController {
   var selectedCountyRS = ''.obs;
   var dummydata = 'DUMYYY';
 
+  @override
   void onInit() {
     ever(selectedCountyRS, (_) async {
       fetchCounty();
