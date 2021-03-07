@@ -7,7 +7,7 @@ class RewardedController extends GetxController {
 
   Future<void> waitingForError() async {
     await Future.delayed(
-      Duration(milliseconds: 5000),
+      Duration(milliseconds: 10000),
     );
     isError.value = true;
   }

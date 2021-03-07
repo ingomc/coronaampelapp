@@ -223,7 +223,7 @@ class SettingsScreen extends StatelessWidget {
                       ),
                     ),
                     applicationName: BaseData.appName,
-                    applicationVersion: "1.1.0",
+                    applicationVersion: "1.2.1",
                   );
                 },
                 child: ListTile(

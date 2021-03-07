@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       defaultTransition: Transition.native,
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: Platform.isAndroid ? 'Inzidenz-Ampel' : 'Corona-Ampel',
       theme: ThemeData(
         primaryColor: Colors.grey[900],
         brightness: Brightness.dark,
