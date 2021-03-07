@@ -2,6 +2,7 @@ import 'package:coronampel/controller/get_browse_controller.dart';
 import 'package:coronampel/controller/get_connectivity_controller.dart';
 import 'package:coronampel/controller/get_countys_controller.dart';
 import 'package:coronampel/controller/get_single_county_controller.dart';
+import 'package:coronampel/controller/in_app_purchase_controller.dart';
 import 'package:coronampel/controller/pro_controller.dart';
 import 'package:coronampel/controller/reload_controller.dart';
 import 'package:coronampel/models/browse_model.dart';
@@ -15,8 +16,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fadein/flutter_fadein.dart';
 import 'package:get/get.dart';
+import 'package:in_app_purchase/in_app_purchase.dart';
 
 class TabBrowseScreen extends StatelessWidget {
+  final InAppPurchaseController inAppPurchaseController =
+      Get.put(InAppPurchaseController());
   final GetBrowseController getBrowseController =
       Get.put(GetBrowseController());
   final ProController proController = Get.put(ProController());
@@ -49,6 +53,150 @@ class TabBrowseScreen extends StatelessWidget {
                 itemBuilder: (context, i) {
                   return Column(
                     children: [
+                      Obx(
+                        () => Text(inAppPurchaseController.iaploading.value
+                            ? 'Loading ...................'
+                            : 'not loading'),
+                      ),
+                      Obx(
+                        () => Text(!inAppPurchaseController.iaploading.value &&
+                                inAppPurchaseController.iapisAvailable.value
+                            ? 'Store ist da'
+                            : '❌'),
+                      ),
+                      Obx(
+                        () => Text(
+                            inAppPurchaseController.iappurchasePending.value
+                                ? 'iappurchasePending ...'
+                                : 'NOT iappurchasePending ❌'),
+                      ),
+                      Obx(
+                        () => Text(inAppPurchaseController.iaploading.value
+                            ? 'iaploading ...'
+                            : 'NOT iaploading ❌'),
+                      ),
+                      Obx(
+                        () => Text((inAppPurchaseController
+                                    .iapqueryProductError.value.length >
+                                0)
+                            ? 'ERROR❌: ${inAppPurchaseController.iapqueryProductError.value}'
+                            : 'NO ERROR'),
+                      ),
+                      // noz found
+                      Obx(
+                        () => Column(
+                          children: [
+                            SizedBox(height: 32),
+                            Text(
+                              'Not found ids',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            ...List.generate(
+                              inAppPurchaseController.iapnotFoundIds.length,
+                              (index) {
+                                String thisId = inAppPurchaseController
+                                    .iapnotFoundIds[index];
+                                return Card(
+                                  child: Text('KARD $thisId'),
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                      // iapproducts
+                      Obx(
+                        () => Column(
+                          children: [
+                            SizedBox(height: 32),
+                            Text(
+                              'IAPProducts',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            ...List.generate(
+                              inAppPurchaseController.iapproducts.length,
+                              (index) {
+                                ProductDetails thisId =
+                                    inAppPurchaseController.iapproducts[index];
+                                return Card(
+                                  child: Column(
+                                    children: [
+                                      Text('id: ${thisId.id}'),
+                                      Text(
+                                          'description: ${thisId.description}'),
+                                      Text('title: ${thisId.title}'),
+                                      Text('price: ${thisId.price}'),
+                                    ],
+                                  ),
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                      // iappurchases
+                      Obx(
+                        () => Column(
+                          children: [
+                            SizedBox(height: 32),
+                            Text(
+                              'iappurchases',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            ...List.generate(
+                              inAppPurchaseController.iappurchases.length,
+                              (index) {
+                                List<PurchaseDetails> purchaseList =
+                                    inAppPurchaseController.iappurchases[index];
+                                return Column(
+                                  children: [
+                                    ...List.generate(
+                                      purchaseList.length,
+                                      (index) {
+                                        PurchaseDetails thisId =
+                                            purchaseList[index];
+                                        return Card(
+                                          child: Column(
+                                            children: [
+                                              Text(
+                                                  'productid: ${thisId.productID}'),
+                                              Text(
+                                                  'purchaseID: ${thisId.purchaseID}'),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      // iapconsumables
+                      Obx(
+                        () => Column(
+                          children: [
+                            SizedBox(height: 32),
+                            Text(
+                              'iapconsumables',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            ...List.generate(
+                              inAppPurchaseController.iapconsumables.length,
+                              (index) {
+                                String thisId = inAppPurchaseController
+                                    .iapconsumables[index];
+                                return Card(
+                                  child: Text('iapconsumables $thisId'),
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
                         child: Obx(
