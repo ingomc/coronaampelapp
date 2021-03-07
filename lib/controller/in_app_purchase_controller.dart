@@ -140,8 +140,11 @@ class InAppPurchaseController extends GetxController {
       } else {
         if (purchaseDetails.status == PurchaseStatus.error) {
           handleError(purchaseDetails.error);
-          await InAppPurchaseConnection.instance
-              .completePurchase(purchaseDetails);
+          if (Platform.isIOS) {
+            await InAppPurchaseConnection.instance
+                .completePurchase(purchaseDetails);
+          }
+          Get.snackbar('Kein Kauf', 'Es wurde kein Produkt gekauft.');
         } else if (purchaseDetails.status == PurchaseStatus.purchased) {
           bool valid = await iapverifyPurchase(purchaseDetails);
           if (valid) {
@@ -157,5 +160,13 @@ class InAppPurchaseController extends GetxController {
         }
       }
     });
+  }
+
+  void buyPro(PurchaseParam purchaseParam) {
+    iapconnection.buyNonConsumable(purchaseParam: purchaseParam);
+  }
+
+  void consumePro(PurchaseDetails purchaseDetails) async {
+    await InAppPurchaseConnection.instance.consumePurchase(purchaseDetails);
   }
 }

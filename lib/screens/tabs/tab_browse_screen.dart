@@ -61,7 +61,7 @@ class TabBrowseScreen extends StatelessWidget {
                       Obx(
                         () => Text(!inAppPurchaseController.iaploading.value &&
                                 inAppPurchaseController.iapisAvailable.value
-                            ? 'Store ist da'
+                            ? 'Store ist da ✅'
                             : '❌'),
                       ),
                       Obx(
@@ -125,7 +125,20 @@ class TabBrowseScreen extends StatelessWidget {
                                       Text(
                                           'description: ${thisId.description}'),
                                       Text('title: ${thisId.title}'),
-                                      Text('price: ${thisId.price}'),
+                                      Text(
+                                          'price: ${thisId.price} + 19% MwSt.'),
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          PurchaseParam purchaseParam =
+                                              PurchaseParam(
+                                            productDetails: thisId,
+                                            applicationUserName: null,
+                                          );
+                                          inAppPurchaseController
+                                              .buyPro(purchaseParam);
+                                        },
+                                        child: Text('Kaufen: ${thisId.title}'),
+                                      ),
                                     ],
                                   ),
                                 );
