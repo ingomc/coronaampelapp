@@ -139,6 +139,17 @@ class TabBrowseScreen extends StatelessWidget {
                                         },
                                         child: Text('Kaufen: ${thisId.title}'),
                                       ),
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          PurchaseDetails purchaseDetails =
+                                              inAppPurchaseController
+                                                  .iappurchases[0][0];
+                                          inAppPurchaseController
+                                              .consumePro(purchaseDetails);
+                                        },
+                                        child: Text(
+                                            'Konsumieren: ${thisId.title}'),
+                                      ),
                                     ],
                                   ),
                                 );
@@ -175,6 +186,10 @@ class TabBrowseScreen extends StatelessWidget {
                                                   'productid: ${thisId.productID}'),
                                               Text(
                                                   'purchaseID: ${thisId.purchaseID}'),
+                                              Text(
+                                                  'purchaseID: ${thisId.transactionDate}'),
+                                              Text(
+                                                  'purchaseID: ${thisId.verificationData.serverVerificationData}'),
                                             ],
                                           ),
                                         );

@@ -56,6 +56,8 @@ PODS:
   - "GoogleUtilities/NSData+zlib (7.2.2)"
   - GoogleUtilities/Reachability (7.2.2):
     - GoogleUtilities/Logger
+  - in_app_purchase (0.0.1):
+    - Flutter
   - integration_test (0.0.1):
     - Flutter
   - launch_review (0.0.1):
@@ -83,6 +85,7 @@ DEPENDENCIES:
   - flutter_native_admob (from `.symlinks/plugins/flutter_native_admob/ios`)
   - geolocator (from `.symlinks/plugins/geolocator/ios`)
   - Google-Mobile-Ads-SDK (~> 7.69.0)
+  - in_app_purchase (from `.symlinks/plugins/in_app_purchase/ios`)
   - integration_test (from `.symlinks/plugins/integration_test/ios`)
   - launch_review (from `.symlinks/plugins/launch_review/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
@@ -117,6 +120,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_native_admob/ios"
   geolocator:
     :path: ".symlinks/plugins/geolocator/ios"
+  in_app_purchase:
+    :path: ".symlinks/plugins/in_app_purchase/ios"
   integration_test:
     :path: ".symlinks/plugins/integration_test/ios"
   launch_review:
@@ -143,6 +148,7 @@ SPEC CHECKSUMS:
   GoogleDataTransport: 1024b1a4dfbd7a0e92cb20d7e0a6f1fb66b449a4
   GoogleUserMessagingPlatform: b168e8c46cd8f92aa3e34b584c4ca78a411ce367
   GoogleUtilities: 31c5b01f978a70c6cff2afc6272b3f1921614b43
+  in_app_purchase: 3e2155afa9d03d4fa32d9e62d567885080ce97d6
   integration_test: 6eb66a19f7104200dcfdd62bc0077e1b09686e4f
   launch_review: 75d5a956ba8eaa493e9c9d4bf4c05e505e8d5ed0
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e

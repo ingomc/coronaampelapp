@@ -51,7 +51,7 @@ dev_dependencies:
     sdk: flutter
   integration_test:
     sdk: flutter
-  # flutter_launcher_icons: "^0.8.0"
+  flutter_launcher_icons: "^0.8.0"
   # flutter_native_splash: ^0.2.9
   # flutter_rename_app:
 
@@ -98,11 +98,11 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
 
-# flutter_icons:
-#   ios: true
-#   android: true
-#   image_path_ios: "assets/launcher/playstore-icon.png"
-#   image_path_android: "assets/launcher/playstore-icon.png"
+flutter_icons:
+  ios: true
+  android: true
+  image_path_ios: "assets/launcher/playstore-icon.png"
+  image_path_android: "assets/launcher/playstore-icon.png"
 
 # flutter_rename_app:
 #   application_name: CoronAMPEL

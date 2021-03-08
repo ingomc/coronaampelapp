@@ -64,7 +64,8 @@ class InAppPurchaseController extends GetxController {
       iapconsumables.assignAll([]);
       iappurchasePending.value = false;
       iaploading.value = false;
-      iapqueryProductError.value = productDetailResponse.error.message;
+      iapqueryProductError.value =
+          productDetailResponse.error.message ?? 'Unbekannter Fehler';
       return;
     }
 
