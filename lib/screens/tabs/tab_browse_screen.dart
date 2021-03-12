@@ -97,7 +97,7 @@ class TabBrowseScreen extends StatelessWidget {
                                 String thisId = inAppPurchaseController
                                     .iapnotFoundIds[index];
                                 return Card(
-                                  child: Text('KARD $thisId'),
+                                  child: Text('$thisId'),
                                 );
                               },
                             ),

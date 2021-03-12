@@ -6,22 +6,15 @@ class ProController extends GetxController {
   var freeITS = false.obs;
   var freeVaccine = false.obs;
   final box = GetStorage();
-  final boxnamespace = 'pro';
+  final devproNamespace = 'devpro';
 
   @override
-  void onInit() {
-    var storedPro = box.read(boxnamespace);
-    if (storedPro != null) {
-      isPro.value = storedPro;
-    }
+  void onInit() async {
+    var storedDevpro = box.read(devproNamespace);
+    isPro.value = storedDevpro ?? false;
+
     ever(isPro, (_) {
-      box.write(boxnamespace, isPro.value);
-      Get.snackbar(
-          isPro.value ? 'PRO wurde aktiviert! ✅' : 'Pro wurde deaktiviert ❌',
-          isPro.value
-              ? 'Alle Features sind freigeschalten, du musst keine Werbung mehr anschauen.'
-              : 'Du hast die Standardapp mit Werbung.',
-          snackPosition: SnackPosition.BOTTOM);
+      box.write(devproNamespace, isPro.value);
     });
     super.onInit();
   }
