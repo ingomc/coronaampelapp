@@ -34,6 +34,8 @@
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Um deinen Landkreis zu finden benötigt die App Ortungsrechte</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Um deinen Landkreis zu finden benötigt die App Ortungsrechte</string>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>

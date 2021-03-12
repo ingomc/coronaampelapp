@@ -2,14 +2,19 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 
+import 'pro_controller.dart';
+
 class InAppPurchaseController extends GetxController {
+  ProController proController = ProController();
   final InAppPurchaseConnection iapconnection =
       InAppPurchaseConnection.instance;
   StreamSubscription<List<PurchaseDetails>> iapsubscription;
   static String iapproSubscriptionId = 'in_app_pro';
   static List<String> iapProductIds = <String>[iapproSubscriptionId];
+  final box = GetStorage();
 
   var iapnotFoundIds = [].obs; // List<String>
   var iapproducts = [].obs; // List<ProductDetails>
@@ -20,8 +25,25 @@ class InAppPurchaseController extends GetxController {
   var iaploading = true.obs; // Bool
   var iapqueryProductError = ''.obs;
 
+  var isPurchased = false.obs;
+  final purchaseNamespace = 'purchase';
+
   @override
   void onInit() {
+    isPurchased.value = box.read(purchaseNamespace) ?? false;
+
+    ever(isPurchased, (_) {
+      box.write(purchaseNamespace, isPurchased.value);
+      Get.snackbar(
+          isPurchased.value
+              ? 'PRO wurde aktiviert! ✅'
+              : 'Pro wurde deaktiviert ❌',
+          isPurchased.value
+              ? 'Alle Features sind freigeschalten, du musst keine Werbung mehr anschauen.'
+              : 'Du hast die Standardapp mit Werbung.',
+          snackPosition: SnackPosition.BOTTOM);
+    });
+
     final Stream<List<PurchaseDetails>> purchaseUpdated =
         InAppPurchaseConnection.instance.purchaseUpdatedStream;
     iapsubscription = purchaseUpdated.listen((purchaseDetailsList) {
@@ -114,6 +136,7 @@ class InAppPurchaseController extends GetxController {
       List<String> consumables = [purchaseDetails.purchaseID];
       iappurchasePending.value = false;
       iapconsumables.assignAll(consumables);
+      iappurchases.assignAll([consumables]);
     } else {
       iappurchasePending.value = false;
     }
@@ -169,5 +192,7 @@ class InAppPurchaseController extends GetxController {
 
   void consumePro(PurchaseDetails purchaseDetails) async {
     await InAppPurchaseConnection.instance.consumePurchase(purchaseDetails);
+    iappurchases.assignAll([]);
+    iapconsumables.assignAll([]);
   }
 }
