@@ -29,8 +29,19 @@ class InAppPurchaseController extends GetxController {
   final purchaseNamespace = 'purchase';
 
   @override
-  void onInit() {
+  void onInit() async {
     isPurchased.value = box.read(purchaseNamespace) ?? false;
+
+    final Stream<List<PurchaseDetails>> purchaseUpdated =
+        InAppPurchaseConnection.instance.purchaseUpdatedStream;
+    iapsubscription = purchaseUpdated.listen((purchaseDetailsList) {
+      iaplistenToPurchaseUpdated(purchaseDetailsList);
+    }, onDone: () {
+      iapsubscription.cancel();
+    }, onError: (error) {
+      // handle error here.
+    });
+    await initStoreInfo();
 
     ever(isPurchased, (_) {
       box.write(purchaseNamespace, isPurchased.value);
@@ -43,17 +54,6 @@ class InAppPurchaseController extends GetxController {
               : 'Du hast die Standardapp mit Werbung.',
           snackPosition: SnackPosition.BOTTOM);
     });
-
-    final Stream<List<PurchaseDetails>> purchaseUpdated =
-        InAppPurchaseConnection.instance.purchaseUpdatedStream;
-    iapsubscription = purchaseUpdated.listen((purchaseDetailsList) {
-      iaplistenToPurchaseUpdated(purchaseDetailsList);
-    }, onDone: () {
-      iapsubscription.cancel();
-    }, onError: (error) {
-      // handle error here.
-    });
-    initStoreInfo();
     super.onInit();
   }
 
@@ -118,6 +118,7 @@ class InAppPurchaseController extends GetxController {
     iapisAvailable.value = isAvailable;
     iapproducts.assignAll(productDetailResponse.productDetails);
     iappurchases.assignAll([verifiedPurchases]);
+    isPurchased.value = true;
     iapnotFoundIds.assignAll(productDetailResponse.notFoundIDs);
     iapconsumables.assignAll([]);
     iappurchasePending.value = false;

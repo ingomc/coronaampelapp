@@ -21,10 +21,12 @@ class Devtools extends StatelessWidget {
             child: Card(
               child: Obx(
                 () => SwitchListTile(
-                  title: Text('Pro ${proController.isPro.value.toString()}'),
-                  value: proController.isPro.value,
+                  title: Text(
+                      'Pro ${inAppPurchaseController.isPurchased.value.toString()}'),
+                  value: inAppPurchaseController.isPurchased.value,
                   onChanged: (bool value) {
-                    proController.isPro.value = !(proController.isPro.value);
+                    inAppPurchaseController.isPurchased.value =
+                        !(inAppPurchaseController.isPurchased.value);
                   },
                 ),
               ),

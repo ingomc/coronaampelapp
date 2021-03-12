@@ -1,3 +1,4 @@
+import 'package:coronampel/controller/in_app_purchase_controller.dart';
 import 'package:coronampel/controller/pro_controller.dart';
 import 'package:coronampel/widgets/non_pro_its.dart';
 import 'package:flutter_fadein/flutter_fadein.dart';
@@ -35,6 +36,8 @@ class CountyDetailScreen extends StatelessWidget {
   final GetSingleCountyController getSingleCountyController =
       Get.put(GetSingleCountyController());
   final ProController proController = Get.put(ProController());
+  final InAppPurchaseController inAppPurchaseController =
+      Get.put(InAppPurchaseController());
 
   // Call this when the user pull down the screen
   Future<void> _loadData() async {
@@ -112,7 +115,7 @@ class CountyDetailScreen extends StatelessWidget {
                               height: 16,
                             ),
                             if (controller.isLoading.value &&
-                                proController.isPro.value)
+                                inAppPurchaseController.isPurchased.value)
                               FadeIn(
                                 duration: Duration(milliseconds: 500),
                                 child: Center(
@@ -121,7 +124,7 @@ class CountyDetailScreen extends StatelessWidget {
                               ),
                             if (!controller.isLoading.value &&
                                 controller.county.value.bettenFrei != null &&
-                                (proController.isPro.value ||
+                                (inAppPurchaseController.isPurchased.value ||
                                     proController.freeITS.value))
                               FadeIn(
                                 duration: Duration(milliseconds: 500),
@@ -180,7 +183,7 @@ class CountyDetailScreen extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                            if (!proController.isPro.value &&
+                            if (!inAppPurchaseController.isPurchased.value &&
                                 !proController.freeITS.value)
                               NonProITS(),
                           ],

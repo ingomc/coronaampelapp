@@ -54,6 +54,11 @@ class TabBrowseScreen extends StatelessWidget {
                   return Column(
                     children: [
                       Obx(
+                        () => Text(inAppPurchaseController.isPurchased.value
+                            ? 'purhcased'
+                            : 'not...'),
+                      ),
+                      Obx(
                         () => Text(inAppPurchaseController.iaploading.value
                             ? 'Loading ...................'
                             : 'not loading'),

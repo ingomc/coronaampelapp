@@ -1,4 +1,5 @@
 import 'package:coronampel/controller/get_vaccine_controller.dart';
+import 'package:coronampel/controller/in_app_purchase_controller.dart';
 import 'package:coronampel/controller/pro_controller.dart';
 import 'package:coronampel/controller/reload_controller.dart';
 import 'package:coronampel/widgets/non_pro_vaccine.dart';
@@ -16,6 +17,8 @@ class TabVaccineScreen extends StatelessWidget {
   final GetVaccineController getVaccineController =
       Get.put(GetVaccineController());
   final ProController proController = Get.put(ProController());
+  final InAppPurchaseController inAppPurchaseController =
+      Get.put(InAppPurchaseController());
   final ReloadController reloadController = Get.put(ReloadController());
 
   // Call this when the user pull down the screen
@@ -167,7 +170,7 @@ class TabVaccineScreen extends StatelessWidget {
                       height: 24,
                     ),
                     Obx(
-                      () => (proController.isPro.value ||
+                      () => (inAppPurchaseController.isPurchased.value ||
                               proController.freeVaccine.value)
                           ? Column(
                               children: [

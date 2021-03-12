@@ -1,18 +1,20 @@
-import 'package:coronampel/controller/pro_controller.dart';
+import 'package:coronampel/controller/in_app_purchase_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    ProController proController = Get.put(ProController());
+    final InAppPurchaseController inAppPurchaseController =
+        Get.put(InAppPurchaseController());
+
     return Obx(
       () => Center(
         child: Container(
           decoration: BoxDecoration(
             border: Border.all(
                 width: 1,
-                color: proController.isPro.value
+                color: inAppPurchaseController.isPurchased.value
                     ? Colors.white
                     : Theme.of(context).primaryColor),
             borderRadius: BorderRadius.circular(4),
@@ -22,7 +24,7 @@ class ProLabel extends StatelessWidget {
             child: Text(
               'PRO',
               style: TextStyle(
-                  color: proController.isPro.value
+                  color: inAppPurchaseController.isPurchased.value
                       ? Colors.white
                       : Theme.of(context).primaryColor),
             ),

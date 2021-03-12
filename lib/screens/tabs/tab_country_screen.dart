@@ -1,4 +1,5 @@
 import 'package:coronampel/controller/get_global_controller.dart';
+import 'package:coronampel/controller/in_app_purchase_controller.dart';
 import 'package:coronampel/controller/pro_controller.dart';
 import 'package:coronampel/controller/reload_controller.dart';
 import 'package:coronampel/widgets/native_ad_card.dart';
@@ -15,6 +16,9 @@ class TabCountryScreen extends StatelessWidget {
   final GetGlobalController getGlobalController =
       Get.put(GetGlobalController());
   final ProController proController = Get.put(ProController());
+  final InAppPurchaseController inAppPurchaseController =
+      Get.put(InAppPurchaseController());
+
   final ReloadController reloadController = Get.put(ReloadController());
 
   // Call this when the user pull down the screen
@@ -304,7 +308,7 @@ class TabCountryScreen extends StatelessWidget {
                                 height: 16,
                               ),
                               Obx(
-                                () => proController.isPro.value
+                                () => inAppPurchaseController.isPurchased.value
                                     ? Container()
                                     : NativeAdCard(),
                               ),
