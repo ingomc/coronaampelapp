@@ -30,7 +30,11 @@ class InAppPurchaseController extends GetxController {
 
   @override
   void onInit() async {
-    isPurchased.value = box.read(purchaseNamespace) ?? false;
+    isPurchased.value = box.read(purchaseNamespace) != true ? false : true;
+    print(
+        'INIT  isPurchased.value :            ${isPurchased.value}                   ');
+    print(
+        'INIT  box.read :            ${box.read(purchaseNamespace)}                   ');
 
     final Stream<List<PurchaseDetails>> purchaseUpdated =
         InAppPurchaseConnection.instance.purchaseUpdatedStream;
@@ -44,11 +48,13 @@ class InAppPurchaseController extends GetxController {
     await initStoreInfo();
 
     ever(isPurchased, (_) {
+      print(
+          '------------------                          purchased: ${isPurchased.value}');
       box.write(purchaseNamespace, isPurchased.value);
       Get.snackbar(
           isPurchased.value
-              ? 'PRO wurde aktiviert! ✅'
-              : 'Pro wurde deaktiviert ❌',
+              ? 'PRO wurde aktiviert! ✅✅✅'
+              : 'Pro wurde deaktiviert ❌❌❌❌',
           isPurchased.value
               ? 'Alle Features sind freigeschalten, du musst keine Werbung mehr anschauen.'
               : 'Du hast die Standardapp mit Werbung.',
@@ -118,7 +124,6 @@ class InAppPurchaseController extends GetxController {
     iapisAvailable.value = isAvailable;
     iapproducts.assignAll(productDetailResponse.productDetails);
     iappurchases.assignAll([verifiedPurchases]);
-    isPurchased.value = true;
     iapnotFoundIds.assignAll(productDetailResponse.notFoundIDs);
     iapconsumables.assignAll([]);
     iappurchasePending.value = false;
@@ -137,7 +142,7 @@ class InAppPurchaseController extends GetxController {
       List<String> consumables = [purchaseDetails.purchaseID];
       iappurchasePending.value = false;
       iapconsumables.assignAll(consumables);
-      iappurchases.assignAll([consumables]);
+      isPurchased.value = true;
     } else {
       iappurchasePending.value = false;
     }
@@ -195,5 +200,6 @@ class InAppPurchaseController extends GetxController {
     await InAppPurchaseConnection.instance.consumePurchase(purchaseDetails);
     iappurchases.assignAll([]);
     iapconsumables.assignAll([]);
+    isPurchased.value = false;
   }
 }
