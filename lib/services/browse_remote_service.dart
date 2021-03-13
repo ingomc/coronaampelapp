@@ -6,7 +6,7 @@ class RemoteServiceBrowse {
   static var client = http.Client();
 
   static Future<Browse> fetchBrowse() async {
-    String url = 'https://ingomc.github.io/corona-ampel-be/browse/index.json';
+    String url = 'https://ampeldata.andre-bellmann.de/browse/index.json';
 
     try {
       var response = await client.get(url);

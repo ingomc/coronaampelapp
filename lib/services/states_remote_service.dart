@@ -6,7 +6,7 @@ class RemoteServiceStates {
   static var client = http.Client();
 
   static Future<States> fetchAllStates() async {
-    String url = 'https://ingomc.github.io/corona-ampel-be/states/index.json';
+    String url = 'https://ampeldata.andre-bellmann.de/states/index.json';
 
     try {
       var response = await client.get(url);

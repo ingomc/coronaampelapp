@@ -6,7 +6,7 @@ class RemoteServiceCountys {
   static var client = http.Client();
 
   static Future<Countys> fetchAllCountys() async {
-    String url = 'https://ingomc.github.io/corona-ampel-be/countys/index.json';
+    String url = 'https://ampeldata.andre-bellmann.de/countys/index.json';
 
     try {
       var response = await client.get(url);

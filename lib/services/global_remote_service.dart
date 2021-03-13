@@ -6,7 +6,7 @@ class RemoteServiceGlobal {
   static var client = http.Client();
 
   static Future<Worldwide> fetchGlobal() async {
-    String url = 'https://ingomc.github.io/corona-ampel-be/global/index.json';
+    String url = 'https://ampeldata.andre-bellmann.de/global/index.json';
 
     try {
       var response = await client.get(url);
