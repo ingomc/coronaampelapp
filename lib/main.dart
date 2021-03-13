@@ -19,8 +19,8 @@ void main() async {
 class MyApp extends StatelessWidget {
   MyApp() {
     MatomoTracker().initialize(
-      siteId: 6,
-      url: 'https://tracking.andre-bellmann.de/matomo.php',
+      siteId: 1,
+      url: 'https://apptracking.andre-bellmann.de/matomo.php',
     );
   }
   final PinnedCountysController pinnedCountysController =
