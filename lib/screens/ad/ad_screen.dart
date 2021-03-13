@@ -4,8 +4,9 @@ import 'package:coronampel/widgets/banner_ad_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
+import 'package:matomo/matomo.dart';
 
-class AdScreen extends StatelessWidget {
+class AdScreen extends TraceableStatelessWidget {
   const AdScreen({
     Key key,
     @required this.unlockadtype,

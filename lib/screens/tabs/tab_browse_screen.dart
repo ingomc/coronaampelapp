@@ -16,8 +16,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fadein/flutter_fadein.dart';
 import 'package:get/get.dart';
+import 'package:matomo/matomo.dart';
 
-class TabBrowseScreen extends StatelessWidget {
+class TabBrowseScreen extends TraceableStatelessWidget {
   final InAppPurchaseController inAppPurchaseController =
       Get.put(InAppPurchaseController());
   final GetBrowseController getBrowseController =

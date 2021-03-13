@@ -6,11 +6,12 @@ import 'package:coronampel/screens/help/help_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:matomo/matomo.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share/share.dart';
 import 'package:launch_review/launch_review.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends TraceableStatelessWidget {
   final _webUrl = 'https://corona-ampel.app/datenschutz';
   Future<void> _launchInBrowser(String url) async {
     if (await canLaunch(url)) {

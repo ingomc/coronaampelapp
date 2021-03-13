@@ -1,10 +1,10 @@
 import 'package:coronampel/controller/in_app_purchase_controller.dart';
-import 'package:coronampel/controller/pro_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
+import 'package:matomo/matomo.dart';
 
-class Devtools extends StatelessWidget {
+class Devtools extends TraceableStatelessWidget {
   @override
   Widget build(BuildContext context) {
     InAppPurchaseController inAppPurchaseController =

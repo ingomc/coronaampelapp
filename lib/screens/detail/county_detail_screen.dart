@@ -10,8 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:matomo/matomo.dart';
 
-class CountyDetailScreen extends StatelessWidget {
+class CountyDetailScreen extends TraceableStatelessWidget {
   CountyDetailScreen({
     Key key,
     @required this.hero,

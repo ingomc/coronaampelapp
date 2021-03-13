@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
+import 'package:matomo/matomo.dart';
 import 'controller/pinned_countys_controller.dart';
 import 'screens/home/home_screen.dart';
 
@@ -16,6 +17,12 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  MyApp() {
+    MatomoTracker().initialize(
+      siteId: 6,
+      url: 'https://tracking.andre-bellmann.de/matomo.php',
+    );
+  }
   final PinnedCountysController pinnedCountysController =
       Get.put(PinnedCountysController());
 

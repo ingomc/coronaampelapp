@@ -11,8 +11,9 @@ import 'package:coronampel/controller/pinned_countys_controller.dart';
 import 'package:coronampel/controller/get_countys_controller.dart';
 import 'package:coronampel/screens/search/search_screen.dart';
 import 'package:coronampel/widgets/county_card.dart';
+import 'package:matomo/matomo.dart';
 
-class TabCountyScreen extends StatelessWidget {
+class TabCountyScreen extends TraceableStatelessWidget {
   final GetCountysController getCountysController =
       Get.put(GetCountysController());
   final PinnedCountysController pinnedCountysController =
