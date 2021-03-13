@@ -31,11 +31,6 @@ class InAppPurchaseController extends GetxController {
   @override
   void onInit() async {
     isPurchased.value = box.read(purchaseNamespace) != true ? false : true;
-    print(
-        'INIT  isPurchased.value :            ${isPurchased.value}                   ');
-    print(
-        'INIT  box.read :            ${box.read(purchaseNamespace)}                   ');
-
     final Stream<List<PurchaseDetails>> purchaseUpdated =
         InAppPurchaseConnection.instance.purchaseUpdatedStream;
     iapsubscription = purchaseUpdated.listen((purchaseDetailsList) {

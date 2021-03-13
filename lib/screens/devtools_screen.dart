@@ -9,7 +9,6 @@ class Devtools extends StatelessWidget {
   Widget build(BuildContext context) {
     InAppPurchaseController inAppPurchaseController =
         Get.put(InAppPurchaseController());
-    ProController proController = Get.put(ProController());
     return Scaffold(
       appBar: AppBar(
         title: Text('Devtools'),
