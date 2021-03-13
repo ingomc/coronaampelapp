@@ -43,8 +43,8 @@ class InAppPurchaseController extends GetxController {
     await initStoreInfo();
 
     ever(isPurchased, (_) {
-      print(
-          '------------------                          purchased: ${isPurchased.value}');
+      // print(
+      //     '------------------                          purchased: ${isPurchased.value}');
       box.write(purchaseNamespace, isPurchased.value);
       Get.snackbar(
           isPurchased.value
