@@ -185,7 +185,10 @@ class HomeScreen extends StatelessWidget {
               inAppPurchaseController.isPurchased.value
                   ? ProLabel()
                   : Container(),
-              Text(' 🚦'),
+              inAppPurchaseController.isPurchased.value
+                  ? Text(' ')
+                  : Container(),
+              Text('🚦'),
             ],
           ),
         ),
