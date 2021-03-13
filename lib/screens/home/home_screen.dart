@@ -3,6 +3,7 @@ import 'package:coronampel/controller/get_connectivity_controller.dart';
 import 'package:coronampel/controller/get_countys_controller.dart';
 import 'package:coronampel/controller/get_states_controller.dart';
 import 'package:coronampel/controller/get_vaccine_controller.dart';
+import 'package:coronampel/controller/in_app_purchase_controller.dart';
 import 'package:coronampel/controller/reload_controller.dart';
 import 'package:coronampel/data/base_data.dart';
 import 'package:coronampel/screens/settings/settings_screen.dart';
@@ -33,6 +34,8 @@ class HomeScreen extends StatelessWidget {
   final ReloadController reloadController = Get.put(ReloadController());
   final GetConnectivityController getConnectivityController =
       Get.put(GetConnectivityController());
+  final InAppPurchaseController inAppPurchaseController =
+      Get.put(InAppPurchaseController());
 
   void _select(value) async {
     switch (value) {
@@ -115,7 +118,6 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        leading: ProLabel(),
         centerTitle: true,
         actions: [
           PopupMenuButton(
@@ -174,7 +176,19 @@ class HomeScreen extends StatelessWidget {
             },
           ),
         ],
-        title: Text('🚦 ${BaseData.appName} 🚦'),
+        title: Obx(
+          () => Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // SizedBox(width: inAppPurchaseController.isPurchased.value ? 16 : 0),
+              Text('🚦 ${BaseData.appName} '),
+              inAppPurchaseController.isPurchased.value
+                  ? SizedBox(child: ProLabel(), width: 38, height: 18)
+                  : Container(),
+              Text(' 🚦'),
+            ],
+          ),
+        ),
       ),
       body: Column(
         children: [
