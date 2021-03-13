@@ -183,7 +183,7 @@ class HomeScreen extends StatelessWidget {
               // SizedBox(width: inAppPurchaseController.isPurchased.value ? 16 : 0),
               Text('🚦 ${BaseData.appName} '),
               inAppPurchaseController.isPurchased.value
-                  ? SizedBox(child: ProLabel(), width: 38, height: 18)
+                  ? ProLabel()
                   : Container(),
               Text(' 🚦'),
             ],
