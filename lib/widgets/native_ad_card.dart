@@ -59,7 +59,7 @@ class _NativeAdCardState extends State<NativeAdCard> {
           padding: EdgeInsets.all(10),
           margin: EdgeInsets.only(bottom: 20.0),
           child: NativeAdmob(
-            adUnitID: new AdData().adUnitID,
+            adUnitID: AdData.nativeAdUnitId,
             numberAds: 2,
             loading: Container(),
             error: Text("Failed to load the ad"),

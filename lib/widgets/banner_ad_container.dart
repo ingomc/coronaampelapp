@@ -2,6 +2,7 @@ import 'package:coronampel/controller/get_connectivity_controller.dart';
 import 'package:coronampel/controller/pro_controller.dart';
 import 'package:coronampel/controller/rewared_controller.dart';
 import 'package:coronampel/data/_interfaces.dart';
+import 'package:coronampel/data/ad_data.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -62,7 +63,7 @@ class _BannerAdContainerState extends State<BannerAdContainer> {
               'Du hast Leider keine Belohnung erhalten.');
           rewardedController.isloaded.value = false;
           RewardedVideoAd.instance.load(
-            adUnitId: RewardedVideoAd.testAdUnitId,
+            adUnitId: AdData.rewardedAdUnitId,
             targetingInfo: targetingInfo,
           );
         } else {
@@ -77,13 +78,13 @@ class _BannerAdContainerState extends State<BannerAdContainer> {
         print('Error FailedToLoad');
         if (!getConnectivityController.isOffline.value)
           RewardedVideoAd.instance.load(
-            adUnitId: RewardedVideoAd.testAdUnitId,
+            adUnitId: AdData.rewardedAdUnitId,
             targetingInfo: targetingInfo,
           );
       }
     };
     RewardedVideoAd.instance.load(
-      adUnitId: RewardedVideoAd.testAdUnitId,
+      adUnitId: AdData.rewardedAdUnitId,
       targetingInfo: targetingInfo,
     );
   }
