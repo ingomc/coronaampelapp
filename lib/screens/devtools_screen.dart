@@ -61,9 +61,8 @@ class Devtools extends TraceableStatelessWidget {
                   : 'NOT iaploading ❌'),
             ),
             Obx(
-              () => Text((inAppPurchaseController
-                          .iapqueryProductError.value.length >
-                      0)
+              () => Text((inAppPurchaseController.iapqueryProductError.value !=
+                      null)
                   ? 'ERROR❌: ${inAppPurchaseController.iapqueryProductError.value}'
                   : 'NO ERROR'),
             ),
