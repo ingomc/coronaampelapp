@@ -1,34 +1,41 @@
 {
   "project_info": {
-    "project_number": "279046894101",
-    "project_id": "ampel-e056d",
-    "storage_bucket": "ampel-e056d.appspot.com"
+    "project_number": "512109187657",
+    "project_id": "coronampel",
+    "storage_bucket": "coronampel.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:279046894101:android:eb8326d7a87638f99cd41c",
+        "mobilesdk_app_id": "1:512109187657:android:a57506522c44a62b20e598",
         "android_client_info": {
           "package_name": "com.ingomc.ampel"
         }
       },
       "oauth_client": [
         {
-          "client_id": "279046894101-9it3i8rrjupqu28f7vkoo7f3i1380f7p.apps.googleusercontent.com",
+          "client_id": "512109187657-qvl82524l2jt433a59l302gbuv8hu9l5.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDwh7Jq7ED_HAjsyzX3qRGlkuy7BcrXiZ0"
+          "current_key": "AIzaSyB6aXIHHtdq52r8iQ6qri5-bV_9d0KYE9Q"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "279046894101-9it3i8rrjupqu28f7vkoo7f3i1380f7p.apps.googleusercontent.com",
+              "client_id": "512109187657-qvl82524l2jt433a59l302gbuv8hu9l5.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "512109187657-dr652p8fe840tff64jahmjqqfq5vc0s5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ingomc.coronampelios"
+              }
             }
           ]
         }

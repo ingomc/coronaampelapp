@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -22,6 +23,8 @@ class MyApp extends StatelessWidget {
       siteId: 1,
       url: 'https://apptracking.andre-bellmann.de/matomo.php',
     );
+    FirebaseAdMob.instance
+        .initialize(appId: 'ca-app-pub-6534315507576320~5939436202');
   }
   final PinnedCountysController pinnedCountysController =
       Get.put(PinnedCountysController());
