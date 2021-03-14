@@ -56,12 +56,14 @@ class _BannerAdContainerState extends State<BannerAdContainer> {
       }
       if (event == RewardedVideoAdEvent.loaded) {
         rewardedController.isloaded.value = true;
+        rewardedController.isError.value = false;
       }
       if (event == RewardedVideoAdEvent.closed) {
         if (rewardedController.isRewarded.value == false) {
           Get.snackbar('Feature nicht freigeschalten',
               'Du hast Leider keine Belohnung erhalten.');
           rewardedController.isloaded.value = false;
+          rewardedController.isError.value = false;
           RewardedVideoAd.instance.load(
             adUnitId: AdData.rewardedAdUnitId,
             targetingInfo: targetingInfo,
