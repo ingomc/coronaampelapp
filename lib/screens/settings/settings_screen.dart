@@ -224,7 +224,7 @@ class SettingsScreen extends TraceableStatelessWidget {
                       ),
                     ),
                     applicationName: BaseData.appName,
-                    applicationVersion: "1.2.1",
+                    applicationVersion: "1.3.1",
                   );
                 },
                 child: ListTile(
