@@ -1,4 +1,4 @@
-package com.ingomc.ampel
+package com.ingomc.inzidenzampel
 
 import io.flutter.embedding.android.FlutterActivity
 

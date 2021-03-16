@@ -1,5 +1,5 @@
 name: coronampel
-description: Aktuelle Fälle, Zahlen Inzidenz und Impfzahlen
+description: Aktuelle Fälle, Zahlen Inzidenz
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -108,6 +108,6 @@ flutter_icons:
 # flutter_rename_app:
 #   application_name: CoronAMPEL
 #   dart_package_name: coronampel
-#   application_id: com.ingomc.ampel
-#   bundle_id: com.ingomc.ampel
-#   android_package_name: com.ingomc.ampel
+#   application_id: com.ingomc.inzidenzampel
+#   bundle_id: com.ingomc.inzidenzampel
+#   android_package_name: com.ingomc.inzidenzampel

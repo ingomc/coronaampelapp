@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:512109187657:android:a57506522c44a62b20e598",
+        "mobilesdk_app_id": "1:512109187657:android:e8af09f52408d09820e598",
         "android_client_info": {
-          "package_name": "com.ingomc.ampel"
+          "package_name": "com.ingomc.inzidenzampel"
         }
       },
       "oauth_client": [
