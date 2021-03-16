@@ -52,7 +52,7 @@ class SettingsScreen extends TraceableStatelessWidget {
                     SizedBox(
                       height: 8,
                     ),
-                    Text('Inzidenz, Intensivstation, Impfungen'),
+                    Text('Inzidenz, Intensivstation und mehr'),
                   ],
                 ),
               ),
@@ -114,7 +114,7 @@ class SettingsScreen extends TraceableStatelessWidget {
                     child: InkWell(
                       onTap: () {
                         Share.share(
-                          'Kennst du schon die Corona-Ampel App? Dort kann man die aktuellen Inzidenzen, Impfstatus, Intensivstationbelegung und vieles mehr anschauen. http://corona-ampel.app \n \n LG',
+                          'Kennst du schon die Inzidenz-Ampel App? Dort kann man die aktuellen Inzidenzen, Intensivstationbelegung und vieles mehr anschauen. http://corona-ampel.app \n \n LG',
                           subject: "Empfehlung: Coole Corona-Übersicht",
                         );
                       },
