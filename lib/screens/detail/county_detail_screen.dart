@@ -169,15 +169,14 @@ class CountyDetailScreen extends TraceableStatelessWidget {
                                           '${controller.county.value.bettenBelegt != null ? controller.county.value.bettenBelegt : 0}',
                                     ),
                                     CityDetailsRowCard(
-                                      label: 'Betten belegt mit Covid-19',
+                                      label: 'Betten belegt mit 🦠',
                                       percentage:
                                           '${(controller.county.value.faelleCovidAktuell / (controller.county.value.faelleCovidAktuell + controller.county.value.bettenBelegt) * 100).toStringAsFixed(0)}',
                                       number:
                                           '${controller.county.value.faelleCovidAktuell != null ? controller.county.value.faelleCovidAktuell : 0}',
                                     ),
                                     CityDetailsRowCard(
-                                      label:
-                                          'Covid-19-Fälle die beatmet werden',
+                                      label: '🦠-Fälle die beatmet werden',
                                       number:
                                           '${controller.county.value.faelleCovidAktuellBeatmet != null ? controller.county.value.faelleCovidAktuellBeatmet : 0}',
                                     ),

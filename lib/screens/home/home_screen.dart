@@ -99,13 +99,13 @@ class HomeScreen extends StatelessWidget {
             );
             break;
           // Impfungen
-          // case 4:
-          //   getVaccineController.scrollController.animateTo(
-          //     0.0,
-          //     curve: Curves.easeOutQuint,
-          //     duration: const Duration(milliseconds: 1000),
-          //   );
-          //   break;
+          case 4:
+            getVaccineController.scrollController.animateTo(
+              0.0,
+              curve: Curves.easeOutQuint,
+              duration: const Duration(milliseconds: 1000),
+            );
+            break;
         }
       } else {
         // go to Page
@@ -234,11 +234,11 @@ class HomeScreen extends StatelessWidget {
               icon: new Icon(MdiIcons.earth),
               label: 'Weltweit',
             ),
-            // BottomNavigationBarItem(
-            //   backgroundColor: Theme.of(context).primaryColor,
-            //   icon: new Icon(MdiIcons.needle),
-            //   label: 'Impfungen',
-            // ),
+            BottomNavigationBarItem(
+              backgroundColor: Theme.of(context).primaryColor,
+              icon: new Icon(MdiIcons.needle),
+              label: 'Impfungen',
+            ),
           ],
         ),
       ),

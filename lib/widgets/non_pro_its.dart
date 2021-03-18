@@ -49,12 +49,12 @@ class NonProITS extends StatelessWidget {
                   number: '0',
                 ),
                 CityDetailsRowCard(
-                  label: 'Betten belegt mit Covid-19',
+                  label: 'Betten belegt mit 🦠',
                   percentage: '0',
                   number: '0',
                 ),
                 CityDetailsRowCard(
-                  label: 'Covid-19-Fälle die beatmet werden',
+                  label: '🦠-Fälle die beatmet werden',
                   number: '0',
                 ),
               ],
