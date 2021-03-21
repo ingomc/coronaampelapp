@@ -114,7 +114,7 @@ class SettingsScreen extends TraceableStatelessWidget {
                     child: InkWell(
                       onTap: () {
                         Share.share(
-                          'Kennst du schon die Inzidenz-Ampel App? Dort kann man die aktuellen Inzidenzen, Intensivstationbelegung und vieles mehr anschauen. http://corona-ampel.app \n \n LG',
+                          'Kennst du schon die Inzidenz-Ampel App? Dort kann man die aktuellen Inzidenzen, Intensivstationbelegung, Impfstatus und vieles mehr anschauen. http://corona-ampel.app \n \n LG',
                           subject: "Empfehlung: Coole Corona-Übersicht",
                         );
                       },
