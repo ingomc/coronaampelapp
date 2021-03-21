@@ -59,7 +59,7 @@ class AdScreen extends TraceableStatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              'PRO-Mitgliedschaft 2,49€ (keine Abo):',
+                              'PRO-Mitgliedschaft 2,49€ (kein Abo):',
                               textAlign: TextAlign.left,
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
