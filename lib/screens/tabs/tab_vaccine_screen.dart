@@ -116,23 +116,23 @@ class TabVaccineScreen extends TraceableStatelessWidget {
                               );
                             },
                             child: Container(
-                              width: double.infinity,
+                              width: 340,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Flexible(
-                                    flex: 1,
+                                    flex: 2,
                                     child: Padding(
                                       padding:
                                           const EdgeInsets.only(right: 16.0),
                                       child: Icon(
                                         MdiIcons.calendarClock,
-                                        size: 36,
+                                        size: 32,
                                       ),
                                     ),
                                   ),
                                   Flexible(
-                                    flex: 3,
+                                    flex: 4,
                                     child: Text.rich(
                                       TextSpan(
                                         text: 'Noch ',
