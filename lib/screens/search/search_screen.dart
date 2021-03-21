@@ -16,6 +16,7 @@ class SearchScreen extends TraceableStatelessWidget {
   final SearchController searchController = Get.put(SearchController());
   final GetLocationController getLocationController =
       Get.put(GetLocationController());
+  var _controller = TextEditingController();
 
   Future<bool> _onWillPop() async {
     Get.back();
@@ -37,27 +38,19 @@ class SearchScreen extends TraceableStatelessWidget {
           title: Row(
             children: <Widget>[
               Expanded(
-                child: Obx(
-                  () => TextField(
-                    autocorrect: false,
-                    autofocus: true,
-                    controller: TextEditingController.fromValue(
-                      new TextEditingValue(
-                        text: searchController.searchString.value,
-                        selection: TextSelection.collapsed(
-                            offset: searchController.searchString.value.length),
-                      ),
-                    ),
-                    decoration: InputDecoration(
-                      fillColor: Colors.amber,
-                      contentPadding: EdgeInsets.all(16),
-                      hintText: "Landkreis Suchen ...",
-                      border: InputBorder.none,
-                    ),
-                    onChanged: (String keyword) {
-                      searchController.searchString.value = keyword;
-                    },
+                child: TextField(
+                  autocorrect: false,
+                  autofocus: true,
+                  controller: _controller,
+                  decoration: InputDecoration(
+                    fillColor: Colors.amber,
+                    contentPadding: EdgeInsets.all(16),
+                    hintText: "Landkreis Suchen ...",
+                    border: InputBorder.none,
                   ),
+                  onChanged: (String keyword) {
+                    searchController.searchString.value = keyword;
+                  },
                 ),
               ),
               GetX<SearchController>(builder: (controller) {
@@ -65,7 +58,7 @@ class SearchScreen extends TraceableStatelessWidget {
                   return IconButton(
                     icon: Icon(Icons.close),
                     onPressed: () {
-                      searchController.searchString.value = '';
+                      _controller.clear();
                     },
                   );
                 } else {
