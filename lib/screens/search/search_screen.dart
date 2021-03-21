@@ -134,7 +134,7 @@ class SearchScreen extends TraceableStatelessWidget {
                           return Obx(
                             () {
                               if (searchController.searchString.value.length >
-                                      1 &&
+                                      2 &&
                                   controller.countys[index].gen
                                       .toLowerCase()
                                       .contains(searchController
