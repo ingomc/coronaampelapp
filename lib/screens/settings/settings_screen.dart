@@ -189,7 +189,7 @@ class SettingsScreen extends TraceableStatelessWidget {
                 },
                 child: ListTile(
                   leading: Icon(MdiIcons.helpCircle),
-                  title: Text('Hilfe & Hinweise'),
+                  title: Text('Hilfe & Quellen'),
                   trailing: Icon(Icons.arrow_forward_ios_outlined),
                 ),
               ),
@@ -263,7 +263,7 @@ class SettingsScreen extends TraceableStatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(
-              'Diese App dient der reinen übersichtlichen Darstellung der wichtigsten Daten im Zusammenhang mit Covid-19. Da die Regierung ihre Entscheidungen aufgrund des Inzidenzwertes festlegt, ist der Hauptwert um den sich diese App dreht die 7 Tage Inzidenz pro 100.000 Einwohner*innen. Ob dieser Wert wirklich als Basis für Anti-Corona-Maßnahmen geeignet ist, darf sich jeder selbst überlegen. \n \nBleibt bitte Gesund! \nAndre',
+              'Diese App dient der reinen übersichtlichen Darstellung der wichtigsten Daten der aktuellen Lage. Da die Regierung ihre Entscheidungen aufgrund des Inzidenzwertes festlegt, ist der Hauptwert um den sich diese App dreht die 7 Tage Inzidenz pro 100.000 Einwohner*innen. Ob dieser Wert wirklich als Basis für Anti-Corona-Maßnahmen geeignet ist, darf sich jeder selbst überlegen. \n \nBleibt bitte Gesund! \nAndre',
             ),
           ),
         ],

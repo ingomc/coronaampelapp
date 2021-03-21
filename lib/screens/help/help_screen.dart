@@ -7,7 +7,7 @@ class HelpScreen extends TraceableStatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hilfe & Hinweise'),
+        title: Text('Hilfe & Quellen'),
         centerTitle: true,
       ),
       body: ListView(
