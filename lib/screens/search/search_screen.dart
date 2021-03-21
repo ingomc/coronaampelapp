@@ -59,6 +59,7 @@ class SearchScreen extends TraceableStatelessWidget {
                     icon: Icon(Icons.close),
                     onPressed: () {
                       _controller.clear();
+                      searchController.searchString.value = '';
                     },
                   );
                 } else {
