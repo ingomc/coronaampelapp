@@ -108,7 +108,7 @@ class TabVaccineScreen extends TraceableStatelessWidget {
                               Get.defaultDialog(
                                 title: 'Hinweis',
                                 content: Text(
-                                    'In den letzten 7 Tagen wurden durchschnittlich ${NumberFormat.decimalPattern('de-DE').format(lastWeek ~/ 7)} Impfdosen pro Tag verabreicht. Aus dieser Zahl berechne ich den wahrscheinlichen Zeitpunkt an dem die Herdenimmunität erreicht ist. Die Annahme ist, dass eine Herdenimmunität dann erreicht ist, wenn mind. 70% der Einwohner*innen mit jeweils 2 Impfdosen gegen das Virus immunisiert wurden. \nHinweis: Zum aktuellen Zeitpunkt ist das reine Theorie!'),
+                                    'In den letzten 7 Tagen wurden durchschnittlich ${NumberFormat.decimalPattern('de-DE').format(lastWeek ~/ 7)} Impfdosen pro Tag verabreicht. Aus dieser Zahl lässt sich der wahrscheinliche Zeitpunkt einer Herdenimmunität errechnen. Die Annahme ist, dass eine Herdenimmunität dann erreicht ist, wenn mind. 70% der Einwohner*innen mit jeweils 2 Impfdosen gegen das Virus immunisiert wurden. \nHinweis: Zum aktuellen Zeitpunkt ist das reine Theorie!'),
                                 textConfirm: 'Ok',
                                 onConfirm: () {
                                   Get.back();
@@ -256,7 +256,7 @@ class TabVaccineScreen extends TraceableStatelessWidget {
                         Get.defaultDialog(
                           title: 'Hinweis',
                           content: Text(
-                              'Die Daten der Länder und für Deutschland sind die 1. und 2. Impfung(en) zusammengezählt. Wie gut die Impfdaten tatsächlich sind kann ich leider nicht einschätzen, außerdem veröffentlicht das RKI diese Daten nicht wirklich Zeitnah, immer etwa 2 - 3 Tage verzögert.'),
+                              'Die Daten für die Bundesländer und für Deutschland ergeben sich aus 1. und/oder 2. Impfungen. Die tatsächliche Richtigkeit kann nicht eingeschätzt werden. Die veröffentlichten Zahlen des RKIs werden außerdem nicht umgehend veröffentlicht, sondern mit einer Verzögerung von 2 - 3 Tagen.'),
                           textConfirm: 'Ok',
                           onConfirm: () {
                             Get.back();

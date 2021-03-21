@@ -224,7 +224,7 @@ class SettingsScreen extends TraceableStatelessWidget {
                       ),
                     ),
                     applicationName: BaseData.appName,
-                    applicationVersion: "1.4.0",
+                    applicationVersion: "1.4.2",
                   );
                 },
                 child: ListTile(
@@ -257,13 +257,13 @@ class SettingsScreen extends TraceableStatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                'Google- und Playstore-Richtlinien verbieten mir meine App so zu benennen wie ich sie ursprünglich nennen wollte. Deswegen heisst sie nun ${BaseData.appName}.',
+                'Google- und Playstore-Richtlinien verbieten es diese App so zu benennen wie es ursprünglich geplant war, weshalb sie nun ${BaseData.appName} heisst.',
               ),
             ),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(
-              'Diese App dient der reinen übersichtlichen Darstellung der wichtigsten Daten der aktuellen Lage. Da die Regierung ihre Entscheidungen aufgrund des Inzidenzwertes festlegt, ist der Hauptwert um den sich diese App dreht die 7 Tage Inzidenz pro 100.000 Einwohner*innen. Ob dieser Wert wirklich als Basis für Anti-Corona-Maßnahmen geeignet ist, darf sich jeder selbst überlegen. \n \nBleibt bitte Gesund! \nAndre',
+              'Diese App dient einer reinen übersichtlichen Darstellung der wichtigsten Daten zur aktuellen Lage. Da Regierungsentscheidungen auf aktuellen Inzidenzwerten basieren, ist der Fokus der App der 7 Tage Inzidenz Wert pro 100.000EW.',
             ),
           ),
         ],
