@@ -9,6 +9,7 @@ import 'package:coronampel/models/browse_model.dart';
 import 'package:coronampel/screens/detail/county_detail_screen.dart';
 import 'package:coronampel/widgets/incidence_number_container.dart';
 import 'package:coronampel/widgets/loading_list_overlay.dart';
+import 'package:coronampel/widgets/native_ad_card.dart';
 import 'package:coronampel/widgets/offline_page.dart';
 import 'package:coronampel/widgets/tab_title.dart';
 import 'package:coronampel/widgets/update_line.dart';
@@ -86,6 +87,10 @@ class TabBrowseScreen extends TraceableStatelessWidget {
                                       title: 'Höchste Inzidenz',
                                       data: controller.highest5,
                                       hero: hero),
+                                  Obx(() =>
+                                      inAppPurchaseController.isPurchased.value
+                                          ? Container()
+                                          : NativeAdCard()),
                                   BrowseCard(
                                       title: 'Meisten Einwohner*innen',
                                       data: controller.highest5Ewz,

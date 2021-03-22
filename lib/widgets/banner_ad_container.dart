@@ -24,20 +24,21 @@ class _BannerAdContainerState extends State<BannerAdContainer> {
       Get.put(GetConnectivityController());
   final RewardedController rewardedController = Get.put(RewardedController());
   final ProController proController = Get.put(ProController());
-  MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
-    keywords: <String>[
-      'pandemie',
-      'Gesundheit',
-      'corona',
-      'covid',
-    ],
-    childDirected: false,
-  );
+  // MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
+  //   keywords: <String>[
+  //     'pandemie',
+  //     'Gesundheit',
+  //     'corona',
+  //     'covid',
+  //   ],
+  //   childDirected: false,
+  // );
 
   @override
   void initState() {
     super.initState();
     rewardedController.isError.value = false;
+    rewardedController.errorCount.value = 0;
     rewardedController.waitingForError();
     RewardedVideoAd.instance.listener =
         (RewardedVideoAdEvent event, {String rewardType, int rewardAmount}) {
@@ -66,7 +67,7 @@ class _BannerAdContainerState extends State<BannerAdContainer> {
           rewardedController.isError.value = false;
           RewardedVideoAd.instance.load(
             adUnitId: AdData.rewardedAdUnitId,
-            targetingInfo: targetingInfo,
+            // targetingInfo: targetingInfo,
           );
         } else {
           print('close rewarded');
@@ -77,17 +78,20 @@ class _BannerAdContainerState extends State<BannerAdContainer> {
         }
       }
       if (event == RewardedVideoAdEvent.failedToLoad) {
+        rewardedController.errorCount.value =
+            rewardedController.errorCount.value + 1;
         print('Error FailedToLoad');
-        if (!getConnectivityController.isOffline.value)
+        if (!getConnectivityController.isOffline.value &&
+            rewardedController.errorCount < 3)
           RewardedVideoAd.instance.load(
             adUnitId: AdData.rewardedAdUnitId,
-            targetingInfo: targetingInfo,
+            // targetingInfo: targetingInfo,
           );
       }
     };
     RewardedVideoAd.instance.load(
       adUnitId: AdData.rewardedAdUnitId,
-      targetingInfo: targetingInfo,
+      // targetingInfo: targetingInfo,
     );
   }
 
