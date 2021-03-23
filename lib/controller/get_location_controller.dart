@@ -15,7 +15,8 @@ class GetLocationController extends GetxController {
     isLoading(true);
     bool serviceEnabled;
 
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    // serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    serviceEnabled = true;
     if (!serviceEnabled) {
       Get.snackbar(
         'Fehler',

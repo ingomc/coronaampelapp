@@ -197,19 +197,6 @@ class SettingsScreen extends StatelessWidget {
           SizedBox(
             height: 32,
           ),
-          if (Platform.isAndroid)
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                'Google- und Playstore-Richtlinien verbieten es diese App so zu benennen wie es ursprünglich geplant war, weshalb sie nun ${BaseData.appName} heisst.',
-              ),
-            ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              'Diese App dient einer reinen übersichtlichen Darstellung der wichtigsten Daten zur aktuellen Lage. Da Regierungsentscheidungen auf aktuellen Inzidenzwerten basieren, ist der Fokus der App der 7 Tage Inzidenz Wert pro 100.000EW.',
-            ),
-          ),
         ],
       ),
     );

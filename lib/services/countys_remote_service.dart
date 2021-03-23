@@ -6,7 +6,8 @@ class RemoteServiceCountys {
   static var client = http.Client();
 
   static Future<Countys> fetchAllCountys() async {
-    String url = 'https://ampeldata.andre-bellmann.de/countys/index.json';
+    Uri url =
+        Uri.parse('https://ampeldata.andre-bellmann.de/countys/index.json');
 
     try {
       var response = await client.get(url);

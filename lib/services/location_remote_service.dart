@@ -7,8 +7,8 @@ class RemoteServiceLocation {
 
   static Future<String> fetchLocationCounty(
       String longitude, String lattitude) async {
-    String url =
-        'https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?where=1%3D1&outFields=GEN&geometry=$longitude%2C$lattitude&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelWithin&returnGeometry=false&outSR=4326&f=json';
+    Uri url = Uri.parse(
+        'https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?where=1%3D1&outFields=GEN&geometry=$longitude%2C$lattitude&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelWithin&returnGeometry=false&outSR=4326&f=json');
 
     try {
       var response = await client.get(url);

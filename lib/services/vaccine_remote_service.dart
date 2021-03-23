@@ -6,7 +6,8 @@ class RemoteServiceVaccine {
   static var client = http.Client();
 
   static Future<Vaccine> fetchVaccine() async {
-    String url = 'https://ampeldata.andre-bellmann.de/vaccine/index.json';
+    Uri url =
+        Uri.parse('https://ampeldata.andre-bellmann.de/vaccine/index.json');
 
     try {
       var response = await client.get(url);

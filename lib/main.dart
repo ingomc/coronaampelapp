@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       defaultTransition: Transition.native,
       debugShowCheckedModeBanner: false,
-      title: Platform.isAndroid ? 'Inzidenz-Ampel' : 'Corona-Ampel',
+      title: 'Corona-Ampel',
       theme: ThemeData(
         primaryColor: Colors.grey[900],
         brightness: Brightness.dark,
