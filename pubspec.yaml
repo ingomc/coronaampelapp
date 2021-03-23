@@ -33,14 +33,14 @@ dependencies:
   geolocator: ^6.2.0
   percent_indicator: ^2.1.9
   url_launcher: ^5.7.10
-  share: ^0.6.5+4
+  # share: ^0.6.5+4
   # launch_review: ^2.0.0
   # connectivity: ^2.0.2  
   # flutter_native_admob: ^2.1.0+3
   # firebase_admob: ^0.11.0+1
   # in_app_purchase: ^0.5.1
   # in_app_purchase: ^0.3.5
-  matomo: ^0.0.9
+  # matomo: ^0.0.9
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -48,10 +48,10 @@ dependencies:
   # cupertino_icons: ^1.0.1
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  integration_test:
-    sdk: flutter
+  # flutter_test:
+  #   sdk: flutter
+  # integration_test:
+  #   sdk: flutter
   flutter_launcher_icons: "^0.8.0"
   # flutter_native_splash: ^0.2.9
   # flutter_rename_app:

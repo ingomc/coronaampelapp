@@ -7,9 +7,8 @@ import 'package:implicitly_animated_reorderable_list/implicitly_animated_reorder
 import 'package:implicitly_animated_reorderable_list/transitions.dart';
 import 'package:coronampel/controller/get_countys_controller.dart';
 import 'package:coronampel/controller/pinned_countys_controller.dart';
-import 'package:matomo/matomo.dart';
 
-class CountyEditScreen extends TraceableStatelessWidget {
+class CountyEditScreen extends StatelessWidget {
   final PinnedCountysController pinnedCountysController =
       Get.put(PinnedCountysController());
   final GetCountysController getCountysController =

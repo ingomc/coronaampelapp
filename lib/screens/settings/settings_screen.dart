@@ -5,11 +5,9 @@ import 'package:coronampel/screens/help/help_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:matomo/matomo.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:share/share.dart';
 
-class SettingsScreen extends TraceableStatelessWidget {
+class SettingsScreen extends StatelessWidget {
   final _webUrl = 'https://corona-ampel.app/datenschutz';
   Future<void> _launchInBrowser(String url) async {
     if (await canLaunch(url)) {
@@ -88,30 +86,6 @@ class SettingsScreen extends TraceableStatelessWidget {
             padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
             child: Row(
               children: [
-                Expanded(
-                  child: Card(
-                    child: InkWell(
-                      onTap: () {
-                        Share.share(
-                          'Kennst du schon die Inzidenz-Ampel App? Dort kann man die aktuellen Inzidenzen, Intensivstationbelegung, Impfstatus und vieles mehr anschauen. http://corona-ampel.app \n \n LG',
-                          subject: "Empfehlung: Coole Corona-Übersicht",
-                        );
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Icon(Icons.share),
-                            ),
-                            Text('Teilen'),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
                 Expanded(
                   child: Card(
                     child: InkWell(

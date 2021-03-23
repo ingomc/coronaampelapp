@@ -9,9 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:matomo/matomo.dart';
 
-class TabVaccineScreen extends TraceableStatelessWidget {
+class TabVaccineScreen extends StatelessWidget {
   final GetVaccineController getVaccineController =
       Get.put(GetVaccineController());
   final ReloadController reloadController = Get.put(ReloadController());

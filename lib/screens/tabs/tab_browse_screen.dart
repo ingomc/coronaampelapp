@@ -14,9 +14,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fadein/flutter_fadein.dart';
 import 'package:get/get.dart';
-import 'package:matomo/matomo.dart';
 
-class TabBrowseScreen extends TraceableStatelessWidget {
+class TabBrowseScreen extends StatelessWidget {
   final GetBrowseController getBrowseController =
       Get.put(GetBrowseController());
   final GetCountysController getCountysController =

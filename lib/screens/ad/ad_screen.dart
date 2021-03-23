@@ -6,7 +6,7 @@
 // import 'package:in_app_purchase/in_app_purchase.dart';
 // import 'package:matomo/matomo.dart';
 
-// class AdScreen extends TraceableStatelessWidget {
+// class AdScreen extends StatelessWidget {
 //   const AdScreen({
 //     Key key,
 //     @required this.unlockadtype,

@@ -1,8 +1,7 @@
 import 'package:coronampel/widgets/incidence_number_container.dart';
 import 'package:flutter/material.dart';
-import 'package:matomo/matomo.dart';
 
-class HelpScreen extends TraceableStatelessWidget {
+class HelpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
