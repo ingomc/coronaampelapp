@@ -1,6 +1,3 @@
-import 'package:coronampel/controller/in_app_purchase_controller.dart';
-import 'package:coronampel/controller/pro_controller.dart';
-import 'package:coronampel/widgets/non_pro_its.dart';
 import 'package:flutter_fadein/flutter_fadein.dart';
 import 'package:coronampel/controller/get_countys_controller.dart';
 import 'package:coronampel/controller/get_single_county_controller.dart';
@@ -9,7 +6,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:matomo/matomo.dart';
 
 class CountyDetailScreen extends TraceableStatelessWidget {
@@ -36,9 +32,6 @@ class CountyDetailScreen extends TraceableStatelessWidget {
       Get.put(GetCountysController());
   final GetSingleCountyController getSingleCountyController =
       Get.put(GetSingleCountyController());
-  final ProController proController = Get.put(ProController());
-  final InAppPurchaseController inAppPurchaseController =
-      Get.put(InAppPurchaseController());
 
   // Call this when the user pull down the screen
   Future<void> _loadData() async {
@@ -115,8 +108,7 @@ class CountyDetailScreen extends TraceableStatelessWidget {
                             SizedBox(
                               height: 16,
                             ),
-                            if (controller.isLoading.value &&
-                                inAppPurchaseController.isPurchased.value)
+                            if (controller.isLoading.value)
                               FadeIn(
                                 duration: Duration(milliseconds: 500),
                                 child: Center(
@@ -124,33 +116,16 @@ class CountyDetailScreen extends TraceableStatelessWidget {
                                 ),
                               ),
                             if (!controller.isLoading.value &&
-                                controller.county.value.bettenFrei != null &&
-                                (inAppPurchaseController.isPurchased.value ||
-                                    proController.freeITS.value))
+                                controller.county.value.bettenFrei != null)
                               FadeIn(
                                 duration: Duration(milliseconds: 500),
                                 child: Column(
                                   children: [
                                     Center(
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          if (proController.freeITS.value)
-                                            Icon(
-                                              MdiIcons.lockOpenVariant,
-                                              size: 16,
-                                            ),
-                                          SizedBox(
-                                            width: 8,
-                                          ),
-                                          Text(
-                                            'Intensivstation',
-                                            style: TextStyle(
-                                                color: Theme.of(context)
-                                                    .hintColor),
-                                          ),
-                                        ],
+                                      child: Text(
+                                        'Intensivstation',
+                                        style: TextStyle(
+                                            color: Theme.of(context).hintColor),
                                       ),
                                     ),
                                     SizedBox(
@@ -169,23 +144,21 @@ class CountyDetailScreen extends TraceableStatelessWidget {
                                           '${controller.county.value.bettenBelegt != null ? controller.county.value.bettenBelegt : 0}',
                                     ),
                                     CityDetailsRowCard(
-                                      label: 'Betten belegt mit 🦠',
+                                      label: 'Betten belegt mit Covid-19',
                                       percentage:
                                           '${(controller.county.value.faelleCovidAktuell / (controller.county.value.faelleCovidAktuell + controller.county.value.bettenBelegt) * 100).toStringAsFixed(0)}',
                                       number:
                                           '${controller.county.value.faelleCovidAktuell != null ? controller.county.value.faelleCovidAktuell : 0}',
                                     ),
                                     CityDetailsRowCard(
-                                      label: '🦠-Fälle die beatmet werden',
+                                      label:
+                                          'Covid-19-Fälle die beatmet werden',
                                       number:
                                           '${controller.county.value.faelleCovidAktuellBeatmet != null ? controller.county.value.faelleCovidAktuellBeatmet : 0}',
                                     ),
                                   ],
                                 ),
                               ),
-                            if (!inAppPurchaseController.isPurchased.value &&
-                                !proController.freeITS.value)
-                              NonProITS(),
                           ],
                         ),
                       );

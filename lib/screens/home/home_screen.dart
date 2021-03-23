@@ -3,15 +3,12 @@ import 'package:coronampel/controller/get_connectivity_controller.dart';
 import 'package:coronampel/controller/get_countys_controller.dart';
 import 'package:coronampel/controller/get_states_controller.dart';
 import 'package:coronampel/controller/get_vaccine_controller.dart';
-import 'package:coronampel/controller/in_app_purchase_controller.dart';
 import 'package:coronampel/controller/reload_controller.dart';
 import 'package:coronampel/data/base_data.dart';
 import 'package:coronampel/screens/settings/settings_screen.dart';
 import 'package:coronampel/screens/tabs/tab_browse_screen.dart';
 import 'package:coronampel/screens/tabs/tab_vaccine_screen.dart';
-import 'package:coronampel/widgets/is_offline.dart';
 import 'package:coronampel/widgets/keep_alive_page.dart';
-import 'package:coronampel/widgets/pro_label.dart';
 import 'package:flutter/material.dart';
 import 'package:coronampel/controller/ui/ui_tabs_controller.dart';
 import 'package:coronampel/screens/edit/county_edit_screen.dart';
@@ -34,8 +31,6 @@ class HomeScreen extends StatelessWidget {
   final ReloadController reloadController = Get.put(ReloadController());
   final GetConnectivityController getConnectivityController =
       Get.put(GetConnectivityController());
-  final InAppPurchaseController inAppPurchaseController =
-      Get.put(InAppPurchaseController());
 
   void _select(value) async {
     switch (value) {
@@ -176,26 +171,10 @@ class HomeScreen extends StatelessWidget {
             },
           ),
         ],
-        title: Obx(
-          () => Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // SizedBox(width: inAppPurchaseController.isPurchased.value ? 16 : 0),
-              Text('🚦 ${BaseData.appName} '),
-              inAppPurchaseController.isPurchased.value
-                  ? ProLabel()
-                  : Container(),
-              inAppPurchaseController.isPurchased.value
-                  ? Text(' ')
-                  : Container(),
-              Text('🚦'),
-            ],
-          ),
-        ),
+        title: Text('🚦 ${BaseData.appName} 🚦'),
       ),
       body: Column(
         children: [
-          IsOffline(),
           Expanded(
             child: PageView(
               children: _pages,

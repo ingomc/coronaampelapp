@@ -1,8 +1,5 @@
 import 'package:coronampel/controller/get_vaccine_controller.dart';
-import 'package:coronampel/controller/in_app_purchase_controller.dart';
-import 'package:coronampel/controller/pro_controller.dart';
 import 'package:coronampel/controller/reload_controller.dart';
-import 'package:coronampel/widgets/non_pro_vaccine.dart';
 import 'package:coronampel/widgets/offline_page.dart';
 import 'package:coronampel/widgets/loading_list_overlay.dart';
 import 'package:coronampel/widgets/update_line.dart';
@@ -17,9 +14,6 @@ import 'package:matomo/matomo.dart';
 class TabVaccineScreen extends TraceableStatelessWidget {
   final GetVaccineController getVaccineController =
       Get.put(GetVaccineController());
-  final ProController proController = Get.put(ProController());
-  final InAppPurchaseController inAppPurchaseController =
-      Get.put(InAppPurchaseController());
   final ReloadController reloadController = Get.put(ReloadController());
 
   // Call this when the user pull down the screen
@@ -170,86 +164,56 @@ class TabVaccineScreen extends TraceableStatelessWidget {
                     SizedBox(
                       height: 24,
                     ),
-                    Obx(
-                      () => (inAppPurchaseController.isPurchased.value ||
-                              proController.freeVaccine.value)
-                          ? Column(
-                              children: [
-                                Center(
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      if (proController.freeVaccine.value)
-                                        Icon(
-                                          MdiIcons.lockOpenVariant,
-                                          size: 16,
-                                        ),
-                                      SizedBox(
-                                        width: 8,
-                                      ),
-                                      Text(
-                                        'Impfdaten pro Bundesland',
-                                        style: TextStyle(
-                                            color: Theme.of(context).hintColor),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 8,
-                                ),
-                                // Vaccine states real data
-                                GetX<GetVaccineController>(
-                                  builder: (controller) {
-                                    if (controller.states.length > 0) {
-                                      return Column(
-                                        children: [
-                                          ...List.generate(
-                                            controller.states.length,
-                                            (index) {
-                                              final allTotal = controller
-                                                      .states[index].total *
-                                                  2 *
-                                                  0.7;
-                                              final progress = double.parse(
-                                                  (controller.states[index]
-                                                              .vaccinated /
-                                                          allTotal *
-                                                          100)
-                                                      .toStringAsFixed(2));
-                                              return Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                  vertical: 4.0,
-                                                ),
-                                                child: VaccineStateCard(
-                                                  state: controller
-                                                      .states[index].name,
-                                                  flag:
-                                                      'assets/states/${controller.states[index].rs}.png',
-                                                  progress: progress,
-                                                  vaccinated: controller
-                                                      .states[index].vaccinated,
-                                                  today: controller
-                                                      .states[index]
-                                                      .differenceToThePreviousDay,
-                                                  target: allTotal.toInt(),
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        ],
-                                      );
-                                    } else {
-                                      return Container();
-                                    }
-                                  },
-                                ),
-                              ],
-                            )
-                          : NonProVaccine(),
+                    Center(
+                      child: Text(
+                        'Impfdaten pro Bundesland',
+                        style: TextStyle(color: Theme.of(context).hintColor),
+                      ),
                     ),
-
+                    SizedBox(
+                      height: 8,
+                    ),
+                    // Vaccine states real data
+                    GetX<GetVaccineController>(
+                      builder: (controller) {
+                        if (controller.states.length > 0) {
+                          return Column(
+                            children: [
+                              ...List.generate(
+                                controller.states.length,
+                                (index) {
+                                  final allTotal =
+                                      controller.states[index].total * 2 * 0.7;
+                                  final progress = double.parse(
+                                      (controller.states[index].vaccinated /
+                                              allTotal *
+                                              100)
+                                          .toStringAsFixed(2));
+                                  return Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 4.0,
+                                    ),
+                                    child: VaccineStateCard(
+                                      state: controller.states[index].name,
+                                      flag:
+                                          'assets/states/${controller.states[index].rs}.png',
+                                      progress: progress,
+                                      vaccinated:
+                                          controller.states[index].vaccinated,
+                                      today: controller.states[index]
+                                          .differenceToThePreviousDay,
+                                      target: allTotal.toInt(),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
+                          );
+                        } else {
+                          return Container();
+                        }
+                      },
+                    ),
                     // Vaccine non pro, not unlocked
                     InkWell(
                       onTap: () {

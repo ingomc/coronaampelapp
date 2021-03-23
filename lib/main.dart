@@ -1,18 +1,12 @@
 import 'dart:io';
-import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:matomo/matomo.dart';
 import 'controller/pinned_countys_controller.dart';
 import 'screens/home/home_screen.dart';
 
 void main() async {
-  // For play billing library 2.0 on Android, it is mandatory to call
-  // [enablePendingPurchases](https://developer.android.com/reference/com/android/billingclient/api/BillingClient.Builder.html#enablependingpurchases)
-  // as part of initializing the app.
-  InAppPurchaseConnection.enablePendingPurchases();
   await GetStorage.init();
   runApp(MyApp());
 }
@@ -23,8 +17,6 @@ class MyApp extends StatelessWidget {
       siteId: 1,
       url: 'https://apptracking.andre-bellmann.de/matomo.php',
     );
-    FirebaseAdMob.instance
-        .initialize(appId: 'ca-app-pub-6534315507576320~5939436202');
   }
   final PinnedCountysController pinnedCountysController =
       Get.put(PinnedCountysController());

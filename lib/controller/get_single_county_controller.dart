@@ -1,4 +1,3 @@
-import 'package:connectivity/connectivity.dart';
 import 'package:coronampel/models/county_model.dart';
 import 'package:coronampel/services/county_remote_service.dart';
 import 'package:get/get.dart';
@@ -21,29 +20,18 @@ class GetSingleCountyController extends GetxController {
   }
 
   Future<void> fetchCounty() async {
-    ConnectivityResult connectivityResult =
-        await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.mobile ||
-        connectivityResult == ConnectivityResult.wifi) {
-      getConnectivityController.isOffline.value = false;
-      isLoading(true);
-      print('triggered fetch county: $selectedCountyRS');
-      try {
-        var countyResult =
-            await RemoteServiceCounty.fetchAllCounty(selectedCountyRS);
+    isLoading(true);
+    print('triggered fetch county: $selectedCountyRS');
+    try {
+      var countyResult =
+          await RemoteServiceCounty.fetchAllCounty(selectedCountyRS);
 
-        county.value = countyResult.data[0];
-      } catch (error) {
-        print(error);
-        throw Exception('Failed to load single county');
-      } finally {
-        isLoading(false);
-      }
-    } else {
-      getConnectivityController.isOffline.value = true;
-      Get.snackbar('Keine Verbindung zum Internet',
-          'Du bist OFFLINE, deswegen könnten hier veraltete Daten angezeigt werden.',
-          snackPosition: SnackPosition.BOTTOM);
+      county.value = countyResult.data[0];
+    } catch (error) {
+      print(error);
+      throw Exception('Failed to load single county');
+    } finally {
+      isLoading(false);
     }
   }
 }

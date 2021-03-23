@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:coronampel/data/base_data.dart';
-import 'package:coronampel/screens/devtools_screen.dart';
 import 'package:coronampel/screens/help/help_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,7 +8,6 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:matomo/matomo.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share/share.dart';
-import 'package:launch_review/launch_review.dart';
 
 class SettingsScreen extends TraceableStatelessWidget {
   final _webUrl = 'https://corona-ampel.app/datenschutz';
@@ -93,25 +91,6 @@ class SettingsScreen extends TraceableStatelessWidget {
                 Expanded(
                   child: Card(
                     child: InkWell(
-                      onTap: () => LaunchReview.launch(),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Icon(Icons.thumb_up_rounded),
-                            ),
-                            Text('Bewerten'),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Card(
-                    child: InkWell(
                       onTap: () {
                         Share.share(
                           'Kennst du schon die Inzidenz-Ampel App? Dort kann man die aktuellen Inzidenzen, Intensivstationbelegung, Impfstatus und vieles mehr anschauen. http://corona-ampel.app \n \n LG',
@@ -164,15 +143,6 @@ class SettingsScreen extends TraceableStatelessWidget {
               ],
             ),
           ),
-          GestureDetector(
-              onDoubleTap: () {
-                Get.to(Devtools());
-              },
-              child: Container(
-                width: 16,
-                height: 16,
-                decoration: BoxDecoration(color: Colors.transparent),
-              )),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(

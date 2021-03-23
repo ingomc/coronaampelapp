@@ -2,14 +2,11 @@ import 'package:coronampel/controller/get_browse_controller.dart';
 import 'package:coronampel/controller/get_connectivity_controller.dart';
 import 'package:coronampel/controller/get_countys_controller.dart';
 import 'package:coronampel/controller/get_single_county_controller.dart';
-import 'package:coronampel/controller/in_app_purchase_controller.dart';
-import 'package:coronampel/controller/pro_controller.dart';
 import 'package:coronampel/controller/reload_controller.dart';
 import 'package:coronampel/models/browse_model.dart';
 import 'package:coronampel/screens/detail/county_detail_screen.dart';
 import 'package:coronampel/widgets/incidence_number_container.dart';
 import 'package:coronampel/widgets/loading_list_overlay.dart';
-import 'package:coronampel/widgets/native_ad_card.dart';
 import 'package:coronampel/widgets/offline_page.dart';
 import 'package:coronampel/widgets/tab_title.dart';
 import 'package:coronampel/widgets/update_line.dart';
@@ -20,11 +17,8 @@ import 'package:get/get.dart';
 import 'package:matomo/matomo.dart';
 
 class TabBrowseScreen extends TraceableStatelessWidget {
-  final InAppPurchaseController inAppPurchaseController =
-      Get.put(InAppPurchaseController());
   final GetBrowseController getBrowseController =
       Get.put(GetBrowseController());
-  final ProController proController = Get.put(ProController());
   final GetCountysController getCountysController =
       Get.put(GetCountysController());
   final GetConnectivityController getConnectivityController =
@@ -87,10 +81,6 @@ class TabBrowseScreen extends TraceableStatelessWidget {
                                       title: 'Höchste Inzidenz',
                                       data: controller.highest5,
                                       hero: hero),
-                                  Obx(() =>
-                                      inAppPurchaseController.isPurchased.value
-                                          ? Container()
-                                          : NativeAdCard()),
                                   BrowseCard(
                                       title: 'Meisten Einwohner*innen',
                                       data: controller.highest5Ewz,

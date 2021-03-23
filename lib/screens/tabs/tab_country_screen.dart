@@ -1,8 +1,5 @@
 import 'package:coronampel/controller/get_global_controller.dart';
-import 'package:coronampel/controller/in_app_purchase_controller.dart';
-import 'package:coronampel/controller/pro_controller.dart';
 import 'package:coronampel/controller/reload_controller.dart';
-import 'package:coronampel/widgets/native_ad_card.dart';
 import 'package:coronampel/widgets/offline_page.dart';
 import 'package:coronampel/widgets/incidence_number_container.dart';
 import 'package:coronampel/widgets/loading_list_overlay.dart';
@@ -16,9 +13,6 @@ import 'package:matomo/matomo.dart';
 class TabCountryScreen extends TraceableStatelessWidget {
   final GetGlobalController getGlobalController =
       Get.put(GetGlobalController());
-  final ProController proController = Get.put(ProController());
-  final InAppPurchaseController inAppPurchaseController =
-      Get.put(InAppPurchaseController());
 
   final ReloadController reloadController = Get.put(ReloadController());
 
@@ -307,11 +301,6 @@ class TabCountryScreen extends TraceableStatelessWidget {
                               ),
                               SizedBox(
                                 height: 16,
-                              ),
-                              Obx(
-                                () => inAppPurchaseController.isPurchased.value
-                                    ? Container()
-                                    : NativeAdCard(),
                               ),
                             ],
                           );

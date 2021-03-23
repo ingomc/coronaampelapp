@@ -2,7 +2,6 @@ import 'package:coronampel/controller/get_browse_controller.dart';
 import 'package:coronampel/controller/get_connectivity_controller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:connectivity/connectivity.dart';
 
 import 'get_countys_controller.dart';
 import 'get_global_controller.dart';
@@ -30,20 +29,12 @@ class ReloadController extends GetxController {
   }
 
   Future<void> reload() async {
-    ConnectivityResult connectivityResult =
-        await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.mobile ||
-        connectivityResult == ConnectivityResult.wifi) {
-      getConnectivityController.isOffline.value = false;
-      await Future.wait([
-        getStatesController.fetchStates(),
-        getCountysController.fetchCountys(),
-        getGlobalController.fetchGlobalData(),
-        getVaccineController.fetchVaccine(),
-        getBrowseController.fetchBrowse(),
-      ]);
-    } else {
-      getConnectivityController.isOffline.value = true;
-    }
+    await Future.wait([
+      getStatesController.fetchStates(),
+      getCountysController.fetchCountys(),
+      getGlobalController.fetchGlobalData(),
+      getVaccineController.fetchVaccine(),
+      getBrowseController.fetchBrowse(),
+    ]);
   }
 }
