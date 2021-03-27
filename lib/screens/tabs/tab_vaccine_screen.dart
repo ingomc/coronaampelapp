@@ -109,7 +109,7 @@ class TabVaccineScreen extends StatelessWidget {
                               );
                             },
                             child: Container(
-                              width: 340,
+                              width: 344,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [

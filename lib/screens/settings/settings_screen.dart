@@ -168,7 +168,7 @@ class SettingsScreen extends StatelessWidget {
                       ),
                     ),
                     applicationName: BaseData.appName,
-                    applicationVersion: "1.4.2",
+                    applicationVersion: "1.4.3",
                   );
                 },
                 child: ListTile(
