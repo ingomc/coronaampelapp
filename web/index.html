@@ -15,7 +15,7 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="description" content="Aktuelle Inzidenz, Impfstatistik, Intensivstation und mehr.">
 
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -26,7 +26,7 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title> - Covid19 Inzidenz</title>
+  <title>Corona-Ampel - Inzidenz, Impfstatistik, Intensivstation und mehr</title>
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
@@ -36,7 +36,9 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('flutter-first-frame', function () {
-        navigator.serviceWorker.register('flutter_service_worker.js');
+        navigator.serviceWorker.register('flutter_service_worker.js').then(reg => {
+          reg.update();
+        });
       });
     }
   </script>
