@@ -33,8 +33,8 @@ class VaccineStateCard extends StatelessWidget {
             ),
             title: Text(
               '$state',
-              softWrap: false,
-              overflow: TextOverflow.fade,
+              softWrap: true,
+              // overflow: TextOverflow.ellipsis,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             subtitle: Text(
