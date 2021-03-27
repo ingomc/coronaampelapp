@@ -45,7 +45,7 @@
             .register("flutter_service_worker.js")
             .then((reg) => {
               window.addEventListener('focus', function() {
-                console.log('Focused');
+                // console.log('Focused');
                 reg.update()
               }, false);
               reg.addEventListener("updatefound", () => {
