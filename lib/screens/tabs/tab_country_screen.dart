@@ -8,8 +8,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:matomo/matomo.dart';
 
-class TabCountryScreen extends StatelessWidget {
+class TabCountryScreen extends TraceableStatelessWidget {
   final GetGlobalController getGlobalController =
       Get.put(GetGlobalController());
 

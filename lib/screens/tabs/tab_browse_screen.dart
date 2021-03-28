@@ -15,8 +15,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fadein/flutter_fadein.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:matomo/matomo.dart';
 
-class TabBrowseScreen extends StatelessWidget {
+class TabBrowseScreen extends TraceableStatelessWidget {
   final GetBrowseController getBrowseController =
       Get.put(GetBrowseController());
   final GetCountysController getCountysController =

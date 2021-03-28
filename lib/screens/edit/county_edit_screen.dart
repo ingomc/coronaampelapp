@@ -7,8 +7,9 @@ import 'package:implicitly_animated_reorderable_list/transitions.dart';
 import 'package:coronampel/controller/get_countys_controller.dart';
 import 'package:coronampel/controller/pinned_countys_controller.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:matomo/matomo.dart';
 
-class CountyEditScreen extends StatelessWidget {
+class CountyEditScreen extends TraceableStatelessWidget {
   final PinnedCountysController pinnedCountysController =
       Get.put(PinnedCountysController());
   final GetCountysController getCountysController =

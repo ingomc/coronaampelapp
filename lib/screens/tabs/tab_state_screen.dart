@@ -8,8 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 import 'package:coronampel/controller/get_states_controller.dart';
+import 'package:matomo/matomo.dart';
 
-class TabStateScreen extends StatelessWidget {
+class TabStateScreen extends TraceableStatelessWidget {
   final GetStatesController getStatesController =
       Get.put(GetStatesController());
   final ReloadController reloadController = Get.put(ReloadController());

@@ -6,8 +6,9 @@ import 'package:get/get.dart';
 import 'package:coronampel/controller/get_countys_controller.dart';
 import 'package:coronampel/controller/pinned_countys_controller.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:matomo/matomo.dart';
 
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends TraceableStatelessWidget {
   static const path = '/search';
   final GetCountysController getCountysController =
       Get.put(GetCountysController());
