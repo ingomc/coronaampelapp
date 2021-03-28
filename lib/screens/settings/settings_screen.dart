@@ -106,7 +106,7 @@ class SettingsScreen extends StatelessWidget {
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Icon(Icons.email),
+                              child: Icon(MdiIcons.email),
                             ),
                             Text('Kontakt'),
                           ],
@@ -135,7 +135,7 @@ class SettingsScreen extends StatelessWidget {
                 child: ListTile(
                   leading: Icon(MdiIcons.helpCircle),
                   title: Text('Hilfe & Quellen'),
-                  trailing: Icon(Icons.arrow_forward_ios_outlined),
+                  trailing: Icon(MdiIcons.chevronRight),
                 ),
               ),
             ),
@@ -175,7 +175,7 @@ class SettingsScreen extends StatelessWidget {
                 child: ListTile(
                   leading: Icon(MdiIcons.clipboardText),
                   title: Text('Lizenzen'),
-                  trailing: Icon(Icons.arrow_forward_ios_outlined),
+                  trailing: Icon(MdiIcons.chevronRight),
                 ),
               ),
             ),

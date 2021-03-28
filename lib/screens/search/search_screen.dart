@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:coronampel/controller/get_countys_controller.dart';
 import 'package:coronampel/controller/pinned_countys_controller.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class SearchScreen extends StatelessWidget {
   static const path = '/search';
@@ -29,7 +30,7 @@ class SearchScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: Icon(MdiIcons.arrowLeft),
             onPressed: () {
               Get.back();
             },
@@ -55,7 +56,7 @@ class SearchScreen extends StatelessWidget {
               GetX<SearchController>(builder: (controller) {
                 if (searchController.searchString.value.length > 0) {
                   return IconButton(
-                    icon: Icon(Icons.close),
+                    icon: Icon(MdiIcons.close),
                     onPressed: () {
                       _controller.clear();
                       searchController.searchString.value = '';
@@ -108,7 +109,7 @@ class SearchScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.gps_fixed),
+                            Icon(MdiIcons.crosshairsGps),
                             SizedBox(
                               width: 10,
                             ),
@@ -192,7 +193,7 @@ class SearchScreen extends StatelessWidget {
         },
       );
     } else {
-      return Icon(Icons.add);
+      return Icon(MdiIcons.plus);
     }
   }
 }

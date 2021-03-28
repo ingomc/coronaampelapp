@@ -14,6 +14,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fadein/flutter_fadein.dart';
 import 'package:get/get.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class TabBrowseScreen extends StatelessWidget {
   final GetBrowseController getBrowseController =
@@ -172,7 +173,7 @@ class BrowseCard extends StatelessWidget {
                                     thisCounty.cases7Per100K),
                               ],
                             ),
-                            trailing: Icon(Icons.arrow_forward_ios),
+                            trailing: Icon(MdiIcons.chevronRight),
                           ),
                         ),
                       ),

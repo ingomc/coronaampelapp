@@ -11,6 +11,7 @@ import 'package:coronampel/controller/pinned_countys_controller.dart';
 import 'package:coronampel/controller/get_countys_controller.dart';
 import 'package:coronampel/screens/search/search_screen.dart';
 import 'package:coronampel/widgets/county_card.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class TabCountyScreen extends StatelessWidget {
   final GetCountysController getCountysController =
@@ -173,7 +174,7 @@ class TabCountyScreen extends StatelessWidget {
           return Container();
         }
         return FloatingActionButton(
-          child: Icon(Icons.add),
+          child: Icon(MdiIcons.plus),
           onPressed: () {
             Get.to(SearchScreen(), transition: Transition.downToUp);
           },

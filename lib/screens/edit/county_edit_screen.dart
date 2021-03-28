@@ -6,6 +6,7 @@ import 'package:implicitly_animated_reorderable_list/implicitly_animated_reorder
 import 'package:implicitly_animated_reorderable_list/transitions.dart';
 import 'package:coronampel/controller/get_countys_controller.dart';
 import 'package:coronampel/controller/pinned_countys_controller.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class CountyEditScreen extends StatelessWidget {
   final PinnedCountysController pinnedCountysController =
@@ -35,7 +36,7 @@ class CountyEditScreen extends StatelessWidget {
         title: Text('Sortieren / Löschen'),
         actions: [
           PopupMenuButton(
-            icon: Icon(Icons.more_vert),
+            icon: Icon(MdiIcons.dotsVertical),
             onSelected: _select,
             itemBuilder: (BuildContext context) {
               return [
@@ -141,7 +142,7 @@ class CountyEditScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.delete,
+                          Icon(MdiIcons.delete,
                               color: Theme.of(context).highlightColor),
                           Text(
                             'Löschen: Landkreis zur Seite wischen',
