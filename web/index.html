@@ -55,6 +55,7 @@
       justify-content: space-evenly;
       align-items: center;
       flex-flow: column;
+      color:white!important
     }
   .loading {
     background: transparent;
@@ -78,12 +79,9 @@
     right: 0;
     bottom: 0;
     box-shadow: 10px 0 0 2px #333, 7px 7px 0 2px #999, 0 10px 0 2px #999, -7px 7px 0 2px #999, -10px 0 0 2px #999, -7px -7px 0 2px #999, 0 -10px 0 2px #333, 7px -7px 0 2px #111;
-  }
-  body:not([flt-renderer]) .loading {
     -webkit-animation: rotate 0.7s steps(8) infinite;
     -o-animation: rotate 0.7s steps(8) infinite;
     animation: rotate 0.7s steps(8) infinite;
-
   }
 
   @keyframes rotate {
