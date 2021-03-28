@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang=de>
+
   <head>
     <!--
     If you are serving your web app in a path other than the root, change the
@@ -14,6 +15,7 @@
     <base href="/" />
 
     <meta charset="UTF-8" />
+    <meta content="width=device-width,initial-scale=1" name=viewport>
     <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
     <meta
       name="description"
@@ -34,7 +36,72 @@
     </title>
     <link rel="manifest" href="manifest.json" />
   </head>
+  <style>
+    html,
+    body {
+      position: relative;
+      background-color: #303030;
+      height: 100%;
+      color:white;
+      font-family: Arial, Helvetica, sans-serif;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 100%;
+    }
+    .splashscreen {
+      height: 50%;
+      display:flex;
+      justify-content: space-evenly;
+      align-items: center;
+      flex-flow: column;
+    }
+  .loading {
+    background: transparent;
+    width: 2em;
+    height: 2em;
+    position: relative;
+    margin:0 auto;
+    top: 16px;
+    left: 16px;
+  }
+  .loading:after {
+    display: block;
+    content: "";
+    border-radius: 50%;
+    height: 2px;
+    width: 2px;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: 10px 0 0 2px #333, 7px 7px 0 2px #999, 0 10px 0 2px #999, -7px 7px 0 2px #999, -10px 0 0 2px #999, -7px -7px 0 2px #999, 0 -10px 0 2px #333, 7px -7px 0 2px #111;
+  }
+  body:not([flt-renderer]) .loading {
+    -webkit-animation: rotate 0.7s steps(8) infinite;
+    -o-animation: rotate 0.7s steps(8) infinite;
+    animation: rotate 0.7s steps(8) infinite;
+
+  }
+
+  @keyframes rotate {
+    from {
+      transform: translate3d(-50%,-50%,0) rotate(0deg);
+    }
+    to {
+      transform: translate3d(-50%,-50%,0) rotate(360deg);
+    }
+  }
+  </style>
   <body>
+    <div class="splashscreen">
+      <img src="data:image/png;base64,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" alt="">
+      <h1>Corona-Ampel</h1>
+      <div class="loading"></div>
+      <p>Web-App startet...</p>
+    </div>
     <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
