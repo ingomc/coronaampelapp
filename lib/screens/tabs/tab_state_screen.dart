@@ -77,8 +77,8 @@ class TabStateScreen extends StatelessWidget {
                                                             .cases7BlPer100K),
                                                 title: Text(
                                                   '${controller.states[index].lanEwGen}',
-                                                  softWrap: true,
-                                                  // overflow: TextOverflow.ellipsis,
+                                                  softWrap: false,
+                                                  overflow: TextOverflow.fade,
                                                   style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.bold),

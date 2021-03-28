@@ -70,8 +70,8 @@ class TabCountryScreen extends StatelessWidget {
                                         ),
                                         title: Text(
                                           'Weltweit',
-                                          softWrap: true,
-                                          // overflow: TextOverflow.ellipsis,
+                                          softWrap: false,
+                                          overflow: TextOverflow.fade,
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
                                         ),
@@ -192,8 +192,8 @@ class TabCountryScreen extends StatelessWidget {
                                               .cases7Per100K),
                                       title: Text(
                                         'Deutschland',
-                                        softWrap: true,
-                                        // overflow: TextOverflow.ellipsis,
+                                        softWrap: false,
+                                        overflow: TextOverflow.fade,
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),

@@ -39,7 +39,7 @@ class SettingsScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      '🚦 ${BaseData.appName} 🚦',
+                      '${BaseData.appName}',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -59,7 +59,8 @@ class SettingsScreen extends StatelessWidget {
             child: Card(
               child: InkWell(
                 onTap: () {
-                  _launchInBrowser('https://paypal.me/ingomc?locale.x=de_DE');
+                  _launchInBrowser(
+                      'https://ko-fi.com/coronaampel/?hidefeed=true&widget=true&embed=true');
                 },
                 child: ListTile(
                   leading: Icon(MdiIcons.heart),
@@ -168,7 +169,7 @@ class SettingsScreen extends StatelessWidget {
                       ),
                     ),
                     applicationName: BaseData.appName,
-                    applicationVersion: "1.4.10",
+                    applicationVersion: "1.4.11",
                   );
                 },
                 child: ListTile(

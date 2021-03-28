@@ -171,7 +171,11 @@ class HomeScreen extends StatelessWidget {
             },
           ),
         ],
-        title: Text('🚦 ${BaseData.appName} 🚦'),
+        title: Image.asset(
+          'assets/site-logo.png',
+          fit: BoxFit.contain,
+          height: 32,
+        ),
       ),
       body: Column(
         children: [
