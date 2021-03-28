@@ -75,50 +75,53 @@ class SearchScreen extends StatelessWidget {
               Container(
                 width: double.infinity,
               ),
-              Container(
-                  width: double.infinity,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GetX<GetLocationController>(builder: (controller) {
-                      if (controller.isLoading.value) {
-                        return ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.blueGrey,
-                          ),
-                          onPressed: () {},
-                          child: Center(
-                            child: SizedBox(
-                              child: CircularProgressIndicator(
-                                backgroundColor: Colors.white,
-                                strokeWidth: 2,
-                              ),
-                              width: 16,
-                              height: 16,
-                            ),
-                          ),
-                        );
-                      }
-                      return ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.blueGrey,
-                        ),
-                        onPressed: () {
-                          getLocationController.getLocation();
-                        },
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(MdiIcons.crosshairsGps),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text('Aktuelle Position verwenden'),
-                          ],
-                        ),
-                      );
-                    }),
-                  )),
+              // Container(
+              //   width: double.infinity,
+              //   child: Padding(
+              //     padding: const EdgeInsets.all(8.0),
+              //     child: GetX<GetLocationController>(
+              //       builder: (controller) {
+              //         if (controller.isLoading.value) {
+              //           return ElevatedButton(
+              //             style: ElevatedButton.styleFrom(
+              //               primary: Colors.blueGrey,
+              //             ),
+              //             onPressed: () {},
+              //             child: Center(
+              //               child: SizedBox(
+              //                 child: CircularProgressIndicator(
+              //                   backgroundColor: Colors.white,
+              //                   strokeWidth: 2,
+              //                 ),
+              //                 width: 16,
+              //                 height: 16,
+              //               ),
+              //             ),
+              //           );
+              //         }
+              //         return ElevatedButton(
+              //           style: ElevatedButton.styleFrom(
+              //             primary: Colors.blueGrey,
+              //           ),
+              //           onPressed: () {
+              //             getLocationController.getLocation();
+              //           },
+              //           child: Row(
+              //             crossAxisAlignment: CrossAxisAlignment.center,
+              //             mainAxisAlignment: MainAxisAlignment.center,
+              //             children: [
+              //               Icon(MdiIcons.crosshairsGps),
+              //               SizedBox(
+              //                 width: 10,
+              //               ),
+              //               Text('Aktuelle Position verwenden'),
+              //             ],
+              //           ),
+              //         );
+              //       },
+              //     ),
+              //   ),
+              // ),
               Expanded(
                 child: GetX<GetCountysController>(builder: (controller) {
                   if (controller.isLoading.value) {
