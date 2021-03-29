@@ -16,6 +16,7 @@ import 'package:coronampel/screens/tabs/tab_county_screen.dart';
 import 'package:coronampel/screens/tabs/tab_state_screen.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:matomo/matomo.dart';
 
 class HomeScreen extends StatelessWidget {
   final UiTabsController uiTabsController = Get.put(UiTabsController());
@@ -65,6 +66,9 @@ class HomeScreen extends StatelessWidget {
         initialPage: uiTabsController.selectedIndex.value, keepPage: true);
 
     void _onTap(int index) {
+      // track tab clicked
+      MatomoTracker.trackEvent(
+          'Tab ${uiTabsController.selectedIndex.value}', 'Click');
       // if tab is already select, then scrollpage to top
       if (uiTabsController.selectedIndex.value == index) {
         switch (index) {
