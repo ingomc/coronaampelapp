@@ -13,7 +13,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   MyApp() {
     MatomoTracker().initialize(
-      siteId: 2,
+      siteId: 1,
       url: 'https://apptracking.andre-bellmann.de/matomo.php',
     );
   }
