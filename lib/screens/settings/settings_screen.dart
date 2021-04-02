@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'dart:io';
 import 'package:coronampel/data/base_data.dart';
 import 'package:coronampel/screens/help/help_screen.dart';
+import 'package:coronampel/widgets/fund_section.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -22,6 +22,11 @@ class SettingsScreen extends TraceableStatelessWidget {
       throw 'Could not launch $url';
     }
   }
+
+  final Uri _emailLaunchUri = Uri(
+      scheme: 'mailto',
+      path: 'info@corona-ampel.app',
+      queryParameters: {'subject': 'Corona-Ampel: ... '});
 
   @override
   Widget build(BuildContext context) {
@@ -49,25 +54,8 @@ class SettingsScreen extends TraceableStatelessWidget {
                     SizedBox(
                       height: 8,
                     ),
-                    Text('Inzidenz, Intensivstation und mehr'),
+                    Text('Inzidenz, Impfstatistik, Intensivstation ...'),
                   ],
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-            child: Card(
-              child: InkWell(
-                onTap: () {
-                  _launchInBrowser(
-                      'https://ko-fi.com/coronaampel/?hidefeed=true&widget=true&embed=true');
-                },
-                child: ListTile(
-                  leading: Icon(MdiIcons.heart),
-                  title: Text(
-                      'Spende und helfe mir diese App weiter zu verbessern'),
-                  trailing: Icon(MdiIcons.launch),
                 ),
               ),
             ),
@@ -85,38 +73,40 @@ class SettingsScreen extends TraceableStatelessWidget {
             height: 16,
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Card(
-                    child: InkWell(
-                      onTap: () async {
-                        await Get.defaultDialog(
-                            title: 'Kontakt',
-                            textConfirm: 'OK',
-                            onConfirm: () {
-                              Get.back();
-                            },
-                            middleText:
-                                'Wenn du mit mir Kontakt aufnehmen willst, melde dich unter: \n \n info@corona-ampel.app');
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Icon(MdiIcons.email),
-                            ),
-                            Text('Kontakt'),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              'Kontakt',
+              style: Theme.of(context).textTheme.headline6,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+            child: Card(
+              child: InkWell(
+                onTap: () {
+                  _launchInBrowser(_emailLaunchUri.toString());
+                },
+                child: ListTile(
+                  leading: Icon(MdiIcons.email),
+                  title: Text('info@corona-ampel.app'),
+                  trailing: Icon(MdiIcons.launch),
                 ),
-              ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+            child: Card(
+              child: InkWell(
+                onTap: () {
+                  _launchInBrowser('https://instagram.com/corona_ampel.app');
+                },
+                child: ListTile(
+                  leading: Icon(MdiIcons.instagram),
+                  title: Text('@corona_ampel.app'),
+                  trailing: Icon(MdiIcons.launch),
+                ),
+              ),
             ),
           ),
           Padding(
@@ -190,12 +180,36 @@ class SettingsScreen extends TraceableStatelessWidget {
                 },
                 child: ListTile(
                   leading: Icon(MdiIcons.shieldLock),
-                  title: Text('Datenschutz'),
+                  title: Text('Datenschutz / Impressum'),
                   trailing: Icon(MdiIcons.launch),
                 ),
               ),
             ),
           ),
+          SizedBox(
+            height: 32,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              'Unterstütze durch Teilen',
+              style: Theme.of(context).textTheme.headline6,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              'Du kannst auch ohne Spende helfen. Teile diese App einfach in der Familien Whatsapp-Gruppe, in deiner Instagram-Story oder auf anderen Social-Media Kanälen.',
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              'Werbefrei durch Spenden',
+              style: Theme.of(context).textTheme.headline6,
+            ),
+          ),
+          FundSection(),
           SizedBox(
             height: 32,
           ),

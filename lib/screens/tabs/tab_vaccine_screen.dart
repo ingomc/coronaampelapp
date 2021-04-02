@@ -1,5 +1,6 @@
 import 'package:coronampel/controller/get_vaccine_controller.dart';
 import 'package:coronampel/controller/reload_controller.dart';
+import 'package:coronampel/widgets/fund_section.dart';
 import 'package:coronampel/widgets/offline_page.dart';
 import 'package:coronampel/widgets/loading_list_overlay.dart';
 import 'package:coronampel/widgets/update_line.dart';
@@ -250,6 +251,7 @@ class TabVaccineScreen extends TraceableStatelessWidget {
                         ),
                       ),
                     ),
+                    FundSection(),
                   ],
                 );
               },

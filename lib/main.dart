@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -13,7 +14,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   MyApp() {
     MatomoTracker().initialize(
-      siteId: 1,
+      siteId: kIsWeb ? 2 : 1,
       url: 'https://apptracking.andre-bellmann.de/matomo.php',
     );
   }

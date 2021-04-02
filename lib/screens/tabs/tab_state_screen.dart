@@ -1,4 +1,5 @@
 import 'package:coronampel/controller/reload_controller.dart';
+import 'package:coronampel/widgets/fund_section.dart';
 import 'package:coronampel/widgets/offline_page.dart';
 import 'package:coronampel/widgets/incidence_number_container.dart';
 import 'package:coronampel/widgets/loading_list_overlay.dart';
@@ -249,6 +250,7 @@ class TabStateScreen extends TraceableStatelessWidget {
                           }
                         },
                       ),
+                      FundSection(),
                     ],
                   );
                 },
