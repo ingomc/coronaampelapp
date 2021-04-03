@@ -46,7 +46,7 @@ class CountyEditScreen extends TraceableStatelessWidget {
                   child: Row(
                     children: [
                       Icon(
-                        Icons.delete,
+                        MdiIcons.delete,
                         color: Theme.of(context).textTheme.bodyText1.color,
                       ),
                       SizedBox(
@@ -121,7 +121,7 @@ class CountyEditScreen extends TraceableStatelessWidget {
                                 trailing: Handle(
                                   delay: const Duration(milliseconds: 0),
                                   child: Icon(
-                                    Icons.unfold_more,
+                                    MdiIcons.unfoldMoreVertical,
                                     color: Colors.grey,
                                   ),
                                 ),
@@ -144,11 +144,11 @@ class CountyEditScreen extends TraceableStatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(MdiIcons.delete,
-                              color: Theme.of(context).highlightColor),
+                              color: Theme.of(context).disabledColor),
                           Text(
                             'Löschen: Landkreis zur Seite wischen',
                             style: TextStyle(
-                                color: Theme.of(context).highlightColor),
+                                color: Theme.of(context).disabledColor),
                           ),
                         ],
                       ),

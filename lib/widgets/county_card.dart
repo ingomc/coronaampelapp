@@ -4,6 +4,7 @@ import 'package:coronampel/screens/detail/county_detail_screen.dart';
 import 'package:coronampel/screens/edit/county_edit_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 // ignore: must_be_immutable
 class CountyCard extends StatelessWidget {
@@ -128,7 +129,7 @@ class CountyCard extends StatelessWidget {
                           ),
                           if (incidence >= 200)
                             Icon(
-                              Icons.warning_amber_rounded,
+                              MdiIcons.alert,
                               color: txtColor,
                             ),
                           Container(
@@ -154,7 +155,7 @@ class CountyCard extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(right: 8),
                         child: Icon(
-                          Icons.arrow_forward_ios,
+                          MdiIcons.chevronRight,
                           color: txtColor,
                         ),
                       ),

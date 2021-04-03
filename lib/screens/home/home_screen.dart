@@ -128,13 +128,13 @@ class HomeScreen extends StatelessWidget {
                   child: Row(
                     children: [
                       Icon(
-                        Icons.sync,
+                        MdiIcons.autorenew,
                         color: Theme.of(context).textTheme.bodyText1.color,
                       ),
                       SizedBox(
                         width: 10,
                       ),
-                      Text('Aktualisieren'),
+                      Text('Daten aktualisieren'),
                     ],
                   ),
                 ),
@@ -145,13 +145,13 @@ class HomeScreen extends StatelessWidget {
                     child: Row(
                       children: [
                         Icon(
-                          Icons.edit,
+                          MdiIcons.playlistEdit,
                           color: Theme.of(context).textTheme.bodyText1.color,
                         ),
                         SizedBox(
                           width: 10,
                         ),
-                        Text('Anpassen'),
+                        Text('Sortieren / Entfernen'),
                       ],
                     ),
                   ),

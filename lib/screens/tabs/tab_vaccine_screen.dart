@@ -147,7 +147,7 @@ class TabVaccineScreen extends TraceableStatelessWidget {
                                             alignment:
                                                 PlaceholderAlignment.middle,
                                             child: Icon(
-                                              Icons.info_outline,
+                                              MdiIcons.informationOutline,
                                               size: 16,
                                             ),
                                           ),

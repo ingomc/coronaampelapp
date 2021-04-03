@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fadein/flutter_fadein.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class UpdateLine extends StatelessWidget {
   const UpdateLine({
@@ -23,7 +24,7 @@ class UpdateLine extends StatelessWidget {
             child: Row(
               children: [
                 Icon(
-                  Icons.sync,
+                  MdiIcons.autorenew,
                   color: Theme.of(context).hintColor,
                   size: 16,
                 ),
