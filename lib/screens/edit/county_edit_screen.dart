@@ -121,7 +121,7 @@ class CountyEditScreen extends TraceableStatelessWidget {
                                 trailing: Handle(
                                   delay: const Duration(milliseconds: 0),
                                   child: Icon(
-                                    MdiIcons.unfoldMoreVertical,
+                                    MdiIcons.unfoldMoreHorizontal,
                                     color: Colors.grey,
                                   ),
                                 ),
