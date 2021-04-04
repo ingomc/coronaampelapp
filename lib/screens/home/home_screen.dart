@@ -160,7 +160,7 @@ class HomeScreen extends StatelessWidget {
                   child: Row(
                     children: [
                       Icon(
-                        Icons.info,
+                        MdiIcons.information,
                         color: Theme.of(context).textTheme.bodyText1.color,
                       ),
                       SizedBox(

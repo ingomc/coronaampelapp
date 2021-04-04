@@ -22,14 +22,13 @@ class FundSection extends StatelessWidget {
     return Container(
       width: 480,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Center(
-              child: Text(
-                'Diese App soll immer Werbefrei und ohne Datenverkauf an Dritte bleiben. Mit einer kleinen Spende hilfst du dabei, dass es so bleibt.',
-                // textAlign: TextAlign.center,
-              ),
+            child: Text(
+              'Diese App soll immer Werbefrei und ohne Datenverkauf an Dritte bleiben. Mit einer kleinen Spende hilfst du dabei, dass es so bleibt.',
+              // textAlign: TextAlign.center,
             ),
           ),
           Padding(

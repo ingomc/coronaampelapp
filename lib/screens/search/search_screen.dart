@@ -30,12 +30,12 @@ class SearchScreen extends TraceableStatelessWidget {
       onWillPop: _onWillPop,
       child: Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(MdiIcons.arrowLeft),
-            onPressed: () {
-              Get.back();
-            },
-          ),
+          // leading: IconButton(
+          //   icon: Icon(MdiIcons.arrowLeft),
+          //   onPressed: () {
+          //     Get.back();
+          //   },
+          // ),
           title: Row(
             children: <Widget>[
               Expanded(
@@ -190,7 +190,7 @@ class SearchScreen extends TraceableStatelessWidget {
           return Transform.rotate(
             angle: angle,
             child: Icon(
-              Icons.check,
+              MdiIcons.check,
               color: Colors.green,
             ),
           );
