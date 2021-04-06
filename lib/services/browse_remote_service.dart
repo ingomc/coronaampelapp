@@ -10,7 +10,10 @@ class RemoteServiceBrowse {
         Uri.parse('https://ampeldata.andre-bellmann.de/browse/index.json');
 
     try {
-      var response = await client.get(url);
+      var response = await client.get(url, headers: {
+        "Content-Type": "application/json",
+        "Cache-Control": "no-cache"
+      });
       if (response.statusCode == 200) {
         // Succesful fetch
         var jsonString = response.body;
