@@ -24,7 +24,7 @@ dependencies:
   get: ^4.0.0-nullsafety.2
   get_storage: ^2.0.1
   # http: ^0.13.1
-  http: ^0.12.0+2
+  http: ^0.13.1
   flutter:
     sdk: flutter
   implicitly_animated_reorderable_list: ^0.3.2
@@ -34,7 +34,7 @@ dependencies:
   geolocator: ^7.0.1
   percent_indicator: ^2.1.9+1
   url_launcher: ^6.0.2
-  matomo: ^0.0.10
+  matomo: ^0.1.0
   # share: ^0.6.5+4
   # launch_review: ^2.0.0
   # connectivity: ^2.0.2  

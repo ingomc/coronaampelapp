@@ -8,6 +8,15 @@ class RemoteServiceBrowse {
   static Future<Browse> fetchBrowse() async {
     Uri url =
         Uri.parse('https://ampeldata.andre-bellmann.de/browse/index.json');
+    // var headers = {
+    //   "Content-Type": "application/json",
+    //   "Cache-Control": "no-cache"
+    // };
+
+    // Map<String, String> headers = new Map<String, String>();
+    // headers['Content-Type'] = "application/json";
+    // headers['Accept'] = "application/json";
+    // headers['Cache-Control'] = "no-cache";
 
     try {
       var response = await client.get(url);
