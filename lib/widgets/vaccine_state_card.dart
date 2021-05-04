@@ -38,7 +38,7 @@ class VaccineStateCard extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             subtitle: Text(
-                'Impstatus: ${NumberFormat.decimalPattern('de-DE').format(progress)} %'),
+                'Impfstatus: ${NumberFormat.decimalPattern('de-DE').format(progress)} %'),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
