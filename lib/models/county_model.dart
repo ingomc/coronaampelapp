@@ -1,7 +1,7 @@
 // To parse this JSON data, do
 //
 //     final county = countyFromJson(jsonString);
-
+// @dart=2.9
 import 'dart:convert';
 
 County countyFromJson(String str) => County.fromJson(json.decode(str));

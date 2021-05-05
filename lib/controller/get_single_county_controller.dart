@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:coronampel/models/county_model.dart';
 import 'package:coronampel/services/county_remote_service.dart';
 import 'package:get/get.dart';

@@ -1,7 +1,7 @@
 // To parse this JSON data, do
 //
 //     final browse = browseFromJson(jsonString);
-
+// @dart=2.9
 import 'dart:convert';
 
 Browse browseFromJson(String str) => Browse.fromJson(json.decode(str));

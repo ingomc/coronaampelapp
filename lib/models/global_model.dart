@@ -1,7 +1,7 @@
 // To parse this JSON data, do
 //
 //     final worldwide = worldwideFromJson(jsonString);
-
+// @dart=2.9
 import 'dart:convert';
 
 Worldwide worldwideFromJson(String str) => Worldwide.fromJson(json.decode(str));

@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:coronampel/controller/get_browse_controller.dart';
 import 'package:coronampel/controller/get_connectivity_controller.dart';
 import 'package:get/get.dart';

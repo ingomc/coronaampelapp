@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:flutter_fadein/flutter_fadein.dart';
 import 'package:coronampel/controller/get_countys_controller.dart';
 import 'package:coronampel/controller/get_single_county_controller.dart';

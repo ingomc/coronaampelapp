@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:coronampel/controller/get_location_controller.dart';
 import 'package:coronampel/controller/search_controller.dart';
 import 'package:flutter/cupertino.dart';

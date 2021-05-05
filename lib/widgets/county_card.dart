@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'dart:ui';
 import 'package:coronampel/controller/get_single_county_controller.dart';
 import 'package:coronampel/screens/detail/county_detail_screen.dart';

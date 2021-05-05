@@ -1,7 +1,7 @@
 // To parse this JSON data, do
 //
 //     final gpsLocation = gpsLocationFromJson(jsonString);
-
+// @dart=2.9
 import 'dart:convert';
 
 GpsLocation gpsLocationFromJson(String str) =>

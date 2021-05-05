@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:coronampel/controller/get_connectivity_controller.dart';
 import 'package:coronampel/controller/reload_controller.dart';
 import 'package:coronampel/widgets/loading_list_overlay.dart';

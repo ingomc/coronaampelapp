@@ -1,7 +1,7 @@
 // To parse this JSON data, do
 //
 //     final states = statesFromJson(jsonString);
-
+// @dart=2.9
 import 'dart:convert';
 
 States statesFromJson(String str) => States.fromJson(json.decode(str));

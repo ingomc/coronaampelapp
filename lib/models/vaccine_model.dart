@@ -1,7 +1,7 @@
 // To parse this JSON data, do
 //
 //     final vaccine = vaccineFromJson(jsonString);
-
+// @dart=2.9
 import 'dart:convert';
 
 Vaccine vaccineFromJson(String str) => Vaccine.fromJson(json.decode(str));

@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:coronampel/controller/reload_controller.dart';
 import 'package:coronampel/widgets/fund_section.dart';
 import 'package:coronampel/widgets/offline_page.dart';
