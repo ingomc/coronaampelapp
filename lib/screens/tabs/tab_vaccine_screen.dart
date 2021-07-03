@@ -59,7 +59,17 @@ class TabVaccineScreen extends TraceableStatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                              'Hinweis: Die Impfzahlen wurden aktualisiert und korrigiert. Aufgrund von Verschiebungen durch die neuen Impfstoffe und Änderungen des RKIs wurden zu hohe Zahlen angezeigt. Sry dafür. Die geschätzte Herdenimmunität wurde auf 80% korrigiert.'),
+                              'Die Impfzahlen wurden aktualisiert und korrigiert. Aufgrund von Verschiebungen durch die neuen Impfstoffe und Änderungen des RKIs wurden zu hohe Zahlen angezeigt. Sry dafür. '),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: double.infinity,
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                              'Das RKI hat die geschätzte Herdenimmunität auf 80% erhöht.'),
                         ),
                       ),
                     ),
