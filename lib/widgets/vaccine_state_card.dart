@@ -80,7 +80,7 @@ class VaccineStateCard extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(right: 16),
                 child: Text(
-                  'je 2 Impfdosen für 80% aller \nEinwohner*innen',
+                  'je 2 Impfdosen (durch Johnson & Johnson eventuell weniger)',
                   textAlign: TextAlign.right,
                 ),
               ),
