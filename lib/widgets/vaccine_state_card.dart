@@ -46,14 +46,14 @@ class VaccineStateCard extends StatelessWidget {
             child: LinearPercentIndicator(
               animation: true,
               lineHeight: 10,
-              percent: progress / 70,
+              percent: progress / 100,
               linearStrokeCap: LinearStrokeCap.roundAll,
               backgroundColor: Theme.of(context).primaryColor,
               progressColor: Colors.green,
               trailing: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4),
                 child:
-                    Text('70%', style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text('100%', style: TextStyle(fontWeight: FontWeight.bold)),
               ),
             ),
           ),
@@ -80,7 +80,7 @@ class VaccineStateCard extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(right: 16),
                 child: Text(
-                  'je 2 Impfdosen für 70% aller \nEinwohner*innen',
+                  'je 2 Impfdosen für 80% aller \nEinwohner*innen',
                   textAlign: TextAlign.right,
                 ),
               ),

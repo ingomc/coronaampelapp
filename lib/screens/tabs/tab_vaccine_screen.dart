@@ -53,6 +53,16 @@ class TabVaccineScreen extends TraceableStatelessWidget {
                         ),
                       ),
                     ),
+                    Container(
+                      width: double.infinity,
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                              'Hinweis: Die Impfzahlen wurden aktualisiert und korrigiert. Aufgrund von Verschiebungen durch die neuen Impfstoffe und Änderungen des RKIs wurden zu hohe Zahlen angezeigt. Sry dafür.'),
+                        ),
+                      ),
+                    ),
                     GetX<GetVaccineController>(builder: (controller) {
                       if (getVaccineController.germany.value.cumsum7DaysAgo ==
                           null) {
@@ -65,16 +75,15 @@ class TabVaccineScreen extends TraceableStatelessWidget {
                                     .germany.value.sumVaccineDoses /
                                 (getVaccineController.germany.value.total *
                                     2 *
-                                    0.7) *
+                                    1) *
                                 100)
                             .toStringAsFixed(2)),
                         vaccinated:
                             getVaccineController.germany.value.sumVaccineDoses,
                         today: getVaccineController
                             .germany.value.differenceToThePreviousDay,
-                        target:
-                            (getVaccineController.germany.value.total * 2 * 0.7)
-                                .toInt(),
+                        target: (getVaccineController.germany.value.total * 2)
+                            .toInt(),
                         label: true,
                       );
                     }),
@@ -85,13 +94,13 @@ class TabVaccineScreen extends TraceableStatelessWidget {
                         if (controller.germany.value.total == null) {
                           return Container();
                         }
-                        final left = controller.germany.value.total * 0.7 * 2 -
-                            controller.germany.value.sumVaccineDoses;
+                        final left = (controller.germany.value.total * 0.8 * 2 -
+                            controller.germany.value.sumVaccineDoses);
                         final lastWeek =
                             controller.germany.value.sumVaccineDoses -
                                 controller.germany.value.cumsum7DaysAgo;
                         final perDay = lastWeek / 7;
-                        final daysleft = left ~/ perDay;
+                        final daysleft = (left ~/ perDay) + 14;
                         final today = new DateTime.now();
                         final targetDate =
                             today.add(new Duration(days: daysleft));
@@ -104,7 +113,7 @@ class TabVaccineScreen extends TraceableStatelessWidget {
                               Get.defaultDialog(
                                 title: 'Hinweis',
                                 content: Text(
-                                    'In den letzten 7 Tagen wurden durchschnittlich ${NumberFormat.decimalPattern('de-DE').format(lastWeek ~/ 7)} Impfdosen pro Tag verabreicht. Aus dieser Zahl lässt sich der wahrscheinliche Zeitpunkt einer Herdenimmunität errechnen. Die Annahme ist, dass eine Herdenimmunität dann erreicht ist, wenn mind. 70% der Einwohner*innen mit jeweils 2 Impfdosen gegen das Virus immunisiert wurden. \nHinweis: Zum aktuellen Zeitpunkt ist das reine Theorie!'),
+                                    'In den letzten 7 Tagen wurden durchschnittlich ${NumberFormat.decimalPattern('de-DE').format(lastWeek ~/ 7)} Impfdosen pro Tag verabreicht. Aus dieser Zahl lässt sich der wahrscheinliche Zeitpunkt einer Herdenimmunität errechnen. Die Annahme ist, dass eine Herdenimmunität dann erreicht ist, wenn mind. 80% der Einwohner*innen mit jeweils 2 Impfdosen gegen das Virus immunisiert wurden. \nHinweis: Zum aktuellen Zeitpunkt ist das reine Theorie!'),
                                 textConfirm: 'Ok',
                                 onConfirm: () {
                                   Get.back();
@@ -185,7 +194,7 @@ class TabVaccineScreen extends TraceableStatelessWidget {
                                 controller.states.length,
                                 (index) {
                                   final allTotal =
-                                      controller.states[index].total * 2 * 0.7;
+                                      controller.states[index].total * 2 * 1;
                                   final progress = double.parse(
                                       (controller.states[index].vaccinated /
                                               allTotal *
