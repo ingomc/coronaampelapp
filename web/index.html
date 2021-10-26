@@ -229,6 +229,14 @@
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
     <script>
+
+    localStorage.removeItem("flutter.matomo_visit_count");
+    localStorage.removeItem("flutter.matomo_opt_out");
+    localStorage.removeItem("flutter.matomo_last_visit");
+    localStorage.removeItem("flutter.matomo_last_visit");
+    localStorage.removeItem("flutter.matomo_first_visit");
+
+
       if ("serviceWorker" in navigator) {
         window.addEventListener("flutter-first-frame", function () {
           navigator.serviceWorker
