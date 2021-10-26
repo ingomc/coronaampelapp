@@ -117,6 +117,7 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black12,
         centerTitle: true,
         actions: [
           PopupMenuButton(
