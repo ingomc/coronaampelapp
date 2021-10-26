@@ -1,5 +1,4 @@
 // @dart=2.9
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,10 +14,7 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   MyApp() {
-    MatomoTracker().initialize(
-      siteId: kIsWeb ? 2 : 1,
-      url: 'https://apptracking.andre-bellmann.de/matomo.php',
-    );
+    MatomoTracker().clear();
   }
   final PinnedCountysController pinnedCountysController =
       Get.put(PinnedCountysController());
