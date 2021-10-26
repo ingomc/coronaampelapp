@@ -24,17 +24,17 @@ dependencies:
   get: ^4.0.0-nullsafety.2
   get_storage: ^2.0.1
   # http: ^0.13.1
-  http: ^0.12.0+2
+  http: ^0.13.4
   flutter:
     sdk: flutter
-  implicitly_animated_reorderable_list: ^0.3.2
+  implicitly_animated_reorderable_list: ^0.4.2
   flutter_fadein: ^2.0.0
   intl: ^0.17.0
-  material_design_icons_flutter: ^4.0.5955
+  material_design_icons_flutter: ^5.0.6295
   geolocator: ^7.0.1
-  percent_indicator: ^2.1.9+1
+  percent_indicator: ^3.4.0
   url_launcher: ^6.0.2
-  matomo: ^0.0.10
+  matomo: ^1.0.0
   # share: ^0.6.5+4
   # launch_review: ^2.0.0
   # connectivity: ^2.0.2  
