@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "name": "Flutter",
+            "program": "lib/main.dart",
+            "request": "launch",
+            "type": "dart",
+            	// Arguments to be passed to the Dart or Flutter app.
+            "args": [
+                "--web-renderer", "canvaskit"
+            ],
+        }
+    ]
+}

@@ -21,33 +21,33 @@ class CountyCard extends StatelessWidget {
       this.newCases,
       [this.isLinked = true]);
 
-  Color txtColor = Colors.amber;
-  Color bgColor = Colors.black;
+  Color txtColor = Colors.white;
+  Color bgColor = Colors.white12;
 
-  getBgColor() {
-    if (incidence < 0) {
-      txtColor = Colors.white38;
-      bgColor = Colors.grey[800];
-      return false;
-    }
-    if (incidence >= 35 && incidence < 50) {
-      txtColor = Colors.black54;
-      bgColor = Colors.orange[300];
-      return false;
-    }
-    if (incidence >= 50 && incidence < 100) {
-      txtColor = Colors.black54;
-      bgColor = Colors.redAccent[700];
-      return false;
-    }
-    if (incidence >= 100) {
-      txtColor = Colors.redAccent[700];
-      bgColor = Color.fromRGBO(60, 0, 0, 1);
-      return false;
-    }
-    txtColor = Colors.black54;
-    bgColor = Colors.green;
-  }
+  // getBgColor() {
+  //   if (incidence < 0) {
+  //     txtColor = Colors.white38;
+  //     bgColor = Colors.grey[800];
+  //     return false;
+  //   }
+  //   if (incidence >= 35 && incidence < 50) {
+  //     txtColor = Colors.black54;
+  //     bgColor = Colors.orange[300];
+  //     return false;
+  //   }
+  //   if (incidence >= 50 && incidence < 100) {
+  //     txtColor = Colors.black54;
+  //     bgColor = Colors.redAccent[700];
+  //     return false;
+  //   }
+  //   if (incidence >= 100) {
+  //     txtColor = Colors.redAccent[700];
+  //     bgColor = Color.fromRGBO(60, 0, 0, 1);
+  //     return false;
+  //   }
+  //   txtColor = Colors.black54;
+  //   bgColor = Colors.green;
+  // }
 
   final GetSingleCountyController getSingleCountyController =
       Get.put(GetSingleCountyController());
@@ -69,7 +69,7 @@ class CountyCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    getBgColor();
+    // getBgColor();
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: Material(
