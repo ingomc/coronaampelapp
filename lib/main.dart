@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'controller/pinned_countys_controller.dart';
 import 'screens/home/home_screen.dart';
-import 'package:matomo/matomo.dart';
 
 void main() async {
   await GetStorage.init();
@@ -12,9 +11,6 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  MyApp() {
-    MatomoTracker().clear();
-  }
   final PinnedCountysController pinnedCountysController =
       Get.put(PinnedCountysController());
 
