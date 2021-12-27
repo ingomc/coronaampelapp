@@ -53,26 +53,6 @@ class TabVaccineScreen extends TraceableStatelessWidget {
                         ),
                       ),
                     ),
-                    Container(
-                      width: double.infinity,
-                      child: Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              'Die Impfzahlen wurden aktualisiert und korrigiert. Aufgrund von Verschiebungen durch die neuen Impfstoffe und Änderungen des RKIs wurden zu hohe Zahlen angezeigt. Sry dafür. '),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      child: Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              'Das RKI hat die geschätzte Herdenimmunität auf 80% erhöht.'),
-                        ),
-                      ),
-                    ),
                     GetX<GetVaccineController>(builder: (controller) {
                       if (getVaccineController.germany.value.cumsum7DaysAgo ==
                           null) {
