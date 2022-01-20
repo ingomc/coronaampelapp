@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Corona-Ampel',
       theme: ThemeData(
+        fontFamily: '--apple-system',
         primaryColor: Colors.grey[900],
         brightness: Brightness.dark,
         accentColor: Colors.blueGrey,
