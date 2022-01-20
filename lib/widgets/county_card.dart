@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:coronampel/controller/get_single_county_controller.dart';
 import 'package:coronampel/screens/detail/county_detail_screen.dart';
 import 'package:coronampel/screens/edit/county_edit_screen.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -55,16 +56,16 @@ class CountyCard extends StatelessWidget {
   void goToCity() {
     getSingleCountyController.selectedCountyRS.value = rs;
     Get.to(
-        () => CountyDetailScreen(
-              hero: hero,
-              rs: rs,
-              name: name,
-              district: district,
-              incidence: incidence,
-              newCases: newCases,
-              isLinked: isLinked,
-            ),
-        transition: Transition.cupertino);
+      () => CountyDetailScreen(
+        hero: kIsWeb ? 'browse' : hero,
+        rs: rs,
+        name: name,
+        district: district,
+        incidence: incidence,
+        newCases: newCases,
+        isLinked: isLinked,
+      ),
+    );
   }
 
   @override

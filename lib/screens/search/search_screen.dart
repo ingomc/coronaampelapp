@@ -20,6 +20,8 @@ class SearchScreen extends TraceableStatelessWidget {
       Get.put(GetLocationController());
   var _controller = TextEditingController();
 
+  final ScrollController _controllerOne = ScrollController();
+
   Future<bool> _onWillPop() async {
     Get.back();
     return null;
@@ -133,43 +135,40 @@ class SearchScreen extends TraceableStatelessWidget {
                       ),
                     );
                   } else {
-                    return CupertinoScrollbar(
-                      child: ListView.builder(
-                        itemCount: controller.countys.length,
-                        itemBuilder: (context, index) {
-                          return Obx(
-                            () {
-                              if (searchController.searchString.value.length >
-                                      2 &&
-                                  controller.countys[index].gen
-                                      .toLowerCase()
-                                      .contains(searchController
-                                          .searchString.value
-                                          .trim()
-                                          .toLowerCase())) {
-                                return Card(
-                                  // Material ripple effect
-                                  child: InkWell(
-                                    onTap: () {
-                                      pinnedCountysController
-                                          .toggleCounty(index);
-                                    },
-                                    child: ListTile(
-                                      title: Text(
-                                          '${controller.countys[index].bez} ${controller.countys[index].gen}'),
-                                      subtitle: Text(
-                                          'Inzidenz: ${controller.countys[index].cases7Per100K ??= 0} | Neue Fälle: ${controller.countys[index].newCases ??= 0}'),
-                                      trailing: isFavorite(index, context),
-                                    ),
+                    return ListView.builder(
+                      itemCount: controller.countys.length,
+                      itemBuilder: (context, index) {
+                        return Obx(
+                          () {
+                            if (searchController.searchString.value.length >
+                                    2 &&
+                                controller.countys[index].gen
+                                    .toLowerCase()
+                                    .contains(searchController
+                                        .searchString.value
+                                        .trim()
+                                        .toLowerCase())) {
+                              return Card(
+                                // Material ripple effect
+                                child: InkWell(
+                                  onTap: () {
+                                    pinnedCountysController.toggleCounty(index);
+                                  },
+                                  child: ListTile(
+                                    title: Text(
+                                        '${controller.countys[index].bez} ${controller.countys[index].gen}'),
+                                    subtitle: Text(
+                                        'Inzidenz: ${controller.countys[index].cases7Per100K ??= 0} | Neue Fälle: ${controller.countys[index].newCases ??= 0}'),
+                                    trailing: isFavorite(index, context),
                                   ),
-                                );
-                              } else {
-                                return Container();
-                              }
-                            },
-                          );
-                        },
-                      ),
+                                ),
+                              );
+                            } else {
+                              return Container();
+                            }
+                          },
+                        );
+                      },
                     );
                   }
                 }),

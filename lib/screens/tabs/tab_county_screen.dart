@@ -39,129 +39,125 @@ class TabCountyScreen extends TraceableStatelessWidget {
         backgroundColor: Theme.of(context).primaryColor,
         child: Stack(
           children: [
-            CupertinoScrollbar(
-              child: ListView.builder(
-                physics: const AlwaysScrollableScrollPhysics(),
-                controller: getCountysController.scrollController,
-                padding: EdgeInsets.fromLTRB(12, 4, 12, 100),
-                itemCount: 1,
-                itemBuilder: (context, i) {
-                  return Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
-                        child: Obx(
-                          () => (pinnedCountysController.countys.length > 0)
-                              ? FadeIn(
-                                  child: UpdateLine(
-                                    left:
-                                        ' ${getCountysController.dateUpdated} Uhr',
-                                    right: getCountysController
-                                                    .lastUpdate.value ==
-                                                null ||
-                                            getCountysController
-                                                    .lastUpdate.value ==
-                                                ''
-                                        ? ''
-                                        : 'Stand: ${getCountysController.lastUpdate}',
-                                  ),
-                                )
-                              : Container(),
-                        ),
+            ListView.builder(
+              controller: getCountysController.scrollController,
+              physics: const AlwaysScrollableScrollPhysics(),
+              padding: EdgeInsets.fromLTRB(12, 4, 12, 100),
+              itemCount: 1,
+              itemBuilder: (context, i) {
+                return Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
+                      child: Obx(
+                        () => (pinnedCountysController.countys.length > 0)
+                            ? FadeIn(
+                                child: UpdateLine(
+                                  left:
+                                      ' ${getCountysController.dateUpdated} Uhr',
+                                  right: getCountysController
+                                                  .lastUpdate.value ==
+                                              null ||
+                                          getCountysController
+                                                  .lastUpdate.value ==
+                                              ''
+                                      ? ''
+                                      : 'Stand: ${getCountysController.lastUpdate}',
+                                ),
+                              )
+                            : Container(),
                       ),
-                      GetX<PinnedCountysController>(
-                        builder: (controller) {
-                          if (getCountysController.countys.length > 0 &&
-                              controller.countys.length > 0) {
-                            return Column(
-                              children: [
-                                ...List.generate(
-                                  controller.countys.length > 100
-                                      ? 100
-                                      : controller.countys.length,
-                                  (index) {
-                                    var thisCounty = getCountysController
-                                        .countys[controller.countys[index]];
-                                    return FadeIn(
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 2.0),
-                                        child: Hero(
-                                          tag: '$hero${thisCounty.rs}',
-                                          child: CountyCard(
-                                              hero,
-                                              thisCounty.rs,
-                                              thisCounty.gen,
-                                              thisCounty.bez,
-                                              thisCounty.cases7Per100K,
-                                              thisCounty.newCases),
+                    ),
+                    GetX<PinnedCountysController>(
+                      builder: (controller) {
+                        if (getCountysController.countys.length > 0 &&
+                            controller.countys.length > 0) {
+                          return Column(
+                            children: [
+                              ...List.generate(
+                                controller.countys.length > 100
+                                    ? 100
+                                    : controller.countys.length,
+                                (index) {
+                                  var thisCounty = getCountysController
+                                      .countys[controller.countys[index]];
+                                  return FadeIn(
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 2.0),
+                                      child: Hero(
+                                        tag: '$hero${thisCounty.rs}',
+                                        child: CountyCard(
+                                            hero,
+                                            thisCounty.rs,
+                                            thisCounty.gen,
+                                            thisCounty.bez,
+                                            thisCounty.cases7Per100K,
+                                            thisCounty.newCases),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              )
+                            ],
+                          );
+                        } else if (getConnectivityController.isOffline.value ||
+                            (controller.countys.length > 0 &&
+                                getCountysController.countys.length < 1)) {
+                          return OfflinePage();
+                        } else {
+                          return Opacity(
+                            opacity: .5,
+                            child: GestureDetector(
+                              onTap: () {
+                                Get.to(() => SearchScreen(),
+                                    transition: Transition.downToUp);
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(36.0),
+                                child: Center(
+                                  child: Column(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(36.0),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: Colors.white10,
+                                            borderRadius:
+                                                BorderRadius.circular(100),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(28.0),
+                                            child: Icon(
+                                              MdiIcons.plus,
+                                              size: 48,
+                                            ),
+                                          ),
                                         ),
                                       ),
-                                    );
-                                  },
-                                )
-                              ],
-                            );
-                          } else if (getConnectivityController
-                                  .isOffline.value ||
-                              (controller.countys.length > 0 &&
-                                  getCountysController.countys.length < 1)) {
-                            return OfflinePage();
-                          } else {
-                            return Opacity(
-                              opacity: .5,
-                              child: GestureDetector(
-                                onTap: () {
-                                  Get.to(() => SearchScreen(),
-                                      transition: Transition.downToUp);
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.all(36.0),
-                                  child: Center(
-                                    child: Column(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(36.0),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color: Colors.white10,
-                                              borderRadius:
-                                                  BorderRadius.circular(100),
-                                            ),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(28.0),
-                                              child: Icon(
-                                                MdiIcons.plus,
-                                                size: 48,
-                                              ),
-                                            ),
-                                          ),
+                                      Text('Eigene Landkreise',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline5),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          'Suche deine Landkreise und füge sie deiner Liste hinzu',
+                                          textAlign: TextAlign.center,
                                         ),
-                                        Text('Eigene Landkreise',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline5),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text(
-                                            'Suche deine Landkreise und füge sie deiner Liste hinzu',
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
-                            );
-                          }
-                        },
-                      ),
-                    ],
-                  );
-                },
-              ),
+                            ),
+                          );
+                        }
+                      },
+                    ),
+                  ],
+                );
+              },
             ),
             GetX<GetCountysController>(
               builder: (controller) {

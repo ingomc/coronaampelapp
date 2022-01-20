@@ -71,7 +71,8 @@ class HomeScreen extends StatelessWidget {
       MatomoTracker.trackEvent(
           'Tab ${uiTabsController.selectedIndex.value}', 'Click');
       // if tab is already select, then scrollpage to top
-      if (uiTabsController.selectedIndex.value == index) {
+      if (uiTabsController.selectedIndex.value == index &&
+          getBrowseController.scrollController.offset > 0) {
         switch (index) {
           // Stoebern
           case 0:

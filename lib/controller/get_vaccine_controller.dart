@@ -7,7 +7,9 @@ import 'package:intl/intl.dart';
 class GetVaccineController extends GetxController {
   var isLoading = false.obs;
   var isRefreshIndicatorActive = false.obs;
-  ScrollController scrollController = new ScrollController();
+  ScrollController scrollController = new ScrollController(
+    initialScrollOffset: 0.0,
+  );
 
   var dateUpdated =
       DateFormat('dd.MM., HH:mm').format(DateTime.now()).toString().obs;

@@ -1,11 +1,15 @@
 import 'package:coronampel/models/global_model.dart';
 import 'package:coronampel/services/global_remote_service.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class GetGlobalController extends GetxController {
   var isLoading = false.obs;
   var isRefreshIndicatorActive = false.obs;
+  ScrollController scrollController = new ScrollController(
+    initialScrollOffset: 0.0,
+  );
   var dateUpdated =
       DateFormat('dd.MM., HH:mm').format(DateTime.now()).toString().obs;
   var data = Worldwide().obs;

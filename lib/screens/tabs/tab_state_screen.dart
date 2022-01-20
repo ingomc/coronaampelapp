@@ -31,125 +31,91 @@ class TabStateScreen extends TraceableStatelessWidget {
         backgroundColor: Theme.of(context).primaryColor,
         child: Stack(
           children: [
-            CupertinoScrollbar(
-              child: ListView.builder(
-                controller: getStatesController.scrollController,
-                padding: EdgeInsets.fromLTRB(8, 4, 8, 8),
-                itemCount: 1,
-                itemBuilder: (context, i) {
-                  return Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
-                        child: Obx(
-                          () => UpdateLine(
-                            left: ' ${getStatesController.dateUpdated} Uhr',
-                            right: getStatesController.lastUpdate.value ==
-                                        null ||
-                                    getStatesController.lastUpdate.value == ''
-                                ? ''
-                                : 'Stand: ${getStatesController.lastUpdate.value}',
-                          ),
+            ListView.builder(
+              controller: getStatesController.scrollController,
+              padding: EdgeInsets.fromLTRB(8, 4, 8, 8),
+              itemCount: 1,
+              itemBuilder: (context, i) {
+                return Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
+                      child: Obx(
+                        () => UpdateLine(
+                          left: ' ${getStatesController.dateUpdated} Uhr',
+                          right: getStatesController.lastUpdate.value == null ||
+                                  getStatesController.lastUpdate.value == ''
+                              ? ''
+                              : 'Stand: ${getStatesController.lastUpdate.value}',
                         ),
                       ),
-                      GetX<GetStatesController>(
-                        builder: (controller) {
-                          if (controller.states.length > 0) {
-                            return Column(
-                              children: [
-                                ...List.generate(
-                                  controller.states.length,
-                                  (index) {
-                                    return Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        vertical: 4.0,
-                                      ),
-                                      child: Container(
-                                        width: double.infinity,
-                                        child: Card(
-                                          child: Column(
-                                            children: [
-                                              ListTile(
-                                                leading: CircleAvatar(
-                                                  backgroundImage: ExactAssetImage(
-                                                      'assets/states/${controller.states[index].lanEwAgs}.png'),
-                                                ),
-                                                trailing:
-                                                    IncidenceNumberContainer(
-                                                        controller.states[index]
-                                                            .cases7BlPer100K),
-                                                title: Text(
-                                                  '${controller.states[index].lanEwGen}',
-                                                  softWrap: false,
-                                                  overflow: TextOverflow.fade,
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                                subtitle: Text(
-                                                    'Einwohner: ${NumberFormat.decimalPattern('de-DE').format(controller.states[index].lanEwEwz)}'),
+                    ),
+                    GetX<GetStatesController>(
+                      builder: (controller) {
+                        if (controller.states.length > 0) {
+                          return Column(
+                            children: [
+                              ...List.generate(
+                                controller.states.length,
+                                (index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 4.0,
+                                    ),
+                                    child: Container(
+                                      width: double.infinity,
+                                      child: Card(
+                                        child: Column(
+                                          children: [
+                                            ListTile(
+                                              leading: CircleAvatar(
+                                                backgroundImage: ExactAssetImage(
+                                                    'assets/states/${controller.states[index].lanEwAgs}.png'),
                                               ),
-                                              Container(
-                                                decoration: BoxDecoration(
-                                                  border: Border(
-                                                    top: BorderSide(
-                                                        color: Theme.of(context)
-                                                            .primaryColor,
-                                                        width: 1),
-                                                  ),
+                                              trailing:
+                                                  IncidenceNumberContainer(
+                                                      controller.states[index]
+                                                          .cases7BlPer100K),
+                                              title: Text(
+                                                '${controller.states[index].lanEwGen}',
+                                                softWrap: false,
+                                                overflow: TextOverflow.fade,
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              subtitle: Text(
+                                                  'Einwohner: ${NumberFormat.decimalPattern('de-DE').format(controller.states[index].lanEwEwz)}'),
+                                            ),
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                border: Border(
+                                                  top: BorderSide(
+                                                      color: Theme.of(context)
+                                                          .primaryColor,
+                                                      width: 1),
                                                 ),
-                                                child: IntrinsicHeight(
-                                                  child: Row(
-                                                    children: [
-                                                      Expanded(
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .symmetric(
-                                                                  vertical: 12,
-                                                                  horizontal:
-                                                                      16.0),
-                                                          child: Container(
-                                                            child: Row(
-                                                              children: [
-                                                                Expanded(
-                                                                  child: Text(
-                                                                      'Neue Fälle'),
-                                                                ),
-                                                                Text(
-                                                                  '+ ${NumberFormat.decimalPattern('de-DE').format(controller.states[index].newCases)}',
-                                                                  style: TextStyle(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      VerticalDivider(
-                                                        thickness: 1,
-                                                        width: 1,
-                                                        color: Theme.of(context)
-                                                            .primaryColor,
-                                                      ),
-                                                      Expanded(
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .symmetric(
-                                                                  vertical: 12,
-                                                                  horizontal:
-                                                                      16.0),
+                                              ),
+                                              child: IntrinsicHeight(
+                                                child: Row(
+                                                  children: [
+                                                    Expanded(
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .symmetric(
+                                                                vertical: 12,
+                                                                horizontal:
+                                                                    16.0),
+                                                        child: Container(
                                                           child: Row(
                                                             children: [
                                                               Expanded(
                                                                 child: Text(
-                                                                    'Alle Fälle'),
+                                                                    'Neue Fälle'),
                                                               ),
                                                               Text(
-                                                                '${NumberFormat.decimalPattern('de-DE').format(controller.states[index].fallzahl)}',
+                                                                '+ ${NumberFormat.decimalPattern('de-DE').format(controller.states[index].newCases)}',
                                                                 style: TextStyle(
                                                                     fontWeight:
                                                                         FontWeight
@@ -159,71 +125,71 @@ class TabStateScreen extends TraceableStatelessWidget {
                                                           ),
                                                         ),
                                                       ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                              Container(
-                                                decoration: BoxDecoration(
-                                                  border: Border(
-                                                    top: BorderSide(
-                                                        color: Theme.of(context)
-                                                            .primaryColor,
-                                                        width: 1),
-                                                  ),
-                                                ),
-                                                child: IntrinsicHeight(
-                                                  child: Row(
-                                                    children: [
-                                                      Expanded(
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .symmetric(
-                                                                  vertical: 12,
-                                                                  horizontal:
-                                                                      16.0),
-                                                          child: Container(
-                                                            child: Row(
-                                                              children: [
-                                                                Expanded(
-                                                                  child: Text(
-                                                                      'Neue Todesfälle'),
-                                                                ),
-                                                                Text(
-                                                                  '+ ${controller.states[index].newDeaths}',
-                                                                  style: TextStyle(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold),
-                                                                ),
-                                                              ],
+                                                    ),
+                                                    VerticalDivider(
+                                                      thickness: 1,
+                                                      width: 1,
+                                                      color: Theme.of(context)
+                                                          .primaryColor,
+                                                    ),
+                                                    Expanded(
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .symmetric(
+                                                                vertical: 12,
+                                                                horizontal:
+                                                                    16.0),
+                                                        child: Row(
+                                                          children: [
+                                                            Expanded(
+                                                              child: Text(
+                                                                  'Alle Fälle'),
                                                             ),
-                                                          ),
+                                                            Text(
+                                                              '${NumberFormat.decimalPattern('de-DE').format(controller.states[index].fallzahl)}',
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                            ),
+                                                          ],
                                                         ),
                                                       ),
-                                                      VerticalDivider(
-                                                        thickness: 1,
-                                                        width: 1,
-                                                        color: Theme.of(context)
-                                                            .primaryColor,
-                                                      ),
-                                                      Expanded(
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .symmetric(
-                                                                  vertical: 12,
-                                                                  horizontal:
-                                                                      16.0),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                border: Border(
+                                                  top: BorderSide(
+                                                      color: Theme.of(context)
+                                                          .primaryColor,
+                                                      width: 1),
+                                                ),
+                                              ),
+                                              child: IntrinsicHeight(
+                                                child: Row(
+                                                  children: [
+                                                    Expanded(
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .symmetric(
+                                                                vertical: 12,
+                                                                horizontal:
+                                                                    16.0),
+                                                        child: Container(
                                                           child: Row(
                                                             children: [
                                                               Expanded(
                                                                 child: Text(
-                                                                    'Alle Todesfälle'),
+                                                                    'Neue Todesfälle'),
                                                               ),
                                                               Text(
-                                                                '${NumberFormat.decimalPattern('de-DE').format(controller.states[index].death)}',
+                                                                '+ ${controller.states[index].newDeaths}',
                                                                 style: TextStyle(
                                                                     fontWeight:
                                                                         FontWeight
@@ -233,29 +199,60 @@ class TabStateScreen extends TraceableStatelessWidget {
                                                           ),
                                                         ),
                                                       ),
-                                                    ],
-                                                  ),
+                                                    ),
+                                                    VerticalDivider(
+                                                      thickness: 1,
+                                                      width: 1,
+                                                      color: Theme.of(context)
+                                                          .primaryColor,
+                                                    ),
+                                                    Expanded(
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .symmetric(
+                                                                vertical: 12,
+                                                                horizontal:
+                                                                    16.0),
+                                                        child: Row(
+                                                          children: [
+                                                            Expanded(
+                                                              child: Text(
+                                                                  'Alle Todesfälle'),
+                                                            ),
+                                                            Text(
+                                                              '${NumberFormat.decimalPattern('de-DE').format(controller.states[index].death)}',
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
-                                            ],
-                                          ),
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                    );
-                                  },
-                                )
-                              ],
-                            );
-                          } else {
-                            return OfflinePage();
-                          }
-                        },
-                      ),
-                      FundSection(),
-                    ],
-                  );
-                },
-              ),
+                                    ),
+                                  );
+                                },
+                              )
+                            ],
+                          );
+                        } else {
+                          return OfflinePage();
+                        }
+                      },
+                    ),
+                    FundSection(),
+                  ],
+                );
+              },
             ),
             GetX<GetStatesController>(
               builder: (controller) {

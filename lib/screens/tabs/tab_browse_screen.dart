@@ -43,75 +43,73 @@ class TabBrowseScreen extends TraceableStatelessWidget {
         backgroundColor: Theme.of(context).primaryColor,
         child: Stack(
           children: [
-            CupertinoScrollbar(
-              child: ListView.builder(
-                controller: getBrowseController.scrollController,
-                itemCount: 1,
-                padding: EdgeInsets.fromLTRB(8, 4, 8, 8),
-                itemBuilder: (context, i) {
-                  return Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
-                        child: Obx(
-                          () => UpdateLine(
-                            left: ' ${getBrowseController.dateUpdated} Uhr',
-                            right: getCountysController.lastUpdate.value ==
-                                        null ||
-                                    getCountysController.lastUpdate.value == ''
-                                ? ''
-                                : 'Stand: ${getCountysController.lastUpdate.value}',
-                          ),
+            ListView.builder(
+              controller: getBrowseController.scrollController,
+              itemCount: 1,
+              padding: EdgeInsets.fromLTRB(8, 4, 8, 8),
+              itemBuilder: (context, i) {
+                return Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
+                      child: Obx(
+                        () => UpdateLine(
+                          left: ' ${getBrowseController.dateUpdated} Uhr',
+                          right: getCountysController.lastUpdate.value ==
+                                      null ||
+                                  getCountysController.lastUpdate.value == ''
+                              ? ''
+                              : 'Stand: ${getCountysController.lastUpdate.value}',
                         ),
                       ),
-                      GetX<GetBrowseController>(
-                        builder: (controller) {
-                          if (controller.isRefreshIndicatorActive.value ==
-                                  false &&
-                              controller.isLoading.value == true) {
-                            return Container();
-                          } else if (controller.lowest5.length < 1) {
-                            return OfflinePage();
-                          } else {
-                            return FadeIn(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    width: double.infinity,
-                                    child: Card(
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                            'Hinweis: Die Farben dienen nur der schnellen Erfassung der aktuellen Inzidenz. Sie zeigen nicht an welche offizielle Corona-Maßnahmen bei euch gerade greifen.'),
-                                      ),
+                    ),
+                    GetX<GetBrowseController>(
+                      builder: (controller) {
+                        if (controller.isRefreshIndicatorActive.value ==
+                                false &&
+                            controller.isLoading.value == true) {
+                          return Container();
+                        } else if (controller.lowest5.length < 1) {
+                          return OfflinePage();
+                        } else {
+                          return FadeIn(
+                            child: Column(
+                              children: [
+                                Container(
+                                  width: double.infinity,
+                                  child: Card(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                          'Hinweis: Die Farben dienen nur der schnellen Erfassung der aktuellen Inzidenz. Sie zeigen nicht an welche offizielle Corona-Maßnahmen bei euch gerade greifen.'),
                                     ),
                                   ),
-                                  BrowseCard(
-                                    title: 'Niedrigste Inzidenz',
-                                    data: controller.lowest5,
-                                    hero: hero,
-                                  ),
-                                  BrowseCard(
-                                    title: 'Höchste Inzidenz',
-                                    data: controller.highest5,
-                                    hero: hero,
-                                  ),
-                                  BrowseCard(
-                                    title: 'Meisten Einwohner*innen',
-                                    data: controller.highest5Ewz,
-                                    hero: hero,
-                                  ),
-                                  FundSection(),
-                                ],
-                              ),
-                            );
-                          }
-                        },
-                      ),
-                    ],
-                  );
-                },
-              ),
+                                ),
+                                BrowseCard(
+                                  title: 'Niedrigste Inzidenz',
+                                  data: controller.lowest5,
+                                  hero: hero,
+                                ),
+                                BrowseCard(
+                                  title: 'Höchste Inzidenz',
+                                  data: controller.highest5,
+                                  hero: hero,
+                                ),
+                                BrowseCard(
+                                  title: 'Meisten Einwohner*innen',
+                                  data: controller.highest5Ewz,
+                                  hero: hero,
+                                ),
+                                FundSection(),
+                              ],
+                            ),
+                          );
+                        }
+                      },
+                    ),
+                  ],
+                );
+              },
             ),
             GetX<GetBrowseController>(
               builder: (controller) {

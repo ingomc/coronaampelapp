@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:matomo/matomo.dart';
 
 class CountyDetailScreen extends TraceableStatelessWidget {
@@ -33,7 +34,7 @@ class CountyDetailScreen extends TraceableStatelessWidget {
       Get.put(GetCountysController());
   final GetSingleCountyController getSingleCountyController =
       Get.put(GetSingleCountyController());
-
+  final ScrollController _controllerOne = ScrollController();
   // Call this when the user pull down the screen
   Future<void> _loadData() async {
     // isRefreshIndicatorActive = true;
@@ -45,129 +46,132 @@ class CountyDetailScreen extends TraceableStatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(MdiIcons.arrowLeft),
+          onPressed: () {
+            Get.back();
+          },
+        ),
         title: Text('$district $name'),
       ),
       body: SafeArea(
         bottom: false,
         child: RefreshIndicator(
           onRefresh: _loadData,
-          child: CupertinoScrollbar(
-            child: ListView.builder(
-              padding: EdgeInsets.fromLTRB(4, 4, 4, 32),
-              itemCount: 1,
-              itemBuilder: (context, index) {
-                return Column(
-                  children: [
-                    SizedBox(height: 4),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Hero(
-                        tag: '$hero$rs',
-                        child: CountyCard(hero, rs, name, district, incidence,
-                            newCases, false),
-                      ),
+          child: ListView.builder(
+            padding: EdgeInsets.fromLTRB(4, 4, 4, 32),
+            itemCount: 1,
+            itemBuilder: (context, index) {
+              return Column(
+                children: [
+                  SizedBox(height: 4),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Hero(
+                      tag: '$hero$rs',
+                      child: CountyCard(
+                          hero, rs, name, district, incidence, newCases, false),
                     ),
-                    GetX<GetSingleCountyController>(builder: (controller) {
-                      return FadeIn(
-                        duration: Duration(milliseconds: 600),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 4),
-                              child: Row(
-                                children: <Widget>[
-                                  ThirdCard('Neue Fälle von Gestern',
-                                      '${newCases != null && newCases > 0 ? '+ ' + NumberFormat.decimalPattern("de-DE").format(newCases) : 0}'),
-                                  ThirdCard('Fälle der letzten 7 Tage',
-                                      '+ ${controller.county.value.cases7Lk != null ? NumberFormat.decimalPattern('de-DE').format(controller.county.value.cases7Lk) : 0}'),
-                                  ThirdCard('Fälle insgesamt',
-                                      '${controller.county.value.cases != null ? NumberFormat.decimalPattern('de-DE').format(controller.county.value.cases) : 0}'),
+                  ),
+                  GetX<GetSingleCountyController>(builder: (controller) {
+                    return FadeIn(
+                      duration: Duration(milliseconds: 600),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 4),
+                            child: Row(
+                              children: <Widget>[
+                                ThirdCard('Neue Fälle von Gestern',
+                                    '${newCases != null && newCases > 0 ? '+ ' + NumberFormat.decimalPattern("de-DE").format(newCases) : 0}'),
+                                ThirdCard('Fälle der letzten 7 Tage',
+                                    '+ ${controller.county.value.cases7Lk != null ? NumberFormat.decimalPattern('de-DE').format(controller.county.value.cases7Lk) : 0}'),
+                                ThirdCard('Fälle insgesamt',
+                                    '${controller.county.value.cases != null ? NumberFormat.decimalPattern('de-DE').format(controller.county.value.cases) : 0}'),
+                              ],
+                            ),
+                          ),
+                          CityDetailsRowCard(
+                            label: 'Tote bisher',
+                            number:
+                                '${controller.county.value.deaths != null ? NumberFormat.decimalPattern('de-DE').format(controller.county.value.deaths) : 0}',
+                          ),
+                          CityDetailsRowCard(
+                            label: 'Todesrate',
+                            number:
+                                '${controller.county.value.deathRate != null ? (controller.county.value.deathRate).toStringAsFixed(2) : ""} %',
+                          ),
+                          CityDetailsRowCard(
+                            label: 'Einwohnerzahl',
+                            number:
+                                '${controller.county.value.ewz != null ? NumberFormat.decimalPattern('de-DE').format(controller.county.value.ewz) : 0}',
+                          ),
+                          CityDetailsRowCard(
+                            label:
+                                '7 Tage Inzidenz in ${controller.county.value.bl != null ? controller.county.value.bl : ''}',
+                            number:
+                                '${controller.county.value.cases7BlPer100K != null ? controller.county.value.cases7BlPer100K.toStringAsFixed(1) : ''}',
+                          ),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          if (controller.isLoading.value)
+                            FadeIn(
+                              duration: Duration(milliseconds: 500),
+                              child: Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                            ),
+                          if (!controller.isLoading.value &&
+                              controller.county.value.bettenFrei != null)
+                            FadeIn(
+                              duration: Duration(milliseconds: 500),
+                              child: Column(
+                                children: [
+                                  Center(
+                                    child: Text(
+                                      'Intensivstation',
+                                      style: TextStyle(
+                                          color: Theme.of(context).hintColor),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 8,
+                                  ),
+                                  CityDetailsRowCard(
+                                    label: 'Betten frei',
+                                    percentage:
+                                        '${(controller.county.value.bettenFrei / (controller.county.value.bettenFrei + controller.county.value.bettenBelegt) * 100).toStringAsFixed(0)}',
+                                    number:
+                                        '${controller.county.value.bettenFrei != null ? controller.county.value.bettenFrei : 0}',
+                                  ),
+                                  CityDetailsRowCard(
+                                    label: 'Betten belegt',
+                                    number:
+                                        '${controller.county.value.bettenBelegt != null ? controller.county.value.bettenBelegt : 0}',
+                                  ),
+                                  CityDetailsRowCard(
+                                    label: 'Betten belegt mit Covid-19',
+                                    percentage:
+                                        '${(controller.county.value.faelleCovidAktuell / (controller.county.value.faelleCovidAktuell + controller.county.value.bettenBelegt) * 100).toStringAsFixed(0)}',
+                                    number:
+                                        '${controller.county.value.faelleCovidAktuell != null ? controller.county.value.faelleCovidAktuell : 0}',
+                                  ),
+                                  CityDetailsRowCard(
+                                    label: 'Covid-19-Fälle die beatmet werden',
+                                    number:
+                                        '${controller.county.value.faelleCovidAktuellBeatmet != null ? controller.county.value.faelleCovidAktuellBeatmet : 0}',
+                                  ),
                                 ],
                               ),
                             ),
-                            CityDetailsRowCard(
-                              label: 'Tote bisher',
-                              number:
-                                  '${controller.county.value.deaths != null ? NumberFormat.decimalPattern('de-DE').format(controller.county.value.deaths) : 0}',
-                            ),
-                            CityDetailsRowCard(
-                              label: 'Todesrate',
-                              number:
-                                  '${controller.county.value.deathRate != null ? (controller.county.value.deathRate).toStringAsFixed(2) : ""} %',
-                            ),
-                            CityDetailsRowCard(
-                              label: 'Einwohnerzahl',
-                              number:
-                                  '${controller.county.value.ewz != null ? NumberFormat.decimalPattern('de-DE').format(controller.county.value.ewz) : 0}',
-                            ),
-                            CityDetailsRowCard(
-                              label:
-                                  '7 Tage Inzidenz in ${controller.county.value.bl != null ? controller.county.value.bl : ''}',
-                              number:
-                                  '${controller.county.value.cases7BlPer100K != null ? controller.county.value.cases7BlPer100K.toStringAsFixed(1) : ''}',
-                            ),
-                            SizedBox(
-                              height: 16,
-                            ),
-                            if (controller.isLoading.value)
-                              FadeIn(
-                                duration: Duration(milliseconds: 500),
-                                child: Center(
-                                  child: CircularProgressIndicator(),
-                                ),
-                              ),
-                            if (!controller.isLoading.value &&
-                                controller.county.value.bettenFrei != null)
-                              FadeIn(
-                                duration: Duration(milliseconds: 500),
-                                child: Column(
-                                  children: [
-                                    Center(
-                                      child: Text(
-                                        'Intensivstation',
-                                        style: TextStyle(
-                                            color: Theme.of(context).hintColor),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    CityDetailsRowCard(
-                                      label: 'Betten frei',
-                                      percentage:
-                                          '${(controller.county.value.bettenFrei / (controller.county.value.bettenFrei + controller.county.value.bettenBelegt) * 100).toStringAsFixed(0)}',
-                                      number:
-                                          '${controller.county.value.bettenFrei != null ? controller.county.value.bettenFrei : 0}',
-                                    ),
-                                    CityDetailsRowCard(
-                                      label: 'Betten belegt',
-                                      number:
-                                          '${controller.county.value.bettenBelegt != null ? controller.county.value.bettenBelegt : 0}',
-                                    ),
-                                    CityDetailsRowCard(
-                                      label: 'Betten belegt mit Covid-19',
-                                      percentage:
-                                          '${(controller.county.value.faelleCovidAktuell / (controller.county.value.faelleCovidAktuell + controller.county.value.bettenBelegt) * 100).toStringAsFixed(0)}',
-                                      number:
-                                          '${controller.county.value.faelleCovidAktuell != null ? controller.county.value.faelleCovidAktuell : 0}',
-                                    ),
-                                    CityDetailsRowCard(
-                                      label:
-                                          'Covid-19-Fälle die beatmet werden',
-                                      number:
-                                          '${controller.county.value.faelleCovidAktuellBeatmet != null ? controller.county.value.faelleCovidAktuellBeatmet : 0}',
-                                    ),
-                                  ],
-                                ),
-                              ),
-                          ],
-                        ),
-                      );
-                    }),
-                  ],
-                );
-              },
-            ),
+                        ],
+                      ),
+                    );
+                  }),
+                ],
+              );
+            },
           ),
         ),
       ),
