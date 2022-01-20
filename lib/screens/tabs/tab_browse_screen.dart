@@ -76,19 +76,32 @@ class TabBrowseScreen extends TraceableStatelessWidget {
                             return FadeIn(
                               child: Column(
                                 children: [
+                                  Container(
+                                    width: double.infinity,
+                                    child: Card(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                            'Hinweis: Die Farben dienen nur der schnellen Erfassung der aktuellen Inzidenz. Sie zeigen nicht an welche offizielle Corona-Maßnahmen bei euch gerade greifen.'),
+                                      ),
+                                    ),
+                                  ),
                                   BrowseCard(
-                                      title: 'Niedrigste Inzidenz',
-                                      data: controller.lowest5,
-                                      hero: hero),
+                                    title: 'Niedrigste Inzidenz',
+                                    data: controller.lowest5,
+                                    hero: hero,
+                                  ),
                                   BrowseCard(
-                                      title: 'Höchste Inzidenz',
-                                      data: controller.highest5,
-                                      hero: hero),
+                                    title: 'Höchste Inzidenz',
+                                    data: controller.highest5,
+                                    hero: hero,
+                                  ),
+                                  BrowseCard(
+                                    title: 'Meisten Einwohner*innen',
+                                    data: controller.highest5Ewz,
+                                    hero: hero,
+                                  ),
                                   FundSection(),
-                                  BrowseCard(
-                                      title: 'Meisten Einwohner*innen',
-                                      data: controller.highest5Ewz,
-                                      hero: hero),
                                 ],
                               ),
                             );

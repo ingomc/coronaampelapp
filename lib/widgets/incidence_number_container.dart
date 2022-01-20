@@ -12,34 +12,34 @@ class IncidenceNumberContainer extends StatelessWidget {
   Color txtColor = Colors.white;
   Color bgColor = Colors.white12;
 
-  // getBgColor() {
-  //   if (incidence < 0) {
-  //     txtColor = Colors.white38;
-  //     bgColor = Colors.grey[800];
-  //     return false;
-  //   }
-  //   if (incidence >= 35 && incidence < 50) {
-  //     txtColor = Colors.black54;
-  //     bgColor = Colors.orange[300];
-  //     return false;
-  //   }
-  //   if (incidence >= 50 && incidence < 100) {
-  //     txtColor = Colors.black54;
-  //     bgColor = Colors.redAccent[700];
-  //     return false;
-  //   }
-  //   if (incidence >= 100) {
-  //     txtColor = Colors.redAccent[700];
-  //     bgColor = Color.fromRGBO(60, 0, 0, 1);
-  //     return false;
-  //   }
-  //   txtColor = Colors.black54;
-  //   bgColor = Colors.green;
-  // }
+  getBgColor() {
+    if (incidence < 0) {
+      txtColor = Colors.white38;
+      bgColor = Colors.grey[800];
+      return false;
+    }
+    if (incidence >= 35 && incidence < 50) {
+      txtColor = Colors.black54;
+      bgColor = Colors.orange[300];
+      return false;
+    }
+    if (incidence >= 50 && incidence < 100) {
+      txtColor = Colors.black54;
+      bgColor = Colors.redAccent[700];
+      return false;
+    }
+    if (incidence >= 100) {
+      txtColor = Colors.redAccent[700];
+      bgColor = Color.fromRGBO(60, 0, 0, 1);
+      return false;
+    }
+    txtColor = Colors.black54;
+    bgColor = Colors.green;
+  }
 
   @override
   Widget build(BuildContext context) {
-    // getBgColor();
+    getBgColor();
     return Container(
       decoration: BoxDecoration(
           color: bgColor, borderRadius: BorderRadius.all(Radius.circular(4))),
