@@ -77,9 +77,9 @@ class CountyDetailScreen extends TraceableStatelessWidget {
                               child: Row(
                                 children: <Widget>[
                                   ThirdCard('Neue Fälle von Gestern',
-                                      '${newCases != null && newCases > 0 ? '+ $newCases' : 0}'),
+                                      '${newCases != null && newCases > 0 ? '+ ' + NumberFormat.decimalPattern("de-DE").format(newCases) : 0}'),
                                   ThirdCard('Fälle der letzten 7 Tage',
-                                      '+ ${controller.county.value.cases7Lk != null ? controller.county.value.cases7Lk : 0}'),
+                                      '+ ${controller.county.value.cases7Lk != null ? NumberFormat.decimalPattern('de-DE').format(controller.county.value.cases7Lk) : 0}'),
                                   ThirdCard('Fälle insgesamt',
                                       '${controller.county.value.cases != null ? NumberFormat.decimalPattern('de-DE').format(controller.county.value.cases) : 0}'),
                                 ],

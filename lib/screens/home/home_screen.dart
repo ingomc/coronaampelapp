@@ -39,10 +39,10 @@ class HomeScreen extends StatelessWidget {
         await reloadController.reload();
         break;
       case 'Anpassen':
-        Get.to(CountyEditScreen());
+        Get.to(() => CountyEditScreen());
         break;
       case 'Info':
-        Get.to(SettingsScreen());
+        Get.to(() => SettingsScreen());
         break;
     }
     // print(value);

@@ -112,7 +112,7 @@ class TabCountyScreen extends TraceableStatelessWidget {
                               opacity: .5,
                               child: GestureDetector(
                                 onTap: () {
-                                  Get.to(SearchScreen(),
+                                  Get.to(() => SearchScreen(),
                                       transition: Transition.downToUp);
                                 },
                                 child: Padding(
@@ -185,7 +185,7 @@ class TabCountyScreen extends TraceableStatelessWidget {
         return FloatingActionButton(
           child: Icon(MdiIcons.plus),
           onPressed: () {
-            Get.to(SearchScreen(), transition: Transition.downToUp);
+            Get.to(() => SearchScreen(), transition: Transition.downToUp);
           },
         );
       }),

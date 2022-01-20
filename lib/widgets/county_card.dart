@@ -55,15 +55,15 @@ class CountyCard extends StatelessWidget {
   void goToCity() {
     getSingleCountyController.selectedCountyRS.value = rs;
     Get.to(
-        CountyDetailScreen(
-          hero: hero,
-          rs: rs,
-          name: name,
-          district: district,
-          incidence: incidence,
-          newCases: newCases,
-          isLinked: isLinked,
-        ),
+        () => CountyDetailScreen(
+              hero: hero,
+              rs: rs,
+              name: name,
+              district: district,
+              incidence: incidence,
+              newCases: newCases,
+              isLinked: isLinked,
+            ),
         transition: Transition.cupertino);
   }
 
@@ -79,7 +79,7 @@ class CountyCard extends StatelessWidget {
         child: InkWell(
           onTap: () => goToCity(),
           onLongPress: () => {
-            if (isLinked) Get.to(CountyEditScreen()),
+            if (isLinked) Get.to(() => CountyEditScreen()),
           },
           borderRadius: BorderRadius.circular(4),
           child: Row(

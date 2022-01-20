@@ -121,7 +121,7 @@ class SettingsScreen extends TraceableStatelessWidget {
             child: Card(
               child: InkWell(
                 onTap: () {
-                  Get.to(HelpScreen());
+                  Get.to(() => HelpScreen());
                 },
                 child: ListTile(
                   leading: Icon(MdiIcons.helpCircle),
@@ -160,7 +160,7 @@ class SettingsScreen extends TraceableStatelessWidget {
                       ),
                     ),
                     applicationName: BaseData.appName,
-                    applicationVersion: "1.7.0",
+                    applicationVersion: "1.8.1",
                   );
                 },
                 child: ListTile(

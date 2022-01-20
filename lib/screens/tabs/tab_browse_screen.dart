@@ -165,14 +165,14 @@ class BrowseCard extends StatelessWidget {
                             getSingleCountyController.selectedCountyRS.value =
                                 thisCounty.rs;
                             Get.to(
-                                CountyDetailScreen(
-                                  hero: hero,
-                                  rs: thisCounty.rs,
-                                  name: thisCounty.gen,
-                                  district: thisCounty.bez,
-                                  incidence: thisCounty.cases7Per100K,
-                                  newCases: thisCounty.newCases,
-                                ),
+                                () => CountyDetailScreen(
+                                      hero: hero,
+                                      rs: thisCounty.rs,
+                                      name: thisCounty.gen,
+                                      district: thisCounty.bez,
+                                      incidence: thisCounty.cases7Per100K,
+                                      newCases: thisCounty.newCases,
+                                    ),
                                 transition: Transition.cupertino);
                           },
                           child: ListTile(
