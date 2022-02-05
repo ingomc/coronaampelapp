@@ -64,7 +64,7 @@ class VaccineStateCard extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    '${vaccinated < 1000000 ? NumberFormat.decimalPattern('de-DE').format(vaccinated) : NumberFormat.compact(locale: 'de-DE').format(vaccinated)} verabreicht \n(+${NumberFormat.decimalPattern('de-DE').format(today)})',
+                    '${vaccinated < 1000000 ? NumberFormat.decimalPattern('de-DE').format(vaccinated) : NumberFormat.compact(locale: 'de-DE').format(vaccinated)}',
                   ),
                 ),
                 Text(
@@ -80,7 +80,7 @@ class VaccineStateCard extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(right: 16),
                 child: Text(
-                  'je 2 Impfdosen (durch Johnson & Johnson eventuell weniger)',
+                  'Mind. Grundimmunisierte Personen (egal ob mit oder ohne Booster)',
                   textAlign: TextAlign.right,
                 ),
               ),

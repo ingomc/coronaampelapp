@@ -67,11 +67,11 @@ class TabVaccineScreen extends TraceableStatelessWidget {
                                   100)
                               .toStringAsFixed(2)),
                       vaccinated:
-                          getVaccineController.germany.value.sumVaccineDoses,
+                          getVaccineController.germany.value.sumVaccineDoses ~/
+                              2,
                       today: getVaccineController
                           .germany.value.differenceToThePreviousDay,
-                      target: (getVaccineController.germany.value.total * 2)
-                          .toInt(),
+                      target: getVaccineController.germany.value.total,
                       label: true,
                     );
                   }),
@@ -135,7 +135,7 @@ class TabVaccineScreen extends TraceableStatelessWidget {
                       Get.defaultDialog(
                         title: 'Hinweis',
                         content: Text(
-                            'Die Daten für die Bundesländer und für Deutschland ergeben sich aus 1. und/oder 2. Impfungen. Die tatsächliche Richtigkeit kann nicht eingeschätzt werden. Die veröffentlichten Zahlen des RKIs werden außerdem nicht umgehend veröffentlicht, sondern mit einer Verzögerung von 2 - 3 Tagen.'),
+                            'NEU: Angezeigt werden jetzt nicht mehr die einzelnen Impfungen, sondern die Anzahl an Grund und Vollständig immunisierten Menschen durch Impfungen. Die Zahlen können sich in Zukunft stark verändern, weil sich die Einstufung für immunisierte Menschen, durch das RKI, ständig ändern können.'),
                         textConfirm: 'Ok',
                         onConfirm: () {
                           Get.back();
